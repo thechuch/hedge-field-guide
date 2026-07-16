@@ -1,10 +1,11 @@
 /* Project Hedge Field Guide — offline shell cache */
-const CACHE = 'hedge-field-v2';
+const CACHE = 'hedge-field-v3';
 const ASSETS = [
   './',
   'index.html',
   'plot-plan.html',
   'battery-wiring.html',
+  'deck-layout.html',
   'chicken-waterer.html',
   'litime-email.html',
   'assets/site.css',
