@@ -111,11 +111,11 @@
     </div>
   </header>
 
-  <div class="decision">
-    <h2><span class="tagbig">DECIDE FIRST</span> You are running 6 in parallel; LiTime rates this battery for 4.</h2>
-    <p>Confirmed against LiTime's own docs: the 24V 100Ah is validated for a <b>maximum of 4 in parallel</b>. Running <b>6P</b> is out of spec and <b>voids the warranty on all six packs</b>. The real technical risk is <b>reconnect inrush</b>: if one pack's BMS trips and later reconnects at a lower state of charge, the other five dump a hard inrush into its FETs, which can cascade-trip the bank. <b>Your per-battery fuses do not fix this</b> (they stop a dead short, not inter-pack inrush).</p>
-    <div class="rec">
-      <b>Recommendation:</b> email LiTime for a <b>written position on 6P for this exact model</b> (ask what the 4P cap protects against). Meanwhile wire for 6P (it reverts to 4P trivially) but <b>only if</b> you (1) pre-balance all six packs to within ~30&nbsp;mV before paralleling, (2) add a pre-charge step, and (3) can see per-pack current (the Bluetooth app or an IR sweep) so a single trip is visible before it cascades. <b>In-warranty fallback:</b> run <b>4P</b> = ~9.6&nbsp;kWh nominal / ~8&nbsp;kWh usable, keep 2 packs as rotating spares. Livable because the Iota grid-charger backfills. Do not run 6P as a silent default.
+  <div class="decision" style="border-color:var(--ok);background:color-mix(in srgb,var(--ok) 10%,transparent)">
+    <h2><span class="tagbig" style="background:var(--ok)">SETTLED</span> Main bank is 4P. LiTime answered in writing.</h2>
+    <p>LiTime confirmed (2026-07-16, service@litime.com) that the 24V 100Ah is rated <b>max 4 in parallel</b>. In their words, 6P <b>"exceeds this recommended limit"</b>, is <b>"not supported by our warranty"</b>, <b>"may compromise the BMS's ability to effectively balance and protect the batteries"</b>, and is <b>"not advised for safety and warranty reasons"</b>. The 4P cap exists to ensure BMS coordination and prevent <b>inrush current, uneven current sharing, and pack imbalance</b>. They called the fusing/pre-balance/diagonal-bus/pre-charge plan "excellent practices" but said the fundamental limitation remains regardless.</p>
+    <div class="rec" style="border-left-color:var(--ok)">
+      <b>Decision:</b> main bank = <b>4P</b> (~10.2 kWh nominal, <b>~8 kWh usable</b>), all four in warranty. The other <b>2 batteries go to the dedicated shed freezer system</b> (2P, also in spec, also in warranty). Dropping from ~12 to ~8 kWh usable is fine because the Iota grid-charger already covers that autonomy. Bonus: 4P needs only <b>6 landings per bus</b>, so <b>2 bars per polarity</b> and <b>one jumper</b> per bus. Still pre-balance to ~30 mV and verify sharing with the clamp meter. <b>Do not re-litigate 6P.</b>
     </div>
   </div>
 
@@ -306,7 +306,7 @@
       </tbody>
     </table>
   </div>
-  <p style="font-size:12px;color:var(--ink-soft);margin-top:10px"><b>Torque</b> (calibrated wrench, never by feel): LiTime M8 posts <code>~8 to 10 N·m</code> (do not exceed ~12), Joinfworld brass M8 studs <code>~12 to 15 N·m</code>, ANL per holder spec. Largest ring on the bottom, no washer between stacked conductors, confirm the nut fully engages on the 2- and 3-ring studs. <b>Re-torque</b> after the first heavy-load run, at 1 week, 1 month, then annually. <b>Lugs:</b> tinned closed-barrel, M8 (5/16″) ring, <b>hydraulic-crimped</b> + adhesive heat-shrink, no hammer/set-screw lugs, no solder. Pull-test each.</p>
+  <p style="font-size:12px;color:var(--ink-soft);margin-top:10px"><b>Torque</b> (calibrated wrench, never by feel): LiTime M8 posts <code>7 to 10 N·m</code> (CONFIRMED by LiTime 2026-07-16, do not overtighten), Joinfworld brass M8 studs <code>~12 to 15 N·m</code> (still interim, confirm), ANL per holder spec. Largest ring on the bottom, no washer between stacked conductors, confirm the nut fully engages on the 2- and 3-ring studs. <b>Re-torque</b> after the first heavy-load run, at 1 week, 1 month, then annually. <b>Lugs:</b> tinned closed-barrel, M8 (5/16″) ring, <b>hydraulic-crimped</b> + adhesive heat-shrink, no hammer/set-screw lugs, no solder. Pull-test each.</p>
 
   <h2 class="hd">Connect &amp; energize, in this order</h2>
   <ol class="seq">
@@ -322,8 +322,7 @@
 
   <h2 class="hd">Verify before you commit (from the manufacturers)</h2>
   <ul class="checks">
-    <li><b>LiTime's written position on 6P</b> for this exact model, proceed-at-6P vs drop-to-4P hinges on this.</li>
-    <li><b>LiTime M8 terminal torque</b> in N·m (they don't publish it in the sources I found, email/call; use 8 to 10 N·m interim, never exceed ~12).</li>
+    <li><b>Joinfworld stud SIZE:</b> the 4-stud bars are likely <b>3/8″ (M10), not M8</b>. This sets your ring-lug hole size. Measure before ordering lugs.</li>
     <li><b>Iota model / rated output.</b> 10ga is only OK for a ≤30A Iota. A 45 to 55A model needs 8ga and a bigger fuse.</li>
     <li><b>Controller 6ga lead is 90°C-rated</b> battery cable (it sits near its ampacity at a full 60A inside the insulated box), or step to 4ga.</li>
     <li><b>DC interrupt rating (AIC)</b> of the 80A BULVACK (and any 150A replacement) exceeds ~1,700A, cheap DC breakers can be inadequate; a 150A upgrade must be DC-rated with a slow trip curve and checked against the freezer/inverter surge.</li>

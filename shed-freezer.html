@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#141b26">
+<title>Shed Freezer System · Hedge Field Guide</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<nav class="sitenav">
+  <a class="back" href="index.html">‹ <span>Guide</span></a>
+  <span class="title">Shed Freezer</span>
+  <span class="spacer"></span>
+</nav>
+
+<div class="wrap">
+  <div class="hero">
+    <p class="eyebrow">Dedicated 2P · off-grid</p>
+    <h1>Shed Freezer System</h1>
+    <p>The 2 batteries freed by going 4P get their own job: keeping the freezer alive.</p>
+  </div>
+
+  <div class="callout ok">
+    <h3>Why this exists</h3>
+    <p><b>Summer PSPS / wildfire shutoffs.</b> Southern Oregon loses grid for days in fire season, which is exactly when the freezer works hardest and is full of food, and exactly when the sun is best. This is a resilience play, not an economics one (grid runs a freezer for pennies).</p>
+    <p>It also kills an old problem: leaving the 3kW inverter on 24/7 for a ~150W freezer burned 20 to 50W of idle every night. A small dedicated inverter does not.</p>
+    <p><b>2P is inside LiTime's 4P limit, so these two stay in warranty.</b></p>
+  </div>
+
+  <h2 class="hd">Is 2P enough? Yes.</h2>
+  <div class="scrollx">
+    <table>
+      <thead><tr><th>Season</th><th>Shed temp</th><th>Freezer load</th><th>Autonomy on ~4 kWh</th></tr></thead>
+      <tbody>
+        <tr><td>Summer</td><td>hot (fighting a ~90°F delta)</td><td>~2.5 to 3 kWh/day</td><td>~1.5 days <span class="pill">sun recharges daily</span></td></tr>
+        <tr><td>Winter</td><td>cold (only a ~40°F delta)</td><td>~0.8 to 1.2 kWh/day</td><td><b>~3.5 to 4 days</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="hintscroll">2 × LiTime 24V 100Ah = 5.1 kWh nominal, ~4 kWh usable.</p>
+
+  <div class="callout">
+    <h3>The trick that makes it work</h3>
+    <p>A freezer's load is <b>lowest exactly when solar is worst.</b> In a 40°F shed it only holds a 40 degree delta; in a 90°F shed it fights 90. So winter's terrible sun meets a tiny load, and summer's big load meets abundant sun. <b>The bank is not your constraint. The panels are.</b></p>
+  </div>
+
+  <h2 class="hd">Panels: ~800W (buying all new)</h2>
+  <div class="cards">
+    <div class="info"><h3>December (worst case, ~2 peak sun hours)</h3><p>Load ~1.0 kWh/day ÷ 0.75 losses = ~1.3 kWh to generate. 800W × 2h × 0.75 ≈ <b>1.2 kWh/day.</b> Tight, but the load is small and grid backstops it.</p></div>
+    <div class="info"><h3>Summer (~6.5 peak sun hours)</h3><p>Load ~2.7 kWh/day ÷ 0.75 = ~3.6 kWh to generate. 800W × 6.5h × 0.75 ≈ <b>3.9 kWh/day.</b> Covered, which is the PSPS scenario.</p></div>
+    <div class="info"><h3>Buy 2 modern panels, not 3 old ones</h3><p>Since these are all new: <b>2 × ~400W = 800W</b> beats 3 × 250W. Fewer panels, less racking, better cost per watt. 500W only covers ~9 months. 1000W gives full December margin.</p></div>
+  </div>
+
+  <div class="callout flag">
+    <h3>The shed is plastic: do NOT try to insulate it</h3>
+    <p>A resin shed hits 120 to 140°F inside in summer, which is what drives the freezer load. Insulating it is a miserable job with no stud cavities. Work around it instead:</p>
+  </div>
+  <ol class="seq">
+    <li><b>Make the panels the shade roof.</b> Rack the 2 new panels <b>above the shed with an air gap.</b> They shade the plastic shell and generate your power. You were buying them anyway. <b>Biggest single move.</b></li>
+    <li><b>Solar exhaust fan</b> (~$40) + a low intake vent. It runs hardest exactly when the sun is beating on the shed, and draws <b>zero</b> from the bank. Shade + venting gets the interior near ambient instead of 40 degrees above it.</li>
+    <li><b>Insulate the box, not the shed.</b> Only the battery needs a thermal envelope. A <b>cheap chest cooler</b> is a legitimate battery box: already insulated, weatherproof, ~$40. Add cable glands and a breather. Solves winter cold-charge lockout and summer heat in one part.</li>
+    <li><b>Do NOT box in the freezer.</b> It rejects heat through its coils and needs airflow. Shade and moving air, never a blanket.</li>
+  </ol>
+
+  <div class="callout warn">
+    <h3>Two flags</h3>
+    <p><b>Cold charging:</b> same as the main bank, the LiFePO4 BMS refuses charge below 32°F. An unheated shed in winter means the 2P bank may not accept charge exactly when you need it. That is what the insulated cooler-box is for.</p>
+    <p><b>Inverter idle:</b> use a <b>small pure sine inverter (300 to 600W, under ~10W idle)</b>. A big inverter's idle would exceed the freezer itself in winter. Best case is a <b>24V DC chest freezer</b> (~0.4 kWh/day, no inverter at all), but that is new-freezer money.</p>
+  </div>
+
+  <h2 class="hd">Buy list</h2>
+  <div class="scrollx">
+    <table>
+      <thead><tr><th>Item</th><th>Spec</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Panels</td><td>2 × ~400W (800W total)</td><td>All new. Rack them <b>above the shed</b> as the shade roof.</td></tr>
+        <tr><td>Rack / shade frame</td><td>Elevated, air gap over the shed</td><td>Does double duty: mounting + shade.</td></tr>
+        <tr><td>Charge controller</td><td>MPPT ~40A</td><td>800W ÷ 24V ≈ 33A. Check Voc: 2 panels in series ≈ 90V needs a 150V-class unit; parallel (~45V) a 100V unit is fine.</td></tr>
+        <tr><td>Inverter</td><td>300 to 600W pure sine, low idle</td><td><b>Not</b> a 3kW. Idle is the enemy on a small system.</td></tr>
+        <tr><td>Battery enclosure</td><td>Insulated (a chest cooler works)</td><td>+ cable glands + a breather. Cold and heat protection.</td></tr>
+        <tr><td>Fusing</td><td>Per-battery ANL + a disconnect</td><td>Same approach as the main bank, scaled down.</td></tr>
+        <tr><td>Ventilation</td><td>Solar exhaust fan + low intake vent</td><td>~$40. Zero draw from the bank.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="foot">Hedge Field Guide · shed freezer system · 2P dedicated, in warranty · Rev 2026-07-16.</div>
+</div>
+
+<script>
+  (function(){var t=localStorage.getItem('hedge-theme');if(t)document.documentElement.setAttribute('data-theme',t);
+  if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}})();
+</script>
+</body>
+</html>
