@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#141b26">
+<title>Project Hedge — Field Guide</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<nav class="sitenav">
+  <span class="brand">HEDGE <span class="dot">·</span> Field Guide</span>
+  <button class="spacer" id="themeToggle" aria-label="Toggle light/dark" style="background:none;border:0;color:var(--nav-accent);font-size:20px;margin-left:auto">◐</button>
+</nav>
+
+<div class="wrap">
+  <div class="hero">
+    <p class="eyebrow">Off-grid buildout · Ashland OR</p>
+    <h1>Field Guide</h1>
+    <p>Water, power, and irrigation reference. Works offline once loaded.</p>
+  </div>
+
+  <div class="callout flag">
+    <h3><span class="tagbig">DECIDE</span> Open decisions</h3>
+    <p><b>Battery bank:</b> you're at 6-in-parallel; LiTime rates this cell for 4. Email them or drop to 4P. <a href="litime-email.html" style="color:var(--flag);font-weight:700">Draft email →</a></p>
+    <p><b>Before wiring:</b> buy 2 charger-lead fuses (70A + ~30A) and the 2/0 chain jumpers. <a href="battery-wiring.html" style="color:var(--flag);font-weight:700">Wiring sheet →</a></p>
+    <p><b>Still to pick:</b> heated-waterer voltage (go DC) and the shed-freezer approach.</p>
+  </div>
+
+  <h2 class="hd">Guides</h2>
+  <div class="card-grid">
+    <a class="navcard water" href="plot-plan.html">
+      <span class="ic">🗺️</span>
+      <span class="tx"><b>Site Plot Plan</b><span>Water &amp; electrical runs · shared trench · line schedule</span></span>
+      <span class="chev">›</span>
+    </a>
+    <a class="navcard flagc" href="battery-wiring.html">
+      <span class="ic">⚡</span>
+      <span class="tx"><b>Battery-to-Bus Wiring</b><span>Run schedule · torque · connect sequence · 6P decision</span></span>
+      <span class="chev">›</span>
+    </a>
+    <a class="navcard" href="chicken-waterer.html">
+      <span class="ic">🐔</span>
+      <span class="tx"><b>Heated Chicken Waterer</b><span>24V DIY spec · BOM · wiring · control · energy</span></span>
+      <span class="chev">›</span>
+    </a>
+    <a class="navcard" href="litime-email.html">
+      <span class="ic">✉️</span>
+      <span class="tx"><b>Email LiTime (6P)</b><span>Ready-to-send draft · tap to open in Mail</span></span>
+      <span class="chev">›</span>
+    </a>
+  </div>
+
+  <div class="callout">
+    <h3>📲 Keep it in your pocket</h3>
+    <p>In your phone browser: <b>Share → Add to Home Screen</b>. It installs like an app and the pages stay readable with no signal.</p>
+  </div>
+
+  <div class="foot">
+    Project Hedge · field reference · Rev 2026-07-15 · schematic, not to scale.<br>
+    Verify measurements on site. Not a substitute for a licensed electrician on the AC side.
+  </div>
+</div>
+
+<script>
+  (function(){
+    var t = localStorage.getItem('hedge-theme');
+    if(t) document.documentElement.setAttribute('data-theme', t);
+    var btn = document.getElementById('themeToggle');
+    if(btn) btn.addEventListener('click', function(){
+      var cur = document.documentElement.getAttribute('data-theme');
+      var dark = cur ? cur === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var next = dark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('hedge-theme', next);
+    });
+    if('serviceWorker' in navigator){
+      window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
+    }
+  })();
+</script>
+</body>
+</html>

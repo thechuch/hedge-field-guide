@@ -1,0 +1,14 @@
+{
+  "name": "Project Hedge — Field Guide",
+  "short_name": "Hedge Field",
+  "description": "Off-grid build reference: water plot plan, battery wiring, chicken waterer.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0d1219",
+  "theme_color": "#141b26",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

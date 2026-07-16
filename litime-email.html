@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#141b26">
+<title>Email LiTime — Hedge Field Guide</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<nav class="sitenav">
+  <a class="back" href="index.html">‹ <span>Guide</span></a>
+  <span class="title">Email LiTime</span>
+  <span class="spacer"></span>
+</nav>
+
+<div class="wrap">
+  <div class="hero">
+    <p class="eyebrow">Battery bank · 6P question</p>
+    <h1>Email LiTime</h1>
+    <p>Ask if 6-in-parallel is allowed and what the 4P limit protects against.</p>
+  </div>
+
+  <div class="callout">
+    <p class="kv"><b>To:</b> <span id="to">service@litime.com</span> <span class="pill">US / CA / AU</span></p>
+    <p class="kv" style="margin-top:6px"><b>Phone:</b> +1 (888) 311-1866 · Mon–Fri 5am–4pm PST</p>
+    <p style="margin-top:8px;font-size:13px;color:var(--ink-soft)">Tap <b>Open in Mail</b> to load this into your mail app pre-filled, then read it and send. I won't send it for you.</p>
+  </div>
+
+  <div class="btnrow">
+    <a class="btn primary" id="mailBtn" href="#">✉️ Open in Mail</a>
+    <button class="btn" id="copyBtn" type="button">⧉ Copy text</button>
+  </div>
+
+  <p class="kv" style="margin:10px 2px 6px"><b>Subject</b></p>
+  <div class="emailbox" id="subj">24V 100Ah LiFePO4 — is 6-in-parallel supported? (and what does the 4P limit protect against?)</div>
+
+  <p class="kv" style="margin:16px 2px 6px"><b>Body</b></p>
+  <div class="emailbox" id="body">Hello LiTime Support,
+
+I have six of your 24V 100Ah LiFePO4 batteries (100A BMS), same brand and batch, that I want to run in a single 24V parallel bank (6P, ~600Ah) for an off-grid solar system with a ~3000W inverter and grid-assisted charging.
+
+Your spec lists a maximum of 4 in parallel, so before I commission the bank I'd like to confirm:
+
+1. Is running SIX of this exact model in parallel supported and safe? If not, what is the hard limit, and does exceeding it void the warranty?
+
+2. What does the 4-in-parallel limit protect against — reconnect/inrush current between packs, BMS coordination, or is it a validation/warranty boundary only?
+
+My install already includes: each battery positive individually fused (150A ANL), all packs pre-balanced to within ~30 mV before paralleling, a diagonal bus connection, and a pre-charge step on the inverter. If 6P is acceptable under specific conditions, please tell me those conditions.
+
+Lastly, could you confirm the recommended terminal bolt torque (M8) for this model?
+
+Model: LiTime 24V 100Ah LiFePO4
+Quantity: 6
+Use: off-grid solar, ~3000W inverter, grid-assisted
+
+Thank you,
+Estevan ("Chuch")</div>
+
+  <div class="foot">Hedge Field Guide · draft email · contact confirmed at litime.com/pages/contact-us.</div>
+</div>
+
+<script>
+  (function(){
+    var t=localStorage.getItem('hedge-theme'); if(t)document.documentElement.setAttribute('data-theme',t);
+    var to='service@litime.com';
+    var subj=document.getElementById('subj').textContent.trim();
+    var body=document.getElementById('body').textContent;
+    document.getElementById('mailBtn').href='mailto:'+to+'?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
+    var cb=document.getElementById('copyBtn');
+    cb.addEventListener('click', function(){
+      var text='To: '+to+'\nSubject: '+subj+'\n\n'+body;
+      navigator.clipboard.writeText(text).then(function(){cb.textContent='✓ Copied';setTimeout(function(){cb.textContent='⧉ Copy text';},1600);})
+        .catch(function(){cb.textContent='Copy failed';});
+    });
+    if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}
+  })();
+</script>
+</body>
+</html>

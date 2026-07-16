@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#141b26">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="stylesheet" href="assets/site.css">
+<title>Project Hedge — Site Plot Plan</title>
+<style>
+  :root{
+    --ground:#eef1f4; --paper:#f7f8fa; --grid:#dde3e9; --ink:#1c2632; --ink-soft:#5b6672;
+    --rule:#c2cad3; --struct-fill:#ded9cd; --struct-stroke:#9a927f; --struct-ink:#5a5340;
+    --water:#1662c4; --water-soft:#8fb9e8; --pond:#c3ddf3; --tankfill:#a9c4dc;
+    --amber:#b46f08; --amber-soft:#e6b26a;
+    --veg:#4a7a36; --flag:#c0392b; --flag-bg:#f6e4e1; --ok:#2f7d4f;
+    --halo:var(--paper);
+    --font-sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --font-mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#0f141a; --paper:#141b23; --grid:#1e2833; --ink:#dbe2ea; --ink-soft:#8b97a5;
+      --rule:#334050; --struct-fill:#252c34; --struct-stroke:#49535f; --struct-ink:#aab4c0;
+      --water:#4f9bef; --water-soft:#2f5f93; --pond:#14314f; --tankfill:#24384c;
+      --amber:#f0a93c; --amber-soft:#7a5a22;
+      --veg:#6fae52; --flag:#e0655a; --flag-bg:#33211f; --ok:#5cbd83;
+      --halo:var(--ground);
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#eef1f4; --paper:#f7f8fa; --grid:#dde3e9; --ink:#1c2632; --ink-soft:#5b6672;
+    --rule:#c2cad3; --struct-fill:#ded9cd; --struct-stroke:#9a927f; --struct-ink:#5a5340;
+    --water:#1662c4; --water-soft:#8fb9e8; --pond:#c3ddf3; --tankfill:#a9c4dc;
+    --amber:#b46f08; --amber-soft:#e6b26a; --veg:#4a7a36; --flag:#c0392b; --flag-bg:#f6e4e1; --ok:#2f7d4f;
+    --halo:var(--paper);
+  }
+  :root[data-theme="dark"]{
+    --ground:#0f141a; --paper:#141b23; --grid:#1e2833; --ink:#dbe2ea; --ink-soft:#8b97a5;
+    --rule:#334050; --struct-fill:#252c34; --struct-stroke:#49535f; --struct-ink:#aab4c0;
+    --water:#4f9bef; --water-soft:#2f5f93; --pond:#14314f; --tankfill:#24384c;
+    --amber:#f0a93c; --amber-soft:#7a5a22; --veg:#6fae52; --flag:#e0655a; --flag-bg:#33211f; --ok:#5cbd83;
+    --halo:var(--ground);
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--font-sans);line-height:1.5;
+    -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 20px 72px;}
+
+  header.masthead{border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:22px;
+    display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;}
+  .masthead h1{font-size:clamp(20px,3vw,30px);margin:0;letter-spacing:.02em;font-weight:750;text-wrap:balance;}
+  .masthead .sub{font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft);
+    text-transform:uppercase;letter-spacing:.11em;}
+  .masthead .meta{font-family:var(--font-mono);font-size:11.5px;color:var(--ink-soft);text-align:right;
+    line-height:1.7;}
+  .masthead .meta b{color:var(--ink);font-weight:650;}
+
+  .sheet{background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:6px;
+    box-shadow:0 1px 0 var(--rule);overflow-x:auto;}
+  .sheet svg{display:block;width:100%;height:auto;min-width:760px;}
+
+  /* SVG shared classes */
+  .plan-lbl{font-family:var(--font-mono);fill:var(--ink);paint-order:stroke;stroke:var(--halo);
+    stroke-width:3.2px;stroke-linejoin:round;}
+  .plan-lbl.soft{fill:var(--ink-soft);}
+  .plan-lbl.tag{font-weight:700;}
+  .plan-lbl.flagtxt{fill:var(--flag);}
+  .plan-lbl.wtxt{fill:var(--water);}
+  .plan-lbl.etxt{fill:var(--amber);}
+  .struct{fill:var(--struct-fill);stroke:var(--struct-stroke);stroke-width:2;}
+  .struct-lbl{font-family:var(--font-mono);fill:var(--struct-ink);font-weight:700;letter-spacing:.06em;
+    paint-order:stroke;stroke:var(--halo);stroke-width:3px;}
+  .pipe,.wire{fill:none;stroke-linecap:round;stroke-linejoin:round;
+    filter:drop-shadow(0 0 2px var(--halo));}
+  .w-press{stroke:var(--water);}                 /* exposed / above-ground */
+  .w-buried{stroke:var(--water);stroke-dasharray:11 7;}     /* buried charged / winter-critical */
+  .w-seasonal{stroke:var(--water);stroke-dasharray:2 7;}    /* seasonal, drained each fall */
+  .sz-main{stroke-width:5;}      /* 1" main */
+  .sz-big{stroke-width:8;}       /* 2-3" rain */
+  .sz-drip{stroke-width:3;}      /* 1/2-3/4 drip */
+  .e-dc{stroke:var(--amber);stroke-width:3.4;}
+  .e-ac{stroke:var(--amber);stroke-width:3.4;stroke-dasharray:3 6;}
+  .data{stroke:var(--ink-soft);stroke-width:2;stroke-dasharray:1 5;}
+  .trenchband{fill:var(--water-soft);opacity:.20;}
+  .trenchoutline{fill:none;stroke:var(--ink-soft);stroke-width:1.4;stroke-dasharray:6 5;opacity:.7;}
+  .leader{stroke:var(--ink-soft);stroke-width:1;fill:none;}
+  .flagbox{fill:var(--flag-bg);stroke:var(--flag);stroke-width:1.4;}
+  .titleblock{fill:var(--paper);stroke:var(--ink);stroke-width:1.6;}
+  .tb-lbl{font-family:var(--font-mono);fill:var(--ink-soft);font-size:9px;letter-spacing:.08em;}
+  .tb-val{font-family:var(--font-mono);fill:var(--ink);font-size:11px;font-weight:650;}
+
+  /* Legend + tables */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:26px;}
+  @media (max-width:760px){.grid2{grid-template-columns:1fr;}}
+  section.blk{margin-top:30px;}
+  h2.hd{font-family:var(--font-mono);font-size:13px;text-transform:uppercase;letter-spacing:.14em;
+    color:var(--ink);margin:0 0 14px;padding-bottom:7px;border-bottom:1px solid var(--rule);font-weight:700;}
+  .legend{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px;}
+  @media (max-width:600px){.legend{grid-template-columns:1fr;}}
+  .lg{display:flex;align-items:center;gap:11px;font-size:13px;}
+  .lg .swatch{flex:0 0 46px;height:0;}
+  .lg svg{flex:0 0 46px;height:16px;overflow:visible;}
+  .lg .t{color:var(--ink);}
+  .lg .t small{color:var(--ink-soft);display:block;font-size:11.5px;}
+
+  .tblwrap{overflow-x:auto;border:1px solid var(--rule);border-radius:8px;}
+  table{border-collapse:collapse;width:100%;font-size:12.5px;min-width:720px;}
+  thead th{background:var(--ground);text-align:left;font-family:var(--font-mono);font-size:10.5px;
+    text-transform:uppercase;letter-spacing:.07em;color:var(--ink-soft);padding:9px 11px;
+    border-bottom:1.5px solid var(--rule);position:sticky;top:0;}
+  tbody td{padding:9px 11px;border-bottom:1px solid var(--rule);vertical-align:top;}
+  tbody tr:last-child td{border-bottom:none;}
+  td .id{font-family:var(--font-mono);font-weight:750;}
+  td .id.w{color:var(--water);} td .id.e{color:var(--amber);}
+  .pill{display:inline-block;font-family:var(--font-mono);font-size:10.5px;padding:1.5px 7px;border-radius:20px;
+    border:1px solid var(--rule);color:var(--ink-soft);white-space:nowrap;}
+  .pill.crit{color:var(--flag);border-color:var(--flag);}
+  .pill.seas{color:var(--water);border-color:var(--water-soft);}
+  .pill.year{color:var(--ok);border-color:var(--ok);}
+  .arrowcell{font-family:var(--font-mono);font-weight:750;color:var(--ink);}
+
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media (max-width:760px){.cards{grid-template-columns:1fr;}}
+  .card{border:1px solid var(--rule);border-radius:8px;padding:15px 17px;background:var(--paper);}
+  .card.warn{border-left:4px solid var(--flag);}
+  .card.key{border-left:4px solid var(--water);}
+  .card h3{margin:0 0 7px;font-size:14.5px;letter-spacing:.01em;}
+  .card p{margin:0;font-size:13px;color:var(--ink-soft);}
+  .card p + p{margin-top:8px;}
+  .card b{color:var(--ink);}
+
+  ol.confirm{list-style:none;counter-reset:c;padding:0;margin:0;display:grid;gap:11px;}
+  ol.confirm li{counter-increment:c;position:relative;padding:13px 15px 13px 52px;border:1px solid var(--rule);
+    border-radius:8px;background:var(--paper);font-size:13px;}
+  ol.confirm li::before{content:counter(c);position:absolute;left:13px;top:12px;width:26px;height:26px;
+    display:grid;place-items:center;border-radius:50%;background:var(--ground);border:1px solid var(--rule);
+    font-family:var(--font-mono);font-weight:700;font-size:12px;color:var(--ink);}
+  ol.confirm li b{color:var(--ink);}
+  ol.confirm li .rec{display:inline-block;margin-top:5px;font-family:var(--font-mono);font-size:11px;
+    color:var(--ok);}
+  .foot{margin-top:34px;padding-top:14px;border-top:1px solid var(--rule);font-size:11.5px;color:var(--ink-soft);
+    font-family:var(--font-mono);}
+  @media print{body{background:#fff}.wrap{max-width:none}}
+</style>
+</head>
+<body class="page">
+<nav class="sitenav">
+  <a class="back" href="index.html">‹ <span>Guide</span></a>
+  <span class="title">Plot Plan</span>
+  <span class="spacer"></span>
+</nav>
+
+
+<div class="wrap">
+  <header class="masthead">
+    <div>
+      <h1>Project Hedge — Site Plot Plan</h1>
+      <div class="sub">Water (blue) &amp; Electrical (amber) · North up</div>
+    </div>
+    <div class="meta">
+      <div><b>SHEET</b> W-1 · site distribution</div>
+      <div><b>DATE</b> 2026-07-12 · <b>REV</b> A (for review)</div>
+      <div>schematic — not to scale</div>
+    </div>
+  </header>
+
+  <div class="sheet">
+    <svg viewBox="0 0 1200 1060" role="img" aria-label="Top-down plot plan of the homestead water and electrical lines">
+      <defs>
+        <marker id="af" markerWidth="13" markerHeight="12" refX="8.5" refY="4.5" orient="auto" markerUnits="userSpaceOnUse">
+          <path d="M0,0 L9,4.5 L0,9 Z" fill="context-stroke"/>
+        </marker>
+        <pattern id="gravel" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(20)">
+          <circle cx="3" cy="3" r="1" fill="var(--struct-stroke)" opacity=".55"/>
+          <circle cx="9" cy="8" r="1" fill="var(--struct-stroke)" opacity=".55"/>
+        </pattern>
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M40 0 H0 V40" fill="none" stroke="var(--grid)" stroke-width="1"/>
+        </pattern>
+      </defs>
+
+      <!-- sheet field -->
+      <rect x="10" y="10" width="1180" height="1040" fill="url(#grid)"/>
+      <rect x="10" y="10" width="1180" height="1040" fill="none" stroke="var(--rule)" stroke-width="1.5"/>
+
+      <!-- ===================== SITE FEATURES ===================== -->
+      <!-- CREEK (east edge) -->
+      <path d="M1120,20 q14,120 0,240 q-14,120 0,240 q14,120 0,240 q-14,120 0,300" class="pipe" style="stroke:var(--water);stroke-width:2.5;opacity:.6;filter:none"/>
+      <path d="M1152,20 q14,120 0,240 q-14,120 0,240 q14,120 0,240 q-14,120 0,300" class="pipe" style="stroke:var(--water);stroke-width:2.5;opacity:.6;filter:none"/>
+      <rect x="1120" y="20" width="32" height="1020" fill="var(--pond)" opacity=".35"/>
+      <text x="1136" y="540" class="struct-lbl" font-size="15" text-anchor="middle" transform="rotate(90,1136,540)">CREEK  (no crossing — everything on the house side)</text>
+
+      <!-- POND -->
+      <path d="M470,150 C470,60 620,26 760,30 C900,34 1030,60 1090,60 L1090,150 C980,150 900,182 760,182 C620,182 560,150 470,150 Z"
+            fill="var(--pond)" stroke="var(--water)" stroke-width="2"/>
+      <text x="690" y="96" class="struct-lbl" font-size="20" text-anchor="middle">POND</text>
+      <text x="560" y="128" class="plan-lbl soft" font-size="11" text-anchor="middle">½-acre · pond fill (warm months)</text>
+
+      <!-- SF pond pump hutch -->
+      <rect x="850" y="176" width="86" height="54" class="struct" rx="3"/>
+      <circle cx="875" cy="203" r="9" fill="none" stroke="var(--water)" stroke-width="2.4"/>
+      <path d="M871,203 l7,-4 v8 z" fill="var(--water)"/>
+      <text x="893" y="252" class="plan-lbl tag" font-size="14" text-anchor="middle">SF</text>
+      <text x="893" y="268" class="plan-lbl soft" font-size="10.5" text-anchor="middle">SEAFLO + 4-stage filter (pump hutch)</text>
+      <!-- foot valve in pond -->
+      <circle cx="905" cy="158" r="6" fill="none" stroke="var(--water)" stroke-width="2"/>
+      <text x="915" y="150" class="plan-lbl wtxt" font-size="10">foot valve</text>
+
+      <!-- TINY HOUSE -->
+      <rect x="250" y="330" width="470" height="132" class="struct" rx="4"/>
+      <line x1="256" y1="396" x2="714" y2="396" stroke="var(--struct-stroke)" stroke-width="1.3" stroke-dasharray="7 6"/>
+      <text x="410" y="360" class="struct-lbl" font-size="15" text-anchor="middle">TINY HOUSE · 38′ × 10′ metal gable</text>
+      <text x="410" y="388" class="plan-lbl soft" font-size="10.5" text-anchor="middle">1.5 kW PV array on roof (2S3P)</text>
+
+      <!-- network + dish -->
+      <circle cx="272" cy="352" r="9" fill="none" stroke="var(--ink-soft)" stroke-width="1.8"/>
+      <rect x="252" y="434" width="34" height="24" class="struct" rx="2"/>
+      <text x="269" y="450" class="struct-lbl" font-size="12" text-anchor="middle">N</text>
+      <path d="M272,361 L269,434" class="wire data"/>
+
+      <!-- BB solar/battery box (electrical hub) -->
+      <rect x="316" y="440" width="66" height="34" fill="var(--paper)" stroke="var(--amber)" stroke-width="2.4" rx="3"/>
+      <rect x="316" y="440" width="66" height="34" fill="var(--amber)" opacity=".12"/>
+      <text x="349" y="462" class="plan-lbl tag etxt" font-size="13" text-anchor="middle">BB</text>
+      <text x="349" y="490" class="plan-lbl soft" font-size="10" text-anchor="middle">solar box · 24 V bank + inverter</text>
+
+      <!-- house outlets -->
+      <g>
+        <rect x="452" y="454" width="16" height="16" fill="var(--paper)" stroke="var(--amber)" stroke-width="1.8"/>
+        <circle cx="457" cy="462" r="1.4" fill="var(--amber)"/><circle cx="463" cy="462" r="1.4" fill="var(--amber)"/>
+        <rect x="560" y="454" width="16" height="16" fill="var(--paper)" stroke="var(--amber)" stroke-width="1.8"/>
+        <circle cx="565" cy="462" r="1.4" fill="var(--amber)"/><circle cx="571" cy="462" r="1.4" fill="var(--amber)"/>
+        <rect x="648" y="454" width="16" height="16" fill="var(--paper)" stroke="var(--amber)" stroke-width="1.8"/>
+        <circle cx="653" cy="462" r="1.4" fill="var(--amber)"/><circle cx="659" cy="462" r="1.4" fill="var(--amber)"/>
+        <text x="560" y="446" class="plan-lbl soft" font-size="10" text-anchor="middle">120 V outlets (L · M · R)</text>
+      </g>
+
+      <!-- RG rain gutters + downspout + first flush -->
+      <rect x="676" y="330" width="44" height="30" fill="var(--paper)" stroke="var(--water)" stroke-width="2" rx="2"/>
+      <text x="698" y="350" class="plan-lbl tag wtxt" font-size="12" text-anchor="middle">RG</text>
+      <text x="742" y="342" class="plan-lbl soft" font-size="10">rain gutters</text>
+
+      <!-- GH greenhouse -->
+      <rect x="438" y="462" width="168" height="112" class="struct" rx="4"/>
+      <text x="522" y="522" class="struct-lbl" font-size="14" text-anchor="middle">GH</text>
+      <text x="522" y="540" class="plan-lbl soft" font-size="10" text-anchor="middle">greenhouse</text>
+
+      <!-- MB mini barrel -->
+      <circle cx="662" cy="500" r="21" fill="var(--tankfill)" stroke="var(--water)" stroke-width="2"/>
+      <text x="662" y="504" class="plan-lbl tag" font-size="12" text-anchor="middle">MB</text>
+      <text x="662" y="536" class="plan-lbl soft" font-size="10" text-anchor="middle">mini barrel (day-tank)</text>
+
+      <!-- SHED + freezer -->
+      <rect x="60" y="470" width="122" height="118" class="struct" rx="4"/>
+      <rect x="150" y="480" width="16" height="16" fill="var(--paper)" stroke="var(--amber)" stroke-width="1.8"/>
+      <circle cx="155" cy="488" r="1.4" fill="var(--amber)"/><circle cx="161" cy="488" r="1.4" fill="var(--amber)"/>
+      <text x="121" y="536" class="struct-lbl" font-size="13" text-anchor="middle">SHED</text>
+      <text x="121" y="554" class="plan-lbl soft" font-size="10.5" text-anchor="middle">freezer (F)</text>
+
+      <!-- TANK PAD + WT + manifold -->
+      <rect x="540" y="622" width="164" height="160" fill="url(#gravel)" stroke="var(--struct-stroke)" stroke-width="1.6" rx="3"/>
+      <rect x="540" y="622" width="164" height="160" fill="none" stroke="var(--struct-stroke)" stroke-width="1.6" rx="3"/>
+      <text x="566" y="640" class="plan-lbl soft" font-size="10">8′×8′ crowned pad</text>
+      <circle cx="622" cy="702" r="58" fill="var(--tankfill)" stroke="var(--water)" stroke-width="2.4"/>
+      <text x="622" y="700" class="plan-lbl tag" font-size="15" text-anchor="middle">WT</text>
+      <text x="622" y="718" class="plan-lbl soft" font-size="10" text-anchor="middle">1,600 gal</text>
+      <!-- manifold -->
+      <rect x="690" y="676" width="56" height="40" fill="var(--paper)" stroke="var(--water)" stroke-width="2" rx="3"/>
+      <text x="718" y="694" class="plan-lbl tag" font-size="10" text-anchor="middle">MANI-</text>
+      <text x="718" y="706" class="plan-lbl tag" font-size="10" text-anchor="middle">FOLD</text>
+      <text x="769" y="672" class="plan-lbl soft" font-size="10">+ ESP32 control · CV#2</text>
+      <text x="769" y="686" class="plan-lbl flagtxt" font-size="9.5">(confirm side of tank)</text>
+      <!-- overflow + drain stubs -->
+      <path d="M660,662 q34,-8 52,4" class="pipe w-press sz-drip"/>
+      <text x="726" y="656" class="plan-lbl soft" font-size="9.5">overflow → away from pad</text>
+      <path d="M622,760 v20" class="pipe w-press sz-main"/>
+      <text x="632" y="778" class="plan-lbl soft" font-size="9.5">1″ drain valve</text>
+
+      <!-- CHICKEN RUN -->
+      <rect x="360" y="828" width="410" height="200" class="struct" rx="4"/>
+      <text x="452" y="852" class="struct-lbl" font-size="14">CHICKEN RUN</text>
+      <!-- trees -->
+      <path d="M470,930 l16,-34 l16,34 z" fill="var(--veg)" opacity=".85"/>
+      <path d="M556,912 l16,-34 l16,34 z" fill="var(--veg)" opacity=".85"/>
+      <path d="M566,1000 l16,-34 l16,34 z" fill="var(--veg)" opacity=".85"/>
+      <text x="486" y="948" class="plan-lbl soft" font-size="10" text-anchor="middle">trees (drip)</text>
+      <!-- C junction -->
+      <rect x="712" y="900" width="42" height="30" fill="var(--paper)" stroke="var(--amber)" stroke-width="2" rx="2"/>
+      <text x="733" y="920" class="plan-lbl tag etxt" font-size="12" text-anchor="middle">C</text>
+      <!-- heated waterer -->
+      <circle cx="690" cy="964" r="10" fill="none" stroke="var(--water)" stroke-width="2"/>
+      <path d="M684,964 h12 M690,958 v12" stroke="var(--flag)" stroke-width="1.6"/>
+      <text x="704" y="986" class="plan-lbl soft" font-size="9.5">heated waterer (winter)</text>
+
+      <!-- ===================== SHARED TRENCH BAND ===================== -->
+      <path d="M700,470 L752,470 L742,662 L694,662 Z" class="trenchband"/>
+      <path d="M700,470 L752,470 L742,662 L694,662 Z" class="trenchoutline"/>
+      <!-- callout -->
+      <path d="M694,566 L470,590" class="leader"/>
+      <rect x="250" y="560" width="222" height="72" fill="var(--paper)" stroke="var(--water)" stroke-width="1.4" rx="6"/>
+      <text x="262" y="582" class="plan-lbl tag wtxt" font-size="12">SHARED TRENCH · SEC. A-A</text>
+      <text x="262" y="600" class="plan-lbl soft" font-size="10.5">Dig once to frost depth (18–24″).</text>
+      <text x="262" y="615" class="plan-lbl soft" font-size="10.5">3 separate pipes + DC conduit —</text>
+      <text x="262" y="629" class="plan-lbl flagtxt" font-size="10.5">NO plumbed tee. See section, right.</text>
+
+      <!-- ===================== WATER PIPES ===================== -->
+      <!-- W1 SF fill: pond -> corridor -> tank top inlet (seasonal, drained) -->
+      <path d="M893,230 L893,300 L893,410 L726,470 L726,556 L726,652 L672,674"
+            class="pipe w-seasonal sz-main" marker-mid="url(#af)" marker-end="url(#af)"/>
+      <!-- CV#1 -->
+      <path d="M884,318 l9,-14 l9,14 z" fill="var(--water)"/>
+      <line x1="879" y1="322" x2="907" y2="322" stroke="var(--water)" stroke-width="2"/>
+      <text x="912" y="322" class="plan-lbl wtxt" font-size="10">CV#1 → tank</text>
+
+      <!-- W2 RG rain: downspout -> first-flush -> corridor -> tank rain inlet (buried, charged) -->
+      <path d="M698,360 L698,430 L698,455" class="pipe w-buried sz-big"/>
+      <rect x="691" y="455" width="14" height="20" fill="var(--paper)" stroke="var(--water)" stroke-width="1.6"/>
+      <text x="712" y="470" class="plan-lbl soft" font-size="9">first-flush</text>
+      <path d="M698,475 L698,500 L736,500 L736,560 L736,656 L680,680"
+            class="pipe w-buried sz-big" marker-mid="url(#af)" marker-end="url(#af)"/>
+
+      <!-- W3 MB fill: manifold -> corridor (UP) -> MB  (REVERSED direction) -->
+      <path d="M712,676 L710,600 L710,510 L683,500"
+            class="pipe w-seasonal sz-main" marker-mid="url(#af)" marker-end="url(#af)"/>
+      <rect x="600" y="452" width="150" height="20" fill="var(--flag-bg)" stroke="var(--flag)" stroke-width="1.1" rx="4" opacity=".92"/>
+      <text x="675" y="466" class="plan-lbl flagtxt" font-size="9.5" text-anchor="middle">↑ tank FILLS barrel (reversed)</text>
+
+      <!-- W4 distribution: manifold -> chicken run trees + waterer -->
+      <path d="M716,716 L716,760 L560,760 L560,896 L500,910"
+            class="pipe w-buried sz-main" marker-mid="url(#af)" marker-end="url(#af)"/>
+      <path d="M560,896 L640,930 L682,956" class="pipe w-buried sz-drip" marker-end="url(#af)"/>
+      <text x="470" y="792" class="plan-lbl soft" font-size="10">1″ dist. → drip tape (motorized valves)</text>
+
+      <!-- W5 MB -> greenhouse drip -->
+      <path d="M648,516 L600,552 L560,556" class="pipe w-press sz-drip" marker-end="url(#af)"/>
+      <text x="590" y="574" class="plan-lbl soft" font-size="9.5">¾″→½″ drip (barrel pump)</text>
+
+      <!-- ===================== ELECTRICAL ===================== -->
+      <!-- E4 DC: BB -> corridor -> manifold/control -->
+      <path d="M368,468 L640,468 L748,478 L744,600 L742,672"
+            class="wire e-dc" marker-end="url(#af)"/>
+      <text x="470" y="462" class="plan-lbl etxt" font-size="9.5">24 V DC → control + dist. pump (shares trench)</text>
+      <!-- E1 DC: tank(float→relay) -> SF pond pump -->
+      <path d="M748,676 L760,470 L760,300 L920,238" class="wire e-dc" marker-end="url(#af)"/>
+      <circle cx="758" cy="640" r="7" fill="var(--paper)" stroke="var(--amber)" stroke-width="1.8"/>
+      <text x="768" y="644" class="plan-lbl etxt" font-size="9">float→relay</text>
+      <text x="812" y="300" class="plan-lbl etxt" font-size="9.5">24 V DC → pond pump</text>
+
+      <!-- E2 AC: BB -> outlets (house) -->
+      <path d="M382,452 L452,458 M468,458 L560,458 M576,458 L648,458" class="wire e-ac"/>
+
+      <!-- E3 AC: BB -> shed freezer (dedicated, west) -->
+      <path d="M316,470 L250,486 L182,500 L158,498" class="wire e-ac" marker-end="url(#af)"/>
+      <rect x="120" y="600" width="196" height="46" fill="var(--flag-bg)" stroke="var(--flag)" stroke-width="1.3" rx="6"/>
+      <text x="132" y="620" class="plan-lbl flagtxt" font-size="10">120 V AC → shed · DEDICATED conduit,</text>
+      <text x="132" y="635" class="plan-lbl flagtxt" font-size="10">GFCI, no water. (own trench, west)</text>
+
+      <!-- E5 DC: manifold -> chicken junction C (rides W4 trench) -->
+      <path d="M724,760 L700,880 L724,900" class="wire e-dc" marker-end="url(#af)"/>
+      <text x="742" y="856" class="plan-lbl etxt" font-size="9.5">24 V DC → C</text>
+      <text x="742" y="870" class="plan-lbl flagtxt" font-size="9">(waterer V? confirm)</text>
+
+      <!-- ===================== NORTH ARROW ===================== -->
+      <g transform="translate(66,74)">
+        <circle r="26" fill="var(--paper)" stroke="var(--rule)" stroke-width="1.4"/>
+        <path d="M0,-19 L7,10 L0,3 L-7,10 Z" fill="var(--ink)"/>
+        <text x="0" y="-30" class="plan-lbl tag" font-size="13" text-anchor="middle">N</text>
+      </g>
+
+      <!-- ===================== SCALE BAR ===================== -->
+      <g transform="translate(60,986)">
+        <rect x="0" y="0" width="60" height="8" fill="var(--ink)"/>
+        <rect x="60" y="0" width="60" height="8" fill="var(--paper)" stroke="var(--ink)" stroke-width="1"/>
+        <text x="0" y="26" class="plan-lbl soft" font-size="10">0</text>
+        <text x="120" y="26" class="plan-lbl soft" font-size="10" text-anchor="middle">~40 ft (approx)</text>
+        <text x="0" y="42" class="plan-lbl flagtxt" font-size="10">SCHEMATIC — NOT TO SCALE</text>
+      </g>
+
+      <!-- ===================== TRENCH SECTION INSET ===================== -->
+      <g transform="translate(902,690)">
+        <rect x="0" y="0" width="286" height="180" class="titleblock" rx="4"/>
+        <text x="12" y="20" class="plan-lbl tag" font-size="11">SECTION A-A · SHARED TRENCH</text>
+        <!-- ground -->
+        <line x1="12" y1="40" x2="274" y2="40" stroke="var(--struct-stroke)" stroke-width="2"/>
+        <text x="16" y="36" class="plan-lbl soft" font-size="9">grade</text>
+        <!-- frost line -->
+        <line x1="12" y1="70" x2="274" y2="70" stroke="var(--flag)" stroke-width="1.4" stroke-dasharray="6 5"/>
+        <text x="180" y="66" class="plan-lbl flagtxt" font-size="9">frost line ~18–24″</text>
+        <!-- DC conduit + tape -->
+        <line x1="40" y1="96" x2="248" y2="96" stroke="var(--amber)" stroke-width="2" stroke-dasharray="3 4"/>
+        <text x="252" y="99" class="plan-lbl etxt" font-size="8.5">tape</text>
+        <circle cx="70" cy="112" r="7" fill="none" stroke="var(--amber)" stroke-width="2"/>
+        <text x="82" y="115" class="plan-lbl etxt" font-size="9">DC conduit (above)</text>
+        <!-- pipes at bottom -->
+        <circle cx="70" cy="150" r="9" fill="none" stroke="var(--water)" stroke-width="2.4" stroke-dasharray="2 4"/>
+        <text x="70" y="172" class="plan-lbl soft" font-size="8" text-anchor="middle">MB</text>
+        <circle cx="110" cy="150" r="9" fill="none" stroke="var(--water)" stroke-width="2.4" stroke-dasharray="2 4"/>
+        <text x="110" y="172" class="plan-lbl soft" font-size="8" text-anchor="middle">SF</text>
+        <circle cx="156" cy="150" r="13" fill="none" stroke="var(--water)" stroke-width="2.4" stroke-dasharray="9 6"/>
+        <text x="156" y="176" class="plan-lbl soft" font-size="8" text-anchor="middle">RG (charged)</text>
+        <text x="196" y="150" class="plan-lbl soft" font-size="8.5">pipes at bottom;</text>
+        <text x="196" y="162" class="plan-lbl soft" font-size="8.5">RG governs depth</text>
+      </g>
+
+      <!-- ===================== TITLE BLOCK ===================== -->
+      <g transform="translate(902,884)">
+        <rect x="0" y="0" width="286" height="150" class="titleblock"/>
+        <line x1="0" y1="38" x2="286" y2="38" stroke="var(--ink)" stroke-width="1"/>
+        <line x1="0" y1="92" x2="286" y2="92" stroke="var(--rule)" stroke-width="1"/>
+        <line x1="150" y1="92" x2="150" y2="150" stroke="var(--rule)" stroke-width="1"/>
+        <line x1="0" y1="121" x2="286" y2="121" stroke="var(--rule)" stroke-width="1"/>
+        <text x="12" y="25" class="tb-val" font-size="13">PROJECT HEDGE</text>
+        <text x="12" y="58" class="tb-lbl">SHEET</text>
+        <text x="12" y="80" class="tb-val">W-1 · SITE PLOT PLAN</text>
+        <text x="160" y="58" class="tb-lbl">SUBJECT</text>
+        <text x="160" y="80" class="tb-val">WATER + POWER</text>
+        <text x="12" y="110" class="tb-lbl">DATE</text><text x="70" y="110" class="tb-val">2026-07-12</text>
+        <text x="160" y="110" class="tb-lbl">REV</text><text x="200" y="110" class="tb-val">A · review</text>
+        <text x="12" y="140" class="tb-lbl">SCALE</text><text x="70" y="140" class="tb-val">NTS</text>
+        <text x="160" y="140" class="tb-lbl">FROM</text><text x="205" y="140" class="tb-val">field sketch</text>
+      </g>
+    </svg>
+  </div>
+
+  <!-- ===================== LEGEND ===================== -->
+  <section class="blk">
+    <h2 class="hd">Legend &amp; symbol key</h2>
+    <div class="grid2">
+      <div class="legend">
+        <div class="lg"><svg viewBox="0 0 46 16"><line x1="0" y1="8" x2="46" y2="8" stroke="var(--water)" stroke-width="5"/></svg><span class="t">Water — exposed / above-grade<small>risers, manifold, pump skid</small></span></div>
+        <div class="lg"><svg viewBox="0 0 46 16"><line x1="0" y1="8" x2="46" y2="8" stroke="var(--water)" stroke-width="6" stroke-dasharray="11 7"/></svg><span class="t">Water — buried, charged<small>winter-critical, below frost</small></span></div>
+        <div class="lg"><svg viewBox="0 0 46 16"><line x1="0" y1="8" x2="46" y2="8" stroke="var(--water)" stroke-width="5" stroke-dasharray="2 7"/></svg><span class="t">Water — seasonal, drained<small>blown out &amp; emptied each fall</small></span></div>
+        <div class="lg"><svg viewBox="0 0 46 16"><line x1="0" y1="8" x2="46" y2="8" stroke="var(--amber)" stroke-width="3.4"/></svg><span class="t">24 V DC power<small>may share the water trench</small></span></div>
+        <div class="lg"><svg viewBox="0 0 46 16"><line x1="0" y1="8" x2="46" y2="8" stroke="var(--amber)" stroke-width="3.4" stroke-dasharray="3 6"/></svg><span class="t">120 V AC power<small>own conduit — never with water</small></span></div>
+        <div class="lg"><svg viewBox="0 0 46 16"><line x1="0" y1="8" x2="46" y2="8" stroke="var(--ink-soft)" stroke-width="2" stroke-dasharray="1 5"/></svg><span class="t">Data (network)<small>not a distribution line</small></span></div>
+      </div>
+      <div class="legend">
+        <div class="lg"><svg viewBox="0 0 46 16"><line x1="4" y1="8" x2="30" y2="8" stroke="var(--water)" stroke-width="4"/><path d="M30,4 l8,4 l-8,4 z" fill="var(--water)"/></svg><span class="t">Flow direction<small>one arrow per pipe, survives each turn</small></span></div>
+        <div class="lg"><svg viewBox="0 0 46 16"><path d="M14,3 l7,10 l7,-10 z" fill="none" stroke="var(--water)" stroke-width="2"/><line x1="10" y1="4" x2="32" y2="4" stroke="var(--water)" stroke-width="2"/></svg><span class="t">Check valve (arrow = flow)<small>CV#1 fill line · CV#2 manifold</small></span></div>
+        <div class="lg"><svg viewBox="0 0 46 16"><circle cx="14" cy="8" r="6" fill="none" stroke="var(--water)" stroke-width="2"/><path d="M11,8 l6,-3 v6 z" fill="var(--water)"/></svg><span class="t">Pump<small>SEAFLO + 2 submersibles</small></span></div>
+        <div class="lg"><svg viewBox="0 0 46 16"><rect x="8" y="2" width="14" height="12" fill="none" stroke="var(--amber)" stroke-width="1.8"/><circle cx="12" cy="8" r="1.3" fill="var(--amber)"/><circle cx="18" cy="8" r="1.3" fill="var(--amber)"/></svg><span class="t">120 V outlet<small>house · shed</small></span></div>
+        <div class="lg"><svg viewBox="0 0 46 16"><rect x="8" y="14" width="20" height="0" /><rect x="6" y="3" width="18" height="11" fill="url(#gravel)" stroke="var(--struct-stroke)"/></svg><span class="t">Gravel pad / structure<small>house, shed, tank pad, run</small></span></div>
+        <div class="lg"><svg viewBox="0 0 46 16"><rect x="4" y="2" width="40" height="12" fill="var(--water-soft)" opacity=".22" stroke="var(--ink-soft)" stroke-width="1" stroke-dasharray="5 4"/></svg><span class="t">Shared trench corridor<small>the envelope; pipes ride inside</small></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LINE SCHEDULE ===================== -->
+  <section class="blk">
+    <h2 class="hd">Line schedule</h2>
+    <div class="tblwrap">
+      <table>
+        <thead><tr>
+          <th>ID</th><th>Run (from → to)</th><th>Service</th><th>Size / material</th>
+          <th>Trench / depth</th><th>Season</th><th>Flow</th><th>Notes</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="id w">W1</span></td>
+            <td>Pond → SF → tank <b>top</b> (fill inlet)</td>
+            <td>Pond fill, pressurized ~55 PSI</td>
+            <td>1″ poly · ~85 ft</td>
+            <td>Shared trench · to frost depth</td>
+            <td><span class="pill seas">seasonal · drained</span></td>
+            <td class="arrowcell">→ tank</td>
+            <td>Foot valve at pond; <b>CV#1</b> after filter (arrow → tank); 4-stage filter in the hutch.</td>
+          </tr>
+          <tr>
+            <td><span class="id w">W2</span></td>
+            <td>Roof gutters (RG) → first-flush → tank <b>top</b> (rain inlet)</td>
+            <td>Rainwater, gravity (~3–4 ft fall)</td>
+            <td>2–3″ PVC/poly</td>
+            <td>Shared trench · <b>18–24″ (governs depth)</b></td>
+            <td><span class="pill crit">winter-critical · charged</span></td>
+            <td class="arrowcell">→ tank</td>
+            <td>First-flush self-drains; screen the inlet; insulate/heat-tape only the two short risers.</td>
+          </tr>
+          <tr>
+            <td><span class="id w">W3</span></td>
+            <td>Tank <b>manifold</b> → MB (barrel fill)</td>
+            <td>Distribution — tank fills the barrel</td>
+            <td>1″ → ¾″</td>
+            <td>Shared trench (rides down &amp; back)</td>
+            <td><span class="pill seas">seasonal · drains back</span></td>
+            <td class="arrowcell">← to barrel</td>
+            <td><b>Reversed vs W1/W2.</b> Barrel float valve only <b>stops</b> the fill; barrel never feeds the tank.</td>
+          </tr>
+          <tr>
+            <td><span class="id w">W4</span></td>
+            <td>Tank manifold → trees + chicken waterer</td>
+            <td>Distribution, low-pressure ~10 PSI</td>
+            <td>1″ main → drip tape</td>
+            <td>Buried to the run</td>
+            <td><span class="pill crit">winter draw (waterer)</span></td>
+            <td class="arrowcell">→ zones</td>
+            <td><b>CV#2</b> at manifold (arrow → zones); motorized ball valves; pull CV#2 in winter so the line drains back.</td>
+          </tr>
+          <tr>
+            <td><span class="id w">W5</span></td>
+            <td>MB → greenhouse drip</td>
+            <td>Distribution (2nd submersible in barrel)</td>
+            <td>¾″ → ½″ drip</td>
+            <td>At grade / short</td>
+            <td><span class="pill seas">seasonal · dormant</span></td>
+            <td class="arrowcell">→ GH</td>
+            <td>Separate circuit from W3; empties for winter.</td>
+          </tr>
+          <tr>
+            <td><span class="id e">E1</span></td>
+            <td>BB → (trench) → tank; tank → SF</td>
+            <td>24 V DC pond pump</td>
+            <td>~3.5 A · size wire for &lt;3% drop</td>
+            <td>Shares water trench (conduit above pipe)</td>
+            <td><span class="pill seas">seasonal (warm)</span></td>
+            <td class="arrowcell">—</td>
+            <td>Switched <b>at the tank</b>: float switch → relay → pump (float can't carry ~5 A). Disconnect + drip loop at the pond.</td>
+          </tr>
+          <tr>
+            <td><span class="id e">E2</span></td>
+            <td>BB → 3 house outlets (L·M·R)</td>
+            <td>120 V AC (inverter)</td>
+            <td>In-wall branch</td>
+            <td>At the house — <b>not</b> in any trench</td>
+            <td><span class="pill year">year-round</span></td>
+            <td class="arrowcell">—</td>
+            <td>Stays at the house.</td>
+          </tr>
+          <tr>
+            <td><span class="id e">E3</span></td>
+            <td>BB → shed freezer (F)</td>
+            <td>120 V AC · ~150 W · 24/7</td>
+            <td>Dedicated conduit, GFCI</td>
+            <td><b>Own west trench — no water, no DC</b></td>
+            <td><span class="pill year">year-round</span></td>
+            <td class="arrowcell">—</td>
+            <td>Line voltage leaving the building. Consider a 24 V DC freezer or a small dedicated inverter (the 3 kW inverter idles ~20–50 W all night otherwise).</td>
+          </tr>
+          <tr>
+            <td><span class="id e">E4</span></td>
+            <td>BB → manifold / ESP32 / dist. pump</td>
+            <td>24 V DC</td>
+            <td>~5 A pump + valves · fuse at BB</td>
+            <td>Shares water trench</td>
+            <td><span class="pill year">year-round</span></td>
+            <td class="arrowcell">—</td>
+            <td>Drives 3 motorized valves + the pump-start contactor.</td>
+          </tr>
+          <tr>
+            <td><span class="id e">E5</span></td>
+            <td>Tank/manifold → chicken junction C</td>
+            <td>24 V DC valve <b>[+ waterer?]</b></td>
+            <td>Rides the W4 trench</td>
+            <td>Shares water trench <b>(if DC)</b></td>
+            <td><span class="pill crit">winter (waterer)</span></td>
+            <td class="arrowcell">—</td>
+            <td><b>Confirm heated-waterer voltage.</b> DC keeps it in this trench; 120 V AC forces a separate line-voltage trench south.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===================== KEY DECISIONS ===================== -->
+  <section class="blk">
+    <h2 class="hd">Why the drawing looks the way it does</h2>
+    <div class="cards">
+      <div class="card key">
+        <h3>Shared trench, separate pipes</h3>
+        <p>Your instinct to bundle the runs is right — it means <b>one trencher day</b> in the hard clay, not three. But the pond-fill, rainwater, and barrel lines stay <b>three separate pipes</b> in that one trench, each going to its own port on the tank.</p>
+        <p>If they were plumbed into a single tee, the <b>55 PSI SEAFLO would backflow out your gutters</b> and shove water past the barrel float. So: shared trench (digging), not shared pipe (plumbing).</p>
+      </div>
+      <div class="card key">
+        <h3>The mini-barrel arrow points the other way</h3>
+        <p>W3 carries water <b>from the tank to the barrel</b> — the tank fills it, and the barrel's float valve just shuts the fill off. The barrel never sends water back to the tank.</p>
+        <p>The pipe still rides your shared trench exactly as you drew it; it just flows the opposite direction from the two fill lines beside it.</p>
+      </div>
+      <div class="card key">
+        <h3>One depth rules the trench</h3>
+        <p>The rainwater line (W2) is your <b>winter water source</b> and must sit below frost, charged. It sets the depth for the whole shared run. The pond-fill and barrel pipes ride in the same trench but get <b>drained every fall</b>, so their own freeze risk goes to zero.</p>
+      </div>
+      <div class="card warn">
+        <h3>Two decisions that change the electrical layout</h3>
+        <p><b>Heated poultry waterer:</b> a DC base keeps the whole chicken run on the 24 V trench. A 120 V base forces a <b>separate line-voltage trench</b> into the wettest corner of the site — worth avoiding.</p>
+        <p><b>Shed freezer:</b> its 120 V feed runs west in its own conduit. Leaving the 3 kW inverter on 24/7 for ~150 W wastes idle power nightly; a DC freezer or a small dedicated inverter fixes that.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONFIRM LIST ===================== -->
+  <section class="blk">
+    <h2 class="hd">Confirm against your sketch (so I can lock Rev B)</h2>
+    <ol class="confirm">
+      <li><b>Shared trench, separate pipes</b> (no single plumbed tee) — the drawing assumes this. Good?<span class="rec">recommended · already drawn this way</span></li>
+      <li><b>Barrel is filled from the tank</b> (tank → MB), never the reverse. Confirm the reversed arrow.<span class="rec">recommended · already drawn this way</span></li>
+      <li><b>Heated poultry waterer voltage</b> — 120 V AC base, or a 12/24 V DC base? This decides whether the chicken run stays DC-in-the-trench or needs its own trench.</li>
+      <li><b>Shed freezer</b> — standard 120 V AC? Open to a 24 V DC unit or a small dedicated inverter so the big inverter isn't on all night?</li>
+      <li><b>Manifold side of the tank</b> (house / chicken / creek side) + rough run distances <b>BB→SF, BB→tank, BB→shed</b> for wire gauge.</li>
+      <li><b>Tank top penetrations</b> — enough separate ports for pond-fill in, rain in, distribution out, and overflow, or one big lid we build a sealing plate for?</li>
+      <li><b>Position checks:</b> exact GH corner, MB spot, which of the 3 outlets feeds the shed, which corner is N, and BB greenhouse-side vs "under the rightmost panel."</li>
+    </ol>
+  </section>
+
+  <div class="foot">
+    Project Hedge · Sheet W-1 · Rev A (for review) · schematic, not to scale · positions approximate — verify against field sketch.
+    Blue = water · amber = power · North up · everything on the house side of the creek (no crossing).
+  </div>
+</div>
+
+<script>
+(function(){var t=localStorage.getItem('hedge-theme');if(t)document.documentElement.setAttribute('data-theme',t);
+if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}})();
+</script>
+</body>
+</html>

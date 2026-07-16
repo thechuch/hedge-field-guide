@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Hedge Field Guide">
+  <rect width="512" height="512" rx="112" fill="#141b26"/>
+  <rect x="40" y="40" width="432" height="432" rx="84" fill="none" stroke="#2b3646" stroke-width="10"/>
+  <!-- water drop -->
+  <path d="M188 300 C188 258 236 232 236 190 C236 232 284 258 284 300 A48 48 0 0 1 188 300 Z"
+        fill="#4f9bef"/>
+  <!-- lightning bolt -->
+  <path d="M300 150 L232 300 L286 300 L250 400 L344 258 L292 258 Z" fill="#f0a93c" stroke="#141b26" stroke-width="6" stroke-linejoin="round"/>
+  <text x="256" y="452" font-family="ui-monospace,Menlo,monospace" font-size="46" font-weight="700"
+        fill="#eef2f7" text-anchor="middle" letter-spacing="6">HEDGE</text>
+</svg>

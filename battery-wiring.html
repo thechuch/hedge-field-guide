@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#141b26">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="stylesheet" href="assets/site.css">
+<title>Project Hedge — Battery-to-Bus Wiring</title>
+<style>
+  :root{
+    --ground:#eef1f4; --paper:#f7f8fa; --grid:#e2e6ec; --ink:#1c2632; --ink-soft:#5b6672;
+    --rule:#c2cad3; --board:#e6dcc4; --board-stroke:#b6a06f; --board-ink:#5a4f34;
+    --pos:#c0322e; --pos-soft:#e8b6b3; --neg:#1d2632; --neg-soft:#aeb6c0;
+    --amber:#b46f08; --fuse:#8a6d1a; --fuse-fill:#efe6c7;
+    --ok:#2f7d4f; --flag:#c0392b; --flag-bg:#f7e6e3; --warnbg:#fbf3e2; --warn:#b3760a;
+    --halo:var(--paper);
+    --font-sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --font-mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#0f141a; --paper:#141b23; --grid:#1e2833; --ink:#dbe2ea; --ink-soft:#8b97a5;
+      --rule:#334050; --board:#2a2417; --board-stroke:#5c4f2f; --board-ink:#c9b884;
+      --pos:#e2615c; --pos-soft:#5e2b29; --neg:#c3ccd6; --neg-soft:#3a4450;
+      --amber:#f0a93c; --fuse:#d8b64a; --fuse-fill:#2c2712;
+      --ok:#5cbd83; --flag:#e0655a; --flag-bg:#33211f; --warnbg:#2a2413; --warn:#e3a53a;
+      --halo:var(--ground);
+    }
+  }
+  :root[data-theme="light"]{ --ground:#eef1f4; --paper:#f7f8fa; --grid:#e2e6ec; --ink:#1c2632; --ink-soft:#5b6672; --rule:#c2cad3; --board:#e6dcc4; --board-stroke:#b6a06f; --board-ink:#5a4f34; --pos:#c0322e; --pos-soft:#e8b6b3; --neg:#1d2632; --neg-soft:#aeb6c0; --amber:#b46f08; --fuse:#8a6d1a; --fuse-fill:#efe6c7; --ok:#2f7d4f; --flag:#c0392b; --flag-bg:#f7e6e3; --warnbg:#fbf3e2; --warn:#b3760a; --halo:var(--paper); }
+  :root[data-theme="dark"]{ --ground:#0f141a; --paper:#141b23; --grid:#1e2833; --ink:#dbe2ea; --ink-soft:#8b97a5; --rule:#334050; --board:#2a2417; --board-stroke:#5c4f2f; --board-ink:#c9b884; --pos:#e2615c; --pos-soft:#5e2b29; --neg:#c3ccd6; --neg-soft:#3a4450; --amber:#f0a93c; --fuse:#d8b64a; --fuse-fill:#2c2712; --ok:#5cbd83; --flag:#e0655a; --flag-bg:#33211f; --warnbg:#2a2413; --warn:#e3a53a; --halo:var(--ground); }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--font-sans);line-height:1.5;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1120px;margin:0 auto;padding:28px 20px 72px;}
+  header.masthead{border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:22px;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;}
+  .masthead h1{font-size:clamp(20px,3vw,30px);margin:0;letter-spacing:.02em;font-weight:750;text-wrap:balance;}
+  .masthead .sub{font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.11em;}
+  .masthead .meta{font-family:var(--font-mono);font-size:11.5px;color:var(--ink-soft);text-align:right;line-height:1.7;}
+  .masthead .meta b{color:var(--ink);font-weight:650;}
+
+  .decision{border:1.5px solid var(--flag);background:var(--flag-bg);border-radius:10px;padding:18px 20px;margin-bottom:26px;}
+  .decision h2{margin:0 0 6px;font-size:17px;display:flex;align-items:center;gap:9px;}
+  .decision .tagbig{font-family:var(--font-mono);font-size:11px;background:var(--flag);color:#fff;padding:2px 9px;border-radius:20px;letter-spacing:.06em;}
+  .decision p{margin:9px 0 0;font-size:13.5px;}
+  .decision b{font-weight:700;}
+  .decision .rec{margin-top:12px;padding:11px 14px;background:var(--paper);border-radius:8px;font-size:13px;border-left:3px solid var(--flag);}
+
+  .sheet{background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:8px;overflow-x:auto;margin-bottom:8px;}
+  .sheet svg{display:block;width:100%;height:auto;min-width:840px;}
+  .caption{font-family:var(--font-mono);font-size:11px;color:var(--ink-soft);margin:2px 4px 26px;}
+
+  h2.hd{font-family:var(--font-mono);font-size:13px;text-transform:uppercase;letter-spacing:.14em;color:var(--ink);margin:34px 0 14px;padding-bottom:7px;border-bottom:1px solid var(--rule);font-weight:700;}
+  .plan-lbl{font-family:var(--font-mono);fill:var(--ink);paint-order:stroke;stroke:var(--halo);stroke-width:3px;stroke-linejoin:round;}
+  .plan-lbl.soft{fill:var(--ink-soft);} .plan-lbl.pos{fill:var(--pos);} .plan-lbl.neg{fill:var(--neg);}
+  .plan-lbl.tag{font-weight:700;} .plan-lbl.flag{fill:var(--flag);} .plan-lbl.ok{fill:var(--ok);}
+
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:15px;}
+  @media (max-width:760px){.cards{grid-template-columns:1fr;}}
+  .card{border:1px solid var(--rule);border-radius:9px;padding:14px 16px;background:var(--paper);border-left:4px solid var(--flag);}
+  .card.warn{border-left-color:var(--warn);}
+  .card h3{margin:0 0 4px;font-size:14px;display:flex;gap:8px;align-items:baseline;}
+  .card .n{font-family:var(--font-mono);font-weight:750;color:var(--flag);font-size:13px;}
+  .card.warn .n{color:var(--warn);}
+  .card p{margin:5px 0 0;font-size:12.5px;color:var(--ink-soft);} .card b{color:var(--ink);}
+
+  .tblwrap{overflow-x:auto;border:1px solid var(--rule);border-radius:8px;}
+  table{border-collapse:collapse;width:100%;font-size:12px;min-width:820px;}
+  thead th{background:var(--ground);text-align:left;font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);padding:8px 10px;border-bottom:1.5px solid var(--rule);}
+  tbody td{padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top;}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr.batt td{background:color-mix(in srgb, var(--pos) 5%, transparent);}
+  .id{font-family:var(--font-mono);font-weight:750;} .id.p{color:var(--pos);} .id.n{color:var(--neg);} .id.e{color:var(--amber);}
+  .newfuse{color:var(--flag);font-weight:650;}
+  code{font-family:var(--font-mono);font-size:11.5px;background:var(--ground);padding:1px 5px;border-radius:4px;}
+
+  ol.seq{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:10px;}
+  ol.seq li{counter-increment:s;position:relative;padding:12px 15px 12px 52px;border:1px solid var(--rule);border-radius:8px;background:var(--paper);font-size:13px;}
+  ol.seq li::before{content:counter(s);position:absolute;left:12px;top:11px;width:27px;height:27px;display:grid;place-items:center;border-radius:50%;background:var(--ink);color:var(--paper);font-family:var(--font-mono);font-weight:700;font-size:12px;}
+  ol.seq li b{color:var(--ink);} ol.seq li .warnpill{color:var(--flag);font-weight:650;}
+
+  ul.checks{list-style:none;padding:0;margin:0;display:grid;gap:9px;}
+  ul.checks li{padding:11px 14px 11px 40px;position:relative;border:1px solid var(--rule);border-radius:8px;background:var(--paper);font-size:12.5px;}
+  ul.checks li::before{content:"";position:absolute;left:13px;top:13px;width:14px;height:14px;border:2px solid var(--amber);border-radius:3px;}
+  ul.checks li b{color:var(--ink);}
+  .foot{margin-top:34px;padding-top:14px;border-top:1px solid var(--rule);font-size:11.5px;color:var(--ink-soft);font-family:var(--font-mono);}
+  @media print{body{background:#fff}.wrap{max-width:none}}
+</style>
+</head>
+<body class="page">
+<nav class="sitenav">
+  <a class="back" href="index.html">‹ <span>Guide</span></a>
+  <span class="title">Battery Wiring</span>
+  <span class="spacer"></span>
+</nav>
+
+
+<div class="wrap">
+  <header class="masthead">
+    <div>
+      <h1>Battery-to-Bus Wiring</h1>
+      <div class="sub">Project Hedge · deck-box power board · 6× 24V 100Ah</div>
+    </div>
+    <div class="meta">
+      <div><b>SHEET</b> E-2 · battery runs</div>
+      <div><b>DATE</b> 2026-07-15 · <b>REV</b> A (for review)</div>
+      <div>reviewed for safety · dry-fit stage</div>
+    </div>
+  </header>
+
+  <div class="decision">
+    <h2><span class="tagbig">DECIDE FIRST</span> You are running 6 in parallel; LiTime rates this battery for 4.</h2>
+    <p>Confirmed against LiTime's own docs: the 24V 100Ah is validated for a <b>maximum of 4 in parallel</b>. Running <b>6P</b> is out of spec and <b>voids the warranty on all six packs</b>. The real technical risk is <b>reconnect inrush</b>: if one pack's BMS trips and later reconnects at a lower state of charge, the other five dump a hard inrush into its FETs, which can cascade-trip the bank. <b>Your per-battery fuses do not fix this</b> (they stop a dead short, not inter-pack inrush).</p>
+    <div class="rec">
+      <b>Recommendation:</b> email LiTime for a <b>written position on 6P for this exact model</b> (ask what the 4P cap protects against). Meanwhile wire for 6P (it reverts to 4P trivially) but <b>only if</b> you (1) pre-balance all six packs to within ~30&nbsp;mV before paralleling, (2) add a pre-charge step, and (3) can see per-pack current (the Bluetooth app or an IR sweep) so a single trip is visible before it cascades. <b>In-warranty fallback:</b> run <b>4P</b> = ~9.6&nbsp;kWh nominal / ~8&nbsp;kWh usable, keep 2 packs as rotating spares. Livable because the Iota grid-charger backfills. Do not run 6P as a silent default.
+    </div>
+  </div>
+
+  <div class="sheet">
+    <svg viewBox="0 0 1120 640" role="img" aria-label="Battery to bus bar wiring diagram">
+      <defs>
+        <marker id="ar" markerWidth="11" markerHeight="10" refX="7" refY="4" orient="auto" markerUnits="userSpaceOnUse">
+          <path d="M0,0 L8,4 L0,8 Z" fill="context-stroke"/>
+        </marker>
+      </defs>
+
+      <!-- bar group bands (2-2-2) -->
+      <rect x="120" y="70" width="290" height="490" fill="var(--pos)" opacity=".04"/>
+      <rect x="420" y="70" width="270" height="490" fill="var(--pos)" opacity=".04"/>
+      <rect x="700" y="70" width="290" height="490" fill="var(--pos)" opacity=".04"/>
+      <text x="265" y="600" class="plan-lbl soft" font-size="10.5" text-anchor="middle">BAR A · B1 B2</text>
+      <text x="555" y="600" class="plan-lbl soft" font-size="10.5" text-anchor="middle">BAR B · B3 B4</text>
+      <text x="845" y="600" class="plan-lbl soft" font-size="10.5" text-anchor="middle">BAR C · B5 B6</text>
+
+      <!-- + BUS (red), 3 chained segments -->
+      <rect x="130" y="86" width="270" height="16" rx="3" fill="var(--pos)"/>
+      <rect x="420" y="86" width="270" height="16" rx="3" fill="var(--pos)"/>
+      <rect x="710" y="86" width="270" height="16" rx="3" fill="var(--pos)"/>
+      <!-- + jumpers -->
+      <rect x="398" y="90" width="24" height="8" fill="var(--pos)"/><rect x="688" y="90" width="24" height="8" fill="var(--pos)"/>
+      <text x="410" y="78" class="plan-lbl pos" font-size="9" text-anchor="middle">2/0 jmp</text>
+      <text x="700" y="78" class="plan-lbl pos" font-size="9" text-anchor="middle">2/0 jmp</text>
+      <text x="196" y="128" class="plan-lbl pos tag" font-size="13">+ BUS  (3 red bars chained)</text>
+
+      <!-- - BUS (black), 3 chained segments -->
+      <rect x="130" y="456" width="270" height="16" rx="3" fill="var(--neg)"/>
+      <rect x="420" y="456" width="270" height="16" rx="3" fill="var(--neg)"/>
+      <rect x="710" y="456" width="270" height="16" rx="3" fill="var(--neg)"/>
+      <rect x="398" y="460" width="24" height="8" fill="var(--neg)"/><rect x="688" y="460" width="24" height="8" fill="var(--neg)"/>
+      <text x="196" y="448" class="plan-lbl neg tag" font-size="13">− BUS  (3 black bars chained)</text>
+
+      <!-- Batteries + ANL + runs -->
+      <!-- battery x-centers -->
+      <!-- B1 190, B2 310, B3 480, B4 600, B5 770, B6 890 -->
+      <g font-family="var(--font-mono)">
+        <!-- macro repeated per battery -->
+        <!-- B1 -->
+        <rect x="147" y="250" width="86" height="120" rx="4" fill="var(--ground)" stroke="var(--neg-soft)" stroke-width="1.5"/>
+        <text x="190" y="304" class="plan-lbl tag" font-size="12" text-anchor="middle">B1</text>
+        <text x="190" y="320" class="plan-lbl soft" font-size="8.5" text-anchor="middle">24V 100Ah</text>
+        <text x="190" y="332" class="plan-lbl soft" font-size="8.5" text-anchor="middle">100A BMS</text>
+        <circle cx="190" cy="250" r="4" fill="var(--pos)"/><circle cx="190" cy="370" r="4" fill="var(--neg)"/>
+        <path d="M190,250 V172" stroke="var(--pos)" stroke-width="4"/>
+        <rect x="168" y="150" width="44" height="22" rx="3" fill="var(--fuse-fill)" stroke="var(--fuse)" stroke-width="1.4"/>
+        <text x="190" y="165" class="plan-lbl" font-size="8.5" text-anchor="middle" style="fill:var(--fuse)">150A</text>
+        <path d="M190,150 V102" stroke="var(--pos)" stroke-width="4" marker-end="url(#ar)"/>
+        <circle cx="190" cy="94" r="4.5" fill="var(--pos)"/>
+        <path d="M190,370 V464" stroke="var(--neg)" stroke-width="4" marker-end="url(#ar)"/>
+        <circle cx="190" cy="464" r="4.5" fill="var(--neg)"/>
+        <!-- B2 -->
+        <rect x="267" y="250" width="86" height="120" rx="4" fill="var(--ground)" stroke="var(--neg-soft)" stroke-width="1.5"/>
+        <text x="310" y="304" class="plan-lbl tag" font-size="12" text-anchor="middle">B2</text>
+        <circle cx="310" cy="250" r="4" fill="var(--pos)"/><circle cx="310" cy="370" r="4" fill="var(--neg)"/>
+        <path d="M310,250 V172" stroke="var(--pos)" stroke-width="4"/>
+        <rect x="288" y="150" width="44" height="22" rx="3" fill="var(--fuse-fill)" stroke="var(--fuse)" stroke-width="1.4"/>
+        <text x="310" y="165" class="plan-lbl" font-size="8.5" text-anchor="middle" style="fill:var(--fuse)">150A</text>
+        <path d="M310,150 V102" stroke="var(--pos)" stroke-width="4" marker-end="url(#ar)"/>
+        <circle cx="310" cy="94" r="4.5" fill="var(--pos)"/>
+        <path d="M310,370 V464" stroke="var(--neg)" stroke-width="4" marker-end="url(#ar)"/>
+        <circle cx="310" cy="464" r="4.5" fill="var(--neg)"/>
+        <!-- B3 -->
+        <rect x="437" y="250" width="86" height="120" rx="4" fill="var(--ground)" stroke="var(--neg-soft)" stroke-width="1.5"/>
+        <text x="480" y="304" class="plan-lbl tag" font-size="12" text-anchor="middle">B3</text>
+        <circle cx="480" cy="250" r="4" fill="var(--pos)"/><circle cx="480" cy="370" r="4" fill="var(--neg)"/>
+        <path d="M480,250 V172" stroke="var(--pos)" stroke-width="4"/>
+        <rect x="458" y="150" width="44" height="22" rx="3" fill="var(--fuse-fill)" stroke="var(--fuse)" stroke-width="1.4"/>
+        <text x="480" y="165" class="plan-lbl" font-size="8.5" text-anchor="middle" style="fill:var(--fuse)">150A</text>
+        <path d="M480,150 V102" stroke="var(--pos)" stroke-width="4" marker-end="url(#ar)"/>
+        <circle cx="480" cy="94" r="4.5" fill="var(--pos)"/>
+        <path d="M480,370 V464" stroke="var(--neg)" stroke-width="4" marker-end="url(#ar)"/>
+        <circle cx="480" cy="464" r="4.5" fill="var(--neg)"/>
+        <!-- B4 -->
+        <rect x="557" y="250" width="86" height="120" rx="4" fill="var(--ground)" stroke="var(--neg-soft)" stroke-width="1.5"/>
+        <text x="600" y="304" class="plan-lbl tag" font-size="12" text-anchor="middle">B4</text>
+        <circle cx="600" cy="250" r="4" fill="var(--pos)"/><circle cx="600" cy="370" r="4" fill="var(--neg)"/>
+        <path d="M600,250 V172" stroke="var(--pos)" stroke-width="4"/>
+        <rect x="578" y="150" width="44" height="22" rx="3" fill="var(--fuse-fill)" stroke="var(--fuse)" stroke-width="1.4"/>
+        <text x="600" y="165" class="plan-lbl" font-size="8.5" text-anchor="middle" style="fill:var(--fuse)">150A</text>
+        <path d="M600,150 V102" stroke="var(--pos)" stroke-width="4" marker-end="url(#ar)"/>
+        <circle cx="600" cy="94" r="4.5" fill="var(--pos)"/>
+        <path d="M600,370 V464" stroke="var(--neg)" stroke-width="4" marker-end="url(#ar)"/>
+        <circle cx="600" cy="464" r="4.5" fill="var(--neg)"/>
+        <!-- B5 -->
+        <rect x="727" y="250" width="86" height="120" rx="4" fill="var(--ground)" stroke="var(--neg-soft)" stroke-width="1.5"/>
+        <text x="770" y="304" class="plan-lbl tag" font-size="12" text-anchor="middle">B5</text>
+        <circle cx="770" cy="250" r="4" fill="var(--pos)"/><circle cx="770" cy="370" r="4" fill="var(--neg)"/>
+        <path d="M770,250 V172" stroke="var(--pos)" stroke-width="4"/>
+        <rect x="748" y="150" width="44" height="22" rx="3" fill="var(--fuse-fill)" stroke="var(--fuse)" stroke-width="1.4"/>
+        <text x="770" y="165" class="plan-lbl" font-size="8.5" text-anchor="middle" style="fill:var(--fuse)">150A</text>
+        <path d="M770,150 V102" stroke="var(--pos)" stroke-width="4" marker-end="url(#ar)"/>
+        <circle cx="770" cy="94" r="4.5" fill="var(--pos)"/>
+        <path d="M770,370 V464" stroke="var(--neg)" stroke-width="4" marker-end="url(#ar)"/>
+        <circle cx="770" cy="464" r="4.5" fill="var(--neg)"/>
+        <!-- B6 -->
+        <rect x="847" y="250" width="86" height="120" rx="4" fill="var(--ground)" stroke="var(--neg-soft)" stroke-width="1.5"/>
+        <text x="890" y="304" class="plan-lbl tag" font-size="12" text-anchor="middle">B6</text>
+        <circle cx="890" cy="250" r="4" fill="var(--pos)"/><circle cx="890" cy="370" r="4" fill="var(--neg)"/>
+        <path d="M890,250 V172" stroke="var(--pos)" stroke-width="4"/>
+        <rect x="868" y="150" width="44" height="22" rx="3" fill="var(--fuse-fill)" stroke="var(--fuse)" stroke-width="1.4"/>
+        <text x="890" y="165" class="plan-lbl" font-size="8.5" text-anchor="middle" style="fill:var(--fuse)">150A</text>
+        <path d="M890,150 V102" stroke="var(--pos)" stroke-width="4" marker-end="url(#ar)"/>
+        <circle cx="890" cy="94" r="4.5" fill="var(--pos)"/>
+        <path d="M890,370 V464" stroke="var(--neg)" stroke-width="4" marker-end="url(#ar)"/>
+        <circle cx="890" cy="464" r="4.5" fill="var(--neg)"/>
+      </g>
+      <text x="628" y="220" class="plan-lbl soft" font-size="9.5" text-anchor="middle">each batt (+) → own 150A ANL → + bus · (−) straight to − bus</text>
+      <text x="628" y="392" class="plan-lbl flag" font-size="9" text-anchor="middle">keep batt(+)→fuse ≤ 7″, booted &amp; sleeved (unfused segment)</text>
+
+      <!-- INVERTER top-left, diagonal -->
+      <rect x="18" y="30" width="96" height="52" rx="4" fill="var(--paper)" stroke="var(--ink)" stroke-width="1.6"/>
+      <text x="66" y="52" class="plan-lbl tag" font-size="11" text-anchor="middle">INVERTER</text>
+      <text x="66" y="66" class="plan-lbl soft" font-size="8.5" text-anchor="middle">WZRELB 3000W</text>
+      <rect x="120" y="40" width="40" height="30" rx="3" fill="var(--paper)" stroke="var(--flag)" stroke-width="1.6"/>
+      <text x="140" y="59" class="plan-lbl flag" font-size="9" text-anchor="middle">80A</text>
+      <path d="M114,56 H120 M160,56 H175 L175,86" stroke="var(--pos)" stroke-width="4" fill="none"/>
+      <circle cx="175" cy="90" r="0"/>
+      <text x="150" y="30" class="plan-lbl pos" font-size="9" text-anchor="middle">INV+ (via 80A brkr)</text>
+      <text x="150" y="94" class="plan-lbl pos" font-size="8.5" text-anchor="middle">+bus LEFT end</text>
+
+      <!-- INV- diagonal to far right end of -bus -->
+      <path d="M960,472 L960,540 L360,540" stroke="var(--neg)" stroke-width="4" fill="none" marker-end="url(#ar)" stroke-dasharray="2 0"/>
+      <path d="M360,540 L120,540 L66,82" stroke="var(--neg)" stroke-width="2.4" fill="none" stroke-dasharray="7 5" opacity=".6"/>
+      <text x="700" y="534" class="plan-lbl neg" font-size="9" text-anchor="middle">INV− 2/0 → −bus RIGHT end  (diagonal draw = balanced packs)</text>
+
+      <!-- CHARGERS right end -->
+      <g>
+        <rect x="1000" y="150" width="110" height="150" rx="5" fill="var(--paper)" stroke="var(--amber)" stroke-width="1.5"/>
+        <text x="1055" y="170" class="plan-lbl tag" font-size="10" text-anchor="middle" style="fill:var(--amber)">CHARGERS</text>
+        <text x="1055" y="184" class="plan-lbl soft" font-size="8" text-anchor="middle">(wall cabinet)</text>
+        <!-- fuse dots -->
+        <rect x="1014" y="198" width="30" height="16" rx="3" fill="var(--fuse-fill)" stroke="var(--flag)" stroke-width="1.4"/>
+        <text x="1029" y="210" class="plan-lbl" font-size="7.5" text-anchor="middle" style="fill:var(--flag)">70A</text>
+        <text x="1085" y="210" class="plan-lbl soft" font-size="8.5" text-anchor="middle">CTL+</text>
+        <rect x="1014" y="222" width="30" height="16" rx="3" fill="var(--fuse-fill)" stroke="var(--flag)" stroke-width="1.4"/>
+        <text x="1029" y="234" class="plan-lbl" font-size="7.5" text-anchor="middle" style="fill:var(--flag)">30A</text>
+        <text x="1085" y="234" class="plan-lbl soft" font-size="8.5" text-anchor="middle">IOTA+</text>
+        <rect x="1014" y="246" width="30" height="16" rx="3" fill="var(--fuse-fill)" stroke="var(--flag)" stroke-width="1.4"/>
+        <text x="1029" y="258" class="plan-lbl" font-size="7.5" text-anchor="middle" style="fill:var(--flag)">10A</text>
+        <text x="1085" y="258" class="plan-lbl soft" font-size="8.5" text-anchor="middle">DIN+</text>
+        <text x="1055" y="285" class="plan-lbl flag" font-size="8" text-anchor="middle">NEW — fuse</text>
+        <text x="1055" y="295" class="plan-lbl flag" font-size="8" text-anchor="middle">each at the bus</text>
+      </g>
+      <path d="M980,94 H1000 L1000,150" stroke="var(--pos)" stroke-width="3.2" fill="none"/>
+      <text x="905" y="84" class="plan-lbl pos" font-size="8.5">+bus RIGHT end (stacked)</text>
+      <path d="M130,464 L130,414 L1000,414 L1000,300" stroke="var(--neg)" stroke-width="2.6" fill="none" stroke-dasharray="6 4" opacity=".8"/>
+      <text x="150" y="410" class="plan-lbl neg" font-size="8.5">CTL−/IOTA−/DIN− → −bus LEFT end (3 rings)</text>
+
+      <!-- safety chips -->
+      <rect x="392" y="8" width="336" height="26" rx="13" fill="var(--flag-bg)" stroke="var(--flag)" stroke-width="1"/>
+      <text x="560" y="25" class="plan-lbl flag" font-size="10" text-anchor="middle">BOOTS on every stud + lift-off Lexan guard + FR barrier under bus/fuses</text>
+    </svg>
+  </div>
+  <div class="caption">Schematic, not to scale. Red = positive, black = negative. Every battery positive passes its own 150A ANL fuse; negatives land straight on the − bus. Inverter drawn diagonally (+ left end, − right end). Batteries spread 2-2-2 across the three chained bars.</div>
+
+  <h2 class="hd">What the safety review caught — fix before wiring</h2>
+  <div class="cards">
+    <div class="card"><h3><span class="n">1</span> Charge-controller &amp; Iota leads had no fuse</h3>
+      <p>The biggest gap. Any conductor tapped off the bus must be fused <b>at the bus end</b>, because the source is the full bank (~600A continuous, &gt;1,700A fault). A chafed 6ga/10ga charger lead with no fuse = the bank dumps unlimited current into a thin wire. The charger's internal fuse is at the wrong end. <b>Add: 70A on the controller lead, ~30A on the Iota lead</b> (MRBF on the stud or inline ANL), each in its own leg.</p></div>
+    <div class="card"><h3><span class="n">2</span> The battery(+)→fuse stub is unprotected</h3>
+      <p>That short jumper between each battery post and its ANL is always live and unfused, and a fault there is fed by all six packs. This is the <b>#1 cause of DC battery fires</b>. Keep it <b>≤ 7″</b>, boot the post, route it straight to its fuse clear of the − bus and the box wall, and support it. It is oversized if you use 2/0 offcuts.</p></div>
+    <div class="card warn"><h3><span class="n">3</span> Size the bus chain-jumpers like the inverter feed</h3>
+      <p>The links joining the 3 bars carry the crossing current — up to ~83A (or the full inverter current if a bar has no batteries on it). A token brass strip or bare bolt there overheats. Use <b>2/0 jumpers</b> (or solid 250A-class bar), and keep ≥2 batteries on the bar the inverter taps. Boot and torque them like any stud.</p></div>
+    <div class="card warn"><h3><span class="n">4</span> Pre-charge the inverter + non-combustible barrier</h3>
+      <p><b>Pre-charge:</b> the 3000W inverter's input caps draw a hard arc when you close the breaker cold — bridge the breaker through a <b>~10–50Ω resistor for ~2s</b>, then close. <b>Barrier:</b> the bus bars and ANL holders sit on bare plywood; a loose joint or a clearing fuse can char wood. Put <b>FR4 / fiberglass / sheet metal</b> (or standoffs + air gap) under the bus &amp; fuse footprint.</p></div>
+  </div>
+
+  <h2 class="hd">Run schedule</h2>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>ID</th><th>Conductor</th><th>Route</th><th>Gauge</th><th>Fuse / OCPD</th><th>Lands on</th></tr></thead>
+      <tbody>
+        <tr class="batt"><td><span class="id p">B1–B6 +</span></td><td>Battery (+) → its ANL → + bus</td><td>post → fuse (≤7″) → bus</td><td>2/0 (min 1/0)</td><td><b>150A ANL</b> each</td><td>+ bus, 2 per bar (A:B1-2 · B:B3-4 · C:B5-6)</td></tr>
+        <tr class="batt"><td><span class="id n">B1–B6 −</span></td><td>Battery (−) → − bus</td><td>post → bus</td><td>2/0 (min 1/0)</td><td>—</td><td>− bus, same 2-2-2 studs</td></tr>
+        <tr><td><span class="id p">INV+</span></td><td>+ bus LEFT end → 80A breaker → inverter (+)</td><td>bus → breaker → inv</td><td>2/0</td><td>80A BULVACK (150A future — see note)</td><td>+ bus left-end stud (alone)</td></tr>
+        <tr><td><span class="id n">INV−</span></td><td>Inverter (−) → − bus RIGHT end</td><td>diagonal, along back edge</td><td>2/0</td><td>—</td><td>− bus right-end stud (alone)</td></tr>
+        <tr><td><span class="id e">CTL+</span></td><td>+ bus → controller (+)</td><td>bus → fuse → Tycon</td><td>6ga <b>90°C</b> (or 4ga)</td><td class="newfuse">70A (NEW)</td><td>+ bus right-end stud (stack, bottom)</td></tr>
+        <tr><td><span class="id e">CTL−</span></td><td>Controller (−) → − bus</td><td>Tycon → bus</td><td>6ga</td><td>—</td><td>− bus left-end stud (stack)</td></tr>
+        <tr><td><span class="id e">IOTA+</span></td><td>+ bus → Iota (+)</td><td>bus → fuse → Iota</td><td>10ga <b>(verify)</b></td><td class="newfuse">~30A (NEW)</td><td>+ bus right-end stud (stack)</td></tr>
+        <tr><td><span class="id e">IOTA−</span></td><td>Iota (−) → − bus</td><td>Iota → bus</td><td>10ga</td><td>—</td><td>− bus left-end stud (stack)</td></tr>
+        <tr><td><span class="id e">DIN+</span></td><td>+ bus → aux ATO fuse block</td><td>bus → fuse → block</td><td>10ga</td><td>10A (at bus)</td><td>+ bus right-end stud — <b>NOT the inverter stud</b></td></tr>
+        <tr><td><span class="id e">DIN−</span></td><td>ATO block → − bus</td><td>block → bus</td><td>10ga</td><td>—</td><td>− bus left-end stud (stack)</td></tr>
+        <tr><td><span class="id">JMP ×4</span></td><td>Bar-to-bar chain links (2 per bus)</td><td>stud → stud</td><td><b>2/0</b> / 250A bar</td><td>—</td><td>between the 3 bars each side</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:12px;color:var(--ink-soft);margin-top:10px"><b>Torque</b> (calibrated wrench, never by feel): LiTime M8 posts <code>~8–10 N·m</code> (do not exceed ~12), Joinfworld brass M8 studs <code>~12–15 N·m</code>, ANL per holder spec. Largest ring on the bottom, no washer between stacked conductors, confirm the nut fully engages on the 2- and 3-ring studs. <b>Re-torque</b> after the first heavy-load run, at 1 week, 1 month, then annually. <b>Lugs:</b> tinned closed-barrel, M8 (5/16″) ring, <b>hydraulic-crimped</b> + adhesive heat-shrink — no hammer/set-screw lugs, no solder. Pull-test each.</p>
+
+  <h2 class="hd">Connect &amp; energize — in this order</h2>
+  <ol class="seq">
+    <li><b>Mount everything first.</b> Bus bars, ANL holders, TPDIN, DIN block screwed down (with the FR barrier under the bus/fuse zone). Never crimp or torque against a part that can still shift.</li>
+    <li><b>Pre-balance.</b> Individually full-charge each of the 6 packs to 100%, rest, then confirm all six resting voltages are within <b>~30 mV</b> of each other. Do not parallel packs from different states of charge.</li>
+    <li><b>Land everything dead.</b> All 6 ANL fuses <b>OUT</b>, 80A breaker <b>OPEN</b>, PV/DIHOOL <b>OPEN</b>. Bolt and torque every cable (negatives, then positives), boots on studs. The bank is not live in this state.</li>
+    <li><b>Verify.</b> Meter every pack's polarity/voltage and the bus polarity. Visual + torque check.</li>
+    <li><b>Bring packs online one at a time:</b> insert the ANL fuses one by one. <span class="warnpill">A faint tick is normal; a real arc means imbalance or a fault — stop and recheck.</span></li>
+    <li><b>Pre-charge, then close the inverter breaker</b> (resistor ~2s across the breaker, then close). Bring up the charger legs.</li>
+    <li><b>Guard up.</b> Boots on every stud, lift-off Lexan guard on its standoffs, notched over the 80A breaker handle so the fast-kill stays reachable. <span class="warnpill">Do not energize without boots + guard.</span></li>
+    <li><b>First high-load run:</b> IR-sweep the inverter lug, both diagonal end studs, and all 6 ANL holders. Any joint hotter than its neighbors is loose — re-torque. Then re-torque the whole bank.</li>
+  </ol>
+
+  <h2 class="hd">Verify before you commit (from the manufacturers)</h2>
+  <ul class="checks">
+    <li><b>LiTime's written position on 6P</b> for this exact model — proceed-at-6P vs drop-to-4P hinges on this.</li>
+    <li><b>LiTime M8 terminal torque</b> in N·m (they don't publish it in the sources I found — email/call; use 8–10 N·m interim, never exceed ~12).</li>
+    <li><b>Iota model / rated output.</b> 10ga is only OK for a ≤30A Iota. A 45–55A model needs 8ga and a bigger fuse.</li>
+    <li><b>Controller 6ga lead is 90°C-rated</b> battery cable (it sits near its ampacity at a full 60A inside the insulated box) — or step to 4ga.</li>
+    <li><b>DC interrupt rating (AIC)</b> of the 80A BULVACK (and any 150A replacement) exceeds ~1,700A — cheap DC breakers can be inadequate; a 150A upgrade must be DC-rated with a slow trip curve and checked against the freezer/inverter surge.</li>
+    <li><b>Joinfworld stud length</b> is enough for full nut engagement on the 2- and 3-ring stacks (dry-stack and check); if the 3-ring − stud runs short, move the DIN return to a small terminal block off that stud.</li>
+  </ul>
+
+  <div class="foot">
+    Project Hedge · Sheet E-2 · Rev A (for review) · schematic, not to scale · 24V DC extra-low-voltage (no shock) but ~14 kWh behind the bus — treat a dropped tool as the primary hazard. Confirmed good: 150A ANL sizing, 2/0 conductors, diagonal draw, 2-2-2 spread, double-stacking (2 lugs), and the pre-balance/positive-last sequence.
+  </div>
+</div>
+
+<script>
+(function(){var t=localStorage.getItem('hedge-theme');if(t)document.documentElement.setAttribute('data-theme',t);
+if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}})();
+</script>
+</body>
+</html>
