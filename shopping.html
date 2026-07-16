@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#141b26">
+<title>Shopping List · Hedge Field Guide</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  ul.buy{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+  ul.buy li{padding:12px 14px 12px 44px;position:relative;border:1px solid var(--rule);border-radius:11px;
+    background:var(--card);font-size:14.5px;box-shadow:var(--shadow)}
+  ul.buy li::before{content:"";position:absolute;left:14px;top:14px;width:18px;height:18px;
+    border:2px solid var(--amber);border-radius:4px}
+  ul.buy li b{font-weight:700}
+  ul.buy li small{display:block;color:var(--ink-soft);font-size:12.5px;margin-top:2px}
+  ul.buy li.star{border-left:4px solid var(--ok)}
+</style>
+</head>
+<body>
+<nav class="sitenav">
+  <a class="back" href="index.html">‹ <span>Guide</span></a>
+  <span class="title">Shopping</span>
+  <span class="spacer"></span>
+</nav>
+
+<div class="wrap">
+  <div class="hero">
+    <p class="eyebrow">In the aisle · by store</p>
+    <h1>Shopping List</h1>
+    <p>What to grab locally vs what to order. Green bar = grab it this trip.</p>
+  </div>
+
+  <div class="callout flag">
+    <h3>Do NOT buy yet</h3>
+    <p><b>No ring lugs. No charger fuses.</b> Both depend on measuring your <b>bus stud size (M8 vs 3/8″ M10)</b> and confirming your <b>Iota model</b>. Buying blind means wrong terminals. They are Amazon items anyway.</p>
+  </div>
+
+  <h2 class="hd">🌾 Grange Co-op</h2>
+  <ul class="buy">
+    <li class="star"><b>Horizontal poultry nipples ×8</b><small>Need 6 for 20 birds, spares are pennies. Heart of the waterer build.</small></li>
+    <li class="star"><b>Float valve</b> (stock-tank or poultry)<small>Auto-fill. Keeps the heating element submerged. Run-dry kills the element.</small></li>
+    <li><b>Food-grade bucket, 5 to 7 gal</b><small>The waterer reservoir.</small></li>
+    <li><b>Drip filters, 120 to 200 mesh ×2</b><small>Protects emitters from pond water. Open item.</small></li>
+    <li><b>Low-pressure drip tape</b><small>4 to 10 PSI type, matches the ~10 PSI submersible. Zucchini + trees.</small></li>
+    <li><b>1″ poly pipe</b> + barb fittings, tees, stainless clamps<small>Zone lines and the mini-barrel run.</small></li>
+    <li class="star"><b>1″ barb × 1″ MNPT adapters</b><small>Needed to put the two Eastman check valves inline. Long-standing blocker.</small></li>
+    <li><b>Landscape fabric</b><small>Goes in the tank pad box BEFORE the rock.</small></li>
+    <li><b>Teflon tape</b><small>You will use a whole roll.</small></li>
+    <li><b>Chest cooler</b> (if they have one)<small>Doubles as the insulated battery box for the shed 2P bank.</small></li>
+  </ul>
+
+  <h2 class="hd">🔧 Hardware store</h2>
+  <ul class="buy">
+    <li><b>Anti-seize</b><small>Stainless/brass bus studs gall without it.</small></li>
+    <li class="star"><b>Torque wrench, 1/4″ drive, ~40 to 200 in-lb</b> + 13mm socket<small>To hit LiTime's confirmed 7 to 10 N·m. Do not do this by feel.</small></li>
+    <li><b>Cushioned P-clamps, ~5/8″ ×10 to 16</b><small>Secure the 2/0 runs and jumpers so they cannot lever on a stud.</small></li>
+    <li class="star"><b>Cement board or aluminum sheet</b><small>The non-combustible barrier under the bus bars + fuses. They are on bare plywood right now.</small></li>
+    <li class="star"><b>1/2″ FxF brass couplings ×4</b><small>Mandatory at the SEAFLO's male ports. All your couplings are 3/4″.</small></li>
+    <li><b>1/2″ PVC pipe + tee + end cap</b><small>The drinker bar for the nipples.</small></li>
+    <li><b>Rigid foam board</b><small>Bucket insulation. The #1 energy lever on the waterer.</small></li>
+    <li><b>UV-black zip ties</b></li>
+    <li><b>Rect-to-round downspout adapter</b><small>Only if you are touching the rainwater line this trip.</small></li>
+  </ul>
+
+  <h2 class="hd">📦 Amazon (do not hunt locally)</h2>
+  <div class="callout">
+    <p>2/0 cable + lugs, hydraulic crimper, adhesive heat shrink, terminal boots, 70A/30A charger fuses + holders, 6ga/10ga lugs, <b>DC clamp meter (UNI-T UT210E)</b>, 40A DC contactor, snap-disc over-temp, DC thermostat, float switch.</p>
+    <p><b>Shed system:</b> 2 × ~400W panels, ~40A MPPT, 300 to 600W low-idle pure sine inverter, solar exhaust fan.</p>
+  </div>
+
+  <div class="callout ok">
+    <h3>If you only grab three</h3>
+    <p><b>Poultry nipples</b>, the <b>float valve</b>, and the <b>1″ barb × 1″ MNPT adapters</b>. The first two unblock the waterer build; the third has been blocking your check valves for weeks.</p>
+  </div>
+
+  <div class="foot">Hedge Field Guide · shopping list · Rev 2026-07-16.</div>
+</div>
+
+<script>
+  (function(){var t=localStorage.getItem('hedge-theme');if(t)document.documentElement.setAttribute('data-theme',t);
+  if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}})();
+</script>
+</body>
+</html>
