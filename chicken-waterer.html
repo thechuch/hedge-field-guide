@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#141b26">
-<title>Heated Chicken Waterer — Hedge Field Guide</title>
+<title>Heated Chicken Waterer · Hedge Field Guide</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg">
 <link rel="apple-touch-icon" href="icon.svg">
@@ -26,7 +26,7 @@
 
   <div class="callout ok">
     <h3>The build (recommended)</h3>
-    <p><b>One insulated 5–7 gal reservoir bucket</b> with the heater inside, feeding a short drinker bar of <b>~6 horizontal poultry nipples</b> (about 1 per 3 birds, no crowding). <b>Not</b> an open stock tank (fouls, freezes fastest, wastes the most battery). <b>Not</b> two heaters — one reservoir, optionally two nipple bars off it.</p>
+    <p><b>One insulated 5 to 7 gal reservoir bucket</b> with the heater inside, feeding a short drinker bar of <b>~6 horizontal poultry nipples</b> (about 1 per 3 birds, no crowding). <b>Not</b> an open stock tank (fouls, freezes fastest, wastes the most battery). <b>Not</b> two heaters, one reservoir, optionally two nipple bars off it.</p>
     <p><b>Keep the 600W element you found.</b> Energy used = heat lost, not element size, so a big element on a thermostat costs the same watt-hours as a small one; it just cycles less. Insulate hard and wire it for its 25A.</p>
   </div>
 
@@ -36,9 +36,9 @@
       <thead><tr><th>Part</th><th>Spec</th><th>~Cost</th><th>Notes</th></tr></thead>
       <tbody>
         <tr><td>Heating element</td><td>DERNORD 24V <b>600W</b>, 1" NPSM</td><td>$29</td><td>Have it. 600W ÷ 24V = <b>25A</b>.</td></tr>
-        <tr><td>Bulkhead</td><td>Beduan 1" female SS</td><td>$13</td><td>Have it. <b>Gasket</b> seals the wall (straight thread — no pipe dope for the seal).</td></tr>
-        <tr><td>Reservoir</td><td>5–7 gal food-grade bucket <b>+ insulation</b></td><td>~$25</td><td>Bucket-in-bucket or foam cooler, insulated lid, foam base off the ground. <b>#1 energy lever.</b></td></tr>
-        <tr><td>Drinkers</td><td>~6 horizontal nipples + ½" PVC bar</td><td>~$18</td><td>Mount low (2–3") so warm water sits behind them.</td></tr>
+        <tr><td>Bulkhead</td><td>Beduan 1" female SS</td><td>$13</td><td>Have it. <b>Gasket</b> seals the wall (straight thread, no pipe dope for the seal).</td></tr>
+        <tr><td>Reservoir</td><td>5 to 7 gal food-grade bucket <b>+ insulation</b></td><td>~$25</td><td>Bucket-in-bucket or foam cooler, insulated lid, foam base off the ground. <b>#1 energy lever.</b></td></tr>
+        <tr><td>Drinkers</td><td>~6 horizontal nipples + ½" PVC bar</td><td>~$18</td><td>Mount low (2 to 3") so warm water sits behind them.</td></tr>
         <tr><td>Auto-fill</td><td>Float valve or float switch</td><td>~$12</td><td>Fed off the tank (W4 zone). Keeps element <b>always submerged</b>.</td></tr>
         <tr><td>Switching</td><td><b>40A DC-rated</b> contactor/relay</td><td>~$20</td><td>Dedicated. <b>Not</b> the Baomain (double-booked), <b>not</b> the ESP32 relay board (10A).</td></tr>
         <tr><td>Over-temp failsafe</td><td>Snap-disc N.C., ~130°F, load-rated</td><td>~$10</td><td>In series with heater. Catches a welded relay or dry-fire. <b>Non-negotiable.</b></td></tr>
@@ -47,7 +47,7 @@
       </tbody>
     </table>
   </div>
-  <p class="hintscroll">Add-on beyond the 2 parts you have: ~$90–120. ← swipe the table</p>
+  <p class="hintscroll">Add-on beyond the 2 parts you have: ~$90 to 120. ← swipe the table</p>
 
   <h2 class="hd">Wiring (the 25A path)</h2>
   <div class="emailbox">Bank 24V+ → 30A fuse → junction C
@@ -59,15 +59,15 @@ Contactor COIL ← thermostat / ESP32 (low current)
 
   <h2 class="hd">Control &amp; safety</h2>
   <div class="cards">
-    <div class="info"><h3>Primary control = standalone DC thermostat</h3><p>Not the ESP32 — chickens need water even if the network is down. The thermostat just switches the contactor coil.</p></div>
+    <div class="info"><h3>Primary control = standalone DC thermostat</h3><p>Not the ESP32, chickens need water even if the network is down. The thermostat just switches the contactor coil.</p></div>
     <div class="info"><h3>Let the ESP32 watch it</h3><p>A waterproof DS18B20 + the float switch feed the dashboard for a low-water alert and a dry-run alarm, without the water depending on it.</p></div>
     <div class="info"><h3>Hardware failsafe</h3><p>The load-rated snap-disc opens at ~130°F if the contactor welds or the element dry-fires. Belt and suspenders.</p></div>
     <div class="info"><h3>Never heat dry</h3><p>The float keeps it topped; the float switch tells the ESP32 to inhibit the heater and refill if the level drops.</p></div>
   </div>
 
   <div class="callout warn">
-    <h3>Energy reality — budget for it</h3>
-    <p>A well-insulated bucket in the teens averages roughly <b>1–2 kWh/day</b>; a poorly insulated one or a hard multi-day freeze can hit <b>~3 kWh/day</b>. That stacks on the freezer at the worst solar time. <b>Insulation is what keeps you at 1 instead of 3.</b></p>
+    <h3>Energy reality, budget for it</h3>
+    <p>A well-insulated bucket in the teens averages roughly <b>1 to 2 kWh/day</b>; a poorly insulated one or a hard multi-day freeze can hit <b>~3 kWh/day</b>. That stacks on the freezer at the worst solar time. <b>Insulation is what keeps you at 1 instead of 3.</b></p>
   </div>
 
   <div class="foot">Hedge Field Guide · chicken waterer · confirmed against DERNORD + Premier1 · Rev 2026-07-15.</div>

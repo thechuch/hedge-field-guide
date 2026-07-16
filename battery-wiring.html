@@ -8,7 +8,7 @@
 <link rel="icon" href="icon.svg">
 <link rel="apple-touch-icon" href="icon.svg">
 <link rel="stylesheet" href="assets/site.css">
-<title>Project Hedge — Battery-to-Bus Wiring</title>
+<title>Project Hedge · Battery-to-Bus Wiring</title>
 <style>
   :root{
     --ground:#eef1f4; --paper:#f7f8fa; --grid:#e2e6ec; --ink:#1c2632; --ink-soft:#5b6672;
@@ -260,7 +260,7 @@
         <rect x="1014" y="246" width="30" height="16" rx="3" fill="var(--fuse-fill)" stroke="var(--flag)" stroke-width="1.4"/>
         <text x="1029" y="258" class="plan-lbl" font-size="7.5" text-anchor="middle" style="fill:var(--flag)">10A</text>
         <text x="1085" y="258" class="plan-lbl soft" font-size="8.5" text-anchor="middle">DIN+</text>
-        <text x="1055" y="285" class="plan-lbl flag" font-size="8" text-anchor="middle">NEW — fuse</text>
+        <text x="1055" y="285" class="plan-lbl flag" font-size="8" text-anchor="middle">NEW, fuse</text>
         <text x="1055" y="295" class="plan-lbl flag" font-size="8" text-anchor="middle">each at the bus</text>
       </g>
       <path d="M980,94 H1000 L1000,150" stroke="var(--pos)" stroke-width="3.2" fill="none"/>
@@ -275,16 +275,16 @@
   </div>
   <div class="caption">Schematic, not to scale. Red = positive, black = negative. Every battery positive passes its own 150A ANL fuse; negatives land straight on the − bus. Inverter drawn diagonally (+ left end, − right end). Batteries spread 2-2-2 across the three chained bars.</div>
 
-  <h2 class="hd">What the safety review caught — fix before wiring</h2>
+  <h2 class="hd">What the safety review caught, fix before wiring</h2>
   <div class="cards">
     <div class="card"><h3><span class="n">1</span> Charge-controller &amp; Iota leads had no fuse</h3>
       <p>The biggest gap. Any conductor tapped off the bus must be fused <b>at the bus end</b>, because the source is the full bank (~600A continuous, &gt;1,700A fault). A chafed 6ga/10ga charger lead with no fuse = the bank dumps unlimited current into a thin wire. The charger's internal fuse is at the wrong end. <b>Add: 70A on the controller lead, ~30A on the Iota lead</b> (MRBF on the stud or inline ANL), each in its own leg.</p></div>
     <div class="card"><h3><span class="n">2</span> The battery(+)→fuse stub is unprotected</h3>
       <p>That short jumper between each battery post and its ANL is always live and unfused, and a fault there is fed by all six packs. This is the <b>#1 cause of DC battery fires</b>. Keep it <b>≤ 7″</b>, boot the post, route it straight to its fuse clear of the − bus and the box wall, and support it. It is oversized if you use 2/0 offcuts.</p></div>
     <div class="card warn"><h3><span class="n">3</span> Size the bus chain-jumpers like the inverter feed</h3>
-      <p>The links joining the 3 bars carry the crossing current — up to ~83A (or the full inverter current if a bar has no batteries on it). A token brass strip or bare bolt there overheats. Use <b>2/0 jumpers</b> (or solid 250A-class bar), and keep ≥2 batteries on the bar the inverter taps. Boot and torque them like any stud.</p></div>
+      <p>The links joining the 3 bars carry the crossing current, up to ~83A (or the full inverter current if a bar has no batteries on it). A token brass strip or bare bolt there overheats. Use <b>2/0 jumpers</b> (or solid 250A-class bar), and keep ≥2 batteries on the bar the inverter taps. Boot and torque them like any stud.</p></div>
     <div class="card warn"><h3><span class="n">4</span> Pre-charge the inverter + non-combustible barrier</h3>
-      <p><b>Pre-charge:</b> the 3000W inverter's input caps draw a hard arc when you close the breaker cold — bridge the breaker through a <b>~10–50Ω resistor for ~2s</b>, then close. <b>Barrier:</b> the bus bars and ANL holders sit on bare plywood; a loose joint or a clearing fuse can char wood. Put <b>FR4 / fiberglass / sheet metal</b> (or standoffs + air gap) under the bus &amp; fuse footprint.</p></div>
+      <p><b>Pre-charge:</b> the 3000W inverter's input caps draw a hard arc when you close the breaker cold, bridge the breaker through a <b>~10 to 50Ω resistor for ~2s</b>, then close. <b>Barrier:</b> the bus bars and ANL holders sit on bare plywood; a loose joint or a clearing fuse can char wood. Put <b>FR4 / fiberglass / sheet metal</b> (or standoffs + air gap) under the bus &amp; fuse footprint.</p></div>
   </div>
 
   <h2 class="hd">Run schedule</h2>
@@ -292,46 +292,63 @@
     <table>
       <thead><tr><th>ID</th><th>Conductor</th><th>Route</th><th>Gauge</th><th>Fuse / OCPD</th><th>Lands on</th></tr></thead>
       <tbody>
-        <tr class="batt"><td><span class="id p">B1–B6 +</span></td><td>Battery (+) → its ANL → + bus</td><td>post → fuse (≤7″) → bus</td><td>2/0 (min 1/0)</td><td><b>150A ANL</b> each</td><td>+ bus, 2 per bar (A:B1-2 · B:B3-4 · C:B5-6)</td></tr>
-        <tr class="batt"><td><span class="id n">B1–B6 −</span></td><td>Battery (−) → − bus</td><td>post → bus</td><td>2/0 (min 1/0)</td><td>—</td><td>− bus, same 2-2-2 studs</td></tr>
-        <tr><td><span class="id p">INV+</span></td><td>+ bus LEFT end → 80A breaker → inverter (+)</td><td>bus → breaker → inv</td><td>2/0</td><td>80A BULVACK (150A future — see note)</td><td>+ bus left-end stud (alone)</td></tr>
-        <tr><td><span class="id n">INV−</span></td><td>Inverter (−) → − bus RIGHT end</td><td>diagonal, along back edge</td><td>2/0</td><td>—</td><td>− bus right-end stud (alone)</td></tr>
+        <tr class="batt"><td><span class="id p">B1 to B6 +</span></td><td>Battery (+) → its ANL → + bus</td><td>post → fuse (≤7″) → bus</td><td>2/0 (min 1/0)</td><td><b>150A ANL</b> each</td><td>+ bus, 2 per bar (A:B1-2 · B:B3-4 · C:B5-6)</td></tr>
+        <tr class="batt"><td><span class="id n">B1 to B6 −</span></td><td>Battery (−) → − bus</td><td>post → bus</td><td>2/0 (min 1/0)</td><td>, </td><td>− bus, same 2-2-2 studs</td></tr>
+        <tr><td><span class="id p">INV+</span></td><td>+ bus LEFT end → 80A breaker → inverter (+)</td><td>bus → breaker → inv</td><td>2/0</td><td>80A BULVACK (150A future, see note)</td><td>+ bus left-end stud (alone)</td></tr>
+        <tr><td><span class="id n">INV−</span></td><td>Inverter (−) → − bus RIGHT end</td><td>diagonal, along back edge</td><td>2/0</td><td>, </td><td>− bus right-end stud (alone)</td></tr>
         <tr><td><span class="id e">CTL+</span></td><td>+ bus → controller (+)</td><td>bus → fuse → Tycon</td><td>6ga <b>90°C</b> (or 4ga)</td><td class="newfuse">70A (NEW)</td><td>+ bus right-end stud (stack, bottom)</td></tr>
-        <tr><td><span class="id e">CTL−</span></td><td>Controller (−) → − bus</td><td>Tycon → bus</td><td>6ga</td><td>—</td><td>− bus left-end stud (stack)</td></tr>
+        <tr><td><span class="id e">CTL−</span></td><td>Controller (−) → − bus</td><td>Tycon → bus</td><td>6ga</td><td>, </td><td>− bus left-end stud (stack)</td></tr>
         <tr><td><span class="id e">IOTA+</span></td><td>+ bus → Iota (+)</td><td>bus → fuse → Iota</td><td>10ga <b>(verify)</b></td><td class="newfuse">~30A (NEW)</td><td>+ bus right-end stud (stack)</td></tr>
-        <tr><td><span class="id e">IOTA−</span></td><td>Iota (−) → − bus</td><td>Iota → bus</td><td>10ga</td><td>—</td><td>− bus left-end stud (stack)</td></tr>
-        <tr><td><span class="id e">DIN+</span></td><td>+ bus → aux ATO fuse block</td><td>bus → fuse → block</td><td>10ga</td><td>10A (at bus)</td><td>+ bus right-end stud — <b>NOT the inverter stud</b></td></tr>
-        <tr><td><span class="id e">DIN−</span></td><td>ATO block → − bus</td><td>block → bus</td><td>10ga</td><td>—</td><td>− bus left-end stud (stack)</td></tr>
-        <tr><td><span class="id">JMP ×4</span></td><td>Bar-to-bar chain links (2 per bus)</td><td>stud → stud</td><td><b>2/0</b> / 250A bar</td><td>—</td><td>between the 3 bars each side</td></tr>
+        <tr><td><span class="id e">IOTA−</span></td><td>Iota (−) → − bus</td><td>Iota → bus</td><td>10ga</td><td>, </td><td>− bus left-end stud (stack)</td></tr>
+        <tr><td><span class="id e">DIN+</span></td><td>+ bus → aux ATO fuse block</td><td>bus → fuse → block</td><td>10ga</td><td>10A (at bus)</td><td>+ bus right-end stud, <b>NOT the inverter stud</b></td></tr>
+        <tr><td><span class="id e">DIN−</span></td><td>ATO block → − bus</td><td>block → bus</td><td>10ga</td><td>, </td><td>− bus left-end stud (stack)</td></tr>
+        <tr><td><span class="id">JMP ×4</span></td><td>Bar-to-bar chain links (2 per bus)</td><td>stud → stud</td><td><b>2/0</b> / 250A bar</td><td>, </td><td>between the 3 bars each side</td></tr>
       </tbody>
     </table>
   </div>
-  <p style="font-size:12px;color:var(--ink-soft);margin-top:10px"><b>Torque</b> (calibrated wrench, never by feel): LiTime M8 posts <code>~8–10 N·m</code> (do not exceed ~12), Joinfworld brass M8 studs <code>~12–15 N·m</code>, ANL per holder spec. Largest ring on the bottom, no washer between stacked conductors, confirm the nut fully engages on the 2- and 3-ring studs. <b>Re-torque</b> after the first heavy-load run, at 1 week, 1 month, then annually. <b>Lugs:</b> tinned closed-barrel, M8 (5/16″) ring, <b>hydraulic-crimped</b> + adhesive heat-shrink — no hammer/set-screw lugs, no solder. Pull-test each.</p>
+  <p style="font-size:12px;color:var(--ink-soft);margin-top:10px"><b>Torque</b> (calibrated wrench, never by feel): LiTime M8 posts <code>~8 to 10 N·m</code> (do not exceed ~12), Joinfworld brass M8 studs <code>~12 to 15 N·m</code>, ANL per holder spec. Largest ring on the bottom, no washer between stacked conductors, confirm the nut fully engages on the 2- and 3-ring studs. <b>Re-torque</b> after the first heavy-load run, at 1 week, 1 month, then annually. <b>Lugs:</b> tinned closed-barrel, M8 (5/16″) ring, <b>hydraulic-crimped</b> + adhesive heat-shrink, no hammer/set-screw lugs, no solder. Pull-test each.</p>
 
-  <h2 class="hd">Connect &amp; energize — in this order</h2>
+  <h2 class="hd">Connect &amp; energize, in this order</h2>
   <ol class="seq">
     <li><b>Mount everything first.</b> Bus bars, ANL holders, TPDIN, DIN block screwed down (with the FR barrier under the bus/fuse zone). Never crimp or torque against a part that can still shift.</li>
     <li><b>Pre-balance.</b> Individually full-charge each of the 6 packs to 100%, rest, then confirm all six resting voltages are within <b>~30 mV</b> of each other. Do not parallel packs from different states of charge.</li>
     <li><b>Land everything dead.</b> All 6 ANL fuses <b>OUT</b>, 80A breaker <b>OPEN</b>, PV/DIHOOL <b>OPEN</b>. Bolt and torque every cable (negatives, then positives), boots on studs. The bank is not live in this state.</li>
     <li><b>Verify.</b> Meter every pack's polarity/voltage and the bus polarity. Visual + torque check.</li>
-    <li><b>Bring packs online one at a time:</b> insert the ANL fuses one by one. <span class="warnpill">A faint tick is normal; a real arc means imbalance or a fault — stop and recheck.</span></li>
+    <li><b>Bring packs online one at a time:</b> insert the ANL fuses one by one. <span class="warnpill">A faint tick is normal; a real arc means imbalance or a fault, stop and recheck.</span></li>
     <li><b>Pre-charge, then close the inverter breaker</b> (resistor ~2s across the breaker, then close). Bring up the charger legs.</li>
     <li><b>Guard up.</b> Boots on every stud, lift-off Lexan guard on its standoffs, notched over the 80A breaker handle so the fast-kill stays reachable. <span class="warnpill">Do not energize without boots + guard.</span></li>
-    <li><b>First high-load run:</b> IR-sweep the inverter lug, both diagonal end studs, and all 6 ANL holders. Any joint hotter than its neighbors is loose — re-torque. Then re-torque the whole bank.</li>
+    <li><b>First high-load run:</b> IR-sweep the inverter lug, both diagonal end studs, and all 6 ANL holders. Any joint hotter than its neighbors is loose, re-torque. Then re-torque the whole bank.</li>
   </ol>
 
   <h2 class="hd">Verify before you commit (from the manufacturers)</h2>
   <ul class="checks">
-    <li><b>LiTime's written position on 6P</b> for this exact model — proceed-at-6P vs drop-to-4P hinges on this.</li>
-    <li><b>LiTime M8 terminal torque</b> in N·m (they don't publish it in the sources I found — email/call; use 8–10 N·m interim, never exceed ~12).</li>
-    <li><b>Iota model / rated output.</b> 10ga is only OK for a ≤30A Iota. A 45–55A model needs 8ga and a bigger fuse.</li>
-    <li><b>Controller 6ga lead is 90°C-rated</b> battery cable (it sits near its ampacity at a full 60A inside the insulated box) — or step to 4ga.</li>
-    <li><b>DC interrupt rating (AIC)</b> of the 80A BULVACK (and any 150A replacement) exceeds ~1,700A — cheap DC breakers can be inadequate; a 150A upgrade must be DC-rated with a slow trip curve and checked against the freezer/inverter surge.</li>
+    <li><b>LiTime's written position on 6P</b> for this exact model, proceed-at-6P vs drop-to-4P hinges on this.</li>
+    <li><b>LiTime M8 terminal torque</b> in N·m (they don't publish it in the sources I found, email/call; use 8 to 10 N·m interim, never exceed ~12).</li>
+    <li><b>Iota model / rated output.</b> 10ga is only OK for a ≤30A Iota. A 45 to 55A model needs 8ga and a bigger fuse.</li>
+    <li><b>Controller 6ga lead is 90°C-rated</b> battery cable (it sits near its ampacity at a full 60A inside the insulated box), or step to 4ga.</li>
+    <li><b>DC interrupt rating (AIC)</b> of the 80A BULVACK (and any 150A replacement) exceeds ~1,700A, cheap DC breakers can be inadequate; a 150A upgrade must be DC-rated with a slow trip curve and checked against the freezer/inverter surge.</li>
     <li><b>Joinfworld stud length</b> is enough for full nut engagement on the 2- and 3-ring stacks (dry-stack and check); if the 3-ring − stud runs short, move the DIN return to a small terminal block off that stud.</li>
   </ul>
 
+  <h2 class="hd">Monitoring &amp; reconnect safety</h2>
+  <div class="card"><h3><span class="n">RULE</span> Never hot-reconnect a tripped pack</h3>
+    <p>The 6P risk only shows up if a pack's BMS trips (over-current, over-discharge, or over-temp) and you reconnect it while it sits at a different voltage than the bank. Your loads are small next to 6x100A, so a trip is unlikely, but if one ever happens: <b>pull that pack's ANL fuse, charge it back up on its own until it matches the bank voltage, then reinsert the fuse.</b> Matched voltage means almost no inrush. Do not just push the fuse back into a low pack.</p>
+    <p style="margin-top:8px">There is no good always-in-line device that limits inrush without hurting normal operation (a series resistor wastes power continuously; a diode blocks the pack from charging through the bus), so the per-battery fuse is your controlled reconnect point.</p>
+  </div>
+
+  <h2 class="hd">Two tools that show trouble early</h2>
+  <div class="cards">
+    <div class="card warn"><h3>DC clamp meter: check current sharing</h3>
+      <p>A UNI-T UT210E (~$40) clamps around one cable and reads DC amps <b>without disconnecting anything</b>. With a load running, clamp each of the 6 battery cables one at a time; they should read roughly equal. A pack reading much higher or lower is an imbalance to chase. Its 100A range fits per-pack perfectly, and it earns its keep all over this build.</p></div>
+    <div class="card warn"><h3>Laser (IR) thermometer: you have one</h3>
+      <p>Point it at each lug, fuse, and terminal, especially on the first high-load run and after re-torquing. A joint or pack that reads hotter than its neighbors is loose or over-sharing. Cheap early warning for a bad connection.</p></div>
+  </div>
+
+  <div class="card warn" style="border-left-color:var(--water)"><h3>🔧 Future upgrade: continuous per-pack monitoring</h3>
+    <p>When you want the dashboard to watch it for you: add a <b>Hall-effect DC current sensor</b> (for example an ACS758, or a clamp-style sensor) on each pack's cable, read by the ESP32 and logged to Home Assistant with a per-pack alert. Six sensors to wire and calibrate, so it is a later project, not needed to start, but it catches a drifting pack or a BMS trip the moment it happens. Leave a little slack or clamp access on the battery cables now so it is easy to add later.</p></div>
+
   <div class="foot">
-    Project Hedge · Sheet E-2 · Rev A (for review) · schematic, not to scale · 24V DC extra-low-voltage (no shock) but ~14 kWh behind the bus — treat a dropped tool as the primary hazard. Confirmed good: 150A ANL sizing, 2/0 conductors, diagonal draw, 2-2-2 spread, double-stacking (2 lugs), and the pre-balance/positive-last sequence.
+    Project Hedge · Sheet E-2 · Rev A (for review) · schematic, not to scale · 24V DC extra-low-voltage (no shock) but ~14 kWh behind the bus, treat a dropped tool as the primary hazard. Confirmed good: 150A ANL sizing, 2/0 conductors, diagonal draw, 2-2-2 spread, double-stacking (2 lugs), and the pre-balance/positive-last sequence.
   </div>
 </div>
 
