@@ -1,5 +1,5 @@
 /* Project Hedge Field Guide · offline shell cache */
-const CACHE = 'hedge-field-v16';
+const CACHE = 'hedge-field-v17';
 const ASSETS = [
   './',
   'index.html',
@@ -11,6 +11,7 @@ const ASSETS = [
   'wall-cabinet.html',
   'mount-detail.html',
   'panel-layout.html',
+  'gland-plan.html',
 
   'chicken-waterer.html',
   'litime-email.html',
