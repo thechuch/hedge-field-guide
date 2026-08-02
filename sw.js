@@ -1,5 +1,5 @@
 /* Project Hedge Field Guide · offline shell cache */
-const CACHE = 'hedge-field-v15';
+const CACHE = 'hedge-field-v16';
 const ASSETS = [
   './',
   'index.html',
