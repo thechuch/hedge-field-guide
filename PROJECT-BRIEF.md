@@ -42,8 +42,15 @@ solar outlet beside them.
 - **Charge controller: Tycon TP-SC24-60N-MPPT.** Passively cooled, IP43, ambient limit 122F.
   **Must be set from "FLd" to Lithium, 28.8V, BEFORE the bank is ever connected.**
 - **Inverter: WZRELB 3000W 24V pure sine.** Fans and DC studs are on the **same end**, and the
-  **fans blow out**. AC outlets, display, rocker switch, and a 3-pole AC terminal block are on the
-  long front face. Idles at 20 to 50W, so it gets switched off when not in use.
+  **fans blow OUT** (confirmed on the bench). AC outlets, display, rocker switch, and a 3-pole AC
+  terminal block (TB-2503L, 600V 25A) are on the long front face. Idles at 20 to 50W, so it gets
+  switched off when not in use.
+  - **MOUNTED FAN/DC END UP** (confirmed). That is the rule: whichever end blows hot air out points
+    up, so its exhaust feeds the box's top exhaust fan instead of dumping into the intake stream.
+  - Its rocker appears to isolate the DC input, so **no spark at connection with the switch off is
+    normal**, not a fault.
+  - For the permanent AC output, **bolt to the terminal block** rather than plugging a cord into the
+    receptacles. Nothing to vibrate loose and it passes cleanly through a gland.
 - **Grid charger: Iota DLS-27-15**, 15A at 27.2V. Needs the **IQ-LIFEPO module** for a correct
   LiFePO4 charge profile (default 27.2V is a float voltage and stalls around 85%).
   - Its job: top the bank up at night if the panels did not fill it.
@@ -65,7 +72,40 @@ house is on a trailer.
   (nothing above or below it, that is its convection path), **Iota + IQ module + DIN rail** in the
   right column.
 - **Airflow: side louvers on the left are INTAKE, fan on the top face is EXHAUST.**
-- **Cables enter the RIGHT side of both boxes.**
+- **Cables enter the RIGHT side of both boxes.** Not the bottom and not through the gap between
+  them, because the lower box exhausts out its top face and that gap is already tight.
+
+### Gland positions, confirmed
+
+All glands come from stock already on hand. **Nothing to buy.** Twelve entries, four in Box A and
+eight in Box B, all on the right side face (11.8 inches deep by 23.6 tall).
+
+**Box A, top, inverter:**
+- **HIGH: two 1 inch NPT** for the 2/0 pair, level with the DC studs, which are up.
+  Drill **1-3/8 inch**.
+- **LOW: 3/4 inch NPT** for the AC out to the office (drill 1-1/8) and **1/4 inch NPT** for the
+  inverter remote pair (drill 9/16).
+
+**Box B, bottom:**
+- **High: 3/8 inch NPT x2** for PV+ and PV- (drill 11/16). PV comes down from above.
+- **Upper middle: 1/2 inch NPT x2** for the Tycon battery leads, 6 ga (drill 7/8). Stock is
+  exactly consumed here, no spare.
+- **Lower middle: 3/8 inch NPT x2** for the Iota DC leads, 10 ga (drill 11/16).
+- **Low: 3/4 inch NPT** for grid AC in (drill 1-1/8) and one **3/4 inch NPT 4-PORT** gland
+  carrying RS485, the TPDIN relay pair, and two spares through a single hole (drill 1-1/8).
+
+**Drill totals:** 9/16 x1, 11/16 x4, 7/8 x2, 1-1/8 x3, 1-3/8 x2. Step bit handles up to 7/8, the
+two larger sizes want a bi-metal hole saw or a knockout punch. Deburr and touch up paint on every
+hole, and vacuum all swarf out before any electronics go in.
+
+**Gland rules:** one cable per gland (the quad is one per port), match the gland to the cable OD
+rather than the wire gauge, drip loop below every entry, tighten the compression nut on the cable
+itself, and confirm each gland still has its locknut and gasket.
+
+**Conduit vs glands:** glands for all the DC (the jackets are already rated for exposure and 2/0
+would need 1-1/4 inch conduit), conduit for the AC run into the office. If liquid-tight flex is
+used on an exposed run, do not try to seal it to a gland. Run it as a sleeve stopping short of the
+gland, clamp it, and drill a weep hole at the low point so it drains instead of funneling water.
 - **Clearances are below manufacturer spec in both boxes** (Tycon gets 4.7 inches above and below
   versus the 7.9 it asks for; the inverter gets about 1 inch versus 2). Acceptable only because
   both boxes have forced ventilation, since those specs assume still air. **Verify with a laser
@@ -102,6 +142,11 @@ distribution out the top to a manifold.
 ## Open items
 
 - **Bus stud size (M8 vs 3/8 inch M10) is still unmeasured.** It gates the 2/0 ring lug order.
+  This is the highest-leverage thing left: one caliper measurement unblocks the biggest purchase.
+- Does the inverter have a **remote on/off port**? Not found in photos. If there is none, a small
+  relay wired in parallel with the rocker (driven by the ESP32) gives remote and scheduled control,
+  which matters because leaving a 3000W inverter idling for a 200W office load wastes about
+  0.5 kWh per day.
 - Heated chicken waterer: 24V DC, needs a load-rated snap-disc failsafe and a 40A DC contactor.
 - Shed freezer: 2P bank plus about 800W of new panels, racked **above** the plastic shed so they
   double as a shade roof.
