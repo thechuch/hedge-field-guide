@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#141b26">
+<title>Ask in the Field · Hedge Field Guide</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .promptbox{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:15px 16px;
+    font-family:var(--font-mono);font-size:12.5px;white-space:pre-wrap;line-height:1.55;box-shadow:var(--shadow)}
+  .opt{counter-increment:o;position:relative;padding:15px 16px 15px 54px;border:1px solid var(--rule);
+    border-radius:12px;background:var(--card);box-shadow:var(--shadow);margin-bottom:12px}
+  .opt::before{content:counter(o);position:absolute;left:14px;top:15px;width:28px;height:28px;
+    display:grid;place-items:center;border-radius:50%;background:var(--amber);color:#1a1205;
+    font-family:var(--font-mono);font-weight:700;font-size:13px}
+  .opts{counter-reset:o}
+  .opt h3{margin:0 0 5px;font-size:15.5px}
+  .opt p{margin:6px 0 0;font-size:13.5px;color:var(--ink-soft)}
+  .opt p b{color:var(--ink)}
+</style>
+</head>
+<body>
+<nav class="sitenav">
+  <a class="back" href="index.html">‹ <span>Guide</span></a>
+  <span class="title">Ask in the Field</span>
+  <span class="spacer"></span>
+</nav>
+
+<div class="wrap">
+  <div class="hero">
+    <p class="eyebrow">Get answers on your phone</p>
+    <h1>Ask in the Field</h1>
+    <p>Two ways to ask questions with photos while you are out working.</p>
+  </div>
+
+  <div class="callout ok">
+    <h3>The trick: point it at this site</h3>
+    <p>A fresh assistant on your phone does not know this project. But <b>the whole build is written down at a public URL</b>, so you can just tell it to go read that first. Copy the prompt below, paste it, attach your photo, and ask.</p>
+  </div>
+
+  <h2 class="hd">Copy this prompt</h2>
+  <div class="btnrow">
+    <button class="btn primary" id="copyBtn" type="button">⧉ Copy the prompt</button>
+    <a class="btn" href="https://claude.ai" target="_blank" rel="noopener">Open Claude ↗</a>
+  </div>
+  <div class="promptbox" id="prompt">I'm working on my off-grid solar and water build. Before answering, please read these two things so you have the full context:
+
+https://raw.githubusercontent.com/thechuch/hedge-field-guide/main/PROJECT-BRIEF.md
+
+https://thechuch.github.io/hedge-field-guide/
+
+Two rules: never use em-dashes or en-dashes in your replies, and tell me plainly if you are unsure rather than guessing.
+
+My question:</div>
+  <p class="hintscroll">Paste it, type your question at the end, attach a photo if it helps.</p>
+
+  <h2 class="hd">Two ways to do it</h2>
+  <div class="opts">
+    <div class="opt">
+      <h3>Claude app or claude.ai in your phone browser</h3>
+      <p><b>Easiest.</b> Paste the prompt above, attach a photo of whatever you are looking at, ask. It reads the brief and the guide, so it knows your battery bank is 4P, which way the inverter mounts, what the clearances are, and so on.</p>
+      <p><b>Best for:</b> "which way does this go", "is this the right fitting", "what size should this be", quick sanity checks.</p>
+    </div>
+    <div class="opt">
+      <h3>claude.ai/code in your phone browser</h3>
+      <p>Claude Code also runs in a browser, so it works on your phone. Open the <b>hedge-field-guide</b> repo and it has the brief and every page in this guide as actual files, no pasting needed.</p>
+      <p><b>Best for:</b> when you want it to actually update a page or a drawing while you are standing there.</p>
+    </div>
+  </div>
+
+  <div class="callout warn">
+    <h3>What it will not know</h3>
+    <p>Phone Claude gets <b>the brief and the diagrams, not the full conversation.</b> It will not remember the reasoning behind every decision, the things ruled out and why, or the exact photos you sent before. So it is sharp on facts and weaker on history.</p>
+    <p><b>Use it for:</b> in-the-moment questions, checks, and measurements.<br>
+    <b>Come back to the desktop for:</b> design changes, new drawings, or anything where being wrong is expensive.</p>
+  </div>
+
+  <div class="callout">
+    <h3>Keep the brief current</h3>
+    <p>The brief is only as good as its last update. When a real decision changes on the desktop, it gets written into <b>PROJECT-BRIEF.md</b>, and phone Claude picks it up automatically the next time you paste that prompt.</p>
+  </div>
+
+  <div class="foot">Hedge Field Guide · ask in the field · Rev 2026-08-02.</div>
+</div>
+
+<script>
+  (function(){
+    var t=localStorage.getItem('hedge-theme'); if(t)document.documentElement.setAttribute('data-theme',t);
+    var cb=document.getElementById('copyBtn');
+    cb.addEventListener('click', function(){
+      var text=document.getElementById('prompt').textContent;
+      navigator.clipboard.writeText(text).then(function(){
+        cb.textContent='✓ Copied';
+        setTimeout(function(){cb.textContent='⧉ Copy the prompt';},1800);
+      }).catch(function(){cb.textContent='Copy failed, select it manually';});
+    });
+    if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}
+  })();
+</script>
+</body>
+</html>
