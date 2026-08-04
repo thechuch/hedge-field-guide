@@ -39,8 +39,17 @@ solar outlet beside them.
   - **M8 terminal torque: 7 to 10 N·m**, confirmed by LiTime. Do not overtighten.
   - The other 2 batteries go to a separate 2P system for the shed freezer.
 - **Array: 1,500W** (six 250W panels, 2S3P) on the tiny house roof. Not installed yet.
-- **Charge controller: Tycon TP-SC24-60N-MPPT.** Passively cooled, IP43, ambient limit 122F.
-  **Must be set from "FLd" to Lithium, 28.8V, BEFORE the bank is ever connected.**
+- **Charge controller: Tycon TP-SC24-60N-MPPT.** Passively cooled, IP43, 12/24V auto-detect.
+  - **CONNECTION ORDER, the most important rule in the system: BATTERY FIRST, PV LAST.** It reads
+    battery voltage at power-up to choose its system voltage. Disconnect is the exact reverse,
+    **PV first, battery last.** Never break the battery connection while PV is live.
+  - **Configure it with the BATTERY connected and PV disconnected**, then set the LiFePO4 24V preset,
+    confirm 28.8V on screen, and disable temperature compensation. (An earlier note said to configure
+    it before connecting the battery, which is impossible: it needs battery power to boot.)
+  - **LOAD terminals stay EMPTY.** The manual explicitly forbids connecting an inverter there.
+  - **Power terminal torque: 1.7 N·m (15 lbf·in).** Use ferrules on all stranded conductors.
+  - The **70A fuse on its battery lead is correct** (the datasheet calls for 63A to 100A).
+  - It has **no ground fault detection**, which is part of why bonding has to be right.
 - **Inverter: WZRELB 3000W 24V pure sine.** Fans and DC studs are on the **same end**, and the
   **fans blow OUT** (confirmed on the bench). AC outlets, display, rocker switch, and a 3-pole AC
   terminal block (TB-2503L, 600V 25A) are on the long front face. Idles at 20 to 50W, so it gets
@@ -110,6 +119,53 @@ itself, and confirm each gland still has its locknut and gasket.
 would need 1-1/4 inch conduit), conduit for the AC run into the office. If liquid-tight flex is
 used on an exposed run, do not try to seal it to a gland. Run it as a sleeve stopping short of the
 gland, clamp it, and drill a weep hole at the low point so it drains instead of funneling water.
+
+## Grounding, added 2026-08-02 (was missing entirely)
+
+Two steel boxes with 120V inside, on a wooden deck rail, had **no path to earth**. That is fixed as
+follows. **One rod, star topology, one DC bond.**
+
+- **Ground bar in Box B.** Bond to it: both box bodies, both metal back panels, both doors (braided
+  jumper), the DIN rail, the Tycon GND terminal, the Iota chassis, and the inverter chassis.
+  **Scrape paint or use paint-piercing star washers**, these boxes are painted.
+- **10 AWG green EGC between Box A and Box B.** **6 AWG from the ground bar to one ground rod.**
+- **The DC system bond is exactly ONE conductor**: 6 AWG from the **deck box negative bus** to
+  ground. Nowhere else, not at the array, the Tycon, the inverter, or the Iota. **Label it.**
+- **The array rail and the DIHOOL enclosure** bond to the same rod. One electrode system.
+- **Bond to the rod, not the trailer.** The house is on wheels. Put "disconnect the array
+  down-conductor and the EGC" on a move checklist.
+- Use **green insulated 6 AWG** for the array down-run, not bare copper (galvanic corrosion against
+  aluminum rail and the metal roof). AL9CU dual-rated lug with antioxidant at the rail.
+
+## Wiring blockers found in verification, 2026-08-02
+
+- **NEVER use a Cat5 patch cable for the Tycon RS485.** The Tycon's RJ45 carries **+7V on pin 7 and
+  +5V on pin 8**; the TPDIN's port is **RJ12 6-pin** and those land on its RS232 RX/TX. It would
+  destroy the TPDIN. **Use the Tycon TPDIN-CABLE-485** (not the -232, that is for the older 20N/40N).
+  It is only 48 inches, so measure the routed path, and check the molded plug fits the gland.
+- **The inverter AC output needs overcurrent protection.** Add a **20A single-pole breaker** (or
+  inline AC fuse) at the inverter output and run **12 AWG**. Terminal block straight to an outlet
+  leaves the branch conductor unprotected.
+- **Measure the inverter's neutral-to-ground bonding before wiring the GFCI.** Running, no load,
+  read L-to-G and N-to-G. **120V and 0V** means internally bonded, change nothing. **About 60V on
+  both** means floating, and **a GFCI will not protect anyone** until you make **one**
+  neutral-to-ground bond at the inverter terminal block. One place only.
+- **PV wire on the combined run goes to 8 AWG** (Y-branch through the DIHOOL to the controller).
+  10 AWG is undersized for three strings combined. Per-string 10 AWG is fine.
+- **Check the panel label for "max series fuse rating."** With three parallel strings a fault can be
+  backfed at about 22A. If the label says 15A, **each string positive needs an inline fuse**.
+- **Add a manual AC disconnect** upstream of the contactor in Box B, or feed it cord-and-plug.
+- **Drive the contactor coil from a normally-open TPDIN channel**, so losing the TPDIN means no grid
+  charging rather than charging forever. 1N4007 flyback across the coil, banded end to +24V.
+- **Do not open the inverter** to tap the rocker for remote control. Check for a factory remote port
+  first; otherwise the right answer is a DC contactor in the battery feed.
+- **Do not install the dual-voltage plug and the IQ-LIFEPO at the same time.** IQ module only.
+- **Segregate low voltage from line voltage** inside Box B, opposite sides of the panel.
+
+## Array notes
+
+- **2S3P is at Tycon's stated maximum series count** for a 100V unit. Confirmed correct.
+- Array is **1500W against a 1560W controller limit**, so **it cannot grow** on this controller.
 
 ## Safety rules already established
 
