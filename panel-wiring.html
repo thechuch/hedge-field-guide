@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#141b26">
+<title>Panel Wiring · Hedge Field Guide</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .dwg{width:100%;height:auto;background:var(--paper);border-radius:8px;min-width:600px}
+  .dwg text{paint-order:stroke;stroke:var(--paper);stroke-width:3px;stroke-linejoin:round;font-family:var(--font-mono)}
+  .gnode{fill:color-mix(in srgb,var(--ok) 18%,transparent);stroke:var(--ok);stroke-width:2}
+  .grod{fill:color-mix(in srgb,var(--amber) 26%,transparent);stroke:var(--amber);stroke-width:2.4}
+  .gwire{stroke:var(--ok);stroke-width:3;fill:none}
+  .gt2{fill:var(--ink);font-weight:700}.gd{fill:var(--ink-soft)}
+  .gl2{fill:var(--ok);font-weight:700}
+  td.n{font-family:var(--font-mono);font-weight:700}
+  td.t{font-family:var(--font-mono);font-weight:700;color:var(--flag)}
+  table{min-width:640px}
+</style>
+</head>
+<body>
+<nav class="sitenav">
+  <a class="back" href="index.html">‹ <span>Guide</span></a>
+  <span class="title">Panel Wiring</span>
+  <span class="spacer"></span>
+</nav>
+
+<div class="wrap">
+  <div class="hero">
+    <p class="eyebrow">Point to point · both boxes</p>
+    <h1>Panel Wiring</h1>
+    <p>Every connection, the order to make them, and the two things that were missing.</p>
+  </div>
+
+  <div class="callout flag">
+    <h3>⛔ Two things to fix before any wire is landed</h3>
+    <p><b>1. There was no grounding in this design.</b> Two steel boxes with 120V inside, on a wooden deck rail, with no path to earth. A hot conductor chafing an enclosure wall would make the whole box live at 120V with nothing to trip it. <b>Add the ground bar below before AC comes near these boxes.</b></p>
+    <p><b>2. Do not use a Cat5 cable for the Tycon RS485.</b> The Tycon's RJ45 carries <b>+7V on pin 7 and +5V on pin 8</b>. The TPDIN's port is <b>RJ12, 6 pin</b>, and those land on its RS232 receive and transmit pins. A straight cable feeds power into a serial input and kills it. <b>Buy the Tycon TPDIN-CABLE-485</b> (not the -232, that is for the older 20N/40N).</p>
+  </div>
+
+  <h2 class="hd">The grounding plan (new)</h2>
+  <div class="callout ok">
+    <h3>One rod, star topology, one DC bond</h3>
+    <p>Everything metal bonds back to <b>a single ground bar in Box B</b>, and that bar runs to <b>one ground rod</b>. No loops, no second electrode, no daisy chains.</p>
+  </div>
+
+  <div class="scrollx" style="padding:6px">
+    <svg viewBox="0 0 900 330" class="dwg">
+      <rect x="360" y="130" width="180" height="62" rx="5" class="gnode"/>
+      <text x="450" y="157" class="gt2" font-size="13" text-anchor="middle">GROUND BAR</text>
+      <text x="450" y="176" class="gd" font-size="10" text-anchor="middle">in Box B</text>
+
+      <rect x="60" y="20" width="170" height="52" rx="5" class="gnode"/>
+      <text x="145" y="42" class="gt2" font-size="11" text-anchor="middle">BOX A</text>
+      <text x="145" y="60" class="gd" font-size="9" text-anchor="middle">body, panel, door, inverter</text>
+      <path d="M230,52 C300,60 320,120 358,145" class="gwire"/>
+      <text x="286" y="96" class="gl2" font-size="9" text-anchor="middle">10 AWG green</text>
+
+      <rect x="60" y="112" width="170" height="52" rx="5" class="gnode"/>
+      <text x="145" y="134" class="gt2" font-size="11" text-anchor="middle">BOX B</text>
+      <text x="145" y="152" class="gd" font-size="9" text-anchor="middle">body, panel, door, DIN rail</text>
+      <path d="M230,140 L358,150" class="gwire"/>
+
+      <rect x="60" y="204" width="170" height="52" rx="5" class="gnode"/>
+      <text x="145" y="226" class="gt2" font-size="11" text-anchor="middle">TYCON GND</text>
+      <text x="145" y="244" class="gd" font-size="9" text-anchor="middle">+ Iota chassis</text>
+      <path d="M230,230 C300,222 320,190 358,176" class="gwire"/>
+
+      <rect x="600" y="20" width="200" height="52" rx="5" class="gnode"/>
+      <text x="700" y="42" class="gt2" font-size="11" text-anchor="middle">DECK BOX</text>
+      <text x="700" y="60" class="gd" font-size="9" text-anchor="middle">body + DC NEGATIVE BUS</text>
+      <path d="M542,145 C580,120 570,60 598,48" class="gwire"/>
+      <text x="596" y="104" class="gl2" font-size="9" text-anchor="start">6 AWG</text>
+      <text x="596" y="118" class="gl2" font-size="9" text-anchor="start">DC bond, ONE only</text>
+
+      <rect x="600" y="112" width="200" height="52" rx="5" class="gnode"/>
+      <text x="700" y="134" class="gt2" font-size="11" text-anchor="middle">ARRAY RAIL</text>
+      <text x="700" y="152" class="gd" font-size="9" text-anchor="middle">+ DIHOOL enclosure</text>
+      <path d="M542,155 L598,140" class="gwire"/>
+
+      <rect x="600" y="214" width="200" height="62" rx="5" class="grod"/>
+      <text x="700" y="240" class="gt2" font-size="13" text-anchor="middle">GROUND ROD</text>
+      <text x="700" y="259" class="gd" font-size="9.5" text-anchor="middle">8 ft copper, near the stack</text>
+      <path d="M500,192 C520,220 560,238 598,244" class="gwire"/>
+      <text x="524" y="228" class="gl2" font-size="9.5" text-anchor="start">6 AWG</text>
+    </svg>
+  </div>
+
+  <ol class="seq">
+    <li><b>Ground bar in Box B.</b> A small lay-in bus. Bond to it: the box body, the metal back panel, the door (flexible braided jumper if there is no factory strap), the DIN rail, the <b>Tycon GND terminal</b>, and the Iota chassis. <b>Scrape paint or use paint-piercing star washers</b> at every point, these boxes are painted and paint is an insulator.</li>
+    <li><b>10 AWG green up to Box A</b>, bonding its body, panel, door, and the inverter chassis lug.</li>
+    <li><b>6 AWG from the ground bar to one ground rod</b> near the stack.</li>
+    <li><b>The DC system bond: exactly ONE.</b> A 6 AWG jumper from the <b>deck box negative bus</b> to the ground. Nowhere else. Not at the array, not at the Tycon, not at the inverter. <b>Label that jumper</b> so nobody ever adds a second one.</li>
+    <li><b>The array rail and the DIHOOL enclosure</b> bond to the same rod. One electrode system, not two.</li>
+  </ol>
+
+  <div class="callout warn">
+    <h3>Three grounding gotchas</h3>
+    <p><b>Bond to the ROD, not to the trailer.</b> Your house is on wheels. Keep the ground path independent of it, and put "disconnect the array down-conductor and the EGC" on a move checklist.</p>
+    <p><b>Use green insulated 6 AWG for the array down-run, not bare copper.</b> Bare copper against aluminum rail or a metal roof is a galvanic corrosion problem. Use an AL9CU dual-rated lug with antioxidant at the rail.</p>
+    <p><b>The Tycon has no ground fault detection.</b> Its manual says so outright. An array-to-ground fault will not be caught by anything in this system, which is exactly why the bonding has to be right.</p>
+  </div>
+
+  <h2 class="hd">Box A, the inverter</h2>
+  <div class="scrollx"><table>
+    <thead><tr><th>#</th><th>From</th><th>To</th><th>Conductor</th><th>Notes</th></tr></thead><tbody>
+    <tr><td class="n">A1</td><td>Deck box <b>+ bus</b> via the 80A breaker</td><td>Inverter DC <b>+</b> stud</td><td>2/0</td><td>Enters the high 1" gland. Studs are up.</td></tr>
+    <tr><td class="n">A2</td><td>Deck box <b>− bus</b></td><td>Inverter DC <b>−</b> stud</td><td>2/0</td><td>Clamp inside so no weight hangs on the studs</td></tr>
+    <tr><td class="n">A3</td><td>Inverter AC block <b>L</b></td><td><b>20A breaker</b>, then the outlet</td><td>12 AWG</td><td class="t">Breaker is NEW, see below</td></tr>
+    <tr><td class="n">A4</td><td>Inverter AC block <b>N</b></td><td>Outlet neutral</td><td>12 AWG</td><td>Bonding state must be measured first</td></tr>
+    <tr><td class="n">A5</td><td>Inverter AC block <b>G</b></td><td>Outlet ground + Box A ground</td><td>12 AWG green</td><td>Also bonds the inverter chassis</td></tr>
+    <tr><td class="n">A6</td><td>Box A ground</td><td>Box B ground bar</td><td>10 AWG green</td><td>The EGC between boxes</td></tr>
+    </tbody></table></div>
+
+  <div class="callout flag">
+    <h3>Two AC blockers in Box A</h3>
+    <p><b>The output had no overcurrent protection.</b> Terminal block straight to an outlet leaves the branch conductor unprotected. <b>Add a 20A single-pole breaker (or inline AC fuse) at the inverter output</b> and run 12 AWG.</p>
+    <p><b>Measure the neutral bonding before you wire the GFCI.</b> With the inverter running and nothing plugged in, read <b>L to G</b> and <b>N to G</b>.<br>
+    <b>120V and 0V</b> = internally bonded, change nothing, the GFCI will work.<br>
+    <b>About 60V on both</b> = floating, and <b>a GFCI will not protect anyone</b> until you create <b>one</b> neutral-to-ground bond at the inverter's terminal block. One place only, never also at the receptacle.</p>
+  </div>
+
+  <h2 class="hd">Box B, controller and charger</h2>
+  <div class="scrollx"><table>
+    <thead><tr><th>#</th><th>From</th><th>To</th><th>Conductor</th><th>Notes</th></tr></thead><tbody>
+    <tr><td class="n">B1</td><td>DIHOOL PV out</td><td>Tycon <b>PV+ / PV−</b></td><td class="t">8 AWG</td><td class="t">Upsized from 10, see below</td></tr>
+    <tr><td class="n">B2</td><td>Tycon <b>BAT+</b></td><td>Deck box + bus via <b>70A fuse</b></td><td>6 AWG</td><td>Ferrules. Torque 1.7 N·m</td></tr>
+    <tr><td class="n">B3</td><td>Tycon <b>BAT−</b></td><td>Deck box − bus</td><td>6 AWG</td><td>Ferrules</td></tr>
+    <tr><td class="n">B4</td><td>Tycon <b>LOAD+ / LOAD−</b></td><td colspan="3"><b>LEAVE EMPTY.</b> The manual explicitly forbids connecting an inverter here. Do not hang the fans or the ESP32 off it either.</td></tr>
+    <tr><td class="n">B5</td><td>Tycon <b>RS485 RJ45</b></td><td>TPDIN <b>RJ12</b></td><td class="t">TPDIN-CABLE-485</td><td class="t">Never a Cat5 patch cable</td></tr>
+    <tr><td class="n">B6</td><td>Tycon <b>GND</b></td><td>Box B ground bar</td><td>6 AWG</td><td></td></tr>
+    <tr><td class="n">B7</td><td>Iota DC <b>+ / −</b></td><td>Deck box bus via <b>30A fuse</b></td><td>10 AWG</td><td>Keep short, see IQ note</td></tr>
+    <tr><td class="n">B8</td><td>Iota Dual Voltage Jack</td><td><b>IQ-LIFEPO</b> module</td><td>10" cord</td><td>Mount where the LED is visible</td></tr>
+    <tr><td class="n">B9</td><td>Grid <b>L</b></td><td><b>Disconnect</b> → contactor → Iota AC L</td><td>12 AWG</td><td class="t">Disconnect is NEW</td></tr>
+    <tr><td class="n">B10</td><td>Grid <b>N</b> and <b>G</b></td><td>Iota AC N, and G to ground bar</td><td>12 AWG</td><td>Contactor switches <b>line only</b></td></tr>
+    <tr><td class="n">B11</td><td>TPDIN relay (<b>NO</b> channel)</td><td>Contactor coil <b>A1 / A2</b></td><td>18/2</td><td>1N4007 flyback, banded end to +24V</td></tr>
+    </tbody></table></div>
+
+  <div class="callout warn">
+    <h3>Box B corrections</h3>
+    <p><b>PV wire goes to 8 AWG</b> on the combined run from the Y-branch through the DIHOOL to the Tycon. Three strings combined is too much for 10 AWG. Per-string 10 AWG is still fine.</p>
+    <p><b>Check your panel labels for "max series fuse rating."</b> With three parallel strings, a fault in one can be backfed by the other two at about 22A. If the label says 15A (likely), you need <b>an inline fuse in each string positive</b> before the Y-branch.</p>
+    <p><b>Add a manual AC disconnect</b> upstream of the contactor, or feed Box B cord-and-plug, so you can kill grid power locally instead of walking to the house panel.</p>
+    <p><b>Use a normally-open TPDIN channel</b> for the coil, so losing the TPDIN means no grid charging rather than charging forever.</p>
+    <p><b>Segregate the low voltage.</b> Keep the Cat5 and the coil pair on the opposite side of the panel from the 120V, no crossings.</p>
+    <p><b>Do not install the free dual-voltage plug and the IQ-LIFEPO together.</b> IQ module only, set the plug aside.</p>
+  </div>
+
+  <h2 class="hd">Terminations</h2>
+  <div class="scrollx"><table>
+    <thead><tr><th>Connection</th><th>Torque</th><th>Notes</th></tr></thead><tbody>
+    <tr><td>Tycon power terminals</td><td class="t">1.7 N·m (15 lbf·in)</td><td><b>Ferrules on all stranded conductors.</b> A screw clamp on loose strands is the classic slow-cooking joint</td></tr>
+    <tr><td>LiTime M8 battery posts</td><td class="t">7 to 10 N·m</td><td>Confirmed by LiTime, do not overtighten</td></tr>
+    <tr><td>Joinfworld bus studs</td><td>~12 to 15 N·m</td><td>Brass, still unconfirmed. Measure the stud size first</td></tr>
+    <tr><td>2/0 lugs</td><td>per lug spec</td><td>Hydraulic crimp only, adhesive heat shrink, pull test each</td></tr>
+    </tbody></table></div>
+  <p class="hintscroll">The 70A fuse on the Tycon lead is <b>confirmed correct</b>: the datasheet calls for 63A to 100A. Ignore any note saying 100A minimum.</p>
+
+  <h2 class="hd">Commissioning, in this order</h2>
+  <div class="callout flag">
+    <h3>Battery first, PV last. Always.</h3>
+    <p>The Tycon is <b>12/24V auto-detect</b> and reads battery voltage at power-up to choose its system voltage. Its manual: <i>first connect the battery, then the load, and finally the solar panel.</i></p>
+    <p><b>Disconnect is the exact reverse: PV first, battery last.</b> Never break the battery connection while PV is live.</p>
+  </div>
+  <ol class="seq">
+    <li><b>Grounding first.</b> Ground bar, all bonds, rod, and the single DC negative bond. Before anything is energized.</li>
+    <li><b>Everything open:</b> DIHOOL open, 70A fuse out of its holder, 30A out, inverter breaker off, grid disconnect off.</li>
+    <li><b>Land the battery leads</b> at the Tycon (negative then positive), torque to 1.7 N·m.</li>
+    <li><b>Insert the 70A fuse.</b> The controller boots off the battery. <b>Set the LiFePO4 24V preset, confirm 28.8V on screen, disable temperature compensation.</b> Do not leave it on auto.</li>
+    <li><b>Verify polarity at the inverter</b> (red probe on +, black on −, must read <b>positive</b> ~26V), <b>pre-charge the caps</b> with a 10 to 50 ohm resistor until within 0.5V of bank voltage, then close the 80A breaker.</li>
+    <li><b>Insert the 30A fuse</b> for the Iota. Then energize grid AC and watch one full automatic charge cycle before walking away.</li>
+    <li><b>PV LAST.</b> Land the array, then close the DIHOOL. Confirm the controller shows charging.</li>
+    <li><b>First high-load run:</b> IR-sweep every lug, both boxes, and the bus. Re-torque afterward. Confirm Box B air stays well under its limit.</li>
+  </ol>
+
+  <div class="callout">
+    <h3>Corrections to earlier guidance</h3>
+    <p><b>"Set the Tycon to Lithium BEFORE connecting the batteries" was impossible as written.</b> It needs battery power to configure. The correct rule is: <b>battery connected, PV disconnected</b>, then configure, then land PV.</p>
+    <p><b>The 70A fuse is right</b> (63 to 100A band per the datasheet).</p>
+    <p><b>2S3P is confirmed at Tycon's stated maximum</b> series count for a 100V unit. The array is 1500W against a 1560W limit, so <b>it cannot grow</b> on this controller.</p>
+    <p><b>Do not open the inverter</b> to tap the rocker for remote control. Check for a factory remote port first; if there is none, the right answer at this scale is a DC contactor in the battery feed, not a tap inside the case.</p>
+  </div>
+
+  <div class="callout warn">
+    <h3>Where to get a second opinion</h3>
+    <p>The DC side is well within competent DIY territory. <b>The AC side is where a licensed electrician is worth the call</b>: the neutral bonding decision, the branch breaker, the GFCI, and the grounding electrode. It is one visit and it is the part where being wrong hurts someone.</p>
+  </div>
+
+  <div class="foot">Hedge Field Guide · panel wiring · verified against Tycon and Iota documentation · Rev 2026-08-02.</div>
+</div>
+
+<script>
+  (function(){var t=localStorage.getItem('hedge-theme');if(t)document.documentElement.setAttribute('data-theme',t);
+  if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}})();
+</script>
+</body>
+</html>
