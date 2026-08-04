@@ -74,6 +74,10 @@ house is on a trailer.
 - **Airflow: side louvers on the left are INTAKE, fan on the top face is EXHAUST.**
 - **Cables enter the RIGHT side of both boxes.** Not the bottom and not through the gap between
   them, because the lower box exhausts out its top face and that gap is already tight.
+- **Clearances are below manufacturer spec in both boxes** (Tycon gets 4.7 inches above and below
+  versus the 7.9 it asks for; the inverter gets about 1 inch versus 2). Acceptable only because
+  both boxes have forced ventilation, since those specs assume still air. **Verify with a laser
+  thermometer on a hot high-load day.**
 
 ### Gland positions, confirmed
 
@@ -106,10 +110,6 @@ itself, and confirm each gland still has its locknut and gasket.
 would need 1-1/4 inch conduit), conduit for the AC run into the office. If liquid-tight flex is
 used on an exposed run, do not try to seal it to a gland. Run it as a sleeve stopping short of the
 gland, clamp it, and drill a weep hole at the low point so it drains instead of funneling water.
-- **Clearances are below manufacturer spec in both boxes** (Tycon gets 4.7 inches above and below
-  versus the 7.9 it asks for; the inverter gets about 1 inch versus 2). Acceptable only because
-  both boxes have forced ventilation, since those specs assume still air. **Verify with a laser
-  thermometer on a hot high-load day.**
 
 ## Safety rules already established
 
