@@ -42,7 +42,9 @@
     <p>A fresh assistant on your phone does not know this project. But <b>the whole build is written down at a public URL</b>, so you can just tell it to go read that first. Copy the prompt below, paste it, attach your photo, and ask.</p>
   </div>
 
-  <h2 class="hd">Copy this prompt</h2>
+  <div class="callout ok"><h3>&#9889; Better: set it up once so you never paste again</h3><p><b>On claude.ai, make a Project called Project Hedge.</b> Paste the brief into its project knowledge and the rules into its custom instructions. After that, <b>every conversation you start in that project already has the context</b>, on your phone, with no pasting. This is the setup worth doing.</p><p><b>Or use claude.ai/code and open this repo.</b> There is now a <code>CLAUDE.md</code> in it, which Claude Code loads automatically. Same result, zero setup.</p><p>The copy-paste prompt below still works fine as a fallback, or for a one-off question.</p></div>
+<h2 class="hd">One-time setup (recommended)</h2><ol class="seq"><li><b>Open claude.ai on your phone</b> and create a <b>Project</b> named Project Hedge.</li><li><b>Add the brief to project knowledge.</b> Open <a href="https://raw.githubusercontent.com/thechuch/hedge-field-guide/main/PROJECT-BRIEF.md" target="_blank" rel="noopener">PROJECT-BRIEF.md</a>, select all, copy, and paste it in as a document.</li><li><b>Set custom instructions</b> for the project: <i>Never use em-dashes or en-dashes. Be direct, flag problems early, and say when you are unsure rather than guessing.</i></li><li><b>Done.</b> Every new chat in that project starts with full context. Just take a photo and ask.</li></ol>
+<h2 class="hd">Fallback: copy this prompt</h2>
   <div class="btnrow">
     <button class="btn primary" id="copyBtn" type="button">⧉ Copy the prompt</button>
     <a class="btn" href="https://claude.ai" target="_blank" rel="noopener">Open Claude ↗</a>
