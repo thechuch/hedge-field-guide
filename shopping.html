@@ -39,6 +39,48 @@
     <p><b>No ring lugs. No charger fuses.</b> Both depend on measuring your <b>bus stud size (M8 vs 3/8″ M10)</b> and confirming your <b>Iota model</b>. Buying blind means wrong terminals. They are Amazon items anyway.</p>
   </div>
 
+  <div class="callout flag">
+    <h3>&#128721; From the wiring review, 2026-08-02</h3>
+    <p>The point-to-point verification found a missing grounding plan and several undersized or absent parts. <b>These block wiring.</b> See <a href="panel-wiring.html" style="color:var(--flag);font-weight:700">Panel Wiring</a> for the why.</p>
+  </div>
+
+  <h2 class="hd">&#128308; Blocks wiring, order now</h2>
+  <ul class="buy">
+    <li class="star"><b>Tycon TPDIN-CABLE-485</b> (~$25)<small>The RS485 link. <b>Cannot be substituted.</b> The Tycon RJ45 carries +7V and +5V on pins 7 and 8; the TPDIN port is RJ12 and those land on its RS232 pins. A Cat5 cable destroys it. NOT the -232 version. It is only 48 inches, so measure your routed path.</small></li>
+    <li class="star"><b>Ground bar</b>, lay-in bus (~$12)<small>Goes in Box B. Everything metal bonds to it. This is the hub of the grounding plan that was missing.</small></li>
+    <li class="star"><b>8 ft copper ground rod + acorn clamp</b> (~$30)<small>Was already on the list pending the Pegasus call. Needed now regardless.</small></li>
+    <li class="star"><b>6 AWG GREEN INSULATED THHN</b>, ~50 ft (~$45)<small>Ground bar to rod, the single DC negative bond, and the Tycon GND. <b>Green insulated, not bare copper</b>: bare copper against aluminum rail or a metal roof corrodes galvanically.</small></li>
+    <li><b>10 AWG green</b>, ~10 ft (~$8)<small>The EGC between Box A and Box B.</small></li>
+    <li class="star"><b>20A single-pole breaker</b> or inline AC fuse (~$20)<small>The inverter AC output currently has no overcurrent protection. Terminal block straight to an outlet leaves the branch conductor unprotected.</small></li>
+    <li><b>12 AWG</b> for the AC runs (~$30)<small>Inverter to the outlet, and grid into Box B.</small></li>
+    <li class="star"><b>Ferrule kit with crimper</b> (~$25)<small>For stranded conductors going into the Tycon screw terminals. A screw clamp on loose strands is the classic joint that slowly cooks.</small></li>
+  </ul>
+
+  <h2 class="hd">&#128993; Before the array goes up</h2>
+  <ul class="buy">
+    <li><b>8 AWG PV wire</b>, red + black, ~20 ft<small>The combined 3-string run from the Y-branch through the DIHOOL to the controller. 10 AWG is undersized. Per-string 10 AWG is still fine.</small></li>
+    <li class="star"><b>3 inline MC4 fuses</b> <b>(check first)</b><small><b>Read the panel label for "max series fuse rating."</b> With three parallel strings a fault can be backfed at about 22A. If the label says 15A, each string positive needs a fuse before the Y-branch.</small></li>
+  </ul>
+
+  <h2 class="hd">&#128994; Should have</h2>
+  <ul class="buy">
+    <li><b>Manual AC disconnect</b> for Box B (~$15)<small>Small 2-pole DIN breaker upstream of the contactor, so you can kill grid power locally instead of walking to the house panel.</small></li>
+    <li><b>Paint-piercing star washers</b> + <b>2 braided bonding jumpers</b> (~$20)<small>These boxes are painted and paint is an insulator. The jumpers bond each door to its body.</small></li>
+    <li><b>AL9CU dual-rated lug + antioxidant compound</b> (~$20)<small>For the array rail. Copper directly on aluminum corrodes.</small></li>
+    <li><b>Weatherproof 20A GFCI outlet + in-use cover</b> (~$35)<small>The office feed.</small></li>
+    <li class="star"><b>Multimeter</b> if you do not own one (~$25)<small>Required for the inverter neutral-to-ground measurement, which determines whether the GFCI will protect anyone.</small></li>
+  </ul>
+
+  <div class="callout">
+    <h3>Optional but worth it before the array is up</h3>
+    <p><b>Surge protection</b>, about $60 to 100 each: a <b>Type 2 DC SPD</b> on the PV side (Uc 100 to 150 VDC) and a <b>Type 2 AC SPD</b> on the grid feed. Rural roof array, and the Tycon has no ground fault detection of its own. <b>If you buy one, its earth lead must be under 20 inches</b>, long leads ruin the clamping.</p>
+  </div>
+
+  <div class="callout ok">
+    <h3>&#10003; Do not re-buy</h3>
+    <p><b>Glands</b> (all 12 come from your stock), the <b>70A and 30A charger fuses</b> (already bought), and the <b>knockout punch</b> (holes are drilled).</p>
+  </div>
+
   <h2 class="hd">🌾 Grange Co-op</h2>
   <ul class="buy">
     <li class="star"><b>Horizontal poultry nipples ×8</b><small>Need 6 for 20 birds, spares are pennies. Heart of the waterer build.</small></li>
