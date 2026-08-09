@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#141b26">
+<title>Deck Box Fire Safety · Hedge Field Guide</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+  .card{border:1px solid var(--rule);border-radius:9px;padding:14px 16px;background:var(--paper);border-left:4px solid var(--flag);}
+  .card.warn{border-left-color:var(--warn);}
+  .card h3{margin:0 0 4px;font-size:14px;display:flex;gap:8px;align-items:baseline;}
+  .card .n{font-family:var(--font-mono);font-weight:750;color:var(--flag);font-size:13px;}
+  .card.warn .n{color:var(--warn);}
+  .card p{margin:5px 0 0;font-size:12.5px;color:var(--ink-soft);} .card b{color:var(--ink);}
+</style>
+</head>
+<body>
+<nav class="sitenav">
+  <a class="back" href="index.html">‹ <span>Guide</span></a>
+  <span class="title">Fire Safety</span>
+  <span class="spacer"></span>
+</nav>
+
+<div class="wrap">
+  <div class="hero">
+    <p class="eyebrow">Battery deck box · before energizing</p>
+    <h1>Deck Box Fire Safety</h1>
+    <p>Three-lens review 2026-08-08, foam verified on the real box 2026-08-09. Nothing is energized yet, so all of this is cheap right now.</p>
+  </div>
+
+  <div class="callout flag">
+    <h3><span class="tagbig">DO THIS</span> Pull the front-wall foam</h3>
+    <p>The front wall has <b>pink XPS</b> on it. That is the melts-and-drips-flaming foam type, directly facing the battery terminals, the unfused positive stubs, and the ANL fuse row. <b>It comes out before anything gets energized.</b> Putty knife if friction-fit; flush-cut and scrape if glued. The removed foam leaves the area entirely: no scraps stored in or near the box.</p>
+  </div>
+
+  <h2 class="hd">Foam verdict, face by face (as found 2026-08-09)</h2>
+  <div class="scrollx">
+    <table>
+      <thead><tr><th>Face</th><th>What is there</th><th>Verdict</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td><b>Front wall</b></td><td>Pink XPS</td><td class="warnpill">OUT before energize</td><td>Faces the terminals, the unfused stubs, and the fuse row. XPS softens at 75 to 100&deg;C and drips flaming melt.</td></tr>
+        <tr><td>Floor</td><td>Pink XPS</td><td><b>Stays</b></td><td>Under the battery platform, two structural layers below anything energized.</td></tr>
+        <tr><td>Right end</td><td>Foil-faced yellow polyiso</td><td><b>Stays</b></td><td>Beside pack cases; terminals face the front. Polyiso is the thermoset type: it chars in place instead of melting.</td></tr>
+        <tr><td>Left + back</td><td>Bare</td><td><b>Keep bare or wool</b></td><td>Left wall carries the DIN rail, blade fuse block, and gland plate; bare means their clearance is free.</td></tr>
+        <tr><td>Lid</td><td>Bare</td><td class="warnpill">NEVER foam</td><td>Directly above the bus, and it doubles as the blow-off panel (see venting below).</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="hintscroll">&larr; swipe the table</p>
+
+  <div class="callout warn">
+    <h3>The rule. Sharpie it on the box.</h3>
+    <p><b>No combustible insulation in the terminal and bus plane.</b> Off limits forever: the <b>lid</b>, the <b>front wall</b>, and anything within <b>2 inches of a fuse body</b>. If those faces ever need lining: <b>mineral wool only</b>. One ~$25 Rockwool batt covers the front wall (roughly R-8 per 2 inches vs the XPS's R-10) and the same bag supplies the winter vent plugs. Add winter R where nothing is energized: floor, back, ends, or an exterior wrap.</p>
+  </div>
+
+  <h2 class="hd">Five blockers before first energize</h2>
+  <div class="cards">
+    <div class="card warn"><h3><span class="n">1</span> Front-wall XPS out</h3>
+      <p>Covered above. Same session: do the cement board (blocker 3) and the Sharpie rule while the box is open and empty.</p></div>
+    <div class="card warn"><h3><span class="n">2</span> Verify the BULVACK 80A breaker's DC interrupting rating</h3>
+      <p>Prospective short-circuit current at the bus is <b>3,000 to 8,000A</b>. Cheap DC breakers often publish only an AC rating. A breaker that cannot interrupt does not fail to trip: it <b>welds and sustains an internal arc</b>, and a DC arc has no current zero to self-extinguish at. Require <b>at least 5 kA at 32 VDC, stated in writing</b>. If it is not published, demote it to a disconnect switch and put a <b>Class T fuse</b> on the inverter leg (Blue Sea 5119 holder + Littelfuse JLLN, about $60 to 90, 20 kA rated). Also confirm the ANL holders carry a DC rating.</p></div>
+    <div class="card warn"><h3><span class="n">3</span> Cement board the whole power board face</h3>
+      <p>1/4&Prime; HardieBacker or Durock, about $15, score and snap. <b>The full face, not just under the bus</b>: a dropped wrench and fuse arc spatter land where gravity puts them. Not bare sheet metal as the mounting surface (non-combustible but conductive, directly under a positive bus). Keep the plywood, just face it.</p></div>
+    <div class="card warn"><h3><span class="n">4</span> Shield + separate from the house wall</h3>
+      <p>Whatever standoff the cabling allows (12 to 18&Prime; is material), plus <b>1/2&Prime; Durock or 26 ga galvanized on furring</b> between box and wall, extending 12&Prime; past the box on all sides and above the top. Largest consequence reduction per dollar in the build. Also confirm the box is not under a window, not below the only door, and not between you and your exit.</p></div>
+    <div class="card warn"><h3><span class="n">5</span> Tycon to Lithium 28.8V, confirmed with a meter</h3>
+      <p>Not just the menu. The FLd profile attempts an equalize at 29 to 31V, which on an 8s pack means a BMS disconnecting under active charge current; in 4P one pack opening shifts its share onto the other three and cascades. Set it <b>before</b> the batteries are connected.</p></div>
+  </div>
+
+  <h2 class="hd">What actually starts the fire</h2>
+  <div class="info">
+    <h3>A bolted joint going bad, and nothing electronic can see it</h3>
+    <p>A good hydraulic crimp on a torqued stud is 20 to 50 microohms: 0.2 to 0.5W at 100A. Let it degrade to 1 milliohm and it dissipates <b>10W into a fitting the size of a thumb, landing at 150 to 250&deg;C</b>, and it feeds back (copper oxide resistance climbs with temperature). A series-resistance fault draws <b>exactly normal current</b>, so the 150A ANL cannot see it, the 80A breaker cannot see it, and the BMS cannot see it (its sense point is inside its own case). Every lug, bar, fuse blade, and cable in this box sits outside all electronic protection. <b>The 7 to 10 N&middot;m torque spec and the re-torque schedule are the primary fire control</b>, not a nicety.</p>
+  </div>
+  <div class="info" style="margin-top:12px">
+    <h3>The plastic box is the consequence multiplier</h3>
+    <p>About 20 kg of polyethylene at 46 MJ/kg is roughly <b>900 MJ, call it 30 times the bank's stored energy</b>. It softens at 120 to 135&deg;C, loses containment early, and drips flaming melt. A steel job box is the right end state but the wrong next dollar (it cuts consequence, not ignition probability): <b>spring job</b>. Middle path: line the box interior with cement board or 26 ga galvanized and keep the weatherproof shell.</p>
+  </div>
+
+  <h2 class="hd">The sensor the plan was missing</h2>
+  <div class="callout ok">
+    <h3>Put temperature sensors on the copper, about $20</h3>
+    <p>The TPDIN probe on a cell face watches the <b>last</b> thing to get hot. Add <b>3 or 4 DS18B20 sensors</b> on the metal itself: the positive bus, one ANL holder body, the 80A breaker terminal, and the inverter negative landing. Into the ESP32 and Home Assistant: <b>alarm 60&deg;C (140&deg;F), hard alarm 85&deg;C (185&deg;F), pushed to the phone</b>, not a dashboard nobody watches. It is the only thing that detects the dominant failure mode before ignition, and it matters most in winter when the box is most closed up and worked hardest. Keep the cell probe for cold-charge logic and fan control, lead routed down and away from the bus.</p>
+  </div>
+
+  <h2 class="hd">Commissioning baseline, capturable exactly once</h2>
+  <div class="info">
+    <h3>At first energize, under a known load</h3>
+    <p>Log the <b>millivolt drop across every bolted joint</b> (battery post to lug, lug to bus, fuse to bus, chain jumpers) plus an IR sweep of the board. Tape the sheet inside the lid. Re-measure at <b>1 week, 1 month, then annually</b> with the re-torque. <b>The finding is always the drift, never the absolute number</b>: the joint that read 28&deg;C in March and 55&deg;C in October is the one that gets you. Investigate anything up 20 to 30%.</p>
+  </div>
+
+  <h2 class="hd">Venting + winter rules</h2>
+  <div class="callout warn">
+    <h3>Insulate, never seal</h3>
+    <p>LFP vent gas runs <b>20 to 40% hydrogen</b> and hydrogen ignites at a 4% concentration. The box's free volume crosses that line after only 10 to 15 liters of off-gas, a small fraction of one cell's first vent. So:</p>
+    <p><b>Plug the LOW intake only for winter. The HIGH exhaust stays open permanently.</b> Defeat weather with geometry (downward gooseneck or louvre plus stainless insect screen), not a plug. Hydrogen is buoyant and self-purges through any high opening.</p>
+    <p><b>Winter plugs are cut from mineral wool</b>, never foam scraps, and nothing gets plugged for the season until the copper temperature alarm above is live and verified.</p>
+    <p><b>No hasp, no padlock on the lid.</b> On gravity and friction it relieves at a small fraction of the pressure a confined hydrogen deflagration reaches, so the lid is a free blow-off panel. Magnet or weak spring only if a catch is needed. The Gore breather is for pressure equalization; its relief capacity in a venting event is roughly zero.</p>
+  </div>
+
+  <h2 class="hd">If it ever burns</h2>
+  <div class="cards">
+    <div class="info"><h3>ABC extinguisher, not Class D</h3><p>There is no lithium metal in LiFePO4; a Class D unit does nothing here and costs 5 to 10 times as much. Mount the ABC <b>10 to 15 ft away and upwind</b>, on the path you would walk toward the box, not next to it.</p></div>
+    <div class="info"><h3>Water is correct on this system</h3><p>"Never water an electrical fire" is a 120V AC and lead-acid carryover. At 24V DC outdoors, water is not a meaningful shock hazard, and bulk cooling is the one thing a cell event actually needs. ABC for the plastics and wiring fire (the fire you would actually get); a charged hose to cool cells and the house wall. Pond, creek, and 1,600 gallons are all on site.</p></div>
+    <div class="info"><h3>Welding fire blanket, about $40</h3><p>Doubles as a drop-and-spark shield laid over the bus while working on the box.</p></div>
+    <div class="info"><h3>Beyond a small early event</h3><p>Evacuate and protect the house, not the bank. Do not breathe the plume (carbon monoxide plus hydrogen fluoride).</p></div>
+  </div>
+
+  <h2 class="hd">Cheap adds worth doing</h2>
+  <div class="info">
+    <p><b>Battery-side main disconnect</b> on the bus positive (marine switch, Blue Sea 6006 class, $40 to 60): one motion kills every load and charger without pulling ANL fuses out of an energized box. <b>All four battery cables cut to the same length</b>, proven with the clamp meter under load (unequal length means unequal sharing, and the pack that works hardest ages fastest). <b>Fuse-holder bolts</b> go on the same torque, re-torque, and IR schedule as the battery terminals (their spec is much lower than the M8 posts, easy to strip). <b>Exterior responder label</b>: 24V DC LiFePO4, 4 x 100Ah, disconnect location.</p>
+  </div>
+
+  <h2 class="hd">Actively skip these</h2>
+  <div class="info">
+    <p><b>Intumescent coating</b> (qualified only in tested assemblies, useless against an arc plume). <b>In-box smoke detector</b> (nuisance alarms on dust, humidity, and insects; inaudible outdoors). <b>Consumer MQ gas sensors</b> (drift badly outdoors; an untrusted safety system is worse than none). <b>Thermal fuse in the power path</b> (does not usably exist at 125A DC). <b>DC arc-fault detection</b> (NEC 690.11 devices are for high-voltage PV strings; no product exists for a 24V battery bus).</p>
+  </div>
+
+  <div class="callout flag">
+    <h3>House rules for the box</h3>
+    <p><b>No rags, no cardboard, no leftover foam scraps, no extinguisher stored inside.</b> This is an electrical enclosure now, not a deck box.</p>
+  </div>
+
+  <div class="foot">Hedge Field Guide &middot; deck box fire safety &middot; 3-lens review 2026-08-08 &middot; foam as-found + front-wall verdict Rev 2026-08-09.</div>
+</div>
+
+<script>
+  (function(){var t=localStorage.getItem('hedge-theme');if(t)document.documentElement.setAttribute('data-theme',t);
+  if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}})();
+</script>
+</body>
+</html>

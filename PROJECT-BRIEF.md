@@ -183,6 +183,34 @@ follows. **One rod, star topology, one DC bond.**
 - **Never hot-reconnect a battery whose BMS tripped.** Pull its fuse, charge that pack until it
   matches the bank, then reinsert.
 
+## Deck box fire safety (3-lens review 2026-08-08, foam verified on the box 2026-08-09)
+
+- **Foam as found:** floor pink XPS (stays), right end foil-faced yellow polyiso (stays), **front
+  wall pink XPS: MUST COME OUT before energizing.** It directly faces the battery terminals, the
+  unfused positive stubs, and the ANL fuse row, and XPS melts and drips flaming. Left, back, and
+  lid are bare and stay bare.
+- **The rule, to be written on the box:** no combustible insulation in the terminal and bus plane.
+  The lid, the front wall, and anything within 2 inches of a fuse body are off limits forever. If
+  those faces ever need lining, mineral wool only (one Rockwool batt covers the front wall and
+  also supplies the winter vent plugs).
+- **Five blockers before first energize:** (1) front-wall foam out; (2) the BULVACK 80A breaker
+  needs a stated DC interrupting rating of at least 5 kA at 32 VDC, else demote it to a disconnect
+  switch and add a Class T fuse on the inverter leg; (3) 1/4 inch cement board across the entire
+  power board face, not bare sheet metal; (4) non-combustible shield plus standoff between the box
+  and the house wall; (5) Tycon set to Lithium 28.8V and confirmed with a meter, not the menu.
+- **The dominant fire risk is a degrading bolted joint.** It draws exactly normal current, so no
+  fuse, breaker, or BMS can see it. Torque and the re-torque schedule are the primary fire
+  control. Add 3 or 4 DS18B20 sensors on the copper itself (positive bus, an ANL holder body, the
+  breaker terminal, the inverter negative landing) with phone alarms at 60C and 85C, and capture a
+  one-time commissioning baseline at first energize (millivolt drop across every bolted joint plus
+  an IR sweep, re-checked at 1 week, 1 month, annually; the finding is the drift).
+- **Extinguisher: Class ABC, not Class D** (no lithium metal in LFP). Mount it 10 to 15 ft away
+  and upwind. Water IS correct on this system: at 24V DC outdoors it is not a shock hazard, and
+  bulk cooling is what a cell event needs.
+- **Winter venting: plug the low intake only.** The high exhaust stays open permanently (gooseneck
+  plus insect screen), plugs are cut from mineral wool, and nothing gets plugged until the copper
+  temperature alarm is live. No hasp or padlock on the lid: it is the blow-off panel.
+
 ## Water system, not built yet
 
 Pond to SEAFLO pump to a 4-stage filter to a 1,600 gallon tank. Roof rain goes through a
@@ -199,6 +227,9 @@ distribution out the top to a manifold.
 
 - **Bus stud size (M8 vs 3/8 inch M10) is still unmeasured.** It gates the 2/0 ring lug order.
   This is the highest-leverage thing left: one caliper measurement unblocks the biggest purchase.
+- **Pull the front-wall pink XPS from the deck box before energizing** (fire rule above). Optional
+  mineral wool in its place. Same session: cement board the power board face and Sharpie the
+  no-foam rule on the box.
 - Does the inverter have a **remote on/off port**? Not found in photos. If there is none, a small
   relay wired in parallel with the rocker (driven by the ESP32) gives remote and scheduled control,
   which matters because leaving a 3000W inverter idling for a 200W office load wastes about
