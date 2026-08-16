@@ -16,6 +16,7 @@ const ASSETS = [
   'ask.html',
   'panel-wiring.html',
   'pump-skid.html',
+  'split-station.html',
   'fire-safety.html',
 
   'chicken-waterer.html',
