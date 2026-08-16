@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#141b26">
+<title>Punch List &#183; Hedge Field Guide</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.dwg{width:100%;height:auto;background:var(--paper);border-radius:8px;min-width:760px}
+.dwg text{paint-order:stroke;stroke:var(--paper);stroke-width:3px;stroke-linejoin:round;font-family:var(--font-mono)}
+.axis{stroke:var(--ink-soft);stroke-width:1.6;fill:none}
+.mk-now{fill:var(--ink);font-weight:700;letter-spacing:.06em}
+.mk-hot{fill:var(--flag);font-weight:700;letter-spacing:.06em}
+.mk-cold{fill:var(--water);font-weight:700;letter-spacing:.06em}
+.sub{fill:var(--ink-soft)}
+.sub2{fill:var(--ink-soft)}
+.lane1{fill:color-mix(in srgb,var(--flag) 26%,transparent);stroke:var(--flag);stroke-width:2.4}
+.lane2{fill:color-mix(in srgb,var(--water) 20%,transparent);stroke:var(--water);stroke-width:2}
+.lane3{fill:color-mix(in srgb,var(--ink-soft) 14%,transparent);stroke:var(--ink-soft);stroke-width:1.8;stroke-dasharray:8 5}
+.lane1t{fill:var(--flag);font-weight:700;letter-spacing:.06em}
+.lane2t{fill:var(--water);font-weight:700;letter-spacing:.06em}
+.lane3t{fill:var(--ink-soft);font-weight:700;letter-spacing:.06em}
+.lanen{fill:var(--ink-soft);font-weight:700}
+.stop{stroke:var(--ink-soft);stroke-width:1.4;stroke-dasharray:5 5;fill:none}
+.stopl{fill:var(--ink-soft);font-weight:700}
+li{margin:.42em 0}
+ul.ck{list-style:none;padding-left:0}
+ul.ck li{padding-left:1.9em;position:relative}
+ul.ck li:before{content:"\25A2";position:absolute;left:0;top:-.05em;font-size:1.25em;color:var(--ink-soft)}
+ul.ck li.hot:before{color:var(--flag)}
+</style>
+</head>
+<body>
+<nav class="sitenav"><a class="back" href="index.html">&#8249; Guide</a><span class="brand">Punch List</span></nav>
+<div class="wrap">
+<div class="hero"><p class="eyebrow">Water &#183; sequencing</p><h1>Punch List</h1><p>Get water in the tank before the pond drops. Everything else is later.</p></div>
+<div class="callout flag"><h3>You have three deadlines, not one</h3><p>You are carrying the whole build at once, and only one part of it has a clock on it. <b>The solar system has no deadline at all.</b> It is supplemental power for your office with the grid and the Iota behind it. Nothing about it moves water.</p></div>
+<div class="dwgwrap"><svg viewBox="0 0 990 330" class="dwg"><path d="M150,52 L960,52" class="axis"/><path d="M170,44 L170,60" class="axis"/><text x="170.0" y="34.0" class="mk-now" font-size="11" text-anchor="middle">TODAY</text><text x="170.0" y="22.0" class="sub" font-size="9" text-anchor="middle">Aug 15</text><path d="M455,44 L455,60" class="axis"/><text x="455.0" y="34.0" class="mk-hot" font-size="11" text-anchor="middle">POND DROPS</text><text x="455.0" y="22.0" class="sub" font-size="9" text-anchor="middle">weeks</text><path d="M740,44 L740,60" class="axis"/><text x="740.0" y="34.0" class="mk-cold" font-size="11" text-anchor="middle">FIRST FREEZE</text><text x="740.0" y="22.0" class="sub" font-size="9" text-anchor="middle">about Nov</text><rect x="160.0" y="80.0" width="300.0" height="64.0" rx="6" class="lane1"/><text x="310.0" y="106.0" class="lane1t" font-size="13" text-anchor="middle">FILL THE TANK</text><text x="310.0" y="124.0" class="sub2" font-size="9.5" text-anchor="middle">the only thing with a real clock on it</text><text x="140.0" y="116.0" class="lanen" font-size="15" text-anchor="end">1</text><rect x="455.0" y="164.0" width="295.0" height="64.0" rx="6" class="lane2"/><text x="602.0" y="190.0" class="lane2t" font-size="13" text-anchor="middle">BURY + WINTERIZE</text><text x="602.0" y="208.0" class="sub2" font-size="9.5" text-anchor="middle">rainwater line, chicken line, drain the skid</text><text x="140.0" y="200.0" class="lanen" font-size="15" text-anchor="end">2</text><rect x="455.0" y="248.0" width="505.0" height="64.0" rx="6" class="lane3"/><text x="707.0" y="274.0" class="lane3t" font-size="13" text-anchor="middle">SOLAR</text><text x="707.0" y="292.0" class="sub2" font-size="9.5" text-anchor="middle">no deadline. It is grid-assisted office power.</text><text x="140.0" y="284.0" class="lanen" font-size="15" text-anchor="end">3</text><path d="M160,280 L448,280" class="stop"/><text x="304.0" y="268.0" class="stopl" font-size="10.5" text-anchor="middle">DO NOT START</text><text x="304.0" y="296.0" class="stopl" font-size="9.5" text-anchor="middle">every hour here is an hour off lane 1</text></svg></div>
+<h2 class="hd">Three things that shorten the job a lot</h2>
+<div class="callout ok"><h3>1. The pump does not need the battery bank</h3><p>It draws about 84W. A full 1,600 gal fill is roughly 750 Wh. <b>One LiTime battery holds 2,560 Wh, so a single battery covers three complete fills.</b> Run the pump off ONE battery with its own inline fuse and a pair of wires. That skips the 4P bus, the 150A fuses, the 80A breaker, the inverter, and every fire blocker on the deck box, none of which you want to rush.</p></div>
+<div class="callout ok"><h3>2. The fill line does not need to be trenched</h3><p>It is a seasonal line that gets drained and blown out every fall anyway. <b>Lay it on the ground.</b> Trench it on the freeze deadline or next spring. The trencher day is for the lines that stay charged in winter, which is a different job with a different date.</p></div>
+<div class="callout ok"><h3>3. You do not need the hutch to fill the tank</h3><p>Build the skid board and run it. It is August. The enclosure is a weather and winter problem, and you are going to pull the whole skid indoors in a couple of months regardless.</p></div>
+<h2 class="hd">Today: measure. All free, all blocking.</h2>
+<ul class="ck"><li class="hot"><b>Tank bulkhead size and thread gender.</b> 3 in or 2.5 in, male or female. You cannot order the fittings without this and it has been open for months.</li><li class="hot"><b>Pond water surface up to where the pump will sit.</b> The number that has gated the pump station this whole time. Take it now, while the pond is dropping, because the August low is exactly the number you want.</li><li><b>Walk the pond to tank route with a tape.</b> Real distance, so you order pipe once.</li><li><b>Is the tank pad actually finished?</b> Fabric down, rock compacted and crowned, or is the tank just sitting there? Answer changes the week.</li><li><b>Inventory:</b> do you have 1 in poly, insert fittings, stainless clamps, and 12/2 direct burial? Anything missing goes on today's order.</li></ul>
+<h2 class="hd">Today: order. Ordering costs no build time.</h2>
+<div class="callout flag"><p><b>Order the solar parts too.</b> Ordering is not the same as working on it. Get the PV wire, MC4 crimps and the 3-to-1 Y-branches moving so they are here when you have time, then close the tab and go do water.</p></div>
+<ul class="ck"><li class="hot"><b>A SEAFLO or SHURflo 1/2 in pump port fitting kit</b> (swivel nut x barb). This is the single smallest part blocking the whole water goal, and buying the branded kit <b>sidesteps the NPT versus NPSM question entirely</b>, because it is built for these ports and comes with the right seal. Do not order generic tapered brass and hope.</li><li><b>1 in poly pipe</b>, measured length plus 20 percent, with insert fittings and stainless clamps.</li><li><b>Tank bulkhead fittings + ball valves</b>, once you have the measurement above.</li><li><b>Inline fuse holder and fuses</b> for the single-battery pump circuit, and 12/2 direct burial if you do not have it.</li><li><b>Solar, order only:</b> 10 AWG PV wire (50 ft red, 50 ft black), MC4 crimp connectors, 2 x MC4 3-to-1 Y-branch, 1/2 in liquid-tight and 2 connectors.</li></ul>
+<h2 class="hd">This week, in this order</h2>
+<ol><li><b>Make the tank able to receive water.</b> Pad finished, tank set, bulkheads in with a ball valve on each and <b>capped</b>. You do not need distribution yet. Screen the top inlet where the fill line lands, and set the overflow so it sheds away from the pad.</li><li><b>Build the skid board.</b> Foot valve, suction, priming tee, 51S01, pump with a flex jumper at both ports on a rubber pad, spin-down, check valve #1 horizontal bonnet up. No enclosure. See <a href="pump-skid.html">Pump Skid</a>.</li><li><b>Lay the fill line on the ground</b> from the skid to the tank top.</li><li><b>One battery, one fuse, two wires</b> out to the pump. Nothing else in the deck box gets touched.</li><li><b>Prime and fill.</b> Supervise the first run. <b>Time it and measure the actual GPM</b>, because 1,600 gal at 3 GPM is 8.9 hours and nobody has confirmed the real rate. Fill in sessions, not one go.</li></ol>
+<h2 class="hd">After the tank is full, before the freeze</h2>
+<ul class="ck"><li>Map the pipe routes and mark them on the ground.</li><li><b>Trencher day.</b> Rainwater line at 24 in, chicken waterer line, garden stub, zucchini stub. One rented day, everything staged first.</li><li><b>Rainwater: first-flush, buried line, screened tank inlet.</b> This is the one that actually matters by November, because rain is what refills the tank all winter.</li><li>Heated chicken waterer and the short live winter path.</li><li>Winterize and pull the pond skid indoors.</li></ul>
+<h2 class="hd">What you are allowed to ignore right now</h2>
+<div class="callout"><p>Linking the batteries. Series-connecting the roof panels. Running the PV cable. The charge controller. The inverter. The wall boxes. The pump hutch. The zone manifold and the motorized valves. The split-station decision.</p><p><b>None of it moves water, and the manifold and drip are next-season work anyway</b>, because by the time it is built the growing season is over. When you do come back to the deck box, the fire blockers come first, and that work deserves a calm afternoon, not a squeezed evening.</p></div>
+<div class="foot">Project Hedge &#183; field reference. Sequencing only. Build details live on the linked pages.</div>
+</div>
+<script>(function(){var t=localStorage.getItem("hedge-theme");if(t)document.documentElement.setAttribute("data-theme",t);if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){});});}})();</script>
+</body>
+</html>
