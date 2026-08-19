@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#141b26">
+<title>Build Manual &#183; Hedge Field Guide</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+:root{
+  --lane-fill:var(--flag); --lane-freeze:var(--water); --lane-solar:var(--amber);
+  --lane-irrig:var(--ok); --lane-cold:#0f7a75; --lane-soft:var(--ink-soft);
+  --on-lane:#fff; --on-lane-dim:rgba(255,255,255,.30);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){ --lane-cold:#4fb3ad; --on-lane:#0d1219; --on-lane-dim:rgba(0,0,0,.30); }
+}
+:root[data-theme="dark"]{ --lane-cold:#4fb3ad; --on-lane:#0d1219; --on-lane-dim:rgba(0,0,0,.30); }
+
+/* progress bar in the sticky sub-bar */
+.bar{position:sticky;top:calc(54px + env(safe-area-inset-top));z-index:45;background:var(--ground);
+  border-bottom:1px solid var(--rule);padding:8px 0;margin:0 0 16px}
+.bar-in{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.meter{flex:1 1 150px;min-width:120px;height:10px;background:var(--grid);
+  border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--flag);width:0;transition:width .25s ease}
+.pct{font-family:var(--font-mono);font-size:12px;font-variant-numeric:tabular-nums;
+  color:var(--ink-soft);white-space:nowrap}
+.tools{display:flex;gap:6px;flex-wrap:wrap}
+.tool{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  background:var(--card);border:1px solid var(--rule);border-radius:8px;color:var(--ink);
+  padding:7px 10px;min-height:36px;font-weight:700}
+.tool[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+
+/* schedule */
+.card{background:var(--card);border:1px solid var(--rule);border-radius:12px;
+  box-shadow:var(--shadow);margin-bottom:16px;overflow:hidden}
+.card > h2{font-family:var(--font-mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.14em;
+  margin:0;padding:12px 14px;border-bottom:1px solid var(--rule);color:var(--ink-soft);font-weight:700}
+.scroller{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.gantt{min-width:700px;padding:14px}
+.gmonths{display:flex;border-bottom:1px solid var(--grid);margin-left:122px}
+.gmonth{flex:0 0 auto;font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;
+  color:var(--ink-soft);padding:0 0 6px 4px;border-left:1px solid var(--grid)}
+.grow{display:flex;align-items:center;margin-top:8px}
+.glabel{flex:0 0 122px;font-size:12px;font-weight:700;padding-right:10px;line-height:1.2}
+.glabel small{display:block;font-family:var(--font-mono);font-size:10px;color:var(--ink-soft);font-weight:400}
+.gtrack{position:relative;flex:1 1 auto;height:26px;background:var(--ground);
+  border:1px solid var(--grid);border-radius:5px}
+.gbar{position:absolute;top:3px;bottom:3px;border-radius:4px;background:var(--card);
+  box-shadow:inset 0 0 0 1.5px currentColor;overflow:hidden}
+.gbar::before{content:"";position:absolute;inset:0;background:currentColor;opacity:.18}
+.gbar i{position:absolute;inset:0;background:currentColor;opacity:.85;width:0;transition:width .3s ease}
+.gbar b{position:absolute;left:5px;top:50%;transform:translateY(-50%);font-family:var(--font-mono);
+  font-size:10px;font-variant-numeric:tabular-nums;color:var(--ink);background:var(--card);
+  padding:1px 3px;border-radius:3px;z-index:3;font-weight:700}
+.gnow{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--flag);z-index:3;border-radius:2px}
+.gmark{position:absolute;top:0;bottom:0;width:0;border-left:1px dashed var(--ink-soft);z-index:2}
+.gkey{display:flex;gap:13px;flex-wrap:wrap;margin:13px 0 0 122px;font-family:var(--font-mono);
+  font-size:10.5px;color:var(--ink-soft)}
+.gkey span{display:inline-flex;align-items:center;gap:5px}
+.gkey em{width:10px;height:2px;background:var(--flag);font-style:normal}
+.gkey em.d{border-top:1px dashed var(--ink-soft);background:none;height:0}
+
+/* up next */
+.next ol{margin:0;padding:0;list-style:none}
+.next li{display:flex;gap:11px;padding:11px 14px;border-bottom:1px solid var(--grid);align-items:baseline}
+.next li:last-child{border-bottom:0}
+.next .tag{font-family:var(--font-mono);font-size:10.5px;color:var(--ink-soft);flex:0 0 auto;font-weight:700}
+.next .txt{flex:1 1 auto;font-size:14.5px}
+
+/* books */
+.book{margin:24px 0 0;scroll-margin-top:118px}
+.bhead{color:var(--on-lane);padding:13px 15px;display:flex;align-items:flex-end;gap:12px;
+  flex-wrap:wrap;border-radius:12px 12px 0 0}
+.bhead .bn{font-family:var(--font-mono);font-size:26px;line-height:.8;font-weight:700;opacity:.55}
+.bhead h2{font-size:clamp(19px,4.6vw,24px);margin:0;font-weight:780;line-height:1.05;flex:1 1 auto;letter-spacing:.01em}
+.bhead .due{font-family:var(--font-mono);font-size:10.5px;opacity:.92}
+.bprog{height:6px;background:var(--on-lane-dim)}
+.bprog i{display:block;height:100%;background:var(--on-lane);width:0;transition:width .25s ease}
+.bwhy{background:var(--paper);border:1px solid var(--rule);border-top:0;padding:11px 15px;
+  font-size:13.5px;color:var(--ink-soft)}
+.bag{background:var(--card);border:1px solid var(--rule);border-top:0}
+.book .bag:last-child{border-radius:0 0 12px 12px}
+.bagh{display:flex;align-items:center;gap:9px;padding:11px 14px;background:var(--paper);
+  border-bottom:1px solid var(--rule)}
+.bagh .code{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--ink-soft)}
+.bagh h3{font-size:14.5px;margin:0;font-weight:700;flex:1 1 auto;letter-spacing:.01em}
+.bagh .cnt{font-family:var(--font-mono);font-size:11px;font-variant-numeric:tabular-nums;color:var(--ink-soft)}
+.parts{margin:0;padding:10px 14px;border-bottom:1px dashed var(--rule);font-family:var(--font-mono);
+  font-size:12px;line-height:1.6;color:var(--ink-soft)}
+.parts b{display:block;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:3px}
+.note{padding:10px 14px;border-bottom:1px dashed var(--rule);font-size:13.5px;color:var(--ink-soft)}
+ol.steps{margin:0;padding:0;list-style:none}
+li.step{display:grid;grid-template-columns:auto 26px 1fr;gap:10px;align-items:start;
+  padding:11px 14px 11px 10px;border-bottom:1px solid var(--grid)}
+li.step:last-child{border-bottom:0}
+li.step.on{background:var(--paper)}
+li.step input{appearance:none;-webkit-appearance:none;margin:1px 0 0;width:26px;height:26px;
+  flex:0 0 26px;border:2px solid var(--ink-soft);border-radius:6px;background:var(--card);
+  cursor:pointer;position:relative}
+li.step input:checked{background:var(--ok);border-color:var(--ok)}
+li.step input:checked::after{content:"";position:absolute;left:7px;top:2px;width:7px;height:14px;
+  border:solid #fff;border-width:0 3px 3px 0;transform:rotate(42deg)}
+li.step .num{font-family:var(--font-mono);font-size:11.5px;font-variant-numeric:tabular-nums;
+  color:var(--ink-soft);padding-top:5px;text-align:right}
+li.step .body{min-width:0}
+li.step .t{font-size:15.5px;line-height:1.42}
+li.step.on .t{color:var(--ink-soft);text-decoration:line-through;text-decoration-thickness:1px}
+li.step .sub{font-size:13.5px;color:var(--ink-soft);margin-top:3px}
+li.step.on .sub{opacity:.55}
+.chip{display:inline-block;font-family:var(--font-mono);font-size:10px;letter-spacing:.09em;
+  text-transform:uppercase;font-weight:700;padding:2px 7px;margin:5px 6px 0 0;
+  border:1px solid currentColor;border-radius:20px}
+.chip.stop{color:var(--flag)} .chip.meas{color:var(--water)} .chip.buy{color:var(--warn)}
+.chip.safe{color:var(--ok)} .chip.wait{color:var(--ink-soft)}
+li.step.blocker{border-left:4px solid var(--flag);padding-left:6px}
+.hide-done li.step.on{display:none}
+.hide-done .bag[data-done="1"]{display:none}
+@media (max-width:640px){
+  li.step{grid-template-columns:auto 22px 1fr;gap:9px;padding:12px 10px 12px 8px}
+  .glabel{flex-basis:100px}.gmonths,.gkey{margin-left:100px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media print{.bar,.tools,.next,.sitenav{display:none}.card,.bag,.book{break-inside:avoid}}
+</style>
+</head>
+<body>
+<nav class="sitenav"><a class="back" href="index.html">&#8249; Guide</a><span class="brand">Build Manual</span></nav>
+<div class="wrap">
+<div class="hero">
+  <p class="eyebrow">Assembly &#183; the whole build</p>
+  <h1>Build Manual</h1>
+  <p>Every remaining step, in order, small enough to finish one at a time. Six books of bagged
+     sub-assemblies, one checkbox per step. Ticks are saved on this phone and fill the schedule.</p>
+  <p class="today" id="todayline" style="font-family:var(--font-mono);font-size:11.5px;color:var(--ink-soft);margin-top:8px"></p>
+</div>
+
+<div class="bar"><div class="bar-in">
+  <div class="meter"><i id="allmeter"></i></div>
+  <div class="pct" id="allpct">0 of 0</div>
+  <div class="tools">
+    <button class="tool" id="btnhide" aria-pressed="false">Hide done</button>
+    <button class="tool" id="btnjump">Up next</button>
+    <button class="tool" id="btnreset">Reset</button>
+  </div>
+</div></div>
+
+<div class="callout flag">
+  <h3>Read the order, not just the steps</h3>
+  <p>Book 1 has the only real clock on it. Book 3 has none at all. If you are ever unsure what to
+     touch, open <a href="punch-list.html" style="color:var(--flag);font-weight:700">the punch list</a>
+     for the reasoning behind this sequence.</p>
+</div>
+
+<section class="card" id="schedule"><h2>Schedule</h2>
+  <div class="scroller"><div class="gantt" id="gantt"></div></div></section>
+
+<section class="card next" id="upnext"><h2>Do these next</h2><ol id="nextlist"></ol></section>
+
+<main id="books"></main>
+
+<div class="callout">
+  <h3>How to read this</h3>
+  <p><b>A STOP chip means do not go past that step until it is genuinely resolved.</b> Some are fire
+     blockers on the battery bank, some are decisions that change what you buy, and a few are rules
+     that must never be broken: never wire the float switch straight to the pump, never tie the
+     inverter into the house panel, never blow winterizing air in at the priming tee.</p>
+  <p><b>Ticks live on this device only.</b> If you check things off on your phone they will not appear
+     on the laptop. Pick one and stay with it.</p>
+</div>
+
+<div class="foot">
+  Project Hedge &#183; field reference. Deeper detail on each job lives on the linked guide pages.<br>
+  Verify measurements on site. Not a substitute for a licensed electrician on the AC side.
+</div>
+</div>
+<script>
+
+const TODAY = new Date(2026, 7, 17);
+
+const BOOKS = [
+{
+  id:"fill", n:1, title:"Fill the Tank", color:"var(--lane-fill)",
+  due:"Deadline: weeks. The pond is dropping.",
+  start:"2026-08-17", end:"2026-09-20",
+  why:"The tank is standing empty on a finished pad and the pump that fills it is not plumbed. Everything in this book exists to move water into that tank before the pond gets low. Nothing here needs the solar bank, the trencher, or the manifold.",
+  bags:[
+    { code:"1A", title:"Measure everything", tools:"Tape measure, calipers, Sharpie, phone camera, a stake",
+      note:"All free, all takeable today, and every one of them is blocking either an order or a cut. Do this bag in one walk around the property.",
+      steps:[
+        {t:"Measure the tank bulkhead outside diameter.", s:"Write the number on the tank in Sharpie so it is never lost. This is the 3 inch versus 2.5 inch question.", f:"meas"},
+        {t:"Determine the bulkhead thread gender.", s:"Hand-test a known male fitting against it. Male or female decides the whole reducer stack.", f:"meas"},
+        {t:"Photograph the bulkhead threads close up.", s:"Backup evidence for ordering the bushings.", f:"meas"},
+        {t:"Drive a stake at the pond edge and mark today's water line, dated.", s:"August is the low-water month, so this mark is the number the prime calculation has been missing all year.", f:"meas"},
+        {t:"Measure from that August water line up to where the pump inlet will sit.", s:"Record in inches. The record carries two conflicting figures, about 6 ft and 4 to 5 ft, and the SEAFLO is only rated 6 ft dry prime. Target 4 to 5 ft by sitting the pump low.", f:"meas"},
+        {t:"Tape-measure the pond-to-tank distance along the intended pipe route.", s:"Walk the route you will actually lay pipe on, not the straight line.", f:"meas"},
+        {t:"Measure the pond-to-tank elevation gain.", s:"String and line level, or a phone level app on a straight board. This plus the lift number decides the split-station question later.", f:"meas"},
+        {t:"Caliper the 51S01 strainer, end to end.", s:"No published drawing exists. It sets the bottom-band width of the skid board.", f:"meas"},
+        {t:"Caliper the Eastman check valve body length.", s:"Also has no published drawing. Measure it again with both unions threaded on.", f:"meas"},
+        {t:"Dry-assemble the spin-down filter with its 1 inch adapters and measure total height.", s:"Bare it is 9 inches; assembled it lands near 13. The assembled number is the one that matters.", f:"meas"},
+        {t:"Dry-fit the three filter heads with real 3/4 inch nipples and measure the resulting centers.", s:"Assume 7.0 inches, not 6.5. Let the real nipples set it.", f:"meas"},
+        {t:"Photograph the SEAFLO port threads close up.", s:"For the NPT versus NPSM question. The port kit in Bag 1B makes this moot, but keep the photo.", f:"meas"},
+        {t:"Walk the tank pad and confirm it is finished.", s:"Crowned, sheds water, no ponding, fabric under the rock. Note anything still to do.", f:"meas"}
+      ]},
+    { code:"1B", title:"Place the orders", tools:"Phone, the measurements from Bag 1A",
+      note:"Order the same day you measure. Shipping is the long pole in this book, not labor.",
+      steps:[
+        {t:"Order the SEAFLO or SHURflo 1/2 inch pump port fitting kit (swivel nut x barb).", s:"This is the single smallest part blocking the entire water goal. It is built for these ports, comes with the right seal, and sidesteps the NPT versus NPSM question completely. Do not substitute generic tapered brass.", f:"buy"},
+        {t:"Order 2 short flexible jumpers for the pump ports plus a rubber isolator pad.", s:"The SEAFLO manual requires flex at both ports if rigid pipe is used anywhere near the pump.", f:"buy"},
+        {t:"Order 100 ft of 1 inch poly pipe.", s:"85 ft uphill run plus the suction leg plus jumpers plus spare.", f:"buy"},
+        {t:"Order the air and vacuum port: one 1 inch tee plus a small ball valve.", s:"Not optional. Without it the filter bank cannot gravity drain and winter air has nowhere to go in.", f:"buy"},
+        {t:"Order 2 x 1 inch tees (priming tee, winter drain tee) and 2 x 1 inch full-port ball valves.", s:"Standard ball, not vented, for the skid drain.", f:"buy"},
+        {t:"Order 4 x 1 inch FIP brass unions and 4 x 1 inch brass close nipples.", s:"Two unions flank check valve #1 so it pulls for winter. Every valve is female, so male nipples are the connectors.", f:"buy"},
+        {t:"Order 3 x 1 inch poly insert male adapters plus spares.", s:"Foot valve and both run sides of check valve #1.", f:"buy"},
+        {t:"Order 2 x 1 inch barb to 3/4 inch FNPT reducers.", s:"Pump line into the filter bank's 3/4 inch male inlet.", f:"buy"},
+        {t:"Order the bulkhead reducing bushings and 2 ball valves, sized from Bag 1A.", s:"Bulkhead size down to 1 inch. These are drain and utility ports only, never distribution.", f:"buy"},
+        {t:"Order the tank top parts: screened gooseneck vent, inlet screen, 3 inch overflow fitting plus elbow and screen, an opaque lid or cap plus gasket, 4 to 5 glands.", s:"", f:"buy"},
+        {t:"Order an inline 10 to 15A fuse holder plus fuses, and 12/2 cable long enough to reach the pump.", s:"This is the one-battery power path, not the bank.", f:"buy"},
+        {t:"Order Teflon tape, 1 inch stainless hose clamps (8), and lag screws.", s:"", f:"buy"},
+        {t:"Buy or pull 3/4 inch exterior plywood for the skid back-board.", s:"", f:"buy"}
+      ]},
+    { code:"1C", title:"Build the pump skid (bench work, indoors)", tools:"Drill, hole saw, pipe wrench, Teflon tape, hose for testing",
+      note:"Everything clamps to a removable 3/4 inch plywood back-board held by 4 lag screws, so the weight is off the pump ports and the whole skid carries indoors for winter. One-sided, row-stacked, everything facing the single front door.",
+      steps:[
+        {t:"Cut the plywood back-board.", s:"Size it from the bottom-band width you measured in Bag 1A.", f:""},
+        {t:"Lay every part on the board dry, in flow order, and mark each position.", s:"Order is: priming tee, strainer, pump, spin-down, sediment, GAC, GAC, air port, drain tee, check valve.", f:""},
+        {t:"Mount the pump on its rubber isolator pad.", s:"Secure the feet but do not compress them. The manual is explicit, and a compressed foot on flexible plywood is the noise and failure complaint in their troubleshooting section.", f:""},
+        {t:"Thread the port fitting kit onto both SEAFLO ports.", s:"Hand tight plus a small turn. Do not crank on a plastic port.", f:""},
+        {t:"Mount the 51S01 strainer at the pump inlet.", s:"Hand tighten only, per its label. Its female end mates the pump's male inlet directly.", f:""},
+        {t:"Mount the filter bracket and hang the three housings on the centers you measured.", s:"They sit side by side, and one housing sets the 12.5 inch band.", f:""},
+        {t:"Link the filter bank with 3/4 inch male-male nipples.", s:"The assembled bank presents a 3/4 inch male inlet at the spin-down end and a 3/4 inch female outlet at the far end.", f:""},
+        {t:"Mount the spin-down filter VERTICAL, head up.", s:"Horizontal is technically allowed but kills the gravity spin, which is the entire point of the device.", f:"safe"},
+        {t:"Run a 3/8 inch tube from the spin-down flush valve out to where a bucket will sit.", s:"Cheaper than reserving 6 inches of air below it.", f:""},
+        {t:"Fit a flex jumper between the pump outlet and the filter bank inlet.", s:"", f:""},
+        {t:"Fit a flex jumper on the pump inlet side too.", s:"Both ports get flex. Rigid pipe hard-mounted to a diaphragm pump is what cracks ports.", f:""},
+        {t:"Fit the air and vacuum port tee at the pressure-side high point.", s:"The pressure side is a 26 inch inverted U with both ends low. No air can enter at the top, so opening the drain alone does almost nothing.", f:"safe"},
+        {t:"Fit the drain tee and ball valve at the lowest point, UPSTREAM of the check valve.", s:"Downstream of the check it cannot drain the thing that matters.", f:"safe"},
+        {t:"Fit check valve #1 HORIZONTAL with the BONNET UP, arrow pointing toward the tank.", s:"It is a swing check. In any other orientation the disc will not seat. This spec was missing from every earlier drawing.", f:"safe"},
+        {t:"Flank check valve #1 with the two brass unions.", s:"Breaking these two unions is step one of winterizing, so they must be reachable.", f:""},
+        {t:"Fit the priming tee at the pump inlet, third port capped and facing up, on a SHORT nipple.", s:"A tall dead leg is an air pocket that steals suction.", f:""},
+        {t:"Teflon-tape every threaded joint as you go.", s:"", f:""},
+        {t:"Pressure-test the whole skid on a garden hose before it leaves the bench.", s:"Find weeping joints indoors on a bench, not at the pond in the dark.", f:"safe"}
+      ]},
+    { code:"1D", title:"Set it at the pond", tools:"Shovel, level, blocks or pavers, hose clamps",
+      steps:[
+        {t:"Clear and level a spot on the pond bank for the skid.", s:"", f:""},
+        {t:"Set the skid on blocks as LOW as the measured lift allows.", s:"Every inch of pump height is an inch of prime margin spent. Hutch height costs nothing; pump height costs one to one.", f:"safe"},
+        {t:"Attach the foot valve and strainer to the 1 inch poly with a barb-to-male adapter and two clamps.", s:"The foot valve is 1 inch female.", f:""},
+        {t:"Set the foot valve in the pond, fully submerged, about 1 ft off the silt.", s:"", f:""},
+        {t:"Run the suction poly to the skid and fit the union at the skid end.", s:"That union is how the suction line comes apart in the fall.", f:""},
+        {t:"Lay the 1 inch poly from the skid to the tank ON THE GROUND.", s:"No trench. This line is drained and blown out every fall anyway, so it can be buried on the freeze deadline or next spring.", f:""},
+        {t:"Route the surface line clear of mowing, traffic, and anywhere a vehicle turns.", s:"", f:""}
+      ]},
+    { code:"1E", title:"Finish the tank top", tools:"Hole saw, sealant, screen",
+      steps:[
+        {t:"Fit the pond-fill inlet at the tank top and screen it.", s:"", f:""},
+        {t:"Fit the overflow at the existing 3 inch side port with an elbow and screen.", s:"Route it AWAY from the pad. A big storm on a full tank must shed safely, not pool under 13,400 lb of tank on clay.", f:"safe"},
+        {t:"Install the float switch in the tank at the full level.", s:"", f:""},
+        {t:"Fit a ball valve at each of the two bottom bulkheads.", s:"Reduce bulkhead size down to 1 inch. These are drain and utility only.", f:""},
+        {t:"Run bulkhead pipe horizontally across the TOP of the rock and down outside the pad.", s:"Never bury pipe in the load-bearing rock under the tank. Seven tons crushes pipe and a leak there is unreachable.", f:"safe"},
+        {t:"Fit the opaque lid or cap and the screened vent.", s:"Opaque matters: light in the tank means algae.", f:""}
+      ]},
+    { code:"1F", title:"Power it from one battery", tools:"Multimeter, crimpers, the relay",
+      note:"This is the unlock that decouples the water lane from the entire solar build. The pump is about 84W and a full fill is about 750 Wh. One LiTime 24V 100Ah pack holds 2,560 Wh, so one battery covers three complete fills.",
+      steps:[
+        {t:"Pick one LiTime pack, charge it fully, and record its resting voltage.", s:"", f:""},
+        {t:"Fit an inline 10 to 15A fuse at the battery positive, as close to the terminal as possible.", s:"", f:"safe"},
+        {t:"Run 12/2 from the battery to the pump, protected from sun and mowers.", s:"", f:""},
+        {t:"Wire the float switch to a relay COIL, and the relay CONTACTS to the pump.", s:"The float switch is rated 1A switching and 2.5A carry. The pump draws about 4A. Wired direct it will arc and weld shut, and a welded float switch means an overflowing tank.", f:"stop"},
+        {t:"Test the interlock by hand: lift the float, confirm the pump stops.", s:"Do this before the tank is anywhere near full.", f:"safe"},
+        {t:"Fit a local 24V disconnect at the pump.", s:"So you can kill it standing at the pond, not at the battery.", f:""}
+      ]},
+    { code:"1G", title:"First fill and commissioning", tools:"Bucket, stopwatch, multimeter, notebook",
+      steps:[
+        {t:"Prime through the priming tee until it burps and holds water.", s:"Do not count on the 6 ft dry self-prime. Plan on one manual wet start per season.", f:""},
+        {t:"Start the pump and confirm flow through the spin-down sight bowl.", s:"", f:""},
+        {t:"Walk every joint at 10 minutes and check for weeping.", s:"", f:"safe"},
+        {t:"Time a bucket at the tank inlet and record actual GPM.", s:"Rated is 3.0 GPM. If it reads well under, suspect the strainer or a suction air leak.", f:""},
+        {t:"Run the fill in shifts, not nine unattended hours.", s:"1,600 gal at 3.0 GPM is 8.9 hours continuous on a pump the datasheet calls intermittent duty. Check its manual for a stated duty cycle and top off rather than filling from empty in one run.", f:"safe"},
+        {t:"Clean the 51S01 strainer whenever flow drops.", s:"Pond water fouls it several times a season. Hand tighten only on reassembly.", f:""},
+        {t:"Confirm the float switch cuts the pump at full.", s:"", f:"safe"},
+        {t:"Record the fill date, total hours, and the battery voltage drop.", s:"That number sizes every future fill and feeds the dashboard use band.", f:""}
+      ]}
+  ]},
+{
+  id:"freeze", n:2, title:"Beat the Freeze", color:"var(--lane-freeze)",
+  due:"Deadline: first hard freeze, about 1 November.",
+  start:"2026-09-15", end:"2026-11-15",
+  why:"Rain is what refills the tank all winter, so the rainwater line has to be in and buried before the ground freezes. This book is also the one trencher day, which is the only cheap moment to bury anything else you will ever want buried.",
+  bags:[
+    { code:"2A", title:"Trencher day prep", tools:"Marking paint, flags, tape measure",
+      note:"Mark and stage everything BEFORE the rental clock starts. Hard clay is brutal, and a second day of digging costs far more than laying extra pipe in an open trench.",
+      steps:[
+        {t:"Mark the rainwater route from the gutter corner to the tank, about 30 ft.", s:"", f:""},
+        {t:"Mark the chicken waterer route, about 15 ft.", s:"", f:""},
+        {t:"Mark the shared corridor that carries the fill line, the rain line, and the barrel line.", s:"One trench, three SEPARATE pipes. Never tee them together: they carry pressurized pond fill, gravity rain, and the barrel line, and a tee would cross-connect all three.", f:"safe"},
+        {t:"Mark the future zucchini stub route.", s:"Run it while the trench is open even though the patch is not planted.", f:""},
+        {t:"Confirm nothing buried is in the path.", s:"The grid feed runs underground from the shop to the tiny house, and there is an underground well line. Know where both are before cutting.", f:"stop"},
+        {t:"Stage all pipe, conduit, warning tape, and fittings at the routes.", s:"", f:""},
+        {t:"Book the trencher for one focused day.", s:"", f:""}
+      ]},
+    { code:"2B", title:"Trencher day", tools:"Rented trencher, shovels, warning tape",
+      steps:[
+        {t:"Cut the rainwater trench at 24 inches.", s:"This line stays CHARGED all winter, so it must be below frost. Do not shallow it.", f:"safe"},
+        {t:"Cut the chicken waterer trench below frost.", s:"", f:""},
+        {t:"Cut the shared corridor to the tank.", s:"", f:""},
+        {t:"Lay water pipe at the trench bottom.", s:"Bed any PVC in sand, not on sharp 3/4-minus rock.", f:""},
+        {t:"Backfill over the pipe, then lay conduit-protected 24V DC cable above it.", s:"Low-voltage DC and water in one trench is safe here. This would change entirely if 120V AC ever went in, which it must not.", f:"safe"},
+        {t:"Lay warning tape, then finish the fill.", s:"", f:""},
+        {t:"Lay and cap the zucchini stub before closing.", s:"", f:""},
+        {t:"Fit a 90 degree riser and a union at every point a buried run leaves or enters the ground.", s:"The unions are what let each run come apart for winter.", f:""}
+      ]},
+    { code:"2C", title:"Rainwater harvest", tools:"PVC, saw, cement, screen, insulation",
+      note:"380 sq ft of roof yields about 237 gal per inch of rain, so 19 to 20 inches a year is roughly 4,500 gal. Gutter outlets sit 10 to 11 ft up and the tank inlet is at 7 ft, giving 3 to 4 ft of fall, which is enough head for a charged wet system.",
+      steps:[
+        {t:"Route the far-side downspout around or under the house to the near-side gutter corner.", s:"Both roof sides combine into ONE line.", f:""},
+        {t:"Fit the rectangular-to-round adapter at the downspout.", s:"", f:""},
+        {t:"Build the first-flush diverter from the large PVC on hand.", s:"", f:""},
+        {t:"Drill the diverter's weep hole and confirm it self-drains empty.", s:"Self-draining is what makes it freeze-safe between rains. A diverter that holds water is a burst pipe in January.", f:"safe"},
+        {t:"Fit the elbow at grade into the buried run.", s:"", f:""},
+        {t:"Run the riser up into the tank top and screen the inlet.", s:"Screen against mosquitoes and debris.", f:""},
+        {t:"Insulate both risers.", s:"The two risers are the only exposed freeze points once the 30 ft run is buried. Burial turned a 30 ft heat-tape problem into a 5 ft one.", f:"safe"},
+        {t:"Add self-regulating heat tape to the risers ONLY if they still freeze, under foam.", s:"Heat tape is a battery drain at the worst solar time of year. Bury first, heat last.", f:""}
+      ]},
+    { code:"2D", title:"Winter chicken water", tools:"Heated waterer, poultry nipples, foam",
+      steps:[
+        {t:"Decide the heated waterer voltage.", s:"Prefer 24V DC so its power can share the water trench. If it is AC it needs its own separate path and its own trench, never with water.", f:"stop"},
+        {t:"Build the waterer with the horizontal poultry nipples already on hand.", s:"", f:""},
+        {t:"Set the heated waterer at the chicken run.", s:"Its small heated base does the real freeze work, right at the load.", f:""},
+        {t:"Run the short live winter path from the tank riser to the waterer.", s:"", f:""},
+        {t:"Heat-tape only the exposed crown that cannot self-drain, under foam.", s:"", f:""},
+        {t:"Budget the winter draw.", s:"The heated base pulls 100 to 250W whenever its thermostat calls, continuously, in December. It is the single largest winter load in the whole system.", f:"safe"}
+      ]},
+    { code:"2E", title:"Winterize and pull the pond skid", tools:"Wrenches, bucket, low-pressure air, indoor shelf",
+      note:"Order matters and the old order was wrong in three places. Gravity drain alone is unreliable here: the pressure side is U-shaped on the skid and the 85 ft line bellies on flat clay.",
+      steps:[
+        {t:"Break the two unions at check valve #1 FIRST.", s:"Check #1 holds the standing 85 ft column, and the far end enters the tank top open to atmosphere, so the run gravity-drains backward out the floor penetration, about 4 gal. No compressed air, nothing pressurized.", f:"safe"},
+        {t:"Strip the three filter sumps and dump them.", s:"A cap-fed housing is an inverted dead-end cup. Once the level drops past the cartridge bottom, air short-circuits up the core and stops moving water. The blow-out physically cannot empty them, about 0.5 gal each.", f:"safe"},
+        {t:"Open the drain ball valve into a bucket.", s:"", f:""},
+        {t:"Then open the high-point air port.", s:"Now the riser and the filter heads can gravity drain. This is why that port is not optional.", f:""},
+        {t:"Blow the runs out with LOW-PRESSURE air at the HIGH-POINT PORT.", s:"Never at the priming tee. That is the suction side, the pump inlet is rated 30 PSI max, and the 51S01 in that path is labeled vacuum side only.", f:"stop"},
+        {t:"Break the suction union, pull the foot valve and suction line out of the pond, drain downhill.", s:"A foot valve HOLDS water in the suction line, so it will not drain until disconnected.", f:""},
+        {t:"Pull the 51S01 bowl.", s:"", f:""},
+        {t:"Unbolt the skid, 4 lag screws, and carry it indoors whole.", s:"A diaphragm pump does not clear itself with a dry run.", f:""},
+        {t:"Store indoors: both brass check valves, all cartridges and bowls, the foot valve, any gauge.", s:"", f:""},
+        {t:"Pull check valve #2 at the tank for the winter.", s:"With it out, the riser and line DRAIN BACK into the tank after every pump run, so nothing stays charged and frozen between fills. The submersible is submerged and re-primes itself.", f:"safe"},
+        {t:"Blow out or drain every ball valve body cavity left outside.", s:"A ball valve traps water in its cavity even when open.", f:"safe"},
+        {t:"Confirm the zucchini, barrel, and greenhouse lines are fully drained and dormant.", s:"", f:""}
+      ]}
+  ]},
+{
+  id:"solar", n:3, title:"Energize the Solar", color:"var(--lane-solar)",
+  due:"No deadline. Supplemental office power with the grid behind it.",
+  start:"2026-11-01", end:"2027-02-15",
+  why:"Nothing about this book moves water, which is exactly why it sits third. It powers office equipment through one dedicated outlet. Ordering parts is free and costs no build time; building is what steals hours from Books 1 and 2.",
+  bags:[
+    { code:"3A", title:"The four fire blockers", tools:"Multimeter, utility knife, Sharpie",
+      note:"A degrading bolted joint draws exactly normal current, so the 150A fuses cannot see it, the 80A breaker cannot see it, and the BMS cannot see it. Every lug, bar, fuse blade, and cable in this box sits outside all electronic protection. These four steps are the primary fire control.",
+      steps:[
+        {t:"Verify the BULVACK 80A breaker's DC interrupting rating is 5 kA or more at 32 VDC.", s:"Prospective short-circuit current at this bus is 3,000 to 8,000A. A breaker that cannot interrupt does not fail to trip: it welds and sustains an internal arc, and DC arcs have no current zero at which to self-extinguish.", f:"stop"},
+        {t:"If that rating is unstated, demote the breaker to a switch and order a Class T fuse for the inverter leg.", s:"Blue Sea 5119 holder plus a Littelfuse JLLN-125, roughly $60 to $90, 20 kA interrupting.", f:"stop"},
+        {t:"Confirm the ANL fuse holders carry a DC rating too.", s:"", f:"safe"},
+        {t:"Pull the pink XPS foam off the deck box FRONT WALL and remove it from the area.", s:"XPS is thermoplastic, softens at 75 to 100C, and melts and drips flaming. That wall faces the terminals, the unfused positive stubs, and the ANL fuse row: the single worst place foam could sit. No scraps left in an electrical enclosure.", f:"stop"},
+        {t:"Leave the FLOOR foam and the RIGHT END foam in place.", s:"Floor XPS is two structural layers below anything energized. The right end is foil-faced polyiso, the thermoset char-in-place type, and it only faces pack cases.", f:""},
+        {t:"Write the no-foam rule on the box in Sharpie.", s:"No combustible insulation in the terminal and bus plane: not the lid, not the front wall, not within 2 inches of a fuse body. This stops a future winter-R-value impulse from undoing it.", f:"safe"},
+        {t:"Cut 1/4 inch cement board to cover the ENTIRE power board face and fit it.", s:"HardieBacker or Durock, about $15, score and snap. Full area, not just under the bus, because a dropped wrench or arc spatter lands where gravity puts it. Not bare sheet metal: non-combustible but conductive, directly under a positive bus.", f:"stop"},
+        {t:"Set the Tycon from FLd to Lithium, 28.8V, and confirm the output with a meter.", s:"Confirm with a meter, not the menu. The FLd profile attempts an equalize at 29.2 to 31V, which is 3.65 to 3.88 V per cell on an 8s pack. In a 4P bank one pack opening shifts its share to the other three and cascades.", f:"stop"},
+        {t:"Fit a non-combustible shield between the deck box and the house wall.", s:"1/2 inch Durock or 26 ga galvanized on furring, extending 12 inches past the box on all sides and above the top. Gain whatever standoff the cabling allows. Largest consequence reduction per dollar in the build.", f:"safe"},
+        {t:"Confirm the box is not under a window, not below the only door, and not between you and your exit.", s:"", f:"safe"}
+      ]},
+    { code:"3B", title:"Rebuild the deck box for 4P", tools:"Torque wrench, hydraulic crimper, multimeter, clamp meter",
+      note:"Four packs in parallel, each positive through its own 150A ANL fuse. LiTime confirmed in writing that 4 in parallel is the maximum, so this is not a place to improvise. The other two packs go to the shed system in Book 5.",
+      steps:[
+        {t:"Reduce the bus to 2 chained bars per polarity.", s:"At 4P you need only 6 landings per bus: 4 batteries, the inverter, and the charger group.", f:""},
+        {t:"Confirm the Joinfworld stud size and length.", s:"Claimed M8 but likely 3/8 inch or M10, which changes every ring lug you buy. Also confirm the stud is long enough for the stacked rings on the charger stud.", f:"meas"},
+        {t:"Cut all four battery cables to the SAME length.", s:"Unequal length means unequal current sharing, which means one pack ages fastest and is the one whose BMS trips first.", f:"safe"},
+        {t:"Hydraulic-crimp every lug and pull-test each one.", s:"No hammer crimps, no set-screw lugs, no solder.", f:"stop"},
+        {t:"Keep each battery-positive-to-ANL stub under 7 inches, booted and sleeved.", s:"That stub is unfused by definition. Route it clear of the negative bus and the box wall.", f:"safe"},
+        {t:"Fit 2/0 chain jumpers between the bus bars.", s:"Not thin strap and not a bare bolt. They carry up to 83A.", f:"safe"},
+        {t:"Fit the 70A fuse in the controller's 6 ga lead at the BUS end.", s:"Keep 70A. Tycon's manual says 100A or greater, but that assumes running at its full 60A, and a 1,500W array can only make 45 to 50A real. 6 AWG carries about 75A, so a 100A fuse would let a 90A fault cook the wire.", f:"safe"},
+        {t:"Fit the 30A fuse in the Iota's 10 ga lead at the BUS end.", s:"The charger's own internal fuse is at the wrong end of the wire.", f:"safe"},
+        {t:"Mount the DIN rail on the left wall above the gland plate.", s:"TPDIN, a 6-way ATO fuse block (TANK 10A, POND 7.5A, FAN 3A, SENSE 1A, 2 spare), and a small negative bus.", f:""},
+        {t:"Fit the two 24V 80 mm fans at the high-left exhaust, blowing OUT, through the 3A fuse and a thermostat that closes near 113F.", s:"80 mm, not 120. A 120 mm fan cannot sit on a 3 inch vent.", f:""},
+        {t:"Balance all four packs to within about 30 mV of each other.", s:"Do this before they are ever paralleled.", f:"stop"},
+        {t:"Connect all four negatives first.", s:"", f:"safe"},
+        {t:"Connect the positives one at a time, POSITIVE LAST.", s:"Reverse this order to disconnect, always.", f:"stop"},
+        {t:"Torque every M8 battery terminal to 7 to 10 N·m.", s:"Confirmed by LiTime. Do not overtighten: thread and terminal damage.", f:"stop"},
+        {t:"Boot and insulate every stud.", s:"", f:"safe"},
+        {t:"Build the lift-off bus guard and notch it over the breaker handle.", s:"1/4 inch polycarbonate on 6 nylon standoffs with nylon thumbscrews. Not acrylic, which shatters, and not wood or HDPE, which burn. Leave the perimeter open. It catches dropped tools; the boots catch bumped studs.", f:"safe"},
+        {t:"Mount 3 to 4 DS18B20 sensors ON THE COPPER.", s:"Positive bus, one ANL holder body, the 80A breaker terminal, the inverter negative landing. About $20, and it is the only thing that can see the dominant failure mode before ignition. The cell-face probe watches the last thing to get hot.", f:"safe"},
+        {t:"Wire the DS18B20s to the ESP32 and set Home Assistant alarms at 60C and 85C, PUSHED TO A PHONE.", s:"Not a dashboard nobody watches.", f:"safe"},
+        {t:"Keep the TPDIN cell probe, routed DOWN and away from the bus.", s:"It is for cold-charge logic and fan control. Board heat contaminates it.", f:""},
+        {t:"Fit a battery-side main disconnect on the bus positive.", s:"A 275 to 300A marine switch, Blue Sea 6006 class, $40 to $60. One motion kills every load and charger without pulling ANL fuses out of an energized box.", f:""},
+        {t:"Confirm the high vent is permanently open with a gooseneck or louvre plus stainless insect screen.", s:"Insulate the box but never seal it. LFP vent gas is 20 to 40 percent hydrogen, whose flammability limit is 4 percent, and this box crosses that after only 10 to 15 L of off-gas with a 400A bus inside as the ignition source.", f:"stop"},
+        {t:"Leave the lid on gravity or friction. No hasp, no padlock.", s:"It needs to act as a blow-off panel, relieving at 0.05 bar instead of the 7 bar a confined hydrogen deflagration reaches.", f:"safe"},
+        {t:"Cut winter vent plugs from MINERAL WOOL for the LOW intake only.", s:"Not foam scraps. And do not plug anything for the season until the copper-temperature alarm is live and verified.", f:"safe"},
+        {t:"Fit an exterior responder label.", s:"24V DC LiFePO4, 4 x 100Ah, disconnect location, phone number.", f:""},
+        {t:"Move the ABC extinguisher 10 to 15 ft away and upwind, on the path you would walk toward the box.", s:"ABC, not Class D. There is no lithium metal in LFP, so Class D does nothing and costs 5 to 10 times as much.", f:"safe"},
+        {t:"Add a welding-grade fire blanket.", s:"About $40, and it doubles as a spark shield laid over the bus while working.", f:""}
+      ]},
+    { code:"3C", title:"Finish the array", tools:"Tape measure, MC4 crimper, drill",
+      steps:[
+        {t:"Call the Pegasus supplier with the three grounding questions.", s:"(1) Do S-5 clamps ground the seam adequately or is a separate lug needed. (2) Do the mid and end clamps have grounding teeth or is a WEEB clip required. (3) What is the recommended rail-to-ground-rod method.", f:"wait"},
+        {t:"Measure the standing seam profile.", s:"Blocks the clamp order.", f:"meas"},
+        {t:"Order clamps, rails, about 10 mid clamps and 4 end clamps.", s:"", f:"buy"},
+        {t:"Order grounding parts after the call: 8 ft rod, rod clamp, 6 AWG bare copper, a rail lug, possibly 6 WEEB clips.", s:"", f:"buy"},
+        {t:"Order the PV wiring: 50 ft each red and black 10 AWG PV wire, MC4 crimp connectors, one 3-to-1 Y-branch pair, 25 ft of 1/2 inch liquid-tight conduit plus 2 connectors.", s:"", f:"buy"},
+        {t:"Finish mounting all six panels in one portrait row.", s:"Top edge 3 to 4 inches below the ridge for wind. The bottom edge may overhang the eave.", f:""},
+        {t:"Build the three series strings: A+B, C+D, E+F.", s:"Panel A negative to panel B positive. A positive and B negative become the string outputs. 75.2V per string.", f:""},
+        {t:"Combine the three string positives into one Y-branch and the three negatives into the other.", s:"Output is one positive and one negative PV wire, about 60 to 75V at 24.8A combined.", f:""},
+        {t:"Run ONE ground wire from the rail to the ground rod.", s:"The rail is the ground bus. Not six individual panel wires.", f:"safe"},
+        {t:"Run the 11 ft vertical conduit drop from the eave to the enclosures, with a drip loop at the bottom.", s:"The rail carries all the horizontal cabling, so this is the only conduit run needed.", f:""},
+        {t:"Add a gravel strip at the panel drip line.", s:"Blocking the gutter on the panel side is fine on this all-metal building; a half-blocked gutter that dams and breeds mosquitoes is worse than none.", f:""}
+      ]},
+    { code:"3D", title:"Fit out the two enclosures", tools:"Drill, IR thermometer",
+      steps:[
+        {t:"Check whether the upper box blocks the lower box's top-face exhaust fan.", s:"A fan discharging into a 1 inch dead space moves almost nothing. If it is covered, add spacers or shift the upper box sideways so it blows to open air.", f:"stop"},
+        {t:"Check the fan voltage in both VEVOR boxes.", s:"If they are 120VAC, swap in 24V fans and keep the thermostats.", f:"meas"},
+        {t:"Mount the inverter in Box A, vertically, DC studs DOWN and fan end UP.", s:"Studs down gives the shortest 2/0 rise from the deck box; fan up cooperates with the box exhaust. It fills the box: 16.2 of 19 inches tall, leaving only 1.4 inches top and bottom against the 2 inches specified. Acceptable only because the box is force-ventilated.", f:""},
+        {t:"Mount the Tycon in Box B in a full-height LEFT column, nothing above or below it.", s:"It is the only passively cooled device and the left side is the intake stream. It gets 4.7 inches clear versus the 7.9 specified.", f:"safe"},
+        {t:"Mount the Iota at the top of Box B's right column, on the metal plate.", s:"Its label demands a non-combustible surface and no zero-clearance compartment.", f:"safe"},
+        {t:"Mount the IQ-LIFEPO module just below the Iota.", s:"Its cord is 10 inches. Without it the Iota's 27.2V output is essentially a float voltage and stalls LiFePO4 near 85 percent.", f:""},
+        {t:"Cut the shelf down to about 10 inches and use it in the RIGHT column only.", s:"Full width it would slice straight through the Tycon's convection column.", f:""},
+        {t:"Mount the DIN rail low in the right column: Baomain contactor plus the second pump-start device.", s:"", f:""},
+        {t:"Mount the DIHOOL PV disconnect beside the stack, outside both boxes.", s:"It is the PV kill switch, so it should be grab-and-turn without opening anything.", f:""},
+        {t:"Bring all cables in the RIGHT side of both boxes.", s:"The louvers on the left side are the intake. Cables on the right keep the bundle out of the intake stream.", f:""},
+        {t:"Wire grid AC through the Baomain contactor to the Iota, with a 1N4007 flyback across the coil.", s:"Banded end to +24V, at the coil. The TPDIN watches battery voltage and closes the contactor; the IQ-LIFEPO decides how to charge. Different levels, no conflict.", f:"safe"},
+        {t:"Wire TPDIN RS485 to the Tycon and ethernet to the network.", s:"", f:""}
+      ]},
+    { code:"3E", title:"First energize", tools:"Multimeter, IR thermometer, notebook, tape",
+      note:"Do not start this bag until every STOP step in Bag 3A is checked.",
+      steps:[
+        {t:"Re-confirm the Tycon reads 28.8V lithium on a meter.", s:"", f:"stop"},
+        {t:"Connect the batteries to the controller first.", s:"", f:""},
+        {t:"Turn on the DIHOOL DC disconnect to bring PV online.", s:"", f:""},
+        {t:"Pre-charge the inverter capacitors with a 10 to 50 ohm resistor for about 2 seconds.", s:"Before closing the breaker, every time.", f:"stop"},
+        {t:"Close the 80A DC breaker.", s:"", f:""},
+        {t:"Monitor 30 minutes for heat and smell.", s:"", f:"safe"},
+        {t:"Under a known load, log the millivolt drop across EVERY bolted joint.", s:"Battery post to lug, lug to bus, fuse to bus, chain jumpers. This is a free, one-time-only opportunity and it never comes back.", f:"safe"},
+        {t:"IR-sweep every joint and the inverter case, and record the numbers.", s:"", f:"safe"},
+        {t:"Tape the baseline sheet inside the lid.", s:"", f:""},
+        {t:"Clamp-meter each battery cable under load and confirm they share roughly equally.", s:"", f:"safe"},
+        {t:"Re-torque everything after the first cycle.", s:"", f:"safe"},
+        {t:"Schedule the re-measures: 1 week, 1 month, then annually.", s:"The finding is always the DRIFT, never the absolute value. A joint that read 28C in March and 55C in October is the one that gets you. Investigate anything up 20 to 30 percent.", f:"safe"}
+      ]},
+    { code:"3F", title:"The office outlet", tools:"Decided method, wet-location box or a floor penetration kit",
+      steps:[
+        {t:"Decide the outlet method: exterior weatherproof GFCI, or a cable run inside.", s:"Exterior is fast and safe with no penetration. Interior is cleaner and permanent but needs a hole. An extension cord through a window is not a permanent wiring method.", f:"stop"},
+        {t:"If penetrating, come up through the FLOOR if the office is over a crawlspace.", s:"Skips the wall entirely. The past mold came from a bad detail, not from a hole, so a sealed fitting entering from below with a drip loop is low risk.", f:""},
+        {t:"Install one dedicated outlet fed only by the inverter.", s:"", f:""},
+        {t:"Never connect any of this to the house wiring or panel.", s:"Backfeeding a house panel without a proper interlock is dangerous, and staying separate also avoids grid-tie and anti-islanding requirements.", f:"stop"},
+        {t:"Label the outlet SOLAR ONLY.", s:"He transfers loads by choosing which outlet to plug into. That is why the ATS was dropped permanently.", f:""},
+        {t:"Adopt the habit: switch the inverter OFF at the 80A breaker when not at the desk.", s:"A 3000W inverter idles at 20 to 50W. Left on around the clock for an outlet used 8 hours a day, that wastes about 0.5 kWh every day.", f:""}
+      ]}
+  ]},
+{
+  id:"cold", n:4, title:"Shed Freezer System", color:"var(--lane-cold)",
+  due:"Target: done before fire season, about mid June.",
+  start:"2027-01-15", end:"2027-05-15",
+  why:"Southern Oregon gets multi-day public-safety power shutoffs in fire season, which is exactly when the grid dies for days, the freezer works hardest, and it is full of food. It is also when sun is best. This is a resilience play, not an economics play.",
+  bags:[
+    { code:"4A", title:"Spec and order", tools:"Phone",
+      note:"The two packs freed by the 4P decision are the bank: 5,120 Wh nominal, about 4,000 Wh usable. That is 3.5 to 4 days of autonomy on bad-sun winter days, and the load and the sun are inversely correlated, which is what makes it work.",
+      steps:[
+        {t:"Order 2 x 400W panels.", s:"Two modern 400W panels beat three 250W on racking, count, and dollars per watt. 750 to 800W covers both December and August.", f:"buy"},
+        {t:"Check the Voc before ordering the controller.", s:"Two 400W panels in series is about 90V and needs a 150V-class controller. In parallel, about 45V, a 100V controller is fine.", f:"meas"},
+        {t:"Order a small MPPT controller, about 40A.", s:"800W at 24V is about 33A.", f:"buy"},
+        {t:"Order a 300 to 600W pure sine inverter with under about 10W idle.", s:"Not a 3 kW. A big inverter's idle would exceed the freezer's own winter draw.", f:"buy"},
+        {t:"Buy a chest cooler to use as the battery enclosure.", s:"About $40, already insulated and weatherproof. It handles winter cold-charge lockout and summer heat at once.", f:"buy"},
+        {t:"Order cable glands, a breather, per-battery ANL fusing, and a small disconnect.", s:"Same rules as the main bank, scaled down.", f:"buy"},
+        {t:"Order a solar-powered exhaust fan and an intake vent.", s:"About $40, runs hardest exactly when the sun is hottest, draws zero from the bank.", f:"buy"},
+        {t:"Buy rack material for a panel structure ABOVE the shed.", s:"", f:"buy"}
+      ]},
+    { code:"4B", title:"Build it", tools:"Drill, crimper, torque wrench",
+      note:"The shed is plastic resin and hits 120 to 140F inside in summer, which is what drives the freezer load. Do not try to insulate the shed. Shade it and vent it.",
+      steps:[
+        {t:"Build the panel rack above the shed with an air gap.", s:"The panels become the shade roof. This shades the plastic shell and generates the power at the same time, and it is the single best move available here.", f:""},
+        {t:"Mount the two panels on the rack.", s:"", f:""},
+        {t:"Fit the solar exhaust fan high and the intake vent low.", s:"Shade plus moving air gets the interior near ambient.", f:""},
+        {t:"Fit glands and a breather to the cooler, and set the two packs inside.", s:"", f:""},
+        {t:"Fuse each pack positive and fit the disconnect.", s:"", f:"safe"},
+        {t:"Set the controller to lithium 28.8V and confirm with a meter before connecting the packs.", s:"Same rule as the main bank.", f:"stop"},
+        {t:"Wire the inverter and run one circuit to the freezer.", s:"", f:""},
+        {t:"Leave the freezer's coils and airflow completely clear.", s:"Never box in or insulate around the freezer. It rejects heat through its coils.", f:"stop"},
+        {t:"Test a full PSPS simulation: pull the grid and run the freezer for 24 hours on the bank.", s:"Log the actual draw. This is the number the whole system was sized against.", f:"safe"}
+      ]}
+  ]},
+{
+  id:"irrig", n:5, title:"Irrigation Zones", color:"var(--lane-irrig)",
+  due:"Target: before planting, about 1 May.",
+  start:"2027-03-01", end:"2027-05-20",
+  why:"By the time this is built the current growing season is over, so it is deliberately next-season work. The one exception, the chicken waterer, already rode the freeze deadline in Book 2.",
+  bags:[
+    { code:"5A", title:"Answer the two open questions", tools:"Tape measure",
+      steps:[
+        {t:"Measure the zucchini patch row-feet and the largest single zone's flow demand.", s:"You run one zone at a time, so the system is sized against the largest single zone.", f:"meas"},
+        {t:"Pick the manifold location beside the tank and measure the run to each zone.", s:"Known so far: mini barrel 25 ft, chickens 15 ft, zucchini adjacent.", f:"meas"},
+        {t:"Decide whether the butternut patch takes the spare port.", s:"If yes, buy a fourth motorized valve to the same spec. Needs its location and row-feet.", f:"stop"},
+        {t:"Resolve the Baomain double-assignment.", s:"One contactor is currently assigned to two jobs: the grid-backup trigger and the irrigation pump-start. Keep the Baomain for grid backup, and drive the 5A distribution pump from either the relay board's 4th channel (confirm its DC contact rating) or a second pump-start relay.", f:"stop"}
+      ]},
+    { code:"5B", title:"Buy the valves and controls", tools:"Phone",
+      steps:[
+        {t:"Order 3 motorized ball valves plus 1 spare.", s:"U.S. Solid 1 inch stainless, full port, 9-24V AC/DC. The listing must say BOTH 'Normally Closed' AND '2-Wire Auto Return' AND 'Manual Function'. Buy by the words, not the SKU: the fail-OPEN twin sits one click away and would dump the tank.", f:"stop"},
+        {t:"Order a 4-channel opto-isolated ACTIVE-LOW relay board with a VCC/JD-VCC jumper.", s:"Active-low is what lets a 3.3V ESP32 trigger it. Confirm it lists a DC contact rating such as 10A at 30VDC, not just 250VAC.", f:"buy"},
+        {t:"Order an ESP32 dev board and a 24V to 5V buck converter.", s:"", f:"buy"},
+        {t:"Order 3 RC snubbers (100 ohm plus 0.1 uF), one per valve.", s:"Snubbers, not diodes. A diode would fight the valve's auto-return capacitor, which is what makes it fail closed.", f:"stop"},
+        {t:"Order a 1 inch NPT inline flush-valve drip filter, 120 to 200 mesh.", s:"The 200-mesh filter already owned is 3/4 inch garden hose thread. The mesh is right but necking a 1 inch zone to 3/4 inch GHT chokes every zone at 10 PSI. Use that one on the greenhouse and barrel line instead.", f:"buy"},
+        {t:"Order low-pressure drip tape rated 4 to 10 PSI, plus tape fittings and end caps.", s:"Standard pressure-compensating emitters want 15 to 30 PSI. This pump makes about 10.", f:"buy"},
+        {t:"Order the manifold body parts.", s:"1 inch full-port shutoff, pressure gauge tee plus a 0 to 15 PSI liquid-filled gauge, 1 inch PVC tees, nipples, 3 slip unions, a spare-port adapter and plug, a low-point drain tee plus 1/2 inch ball valve, primer and cement.", f:"buy"}
+      ]},
+    { code:"5C", title:"Build the manifold", tools:"PVC saw, primer, cement, drill",
+      note:"Order, pump to zones: check valve #2, drip filter, main shutoff, gauge tee, the tee-and-nipple body, three valves on unions plus the capped spare, then the low-point drain.",
+      steps:[
+        {t:"Mount a 3/4 inch backer board on a short pressure-treated post beside the tank.", s:"All weight goes on the board, never on the threads.", f:""},
+        {t:"Refit check valve #2 at the tank-top riser on unions, arrow toward the manifold.", s:"Horizontal with the bonnet up, same as check #1. Unions so it pulls every winter.", f:"safe"},
+        {t:"Fit the drip filter, then the main shutoff, then the gauge tee.", s:"", f:""},
+        {t:"Glue up the 1 inch PVC tee-and-nipple body, pitched slightly toward the drain.", s:"Everything stays 1 inch. Only the mini-barrel outlet reduces to 3/4.", f:"safe"},
+        {t:"Fit the three motorized valves on unions, actuators UP and dry.", s:"Thread a 1 inch PVC male adapter straight into each valve's female port, then a slip union in the glued run below.", f:""},
+        {t:"Cap the spare port with a threaded plug at a low point.", s:"", f:""},
+        {t:"Fit the 1/2 inch low-point drain valve at the bottom.", s:"", f:""},
+        {t:"Build the sloped shade hood over the board, open-bottomed so it breathes.", s:"", f:""},
+        {t:"Mount the IP66 box ABOVE the plumbing, glands facing DOWN with drip loops.", s:"Leaks then drip away from electronics rather than into them.", f:"safe"},
+        {t:"Teflon-tape every threaded joint.", s:"", f:""}
+      ]},
+    { code:"5D", title:"Wire and program the controller", tools:"Laptop, ESPHome, multimeter",
+      steps:[
+        {t:"Mount the ESP32, buck converter, and relay board in the IP66 box.", s:"", f:""},
+        {t:"Feed JD-VCC from its own 5V supply and keep the coil-side ground OFF the ESP32 ground.", s:"That separation is the entire point of an opto-isolated board.", f:"safe"},
+        {t:"Fuse the control supply and each pump feed.", s:"About 10A control, 10A submersible, 7.5A SEAFLO.", f:"safe"},
+        {t:"Run 2-conductor DC to each valve and fit an RC snubber across each one.", s:"", f:""},
+        {t:"Flash ESPHome using the built-in sprinkler component: 3 zones, one shared pump output, one zone at a time.", s:"A working hedge-irrigation.yaml already exists and implements the fail-closed contract.", f:""},
+        {t:"Set inverted: true and restore_mode: ALWAYS_OFF on all four channels.", s:"So a reboot can never open a valve or start the pump. Avoid strapping pins GPIO 0, 2, 12, 15.", f:"stop"},
+        {t:"Set every zone's minimum run to 60 seconds or more.", s:"The fail-closed action is capacitor-powered and the capacitor needs about 60 seconds energized to charge. These are scheduled shutoffs, not fast cyclers.", f:"stop"},
+        {t:"Bench-test all three valves and the pump before any of it is plumbed live.", s:"", f:"safe"},
+        {t:"Pull power mid-cycle and confirm every valve returns to CLOSED.", s:"This is the whole safety argument for this valve choice. Prove it.", f:"stop"},
+        {t:"Add weather-skip in Home Assistant using the zone multiplier.", s:"", f:""}
+      ]},
+    { code:"5E", title:"Run the zones", tools:"Drip tape tools, poly",
+      steps:[
+        {t:"Run zone 1 to the zucchini patch on the stub laid during trencher day.", s:"", f:""},
+        {t:"Run zone 2 to the trees and the chicken waterer.", s:"Trees want deep infrequent watering; the chicken waterer is float-fed off the same zone.", f:""},
+        {t:"Run zone 3 to the mini barrel fill.", s:"The barrel's mechanical float only STOPS the fill; it cannot start or schedule it. The controller tops the barrel off on its own cycle when no other zone is running.", f:""},
+        {t:"Lay drip tape on the zucchini rows and the trees.", s:"", f:""},
+        {t:"Fit the owned 3/4 inch 200-mesh filter on the greenhouse and barrel line.", s:"Right mesh, right size for that line.", f:""},
+        {t:"Time each zone and log actual delivery.", s:"Feeds the dashboard use band, which is still running on assumed numbers.", f:""},
+        {t:"Confirm nothing anywhere necks the 1 inch mains down.", s:"At 10 PSI a single 3/4 inch part chokes every zone downstream of it.", f:"safe"}
+      ]}
+  ]},
+{
+  id:"soft", n:6, title:"Monitoring Loose Ends", color:"var(--lane-soft)",
+  due:"Ongoing background work. Rainy-day jobs.",
+  start:"2026-08-17", end:"2027-06-30",
+  why:"All of this is already running. These are the loose ends, each one small, none of them blocking anything physical. Good work for a day it is pouring.",
+  bags:[
+    { code:"6A", title:"Loose ends", tools:"Laptop",
+      note:"Kept deliberately vague here because this guide is a public page. The specifics live in the private notes.",
+      steps:[
+        {t:"Update the two network nodes still on old firmware.", s:"Both are years behind. Do it on a calm day with a console handy, not from the field.", f:""},
+        {t:"Improve the air-quality sensor's wifi signal.", s:"It reports a weak signal with signs of missed uploads. Move it, or move an access point.", f:""},
+        {t:"Set camera retention deliberately and pull a fresh backup.", s:"Storage is barely used, so the current default is leaving capacity on the table.", f:""},
+        {t:"Review the camera encoding settings changed during the drive swap.", s:"Quality against disk-fill rate.", f:""},
+        {t:"Drop the monitoring account back to least privilege.", s:"It was elevated temporarily during setup and never lowered again.", f:"safe"},
+        {t:"Put a solid-state drive in the monitoring host.", s:"It shipped with a spinning drive. Backup and restore makes the swap about 20 minutes.", f:""},
+        {t:"Decide the wall display size.", s:"A 7 inch panel at about 5W, or a 10 to 13 inch panel at 8 to 15W. Decide once the dashboard exists and can be sized against a real screen.", f:"stop"},
+        {t:"Replace the three assumed dashboard thresholds with measured numbers.", s:"Tank reserve, battery floor, and the daily use band are all still estimates. Bag 1G and Bag 5E produce the real figures.", f:""},
+        {t:"Confirm whether a generator is actually owned.", s:"Implied by an old note about a generator interlock, never confirmed either way.", f:""},
+        {t:"Ask the father-in-law how much LIFT his Lake of the Woods suction line had.", s:"That single answer decides the split-station question: whether to move the three filter housings up to the tank and leave only the pump at the pond.", f:"stop"}
+      ]}
+  ]}
+];
+</script>
+<script>
+
+(function(){
+  "use strict";
+  const KEY="hedge-build-manual-v1";
+  const CHIPS={stop:["stop","Stop"],meas:["meas","Measure"],buy:["buy","Order"],
+               safe:["safe","Safety"],wait:["wait","Waiting on"]};
+  let done={};
+  try{done=JSON.parse(localStorage.getItem(KEY)||"{}")||{};}catch(e){done={};}
+  const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(done));}catch(e){}};
+
+  const el=(t,c,txt)=>{const n=document.createElement(t);if(c)n.className=c;
+    if(txt!=null)n.textContent=txt;return n;};
+  const D=s=>{const p=s.split("-");return new Date(+p[0],+p[1]-1,+p[2]);};
+  const FMT={month:"short",day:"numeric",year:"numeric"};
+
+  /* ---- assign ids + flatten ---- */
+  const FLAT=[];
+  BOOKS.forEach(b=>b.bags.forEach(g=>g.steps.forEach((s,i)=>{
+    s.id=b.id+"."+g.code+"."+i; s.book=b; s.bag=g;
+    FLAT.push(s);
+  })));
+  const total=FLAT.length;
+  const isDone=s=>!!done[s.id];
+  const bookStats=b=>{let n=0,d=0;b.bags.forEach(g=>g.steps.forEach(s=>{n++;if(isDone(s))d++;}));
+    return{n:n,d:d,p:n?d/n:0};};
+
+  document.getElementById("todayline").textContent=
+    "Manual issued "+TODAY.toLocaleDateString(undefined,FMT)+"  •  "+
+    total+" steps  •  6 books  •  "+
+    BOOKS.reduce((a,b)=>a+b.bags.length,0)+" bags";
+  const stamp=document.getElementById("stamp");
+  if(stamp) stamp.textContent=
+    "Generated from the Project Hedge engineering record. Where this manual and an older document "+
+    "disagree, ask before acting: this one is newer.";
+
+  /* ---------- schedule ---------- */
+  const T0=D("2026-08-10"), T1=D("2027-06-30");
+  const span=(T1-T0)/86400000;
+  const pos=d=>((D(d)-T0)/86400000)/span*100;
+  const posD=dt=>((dt-T0)/86400000)/span*100;
+  const MARKS=[{d:"2026-11-15",t:"Hard freeze"},{d:"2027-05-01",t:"Planting"},
+               {d:"2027-06-15",t:"Fire season"}];
+
+  function gantt(){
+    const g=document.getElementById("gantt"); g.textContent="";
+    const months=el("div","gmonths");
+    let cur=new Date(2026,7,1);
+    while(cur<T1){
+      const next=new Date(cur.getFullYear(),cur.getMonth()+1,1);
+      const a=Math.max(cur,T0), b=Math.min(next,T1);
+      const w=((b-a)/86400000)/span*100;
+      if(w>0){const m=el("div","gmonth",
+        cur.toLocaleDateString(undefined,{month:"short"}).toUpperCase());
+        m.style.width=w+"%"; months.appendChild(m);}
+      cur=next;
+    }
+    g.appendChild(months);
+
+    BOOKS.forEach(b=>{
+      const st=bookStats(b);
+      const row=el("div","grow");
+      const lab=el("div","glabel",b.title);
+      const sm=el("small",null,"Book "+b.n+"  "+st.d+"/"+st.n);
+      lab.appendChild(sm); row.appendChild(lab);
+      const tr=el("div","gtrack");
+      const bar=el("div","gbar");
+      bar.style.color=b.color;
+      bar.style.left=pos(b.start)+"%";
+      bar.style.width=Math.max(pos(b.end)-pos(b.start),2)+"%";
+      const fill=el("i"); fill.style.width=(st.p*100)+"%"; bar.appendChild(fill);
+      if(st.p>0){const pctl=el("b",null,Math.round(st.p*100)+"%"); bar.appendChild(pctl);}
+      bar.title=b.title+": "+b.due;
+      tr.appendChild(bar);
+      MARKS.forEach(m=>{const k=el("div","gmark");k.style.left=pos(m.d)+"%";
+        k.title=m.t;tr.appendChild(k);});
+      const now=el("div","gnow"); now.style.left=posD(TODAY)+"%"; now.title="Today";
+      tr.appendChild(now);
+      row.appendChild(tr); g.appendChild(row);
+    });
+
+    const key=el("div","gkey");
+    const k1=el("span"); k1.appendChild(el("em")); k1.appendChild(el("span",null,"today"));
+    key.appendChild(k1);
+    MARKS.forEach(m=>{const s=el("span");const e=el("em","d");s.appendChild(e);
+      s.appendChild(el("span",null,m.t.toLowerCase()+" "+
+        D(m.d).toLocaleDateString(undefined,{month:"short",day:"numeric"})));key.appendChild(s);});
+    key.appendChild(el("span",null,"bar fill = steps checked"));
+    g.appendChild(key);
+  }
+
+  /* ---------- books ---------- */
+  function build(){
+    const host=document.getElementById("books"); host.textContent="";
+    BOOKS.forEach(b=>{
+      const sec=el("section","book"); sec.id="book-"+b.id;
+      const h=el("div","bhead"); h.style.background=b.color;
+      h.appendChild(el("div","bn",String(b.n)));
+      h.appendChild(el("h2",null,b.title));
+      h.appendChild(el("div","due",b.due));
+      sec.appendChild(h);
+      const pr=el("div","bprog"); const pri=el("i"); pri.dataset.book=b.id;
+      pr.appendChild(pri); sec.appendChild(pr);
+      sec.appendChild(el("div","bwhy",b.why));
+
+      b.bags.forEach(g=>{
+        const bag=el("div","bag"); bag.dataset.bag=b.id+"."+g.code;
+        const bh=el("div","bagh");
+        bh.appendChild(el("div","code","BAG "+g.code));
+        bh.appendChild(el("h3",null,g.title));
+        const cnt=el("div","cnt"); cnt.dataset.cnt=b.id+"."+g.code; bh.appendChild(cnt);
+        bag.appendChild(bh);
+        if(g.tools){const p=el("p","parts");p.appendChild(el("b",null,"You need"));
+          p.appendChild(document.createTextNode(g.tools));bag.appendChild(p);}
+        if(g.note) bag.appendChild(el("div","note",g.note));
+        const ol=el("ol","steps");
+        g.steps.forEach((s,i)=>{
+          const li=el("li","step"+(s.f==="stop"?" blocker":""));
+          li.dataset.id=s.id;
+          const cb=document.createElement("input");
+          cb.type="checkbox"; cb.checked=isDone(s);
+          cb.setAttribute("aria-label",s.t);
+          cb.addEventListener("change",()=>{
+            if(cb.checked)done[s.id]=1; else delete done[s.id];
+            save(); refresh();
+          });
+          li.appendChild(cb);
+          li.appendChild(el("div","num",String(i+1)));
+          const body=el("div","body");
+          body.appendChild(el("div","t",s.t));
+          if(s.s) body.appendChild(el("div","sub",s.s));
+          if(s.f&&CHIPS[s.f]) body.appendChild(el("span","chip "+CHIPS[s.f][0],CHIPS[s.f][1]));
+          li.appendChild(body);
+          ol.appendChild(li);
+        });
+        bag.appendChild(ol); sec.appendChild(bag);
+      });
+      host.appendChild(sec);
+    });
+  }
+
+  /* ---------- refresh ---------- */
+  function refresh(){
+    let d=0; FLAT.forEach(s=>{if(isDone(s))d++;});
+    document.getElementById("allmeter").style.width=(total?d/total*100:0)+"%";
+    document.getElementById("allpct").textContent=d+" of "+total+" done";
+
+    BOOKS.forEach(b=>{
+      const st=bookStats(b);
+      const bar=document.querySelector('[data-book="'+b.id+'"]');
+      if(bar) bar.style.width=(st.p*100)+"%";
+      b.bags.forEach(g=>{
+        let n=0,k=0; g.steps.forEach(s=>{n++;if(isDone(s))k++;});
+        const c=document.querySelector('[data-cnt="'+b.id+"."+g.code+'"]');
+        if(c) c.textContent=k+"/"+n;
+        const bag=document.querySelector('[data-bag="'+b.id+"."+g.code+'"]');
+        if(bag) bag.dataset.done=(k===n&&n>0)?"1":"0";
+      });
+    });
+    document.querySelectorAll("li.step").forEach(li=>{
+      li.classList.toggle("on",!!done[li.dataset.id]);
+    });
+    gantt();
+    upnext();
+  }
+
+  function upnext(){
+    const list=document.getElementById("nextlist"); list.textContent="";
+    const pend=FLAT.filter(s=>!isDone(s)).slice(0,5);
+    if(!pend.length){
+      const li=el("li"); li.appendChild(el("div","txt","Everything is checked off. Go look at the tank."));
+      list.appendChild(li); return;
+    }
+    pend.forEach(s=>{
+      const li=el("li");
+      li.appendChild(el("div","tag","B"+s.book.n+" / "+s.bag.code));
+      const t=el("div","txt",s.t); li.appendChild(t);
+      li.style.cursor="pointer";
+      li.addEventListener("click",()=>{
+        const n=document.querySelector('li.step[data-id="'+s.id+'"]');
+        if(n){n.scrollIntoView({behavior:"smooth",block:"center"});
+          n.style.transition="background .4s"; const o=n.style.background;
+          n.style.background="var(--sunk)"; setTimeout(()=>{n.style.background=o;},900);}
+      });
+      list.appendChild(li);
+    });
+  }
+
+  /* ---------- controls ---------- */
+  document.getElementById("btnhide").addEventListener("click",function(){
+    const on=this.getAttribute("aria-pressed")==="true";
+    this.setAttribute("aria-pressed",String(!on));
+    document.body.classList.toggle("hide-done",!on);
+  });
+  document.getElementById("btnjump").addEventListener("click",()=>{
+    const s=FLAT.find(x=>!isDone(x)); if(!s)return;
+    const n=document.querySelector('li.step[data-id="'+s.id+'"]');
+    if(n)n.scrollIntoView({behavior:"smooth",block:"center"});
+  });
+  document.getElementById("btnreset").addEventListener("click",()=>{
+    if(confirm("Clear every checkmark in this manual on this device?")){
+      done={}; save();
+      document.querySelectorAll("li.step input").forEach(c=>{c.checked=false;});
+      refresh();
+    }
+  });
+
+  build(); refresh();
+})();
+</script>
+<script>
+(function(){
+  var t=localStorage.getItem('hedge-theme');
+  if(t)document.documentElement.setAttribute('data-theme',t);
+  if('serviceWorker' in navigator){window.addEventListener('load',function(){
+    navigator.serviceWorker.register('sw.js').catch(function(){});});}
+})();
+</script>
+</body>
+</html>
