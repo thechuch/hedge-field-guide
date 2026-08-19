@@ -102,11 +102,11 @@
   <header class="masthead">
     <div>
       <h1>Battery-to-Bus Wiring</h1>
-      <div class="sub">Project Hedge · deck-box power board · 6× 24V 100Ah</div>
+      <div class="sub">Project Hedge · deck-box power board · 4× 24V 100Ah  (2 more run the shed freezer)</div>
     </div>
     <div class="meta">
       <div><b>SHEET</b> E-2 · battery runs</div>
-      <div><b>DATE</b> 2026-07-15 · <b>REV</b> A (for review)</div>
+      <div><b>DATE</b> 2026-08-17 · <b>REV</b> B (4P corrections)</div>
       <div>reviewed for safety · dry-fit stage</div>
     </div>
   </header>
@@ -117,6 +117,18 @@
     <div class="rec" style="border-left-color:var(--ok)">
       <b>Decision:</b> main bank = <b>4P</b> (~10.2 kWh nominal, <b>~8 kWh usable</b>), all four in warranty. The other <b>2 batteries go to the dedicated shed freezer system</b> (2P, also in spec, also in warranty). Dropping from ~12 to ~8 kWh usable is fine because the Iota grid-charger already covers that autonomy. Bonus: 4P needs only <b>6 landings per bus</b>, so <b>2 bars per polarity</b> and <b>one jumper</b> per bus. Still pre-balance to ~30 mV and verify sharing with the clamp meter. <b>Do not re-litigate 6P.</b>
     </div>
+  </div>
+
+  <div class="callout warn">
+    <h3><span class="tagbig" style="background:var(--warn)">DRAWING IS 6P</span> Do not cut cable from this diagram</h3>
+    <p>Everything in the text below is corrected to <b>4P</b>, but <b>the diagram still shows the old
+       six-pack arrangement</b>: B1 through B6 across three bar pairs. The bank you are actually
+       building is <b>four packs on two bar pairs</b> (A: B1 to B2, B: B3 to B4), which is six landings
+       per bus once the inverter and the charger group are counted, and <b>one jumper per bus instead
+       of two</b>.</p>
+    <p>Read the diagram for <b>topology only</b>: own fuse per pack, diagonal draw, positive last.
+       <b>Take no positions, stud assignments, or cable lengths from it.</b> A redrawn 4P sheet is
+       still to come.</p>
   </div>
 
   <div class="sheet">
@@ -280,7 +292,7 @@
     <div class="card"><h3><span class="n">1</span> Charge-controller &amp; Iota leads had no fuse</h3>
       <p>The biggest gap. Any conductor tapped off the bus must be fused <b>at the bus end</b>, because the source is the full bank (~600A continuous, &gt;1,700A fault). A chafed 6ga/10ga charger lead with no fuse = the bank dumps unlimited current into a thin wire. The charger's internal fuse is at the wrong end. <b>Add: 70A on the controller lead, ~30A on the Iota lead</b> (MRBF on the stud or inline ANL), each in its own leg.</p></div>
     <div class="card"><h3><span class="n">2</span> The battery(+)→fuse stub is unprotected</h3>
-      <p>That short jumper between each battery post and its ANL is always live and unfused, and a fault there is fed by all six packs. This is the <b>#1 cause of DC battery fires</b>. Keep it <b>≤ 7″</b>, boot the post, route it straight to its fuse clear of the − bus and the box wall, and support it. It is oversized if you use 2/0 offcuts.</p></div>
+      <p>That short jumper between each battery post and its ANL is always live and unfused, and a fault there is fed by all four packs. This is the <b>#1 cause of DC battery fires</b>. Keep it <b>≤ 7″</b>, boot the post, route it straight to its fuse clear of the − bus and the box wall, and support it. It is oversized if you use 2/0 offcuts.</p></div>
     <div class="card warn"><h3><span class="n">3</span> Size the bus chain-jumpers like the inverter feed</h3>
       <p>The links joining the 3 bars carry the crossing current, up to ~83A (or the full inverter current if a bar has no batteries on it). A token brass strip or bare bolt there overheats. Use <b>2/0 jumpers</b> (or solid 250A-class bar), and keep ≥2 batteries on the bar the inverter taps. Boot and torque them like any stud.</p></div>
     <div class="card warn"><h3><span class="n">4</span> Pre-charge the inverter + non-combustible barrier</h3>
@@ -292,8 +304,8 @@
     <table>
       <thead><tr><th>ID</th><th>Conductor</th><th>Route</th><th>Gauge</th><th>Fuse / OCPD</th><th>Lands on</th></tr></thead>
       <tbody>
-        <tr class="batt"><td><span class="id p">B1 to B6 +</span></td><td>Battery (+) → its ANL → + bus</td><td>post → fuse (≤7″) → bus</td><td>2/0 (min 1/0)</td><td><b>150A ANL</b> each</td><td>+ bus, 2 per bar (A:B1-2 · B:B3-4 · C:B5-6)</td></tr>
-        <tr class="batt"><td><span class="id n">B1 to B6 −</span></td><td>Battery (−) → − bus</td><td>post → bus</td><td>2/0 (min 1/0)</td><td>, </td><td>− bus, same 2-2-2 studs</td></tr>
+        <tr class="batt"><td><span class="id p">B1 to B4 +</span></td><td>Battery (+) → its ANL → + bus</td><td>post → fuse (≤7″) → bus</td><td>2/0 (min 1/0)</td><td><b>150A ANL</b> each</td><td>+ bus, 2 per bar (A:B1-2 · B:B3-4)</td></tr>
+        <tr class="batt"><td><span class="id n">B1 to B4 −</span></td><td>Battery (−) → − bus</td><td>post → bus</td><td>2/0 (min 1/0)</td><td>, </td><td>− bus, same 2-2-2 studs</td></tr>
         <tr><td><span class="id p">INV+</span></td><td>+ bus LEFT end → 80A breaker → inverter (+)</td><td>bus → breaker → inv</td><td>2/0</td><td>80A BULVACK (150A future, see note)</td><td>+ bus left-end stud (alone)</td></tr>
         <tr><td><span class="id n">INV−</span></td><td>Inverter (−) → − bus RIGHT end</td><td>diagonal, along back edge</td><td>2/0</td><td>, </td><td>− bus right-end stud (alone)</td></tr>
         <tr><td><span class="id e">CTL+</span></td><td>+ bus → controller (+)</td><td>bus → fuse → Tycon</td><td>6ga <b>90°C</b> (or 4ga)</td><td class="newfuse">70A (NEW)</td><td>+ bus right-end stud (stack, bottom)</td></tr>
@@ -311,13 +323,13 @@
   <h2 class="hd">Connect &amp; energize, in this order</h2>
   <ol class="seq">
     <li><b>Mount everything first.</b> Bus bars, ANL holders, TPDIN, DIN block screwed down (with the FR barrier under the bus/fuse zone). Never crimp or torque against a part that can still shift.</li>
-    <li><b>Pre-balance.</b> Individually full-charge each of the 6 packs to 100%, rest, then confirm all six resting voltages are within <b>~30 mV</b> of each other. Do not parallel packs from different states of charge.</li>
+    <li><b>Pre-balance.</b> Individually full-charge each of the 4 packs to 100%, rest, then confirm all four resting voltages are within <b>~30 mV</b> of each other. Do not parallel packs from different states of charge.</li>
     <li><b>Land everything dead.</b> All 6 ANL fuses <b>OUT</b>, 80A breaker <b>OPEN</b>, PV/DIHOOL <b>OPEN</b>. Bolt and torque every cable (negatives, then positives), boots on studs. The bank is not live in this state.</li>
     <li><b>Verify.</b> Meter every pack's polarity/voltage and the bus polarity. Visual + torque check.</li>
     <li><b>Bring packs online one at a time:</b> insert the ANL fuses one by one. <span class="warnpill">A faint tick is normal; a real arc means imbalance or a fault, stop and recheck.</span></li>
     <li><b>Pre-charge, then close the inverter breaker</b> (resistor ~2s across the breaker, then close). Bring up the charger legs.</li>
     <li><b>Guard up.</b> Boots on every stud, lift-off Lexan guard on its standoffs, notched over the 80A breaker handle so the fast-kill stays reachable. <span class="warnpill">Do not energize without boots + guard.</span></li>
-    <li><b>First high-load run:</b> IR-sweep the inverter lug, both diagonal end studs, and all 6 ANL holders. Any joint hotter than its neighbors is loose, re-torque. Then re-torque the whole bank.</li>
+    <li><b>First high-load run:</b> IR-sweep the inverter lug, both diagonal end studs, and all six ANL holders in use (4 battery fuses plus the 70A and 30A charger fuses). Any joint hotter than its neighbors is loose, re-torque. Then re-torque the whole bank.</li>
   </ol>
 
   <h2 class="hd">Verify before you commit (from the manufacturers)</h2>
@@ -338,7 +350,7 @@
   <h2 class="hd">Two tools that show trouble early</h2>
   <div class="cards">
     <div class="card warn"><h3>DC clamp meter: check current sharing</h3>
-      <p>A UNI-T UT210E (~$40) clamps around one cable and reads DC amps <b>without disconnecting anything</b>. With a load running, clamp each of the 6 battery cables one at a time; they should read roughly equal. A pack reading much higher or lower is an imbalance to chase. Its 100A range fits per-pack perfectly, and it earns its keep all over this build.</p></div>
+      <p>A UNI-T UT210E (~$40) clamps around one cable and reads DC amps <b>without disconnecting anything</b>. With a load running, clamp each of the 4 battery cables one at a time; they should read roughly equal. A pack reading much higher or lower is an imbalance to chase. Its 100A range fits per-pack perfectly, and it earns its keep all over this build.</p></div>
     <div class="card warn"><h3>Laser (IR) thermometer: you have one</h3>
       <p>Point it at each lug, fuse, and terminal, especially on the first high-load run and after re-torquing. A joint or pack that reads hotter than its neighbors is loose or over-sharing. Cheap early warning for a bad connection.</p></div>
   </div>
