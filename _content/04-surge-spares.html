@@ -1,0 +1,187 @@
+<section id="bonding" class="guide-section" aria-labelledby="bonding-title">
+  <p class="eyebrow">Electrical safety</p>
+  <h2 id="bonding-title">Grounding, bonding and the shared AC branch</h2>
+  <p><strong>Status: layout proposal. Field verification and final wire sizes are still required.</strong> No array-frame or solar-cabinet bonds have been installed. The earlier independent-ground-rod and automatic DC-negative-bond instructions are withdrawn.</p>
+
+  <h3>The reported grid supply</h3>
+  <ol class="flow-list">
+    <li>Shop panel supplies a 50 A receptacle.</li>
+    <li>The supply follows an underground route of about 20 to 25 ft to the tiny-house 50 A inlet.</li>
+    <li>The tiny-house panel supplies one shared exterior-outlet branch.</li>
+    <li>The middle exterior outlet will supply the IOTA. Its route to the charger is about 15 ft.</li>
+  </ol>
+  <p>A ground rod is reported at the supply end of the 50 A connection. The installed equipment-grounding conductor, panel arrangement and actual service neutral-bond point still need verification. Do not assume that the shop panel is the service equipment. A rod alone does not verify the return path for fault current. <a href="https://obis.osha.gov/dte/library/electrical/electrical.html">Grounding principles: OSHA</a>.</p>
+
+  <div class="table-wrap"><table>
+    <caption>All three exterior outlets share one branch circuit</caption>
+    <thead><tr><th>Outlet</th><th>Recorded load</th><th>Check before charger use</th></tr></thead>
+    <tbody>
+      <tr><td>First, nearest the panel</td><td>GFCI receptacle and network stack</td><td>Record the branch breaker rating and network input load.</td></tr>
+      <tr><td>Middle</td><td>Planned IOTA charger supply</td><td>Verify grounding, GFCI coverage and approved outdoor cord/entry arrangement.</td></tr>
+      <tr><td>Far end</td><td>Also supplies the Rinnai tankless water heater</td><td>Record the heater model and all simultaneous AC loads specified by its manual.</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>The branch rating is still unknown.</strong> The 50 A inlet rating does not establish its capacity. IOTA's DLS-27-15 Series M sheet gives 7.3 A maximum AC input at 108 V and 30 A maximum single-cycle inrush. The 15 A model rating describes DC output. Match the actual charger label to this sheet. Add charger, network and heater demand, including any documented pump or freeze-protection loads, before approving the shared branch. A dedicated charger branch remains an option. <a href="https://www.iotaengineering.com/-/media/abl/iota/files/technical-library/right-column/spec2.pdf?forceBehavior=open">IOTA ratings, page 2</a>.</p>
+  <p>The first GFCI protects later outlets only if they are fed through its protected LOAD connection. Schedule a functional test or have the installer verify coverage. This can interrupt the network and heater. Keep GFCI protection in service. A successful GFCI test does not prove equipment-ground continuity. <a href="https://leviton.com/support/resources/product-support/decora-smart-support/smart-gfci/gfci-line-load-reversal">Leviton LINE and LOAD explanation</a>.</p>
+  <p>If the shared breaker trips, all three loads can lose AC power. A GFCI trip can have the same result if those loads use its LOAD side. Local battery heating and charge-temperature protection must keep their safe function when AC and network service fail.</p>
+
+  <h3>Build one continuous equipment-bonding network</h3>
+  <p><strong>PE means protective earth.</strong> The proposed local equipment-ground bar is called <strong>EB1</strong>. Connect it permanently to an approved point in the tiny-house PE/bonding system. The electrician must define that point and conductor size after checking the supply, panel and trailer/chassis arrangement.</p>
+  <ul>
+    <li>Bond both steel cabinets, their doors and conductive backplates.</li>
+    <li>Bond the metal combiner enclosure and applicable metal raceways.</li>
+    <li>Connect equipment chassis grounding terminals as each manual requires.</li>
+    <li>Bond the panel frames and rails through the exact approved mounting hardware.</li>
+    <li>Connect SPD earth terminals to the local bar with short, direct conductors.</li>
+  </ul>
+  <p>Permanent array and cabinet bonding must remain connected when the IOTA cord is unplugged. Its removable cord cannot be the only permanent equipment-bonding path. The AC feed's equipment-grounding conductor also connects as required.</p>
+  <p>No need has been established for another rod at the cabinets or a separate 20 to 25 ft wire directly to the remote rod. If an additional electrode is required, integrate it into the approved grounding system. Soil cannot replace the equipment-grounding conductor. Do not reuse the old blanket 6 AWG instruction as a final wire schedule.</p>
+  <p>Unplugging the complete 50 A supply can remove the upstream grounding connection. Local equipment bonds must remain connected together. Independent inverter operation requires a verified fault-current path and a permitted neutral arrangement. Keep the inverter's separate office circuit isolated from grid power wiring.</p>
+
+  <div class="table-wrap"><table>
+    <caption>Keep these three decisions separate</caption>
+    <thead><tr><th>Connection</th><th>Current instruction</th></tr></thead>
+    <tbody>
+      <tr><td>Equipment metal to PE</td><td>Provide continuous protective bonding. Never switch or fuse PE.</td></tr>
+      <tr><td>PV or battery negative to PE</td><td>Await the exact equipment grounding instructions and ground-fault design. Do not add a jumper because a data sheet says negative ground.</td></tr>
+      <tr><td>AC neutral to PE</td><td>Keep incoming grid neutral separate from local PE. An inverter-output bond requires its exact manual. Never join inverter neutral to grid neutral to create a ground path.</td></tr>
+    </tbody>
+  </table></div>
+  <p>Use approved bars, studs and compatible bonding hardware. Provide flexible door bonds where required. Hinges and painted mounting screws are not assumed bonding paths. Preserve corrosion protection and enclosure weather sealing. Verify the Pegasus/S-5 combination and its approved bonding parts. Mechanical contact or an arbitrary WEEB clip is insufficient evidence. Review metal roof bonding. The plastic battery-box shell needs no bond; conductive hardware that could become energized needs review. <a href="https://www.nvent.com/en-us/data-solutions/products/bonding-and-grounding-kit">Example bonding-hardware guidance</a>.</p>
+  <p>Two meter readings cannot settle the inverter bonding design. Continuity checks can find a solid connection but cannot establish all relay states, semiconductor paths or manufacturer permission. A floating DC system is not automatically safe.</p>
+
+  <h3>Evidence needed before energizing</h3>
+  <ol>
+    <li>Identify the shop and tiny-house panels, service bond and installed supply conductors.</li>
+    <li>Record the exterior branch breaker rating, GFCI coverage, outlet grounding and connected load ratings.</li>
+    <li>Approve the permanent local PE connection, EB1 hardware and each bond conductor.</li>
+    <li>Obtain the inverter grounding diagram and exact array-mounting bonding schedule.</li>
+    <li>Record continuity results, permitted neutral/DC bonds, terminal torque and the final drawing.</li>
+  </ol>
+</section>
+
+<section id="surge" class="guide-section" aria-labelledby="surge-title">
+  <p class="eyebrow">Transient protection</p>
+  <h2 id="surge-title">Coordinated surge protection and EMP resilience</h2>
+  <p><strong>Status: placement proposal. SPD models are review candidates, not approved purchases.</strong> Surge protective devices, or SPDs, must match the circuit voltage, grounding arrangement, fault current and equipment withstand. No reviewed equipment has a verified complete-system EMP rating.</p>
+  <p>Confirmed route estimates are 15 ft from roof panels to the lower cabinet, 15 ft from the middle grid outlet to the IOTA, and 12 ft from house networking to the solar boxes. No PV descent cables have been run.</p>
+
+  <h3>Proposed locations</h3>
+  <ol>
+    <li><strong>PV:</strong> three two-panel strings, then three separate 15 A string breakers, then the combined PV pair, verified manual disconnect, temperature-controlled PV interruption and TP60 PV input. Place SPD-PV1 in parallel near the controller, on the controller side of PV switching. Give it a short PE connection to EB1.</li>
+    <li><strong>Grid charger:</strong> existing outlet, approved supply cord and cabinet entry, AC connection with SPD-AC1 in parallel, charge-permission contacts and IOTA AC input.</li>
+    <li><strong>Battery bus:</strong> protected branches serve the controller, IOTA, inverter and auxiliaries. Any SPD-DC1 needs a separate protected parallel branch.</li>
+  </ol>
+  <p>These locations are functional, not terminal instructions. Follow the selected device's circuit diagram. Do not pass charging or inverter current through small SPD terminals. Do not bridge a disconnect or charge-inhibit contact with an SPD.</p>
+
+  <div class="table-wrap"><table>
+    <caption>Protection schedule and selection holds</caption>
+    <thead><tr><th>ID and position</th><th>Candidate or direction</th><th>Required decision</th></tr></thead>
+    <tbody>
+      <tr><td>SPD-PV1, TP60 PV input</td><td>MidNite MNSPD-115, review only</td><td>Confirm cold array voltage, protection modes, Tycon impulse withstand, maker-approved coordination and backup protection.</td></tr>
+      <tr><td>SPD-AC0, source panels</td><td>Review existing shop and tiny-house protection. Eaton CHSPT2ULTRA is a possible 120/240 V candidate.</td><td>Identify panels, actual supply, listed breaker arrangement and any existing inline 50 A protector.</td></tr>
+      <tr><td>SPD-AC1, IOTA entry</td><td>DITEK DTK-120HW, conditional</td><td>Verify 120 V L/N/PE, shared branch rating, installation assembly and required conductor lengths.</td></tr>
+      <tr><td>SPD-OUT1, inverter output</td><td>Reserve space. No model selected.</td><td>Confirm inverter topology, neutral treatment, output protection and load route.</td></tr>
+      <tr><td>SPD-DC1, battery circuit</td><td>Low-voltage DC device in its own protected branch. No model selected.</td><td>Confirm DC range, protection modes, battery fault current, short-circuit rating and backup fuse.</td></tr>
+      <tr><td>DATA1, house-to-solar network</td><td>All-dielectric fiber is preferred for metallic-path isolation.</td><td>Select compatible locally powered endpoints. Protect their power circuits.</td></tr>
+      <tr><td>DATA2, copper alternative</td><td>Two Tycon TP-ESP-1000-POE units, one at each protected end</td><td>Confirm interface, PoE, shielding, local PE and outdoor enclosures.</td></tr>
+      <tr><td>CTRL1, signal circuits</td><td>Review RS485, temperature probes, pump and sensor wiring by signal type.</td><td>Preserve pinout, sensor accuracy and fault detection. Review long outdoor runs.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>The 100 V controller needs a coordinated PV selection</h3>
+  <p>The ordered TP-SC24-60N-MPPT has a 100 V PV operating limit. Its data sheet mentions internal TVS lightning protection but gives no numerical common-mode or differential-mode impulse withstand. Obtain that information from Tycon. A surge device cannot correct an array whose cold open-circuit voltage exceeds 100 V. <a href="https://tsi.tyconsystems.com/doc/SpecSheets/TP-SC24-30N%2660N-MPPT_Solar_Chrg_Ctrl_Spec_Sheet.pdf">Tycon TP30/TP60 data sheet</a>.</p>
+  <p>The MNSPD-115 brochure lists <strong>180 V MCOV</strong> and <strong>600 V line-to-ground VPR</strong>. MCOV is its maximum continuous operating voltage; VPR is a rated surge-test result. Its manual separately gives about 295 V at 100 A for an 8/20 microsecond waveform. Those are different tests. This device does not promise a 100 V clamp. Tycon and MidNite must confirm the application and residual-voltage compatibility. <a href="https://www.midnitesolar.com/pdfs/spd_display_brochure.pdf">MidNite ratings</a>; <a href="https://www.midnitesolar.com/pdfs/SPD_Installation_Manual.pdf">installation manual</a>.</p>
+  <p>Keep active and PE leads short and direct. Include lead voltage in the protection assessment. Avoid coiled excess. Use an adjacent enclosure if the cabinet cannot maintain required clearances and wiring separation. Multiple SPD stages need manufacturer-supported coordination.</p>
+  <p>The 15 ft roof route alone does not require a second roof-end stage under this proposal. DEHN's IEC guidance uses 10 m, about 33 ft, as a review threshold; this is not a statement of local code. Reassess if the route changes or external lightning protection is present. Three separate roof strings would need three independent protection channels. Keep the strings separate until their breakers. <a href="https://www.dehn-international.com/en/master-lightning-and-surge-protection-rooftop-pv-systems">DEHN rooftop PV guidance</a>.</p>
+
+  <h3>AC details that affect the layout</h3>
+  <p>The DITEK candidate is a hardwired parallel SPD. It needs a proper junction or control assembly, not a splice into a loose extension cord. Its illustrated junction/control application requires <strong>short SPD leads and at least 3 ft of conductor from the connection point to the protected equipment</strong>. The upstream 15 ft outlet run does not meet that downstream spacing. Its instructions specify a 20 A breaker for the stated short-circuit rating; resolve the actual shared branch before selection. <a href="https://www.diteksurgeprotection.com/wp-content/uploads/DTK-120HW-191509-R10.pdf">DITEK installation requirements</a>.</p>
+  <p>The DTK-120HW data sheet lists NEMA 4X and 700 V L-N/L-G VPR. Those values do not establish IOTA surge compatibility. No ordinary indoor power strip is selected for outdoor service. An IOTA-only SPD does not protect every load on the shared branch. <a href="https://www.diteksurgeprotection.com/wp-content/uploads/DTK-HW-Series-DS.pdf">DITEK ratings</a>.</p>
+  <p>The Eaton source-panel candidate requires a matching 120/240 V system and the specified listed breaker installation. It is not automatically suitable for inverter output. Source-panel and local stages need a coordinated design. Panel work belongs with the electrician. <a href="https://www.eaton.com/us/en-us/skuPage.CHSPT2ULTRA.html">Eaton product data</a>; <a href="https://www.eaton.com/content/dam/eaton/products/backup-power-ups-surge-it-power-distribution/complete-home-surge-protection/recommended-installation-practices-for-chspt1-and-chspt2-products-pct348102.pdf">installation practices</a>.</p>
+
+  <h3>Data, control and shielding</h3>
+  <p>All-dielectric fiber removes the metallic Ethernet connection. Its endpoint power supplies still need protection. If copper remains, the TP-ESP-1000-POE candidate supports gigabit and PoE up to 57 V. Do not substitute the lower-voltage POE24 model because the battery bank is 24 V. Provide the required local bonds and outdoor weather protection. <a href="https://tsi.tyconsystems.com/doc/SpecSheets/TP-ESP-1000-POE_Surge_Protector_Spec_Sheet.pdf">Tycon Ethernet SPD data sheet</a>.</p>
+  <p>The TPDIN link uses a specific RS485 cable and an RJ12 connection at the monitor. An RJ45 Ethernet SPD is not a substitute. Exact TPDIN hardware and firmware still need confirmation. Do not add arbitrary suppressors to charge-safety probes. Their accuracy and open/short fault detection must remain valid. Local temperature protection must operate without networking. <a href="https://tsi.tyconsystems.com/doc/UserManuals/8000084_TPDIN-Monitor-WEB3_quick_install_guide.pdf">TPDIN WEB3 manual</a>.</p>
+  <p>Use proper bonding and coordinated SPDs to reduce cable-borne transients. Keep a tested, disconnected reserve of critical electronics for recovery. A steel cabinet, SPD label, disconnected panel or loss of phone reception does not establish EMP immunity. No guaranteed direct-lightning or EMP protection is claimed. <a href="https://www.cisa.gov/sites/default/files/publications/19_0307_CISA_EMP-Protection-Resilience-Guidelines.pdf">CISA EMP guidance</a>.</p>
+
+  <details>
+    <summary>Manufacturer questions ready to send</summary>
+    <p><strong>Tycon:</strong> For TP-SC24-60N-MPPT, provide PV, battery and RS485 surge-test levels; internal connections among PV-, BAT-, LOAD- and chassis; approved grounding and SPD arrangements. The array is 2S3P, 75.2 V STC Voc and 26.55 A Isc. Cold Voc remains to be finalized below 100 V. Is MNSPD-115 suitable under stated conditions?</p>
+    <p><strong>MidNite:</strong> Confirm the PV SPD, connection modes, residual-voltage data and backup protection for this controller. Roof-to-controller route is about 15 ft.</p>
+    <p><strong>Inverter maker and IOTA:</strong> Provide exact grounding diagrams, permitted bonds, surge withstand and recommended external protection for the installed revisions. Grid feeds IOTA. Inverter output supplies a separate office circuit.</p>
+    <p>These questions are drafts. No external messages have been sent.</p>
+  </details>
+
+  <h3>Surge-protection work sequence</h3>
+  <ol>
+    <li>Mark EB1, PV SPD and AC entry positions. Preserve cooling clearances and mains/PV/battery/sensor separation.</li>
+    <li>Finish the bonding and shared-branch checks above.</li>
+    <li>Obtain equipment and SPD maker confirmation. Freeze exact parts, protection, wire sizes and lead lengths.</li>
+    <li>Install with all sources isolated. Inspect polarity, enclosure bonds, connections and weather seals.</li>
+    <li>Record the approved terminal torque and SPD indicators before commissioning. Do not insulation-test through electronics or SPDs unless their instructions permit it.</li>
+    <li>Add exact replacement parts to the spares register.</li>
+  </ol>
+</section>
+
+<section id="spares" class="guide-section" aria-labelledby="spares-title">
+  <p class="eyebrow">Recovery inventory</p>
+  <h2 id="spares-title">Protected spares register</h2>
+  <p><strong>No item is yet confirmed as tested and stored in verified shielding.</strong> This is a proposed reserve. Ownership, an order, reservation as a spare and protected storage are separate states. Exact serial numbers and storage locations belong in the private local record.</p>
+
+  <h3>Electronics</h3>
+  <div class="table-wrap"><table>
+    <caption>Proposed spare quantities and actual status</caption>
+    <thead><tr><th>ID / priority</th><th>Reserve</th><th>Status and recovery limits</th></tr></thead>
+    <tbody>
+      <tr><td>E01 / first</td><td>1 existing TP-SC24-30N-MPPT</td><td>Owned and photo verified. Reservation and shielding unconfirmed. Reduced-array recovery only: 100 V PV, 780 W maximum at 24 V. One two-panel series string is 500 W. Cold Voc, settings and temperature protection still apply. Never connect the full 1500 W array.</td></tr>
+      <tr><td>E02 / first</td><td>1 spare 24 V inverter for essential loads</td><td>None identified. Size for essential continuous and starting loads; 3000 W is not required if recovery loads are smaller. Keep its own protection and grounding instructions.</td></tr>
+      <tr><td>E03 / first</td><td>1 matching control DC/DC supply</td><td>None identified. DDR-120B-24 is a candidate only. Freeze input range, startup demand, isolation, pinout and fusing first.</td></tr>
+      <tr><td>E04 / first</td><td>1 of each critical temperature-monitor/interface type and 2 matching probes</td><td>Thermal hardware not frozen. Store exact sensor types and settings. This starter reserve does not duplicate the full control system.</td></tr>
+      <tr><td>E05 / next</td><td>1 compatible TPDIN and its data cable</td><td>Operating unit owned; revision and firmware pending. No spare confirmed. Save configuration. Independent temperature protection remains required.</td></tr>
+      <tr><td>E06 / next</td><td>1 matching heater DC/DC supply</td><td>None identified. DDR-240B-24 remains a candidate until heater design is final.</td></tr>
+      <tr><td>E07 / next</td><td>1 of each critical coil-driver/interface type</td><td>Types not selected. Match suppression and contactor release requirements.</td></tr>
+      <tr><td>E08 / next</td><td>1 matching 24 V fan and 1 thermostat</td><td>Operating fans owned and thermostat order recorded. Spare quantities unconfirmed. Verify fan current, regulated supply and thermostat DC switching rating.</td></tr>
+      <tr><td>E09 / optional</td><td>1 network endpoint/converter of each final type</td><td>Fiber/copper choice and models remain open. Charging and temperature protection must work locally without network service.</td></tr>
+      <tr><td>E10 / optional</td><td>1 approved 24 V LiFePO4 charger</td><td>Operating IOTA recorded; no spare identified. Store charge profile and temperature-interlock instructions.</td></tr>
+      <tr><td>E11 / optional</td><td>1 full-array MPPT</td><td>TP60 is ordered for operation. No full-array spare identified. E01 supports reduced recovery only.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Protection and repair stock</h3>
+  <div class="table-wrap"><table>
+    <caption>Proposed stock, purchases and final types remain unconfirmed</caption>
+    <thead><tr><th>ID</th><th>Quantity and item</th><th>Selection rule</th></tr></thead>
+    <tbody>
+      <tr><td>P01</td><td>1 replacement per installed SPD type</td><td>Final models pending. Some need a whole replacement device. Save indicator instructions.</td></tr>
+      <tr><td>P02</td><td>1 MNEPV15-150-1PNP string breaker</td><td>This reserve is additional to the three operating breakers. Purchase unconfirmed.</td></tr>
+      <tr><td>P03</td><td>2 fuses of each final rating and type</td><td>Freeze circuit, holder and fault-interruption ratings first. Old 150 A ANL, 70 A and 30 A assumptions remain unapproved.</td></tr>
+      <tr><td>P04</td><td>1 of each critical charge-interruption contactor/relay</td><td>Match final PV or AC duty. Repeat functional tests after replacement.</td></tr>
+      <tr><td>P05</td><td>1 multimeter, insulated leads and spare meter fuses</td><td>A meter appears in photos. No protected spare confirmed. Match voltage and measurement-category ratings.</td></tr>
+      <tr><td>P06</td><td>Small labeled connector and termination kit</td><td>Exact matching PV connectors, cable lugs, ferrules and sealing parts. Physical fit alone does not establish connector compatibility.</td></tr>
+      <tr><td>P07</td><td>1 printed packet and 1 offline digital copy</td><td>Current drawings, settings, firmware, manuals and terminal schedule. Replace obsolete diagrams before storage.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Do not double-count working equipment</h3>
+  <ul>
+    <li>An extra 250 W panel is recorded as tested in older inventory. Confirm its condition and storage. Its shielding is unverified.</li>
+    <li>The other two LiTime batteries are allocated to the separate shed/freezer system.</li>
+    <li>The ordered TP60, installed inverter, operating fans and TPDIN serve this installation.</li>
+    <li>The retired ATS is excluded from the recovery design.</li>
+  </ul>
+
+  <h3>Prepare each electronic spare</h3>
+  <ol>
+    <li>Record exact model, quantity and serial number. Test normal operation before storage.</li>
+    <li>Save its settings, connection instructions, test date and result.</li>
+    <li>Switch it off. Remove every power, data, probe and antenna cable at the device.</li>
+    <li>Apply appropriate electrostatic protection. Insulate exposed terminals. Use a tested shielding container or pouch and its specified closure. Add nonconductive inner separation where needed.</li>
+    <li>Store dry, within the stated storage-temperature range. Control condensation. Keep reserves separate from operating equipment when practical.</li>
+    <li>Record container identity, private storage location and closure check date.</li>
+    <li>Recheck after use, moisture, damage or configuration changes, and at the intervals specified by the equipment and container makers.</li>
+  </ol>
+  <p>A plastic case, unverified metal box or phone-signal test does not establish broadband EMP protection. CISA recommends disconnected electronic spares and Faraday storage. The priorities and quantities here are project proposals. <a href="https://www.cisa.gov/sites/default/files/publications/19_0307_CISA_EMP-Protection-Resilience-Guidelines.pdf">CISA EMP guidance</a>.</p>
+  <p><strong>Required private log fields:</strong> register ID, model/serial, quantity reserved, function-test date/result, saved settings/manual, shield/container ID, storage location, closure/date checked and current status. E01 currently reads: owned; all protected-storage checks pending.</p>
+  <p>Inspect the affected system before connecting a replacement. Keep battery BMS, fuses, ground-fault functions and cold-charge interlocks in service. A working spare controller or inverter does not establish that the battery BMS survived.</p>
+</section>

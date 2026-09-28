@@ -1,0 +1,43 @@
+<section id="pv" class="chapter" data-title="PV panels strings combiner cables controller">
+  <div class="chapter-heading"><span class="number">04</span><div><p class="eyebrow">Roof to controller</p><h2>PV wiring and combiner</h2></div></div>
+  <p class="lead">Use three strings. Each string contains two panels in series. Bring the three separate positive/negative pairs to one combiner beside the lower white cabinet.</p>
+  <div class="table-wrap"><table><thead><tr><th>Quantity</th><th>One panel</th><th>Two-panel string</th><th>Whole 2S3P array</th></tr></thead><tbody>
+    <tr><td>Rated power</td><td>250 W</td><td>500 W</td><td>1500 W</td></tr>
+    <tr><td>Open-circuit voltage, Voc</td><td>37.6 V</td><td>75.2 V</td><td>75.2 V</td></tr>
+    <tr><td>Maximum-power voltage, Vmp</td><td>30.3 V</td><td>60.6 V</td><td>60.6 V</td></tr>
+    <tr><td>Maximum-power current, Imp</td><td>8.27 A</td><td>8.27 A</td><td>24.81 A</td></tr>
+    <tr><td>Short-circuit current, Isc</td><td>8.85 A</td><td>8.85 A</td><td>26.55 A</td></tr>
+    <tr><td>Panel maximum series fuse</td><td>15 A</td><td>15 A string protection proposed</td><td>Three separate devices</td></tr>
+  </tbody></table></div>
+  <p class="caption">Values come from the photographed SS250P-60 label at standard test conditions. Cold weather increases open-circuit voltage.</p>
+  <div class="notice hold"><strong>Complete the cold-voltage check before connecting PV.</strong><p>Use the panel's verified Voc temperature coefficient and the site's design minimum temperature, or an accepted conservative method. Record the method and result. The corrected string Voc must stay below the TP60's 100 V maximum with the required design margin. Three panels in series already give 112.8 V at standard test conditions and cannot be used.</p></div>
+  <h3>Combiner arrangement</h3>
+  <ol>
+    <li>Pair panels 1/2, 3/4 and 5/6 on the roof. One inter-panel series link joins each pair. Label the free ends A+/A−, B+/B− and C+/C− after polarity verification.</li>
+    <li>Bring each string pair down together. There are six current-carrying conductors plus the required equipment-ground conductor.</li>
+    <li>Each positive enters its own <b>MNEPV15-150-1PNP</b> breaker before joining the positive combiner bus.</li>
+    <li>The three string negatives join the separate PV-negative bar. Equipment-ground conductors join the PE bar.</li>
+    <li>The combined pair goes through the verified manual disconnect and final temperature-controlled PV interruption stage to the controller's <b>PV</b> terminals.</li>
+    <li>The controller's <b>BAT</b> terminals connect to the battery bus through their own coordinated protection. The <b>LOAD terminals stay unused</b> in this plan.</li>
+  </ol>
+  <p>The MNPV3 includes its positive combining bus, negative bar and ground bar. Its standard empty enclosure needs three breakers. Its terminals provide the transition from the individual string conductors to the combined feeder. A three-to-one wire adapter is not required. <a href="https://midnitesolar.com/pdfs/10-010-1_REV_J_MNPV3%266_-_2%264_1000_Manual.pdf">MidNite combiner manual</a>.</p>
+  <div class="notice"><strong>Keep individual string protection.</strong><p>A single 60 A breaker after combining does not replace the three 15 A string breakers. The other parallel strings can feed a fault in one string.</p></div>
+  <h3>Cable and entry schedule</h3>
+  <div class="table-wrap"><table><thead><tr><th>Run</th><th>Working proposal</th><th>Required check before purchase / cut</th></tr></thead><tbody>
+    <tr><td>Roof → combiner</td><td>3 pairs, 10 AWG PV conductors; approximately 15 ft one way</td><td>Actual routes, wet/UV rating, ambient and roof heat, six-conductor grouping, ampacity, voltage drop, conduit fill and matching PV connectors.</td></tr>
+    <tr><td>Combiner → PV switch stage → TP60</td><td>Short 8 AWG combined pair</td><td>Full PV current allowances, temperature/grouping, switch pigtails, terminals and actual route. Size is conditional.</td></tr>
+    <tr><td>Equipment-ground run</td><td>With the PV route</td><td>Final conductor size and listed bonding hardware set by the completed grounding/protection design.</td></tr>
+    <tr><td>TP60 BAT → battery distribution</td><td>Old record: 6 AWG / 70 A</td><td>Recheck controller instructions, cable ampacity, terminal rating, installation conditions and fault interruption. Old values are not released.</td></tr>
+  </tbody></table></div>
+  <p>Measure cable outside diameter for glands. Use one cable per sealing port. Confirm entry position after the new controller and protection layout is drawn. The old two-PV-gland and half-inch-conduit plans do not describe the new three-string descent.</p>
+  <details><summary>Owned DIHOOL disconnect: what must be verified</summary>
+    <p>The purchased listing describes a 60 A, 1000 V DC, two-pole breaker in an IP65 box with short solar-connector leads. The seller image shows DZ47Z-60. Online instructions conflict on polarity and top/bottom feed.</p>
+    <ul><li>Match the delivered label, circuit diagram and instructions.</li><li>Confirm DC load-breaking duty, allowed feed direction and pole arrangement.</li><li>Record attached wire gauge, insulation and temperature ratings.</li><li>Identify the exact connectors and their current ratings.</li><li>Check the complete assembly against the combined array duty and applicable installation requirements.</li></ul>
+    <p>No terminal assignment is released. The 1000 V label is an operating rating; it does not establish surge suppression. <a href="https://www.amazon.com/dp/B0CFCZRDF1">Purchased listing</a> · <a href="https://www.nsbjd.com/collections/low-voltage-electric/products/dz47z-2p">Manufacturer page with conflicting instructions</a>.</p>
+  </details>
+  <details><summary>Controller setup and limits</summary>
+    <ul><li>Keep PV isolated. Connect the controller to the correctly protected battery circuit first so it can detect the system voltage.</li><li>Confirm 24 V system detection. Configure the final LiFePO4 profile while PV remains isolated.</li><li>Use the LiTime charge-voltage basis of 28.8 V ±0.4 V. Final target, duration, float and restart values need a recorded profile. Disable equalization and lead-acid temperature compensation.</li><li>Check measured battery voltage with a suitable meter. The display alone is not sufficient.</li><li>Connect PV only after the complete release checklist passes. For normal shutdown, isolate PV before removing the controller's battery connection.</li><li>Do not put the inverter on LOAD terminals. LOAD-off does not establish that battery charging has stopped.</li><li>The 1500 W array is close to the TP60's 1560 W limit at 24 V. There is no approved panel expansion on this controller.</li></ul>
+    <p>These steps give the required order after release. They do not authorize an unfinished circuit to be powered. <a href="https://tsi.tyconsystems.com/doc/SpecSheets/TP-SC24-30N%2660N-MPPT_Solar_Chrg_Ctrl_Spec_Sheet.pdf">TP controller ratings and interface</a>.</p>
+  </details>
+  <p class="safety-line">Sunlit panels and roof-side leads can remain live when the combiner breakers are open. Keep connectors protected and never separate PV connectors under load.</p>
+</section>

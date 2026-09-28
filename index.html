@@ -1,177 +1,741 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#141b26">
-<title>Project Hedge · Field Guide</title>
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icon.svg">
-<link rel="apple-touch-icon" href="icon.svg">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="stylesheet" href="assets/site.css">
-</head>
-<body>
-<nav class="sitenav">
-  <span class="brand">HEDGE <span class="dot">·</span> Field Guide</span>
-  <button class="spacer" id="themeToggle" aria-label="Toggle light/dark" style="background:none;border:0;color:var(--nav-accent);font-size:20px;margin-left:auto">◐</button>
-</nav>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#183c30"><meta name="description" content="Current Project Hedge field plan: solar, batteries, winter protection, bonding, surge protection and protected spares. Offline guide with private local field notes.">
+<title>Hedge Field Guide | Current system plan</title><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg"><link rel="apple-touch-icon" href="icon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="stylesheet" href="assets/guide.css?v=2026.09.27-r1"><script src="assets/guide.js?v=2026.09.27-r1" defer></script></head>
+<body><a class="skip-link" href="#start">Skip to the plan</a><header class="topbar"><a class="brand" href="./">HEDGE <span>FIELD GUIDE</span></a><span class="status" id="offlineStatus" role="status">Revision 2026.09.27-r1 · checking offline storage</span><button id="themeToggle" type="button" aria-label="Switch light or dark theme">Light / dark</button></header>
+<div class="layout"><nav class="toc" aria-label="Guide sections"><p>In this guide</p><a href="#start"><span class="idx">01</span>Start and next work</a>
+<a href="#map"><span class="idx">02</span>System map</a>
+<a href="#equipment"><span class="idx">03</span>Equipment status</a>
+<a href="#pv"><span class="idx">04</span>PV and combiner</a>
+<a href="#battery"><span class="idx">05</span>Battery box</a>
+<a href="#cabinets"><span class="idx">06</span>Cabinets and fans</a>
+<a href="#thermal"><span class="idx">07</span>Winter protection</a>
+<a href="#bonding"><span class="idx">08</span>Grounding and shared AC</a>
+<a href="#surge"><span class="idx">09</span>Surge protection</a>
+<a href="#spares"><span class="idx">10</span>Protected spares</a>
+<a href="#parts"><span class="idx">11</span>Parts to arrange</a>
+<a href="#commission"><span class="idx">12</span>Release and test order</a>
+<a href="#field-log"><span class="idx">13</span>Field notes</a>
+<a href="#other"><span class="idx">14</span>Water and other projects</a>
+<a href="#record"><span class="idx">15</span>Sources and offline use</a><p class="revision-note">Reviewed 27 September 2026<br>Revision 2026.09.27-r1<br><br>Design holds are shown at the point of use. Read them before work.</p></nav><main class="content" id="main">
+<div id="updateNotice" class="notice" hidden><strong>A newer guide is saved.</strong><p>Reload to use the current instructions. Your saved field notes stay on this device.</p><button type="button" id="reloadGuide">Reload guide</button></div><div class="hero"><p class="eyebrow">Project Hedge · current field record</p><h1>The complete<br>system plan.</h1><p class="intro">Solar power, battery heating, protection and recovery. One guide for the equipment you have and the work still needed.</p><div class="hero-meta"><span>24 V · 1500 W solar · 4P bank</span><span>Offline field reference</span><span>Rev 2026.09.27-r1</span></div></div>
+<div class="toolbar"><div class="mobile-nav"><label for="sectionSelect" class="visually-hidden">Jump to a section</label><select id="sectionSelect" aria-label="Jump to a section"><option value="start">01 · Start and next work</option>
+<option value="map">02 · System map</option>
+<option value="equipment">03 · Equipment status</option>
+<option value="pv">04 · PV and combiner</option>
+<option value="battery">05 · Battery box</option>
+<option value="cabinets">06 · Cabinets and fans</option>
+<option value="thermal">07 · Winter protection</option>
+<option value="bonding">08 · Grounding and shared AC</option>
+<option value="surge">09 · Surge protection</option>
+<option value="spares">10 · Protected spares</option>
+<option value="parts">11 · Parts to arrange</option>
+<option value="commission">12 · Release and test order</option>
+<option value="field-log">13 · Field notes</option>
+<option value="other">14 · Water and other projects</option>
+<option value="record">15 · Sources and offline use</option></select></div><div class="searchbox"><label for="searchGuide" class="visually-hidden">Search the guide</label><input id="searchGuide" type="search" placeholder="Search: combiner, ground, heater…" autocomplete="off"></div><button id="expandDetails" class="secondary" type="button">Open details</button></div><div id="searchStatus" class="search-status" role="status"></div><div class="empty-search" id="noResults" hidden>No matching section. Try a shorter term or clear the search.</div>
+<section id="start" class="chapter" data-title="Start here and next work">
+  <div class="chapter-heading"><span class="number">01</span><div><p class="eyebrow">Current plan</p><h2>Start here</h2></div></div>
+  <p class="lead">Build the 24 V solar system for a separate office outlet. Keep battery heat available during a grid outage. Use local temperature protection for both charging sources.</p>
+  <div class="notice hold"><strong>Power-up is on hold.</strong><p>The purchased equipment can form the proposed system, but its protection, grounding, cold-charge controls and several part ratings still need to be closed. This page is the current design record. It is not a released terminal-by-terminal wiring drawing.</p></div>
+  <div class="facts"><div><b>6 × 250 W</b><span>Two panels per string, three strings</span></div><div><b>4 × 100 Ah</b><span>24 V batteries in parallel</span></div><div><b>TP60 ordered</b><span>100 V PV limit, 60 A charge limit</span></div><div><b>Local winter control</b><span>Battery heat during a grid outage</span></div></div>
+  <h3>Work you can do now</h3>
+  <ol class="work-list">
+    <li><strong>Finish the empty-box layout.</strong> Keep the batteries and all sources disconnected. Reserve the full equipment clearances. Mark proposed locations before drilling.</li>
+    <li><strong>Measure the PV route.</strong> Record all three string routes from their free roof leads to the combiner. The current estimate is 15 ft one way. Include roof travel, bends and service allowance.</li>
+    <li><strong>Check the delivered parts.</strong> Record the TP60, TPDIN, IOTA, inverter, DIHOOL, fan and thermostat labels. Record busbar stud sizes, cable markings and fuse-holder ratings.</li>
+    <li><strong>Resolve the battery base.</strong> Support each complete battery footprint on a stable, moisture-resistant base. Keep terminals covered during fitting. The shelf with front and rear overhang has not been approved.</li>
+    <li><strong>Prepare the protection review.</strong> Use the <a href="#commission">release checklist</a> with the electrician. Close the permanent equipment-ground path, source/bond arrangement, branch load budget and DC fault-protection design.</li>
+  </ol>
+  <div class="notice done"><strong>Recorded progress</strong><p>All four batteries were reported disconnected. The front purple foam and foil-faced end piece were removed. Both new cabinet fans are mounted on their plates. Thermostats and the TP60 were ordered. No roof descent cables have been run. These are user reports, not fresh measurements of the installation.</p></div>
+  <details><summary>What changed from the old guide</summary><ul>
+    <li>The original controller in the photos is a 30 A TP30. The 60 A TP60 is a separate order. The 150 V TS60 was considered but was not selected.</li>
+    <li>PV strings combine in a protected combiner beside the lower cabinet. The old roof Y-branch and half-inch conduit instructions are withdrawn.</li>
+    <li>An isolated ground rod does not provide the required equipment fault path. The solar metalwork needs a permanent bond to the approved building protective-earth system.</li>
+    <li>The standard LiTime batteries do not have confirmed automatic cold-charge protection. Both chargers need the temperature interlock.</li>
+    <li>Fans do not waive equipment clearances. Old fixed fuse, torque, cable-cut and precharge instructions are withdrawn where their basis was not confirmed.</li>
+    <li>The 80 A inverter branch does not support the inverter's full 3000 W rating. A separate branch design is required.</li>
+    <li>The old fire-response, battery bench-test and meter-based neutral-bond instructions have been removed from field use.</li>
+  </ul></details>
+</section>
 
-<div class="wrap">
-  <div class="hero">
-    <p class="eyebrow">Off-grid buildout · Ashland OR</p>
-    <h1>Field Guide</h1>
-    <p>Water, power, and irrigation reference. Works offline once loaded.</p>
+<section id="map" class="chapter" data-title="System map and power flow">
+  <div class="chapter-heading"><span class="number">02</span><div><p class="eyebrow">Functional drawing</p><h2>How the system connects</h2></div></div>
+  <p>This shows power flow and component roles. It does not assign terminals, wire sizes, fuse ratings or neutral bonds. Arrows represent power cables. Surge protectors connect in parallel.</p>
+  <div class="flow-diagram" role="img" aria-label="Three two-panel strings feed individual string breakers and a combiner, then a manual PV disconnect and a temperature-controlled PV interruption stage, then the TP60, then the protected battery bus. Grid power feeds a charge-permission contactor and the IOTA into that bus. The bus feeds the inverter, heaters and controls on separate protected branches.">
+    <div class="flow-lanes"><div class="flow-lane solar"><h3>Roof → lower cabinet</h3><div class="flow-box">String A: panel 1 + panel 2<br>String B: panel 3 + panel 4<br>String C: panel 5 + panel 6<small>Two in series per string</small></div><div class="flow-arrow">↓ three separate pairs</div><div class="flow-box">MNPV3 combiner<br><b>3 × individual 15 A string breakers</b><small>Separate PV negative and PE bars</small></div><div class="flow-arrow">↓ one combined pair</div><div class="flow-box">Manual PV disconnect<small>Owned DIHOOL assembly: verification open</small></div><div class="flow-arrow">↓</div><div class="flow-box pending">PV charge-inhibit stage<small>Final switching design pending</small></div><div class="flow-arrow">↓</div><div class="flow-box">Tycon TP-SC24-60N-MPPT<small>PV terminals in / BAT terminals out</small></div></div>
+    <div class="flow-lane grid"><h3>Existing grid → IOTA</h3><div class="flow-box">Shop-fed 50 A connection<br>→ tiny-house panel<small>20 to 25 ft supply route</small></div><div class="flow-arrow">↓ shared outdoor branch</div><div class="flow-box">First: GFCI + network<br>Middle: IOTA outlet<br>Far: outlet + Rinnai<small>Branch rating and GFCI coverage pending</small></div><div class="flow-arrow">↓ plug-in supply</div><div class="flow-box pending">AC charge-permission contactor<small>Temperature permission overrides charge request</small></div><div class="flow-arrow">↓</div><div class="flow-box">IOTA DLS-27-15<br>+ verified lithium charge profile<small>15 A DC output</small></div></div></div>
+    <div class="flow-arrow wide">↓ separate protected charger circuits ↓</div><div class="flow-box bank"><b>24 V battery distribution</b><br>Four LiTime 24 V 100 Ah batteries in parallel<br>Each positive branch protected near its battery<small>Common positive and negative buses. Final disconnect and fuse arrangement pending.</small></div>
+    <div class="flow-arrow wide">↓ separate protected load circuits ↓</div><div class="flow-loads"><div class="flow-box">24 V inverter<br>→ protected AC branch<br>→ office-only outlet<small>Never backfeed the house</small></div><div class="flow-box pending">Heater LVD + regulated supply<br>→ four local heater controls<br>→ approved battery warmers</div><div class="flow-box pending">Control supply + hard temperature chain<br>TPDIN monitoring<br>Separate cabinet fan circuits</div></div>
+    <div class="earth-strip">PE bonding: array frames and approved rail bonds · metal cabinets and doors · equipment chassis · combiner · SPDs → local PE bar → approved building PE connection</div>
   </div>
+  <p class="caption">The battery-negative bus, PV-negative bar and PE bar have different functions. This diagram does not authorize a connection between them. The inverter's AC neutral arrangement is still open.</p>
+</section>
 
-  <div class="callout ok">
-    <h3><span class="tagbig" style="background:var(--ok)">SETTLED</span> Main bank is 4P</h3>
-    <p>LiTime answered in writing: 6P is not supported and not advised. <b>Main bank = 4P</b> (~8 kWh usable, in warranty). The other <b>2 batteries run the shed freezer</b>. Terminal torque confirmed: <b>7 to 10 N·m</b>.</p>
+<section id="equipment" class="chapter" data-title="Equipment and purchase status">
+  <div class="chapter-heading"><span class="number">03</span><div><p class="eyebrow">Inventory</p><h2>What we have and what is planned</h2></div></div>
+  <div class="table-wrap"><table><thead><tr><th>Item</th><th>Status</th><th>Current use / constraint</th></tr></thead><tbody>
+    <tr><td>6 × SS250P-60, 250 W panels</td><td><span class="badge confirmed">Photo / record</span></td><td>1500 W main array. 2S3P. Check every panel label agrees.</td></tr>
+    <tr><td>Tycon TP-SC24-60N-MPPT</td><td><span class="badge ordered">Ordered</span></td><td>$80 order reported. 100 V PV, 60 A charge, 1560 W maximum array at 24 V. Arrival and test not reported.</td></tr>
+    <tr><td>Tycon TP-SC24-30N-MPPT</td><td><span class="badge confirmed">Owned</span></td><td>Original photographed unit. 100 V PV, 30 A charge, 780 W array at 24 V. Proposed reduced-array spare.</td></tr>
+    <tr><td>4 × LiTime 24 V 100 Ah</td><td><span class="badge confirmed">Owned</span></td><td>Main 4P bank. 25.6 V, 400 Ah, 10.24 kWh nominal. Standard model; low-temperature cutoff unconfirmed.</td></tr>
+    <tr><td>WZRELB / Reliable Electric inverter</td><td><span class="badge confirmed">Owned / mounted</span></td><td>24 V, 3000 W label. Exact model/manual and output grounding are still required.</td></tr>
+    <tr><td>IOTA DLS-27-15</td><td><span class="badge confirmed">Recorded owned</span></td><td>Grid charger. Lithium module/version/profile need confirmation. Plug into the tiny-house middle exterior outlet.</td></tr>
+    <tr><td>TPDIN monitor</td><td><span class="badge confirmed">Owned</span></td><td>Exact model, V1/V2 hardware and firmware pending. Retain for monitoring and normal control.</td></tr>
+    <tr><td>DIHOOL enclosed PV breaker</td><td><span class="badge confirmed">Purchase reported</span></td><td>Listing DZ47Z-60, 60 A / 1000 V DC. Delivered assembly and load-switching instructions unverified.</td></tr>
+    <tr><td>MNPV3 + 3 × MNEPV15-150-1PNP</td><td><span class="badge proposed">Proposed</span></td><td>One combiner and three individual 15 A string breakers. Purchase not confirmed.</td></tr>
+    <tr><td>2 × Wathai 24 V fans</td><td><span class="badge confirmed">Owned / on plates</span></td><td>One per white cabinet. Running/start current and allowed voltage range pending.</td></tr>
+    <tr><td>New fan thermostats</td><td><span class="badge ordered">Ordered</span></td><td>Exact part and DC switching rating need confirmation on arrival.</td></tr>
+    <tr><td>Busbars, ANL holders, 2/0 cables, BULVACK 80 A breaker</td><td><span class="badge confirmed">Owned / recorded</span></td><td>Final duty, dimensions, ratings and installation suitability remain open.</td></tr>
+    <tr><td>Baomain contactor</td><td><span class="badge confirmed">Owned / recorded</span></td><td>Reserved for IOTA grid control. Verify exact coil, contacts and inrush duty.</td></tr>
+    <tr><td>Heat, hard temperature interlock, SPDs, bonding parts</td><td><span class="badge proposed">Design pending</span></td><td>Candidates are listed below. They are not an approved purchase package.</td></tr>
+  </tbody></table></div>
+  <p class="source">Controller ratings: <a href="https://tsi.tyconsystems.com/doc/SpecSheets/TP-SC24-30N%2660N-MPPT_Solar_Chrg_Ctrl_Spec_Sheet.pdf">Tycon TP30 / TP60 data sheet</a>. Equipment photos and the user's order reports establish the other inventory states. The TS-SC24-60N-MPPT, ATS and two shed batteries are outside this main-system equipment list.</p>
+</section>
+
+<section id="pv" class="chapter" data-title="PV panels strings combiner cables controller">
+  <div class="chapter-heading"><span class="number">04</span><div><p class="eyebrow">Roof to controller</p><h2>PV wiring and combiner</h2></div></div>
+  <p class="lead">Use three strings. Each string contains two panels in series. Bring the three separate positive/negative pairs to one combiner beside the lower white cabinet.</p>
+  <div class="table-wrap"><table><thead><tr><th>Quantity</th><th>One panel</th><th>Two-panel string</th><th>Whole 2S3P array</th></tr></thead><tbody>
+    <tr><td>Rated power</td><td>250 W</td><td>500 W</td><td>1500 W</td></tr>
+    <tr><td>Open-circuit voltage, Voc</td><td>37.6 V</td><td>75.2 V</td><td>75.2 V</td></tr>
+    <tr><td>Maximum-power voltage, Vmp</td><td>30.3 V</td><td>60.6 V</td><td>60.6 V</td></tr>
+    <tr><td>Maximum-power current, Imp</td><td>8.27 A</td><td>8.27 A</td><td>24.81 A</td></tr>
+    <tr><td>Short-circuit current, Isc</td><td>8.85 A</td><td>8.85 A</td><td>26.55 A</td></tr>
+    <tr><td>Panel maximum series fuse</td><td>15 A</td><td>15 A string protection proposed</td><td>Three separate devices</td></tr>
+  </tbody></table></div>
+  <p class="caption">Values come from the photographed SS250P-60 label at standard test conditions. Cold weather increases open-circuit voltage.</p>
+  <div class="notice hold"><strong>Complete the cold-voltage check before connecting PV.</strong><p>Use the panel's verified Voc temperature coefficient and the site's design minimum temperature, or an accepted conservative method. Record the method and result. The corrected string Voc must stay below the TP60's 100 V maximum with the required design margin. Three panels in series already give 112.8 V at standard test conditions and cannot be used.</p></div>
+  <h3>Combiner arrangement</h3>
+  <ol>
+    <li>Pair panels 1/2, 3/4 and 5/6 on the roof. One inter-panel series link joins each pair. Label the free ends A+/A−, B+/B− and C+/C− after polarity verification.</li>
+    <li>Bring each string pair down together. There are six current-carrying conductors plus the required equipment-ground conductor.</li>
+    <li>Each positive enters its own <b>MNEPV15-150-1PNP</b> breaker before joining the positive combiner bus.</li>
+    <li>The three string negatives join the separate PV-negative bar. Equipment-ground conductors join the PE bar.</li>
+    <li>The combined pair goes through the verified manual disconnect and final temperature-controlled PV interruption stage to the controller's <b>PV</b> terminals.</li>
+    <li>The controller's <b>BAT</b> terminals connect to the battery bus through their own coordinated protection. The <b>LOAD terminals stay unused</b> in this plan.</li>
+  </ol>
+  <p>The MNPV3 includes its positive combining bus, negative bar and ground bar. Its standard empty enclosure needs three breakers. Its terminals provide the transition from the individual string conductors to the combined feeder. A three-to-one wire adapter is not required. <a href="https://midnitesolar.com/pdfs/10-010-1_REV_J_MNPV3%266_-_2%264_1000_Manual.pdf">MidNite combiner manual</a>.</p>
+  <div class="notice"><strong>Keep individual string protection.</strong><p>A single 60 A breaker after combining does not replace the three 15 A string breakers. The other parallel strings can feed a fault in one string.</p></div>
+  <h3>Cable and entry schedule</h3>
+  <div class="table-wrap"><table><thead><tr><th>Run</th><th>Working proposal</th><th>Required check before purchase / cut</th></tr></thead><tbody>
+    <tr><td>Roof → combiner</td><td>3 pairs, 10 AWG PV conductors; approximately 15 ft one way</td><td>Actual routes, wet/UV rating, ambient and roof heat, six-conductor grouping, ampacity, voltage drop, conduit fill and matching PV connectors.</td></tr>
+    <tr><td>Combiner → PV switch stage → TP60</td><td>Short 8 AWG combined pair</td><td>Full PV current allowances, temperature/grouping, switch pigtails, terminals and actual route. Size is conditional.</td></tr>
+    <tr><td>Equipment-ground run</td><td>With the PV route</td><td>Final conductor size and listed bonding hardware set by the completed grounding/protection design.</td></tr>
+    <tr><td>TP60 BAT → battery distribution</td><td>Old record: 6 AWG / 70 A</td><td>Recheck controller instructions, cable ampacity, terminal rating, installation conditions and fault interruption. Old values are not released.</td></tr>
+  </tbody></table></div>
+  <p>Measure cable outside diameter for glands. Use one cable per sealing port. Confirm entry position after the new controller and protection layout is drawn. The old two-PV-gland and half-inch-conduit plans do not describe the new three-string descent.</p>
+  <details><summary>Owned DIHOOL disconnect: what must be verified</summary>
+    <p>The purchased listing describes a 60 A, 1000 V DC, two-pole breaker in an IP65 box with short solar-connector leads. The seller image shows DZ47Z-60. Online instructions conflict on polarity and top/bottom feed.</p>
+    <ul><li>Match the delivered label, circuit diagram and instructions.</li><li>Confirm DC load-breaking duty, allowed feed direction and pole arrangement.</li><li>Record attached wire gauge, insulation and temperature ratings.</li><li>Identify the exact connectors and their current ratings.</li><li>Check the complete assembly against the combined array duty and applicable installation requirements.</li></ul>
+    <p>No terminal assignment is released. The 1000 V label is an operating rating; it does not establish surge suppression. <a href="https://www.amazon.com/dp/B0CFCZRDF1">Purchased listing</a> · <a href="https://www.nsbjd.com/collections/low-voltage-electric/products/dz47z-2p">Manufacturer page with conflicting instructions</a>.</p>
+  </details>
+  <details><summary>Controller setup and limits</summary>
+    <ul><li>Keep PV isolated. Connect the controller to the correctly protected battery circuit first so it can detect the system voltage.</li><li>Confirm 24 V system detection. Configure the final LiFePO4 profile while PV remains isolated.</li><li>Use the LiTime charge-voltage basis of 28.8 V ±0.4 V. Final target, duration, float and restart values need a recorded profile. Disable equalization and lead-acid temperature compensation.</li><li>Check measured battery voltage with a suitable meter. The display alone is not sufficient.</li><li>Connect PV only after the complete release checklist passes. For normal shutdown, isolate PV before removing the controller's battery connection.</li><li>Do not put the inverter on LOAD terminals. LOAD-off does not establish that battery charging has stopped.</li><li>The 1500 W array is close to the TP60's 1560 W limit at 24 V. There is no approved panel expansion on this controller.</li></ul>
+    <p>These steps give the required order after release. They do not authorize an unfinished circuit to be powered. <a href="https://tsi.tyconsystems.com/doc/SpecSheets/TP-SC24-30N%2660N-MPPT_Solar_Chrg_Ctrl_Spec_Sheet.pdf">TP controller ratings and interface</a>.</p>
+  </details>
+  <p class="safety-line">Sunlit panels and roof-side leads can remain live when the combiner breakers are open. Keep connectors protected and never separate PV connectors under load.</p>
+</section>
+
+<section id="battery" class="chapter" data-title="Battery box" aria-labelledby="battery-title"><div class="chapter-heading"><span class="number">05</span><div><p class="eyebrow">Battery box</p><h2 id="battery-title">Support and connect four batteries</h2></div></div>
+  <p><strong>Current state:</strong> the four batteries were reported disconnected. The front foam and foil-faced end piece were removed. The level box sits on a level rock and decomposed-granite pad. The internal support and electrical protection still need approval.</p>
+
+  <div class="callout hold"><strong>Hold before connection.</strong> Confirm the support, battery branch protection, bus ratings, terminal torque and charging protection. An isolated battery still has live terminals. Keep its terminal covers in place during mechanical work.</div>
+
+  <h3>Bank specification</h3>
+  <div class="table-wrap"><table>
+    <caption>Current four-pack design basis</caption>
+    <thead><tr><th scope="col">Item</th><th scope="col">Value</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Battery</th><td>Four matching LiTime 24 V, 100 Ah LiFePO4 packs</td></tr>
+      <tr><th scope="row">Connection</th><td>Four in parallel, called 4P. This is the recorded manufacturer limit.</td></tr>
+      <tr><th scope="row">Bank</th><td>25.6 V nominal, 400 Ah, 10.24 kWh nominal</td></tr>
+      <tr><th scope="row">Charge target</th><td>Standard-model manual: 28.8 V ±0.4 V, CC/CV. Final charger profiles remain open.</td></tr>
+      <tr><th scope="row">Charge current</th><td>20 A recommended per pack. Planned 60 A solar plus 15 A IOTA gives 75 A total, or 18.75 A per pack with equal sharing.</td></tr>
+      <tr><th scope="row">Temperature limits</th><td>Standard model: charge at 0 to 50°C (32 to 122°F); discharge at −20 to 60°C (−4 to 140°F).</td></tr>
+    </tbody>
+  </table></div>
+  <p>The matched standard model has no listed automatic low-temperature charge cutoff. Use that conservative basis until LiTime confirms the installed BMS revision. <a href="https://www.litime.com/products/litime-24v-100ah-lifepo4-lithium-battery">LiTime specification</a> · <a href="https://cdn.shopify.com/s/files/1/0667/7220/5788/files/LiTime_25.6V_100Ah_Battery_-_User_Manual.pdf?v=1754646461">Battery manual</a></p>
+
+  <h3>Work that can proceed with all power isolated</h3>
+  <ol>
+    <li>Remove loose hardware and debris. Keep the enclosure dry. Inspect its base and drainage.</li>
+    <li>Measure all four battery footprints and the available height. Include room for terminal covers, cables, sensors and service access.</li>
+    <li>Provide a flat platform that supports the full base of each battery. Check sustained load capacity for the reported 180 lb combined weight.</li>
+    <li>Check the Keter shelf in its actual orientation and with its actual supports. The proposed 1 inch front and rear overhang remains unresolved. A shelving-unit rating alone does not approve that arrangement.</li>
+    <li>Keep cement board on a structural support if used as a barrier. Cement board alone is not a load-bearing shelf. Wood, composite decking and plastic require a support and heater-clearance review.</li>
+    <li>Plan restraints that prevent movement and keep cables off the terminals. Do not drill the battery cases.</li>
+    <li>Keep terminal and fuse areas clear of loose foam, foil and stored tools. Select any future insulation as part of the complete enclosure and heater design.</li>
+  </ol>
+  <p>Raising the batteries above the floor does not establish winter insulation performance. Keep the support decision separate from the heat-loss calculation.</p>
+
+  <details>
+    <summary>Battery buses, fuses and cable layout</summary>
+    <p>Each battery positive needs its own coordinated source protection and isolation arrangement. Each battery negative goes to the negative collection bus. Cover all live studs and bus sections.</p>
+    <ul>
+      <li>Use matching conductor construction and balanced total positive-plus-negative branch resistance for the four batteries.</li>
+      <li>Match state of charge by the battery maker's procedure before paralleling. Similar voltage alone does not prove equal state of charge.</li>
+      <li>Account for fault current from the battery and backfeed from the other batteries through the bus. The installer must resolve protection at every relevant source end.</li>
+      <li>Give the MPPT, IOTA, inverter, heaters and controls separate protected branches.</li>
+      <li>If a shunt is fitted, all battery negatives go to its BATTERY side. All load and charger returns go to its SYSTEM side. Avoid a return path that bypasses it.</li>
+      <li>Confirm bus stud size before buying lugs. Match every lug to the stud, conductor and approved crimp tool.</li>
+    </ul>
+    <p><strong>Unresolved:</strong> fuse types and interrupt ratings, holders, bus ratings, cable sizes and lengths, disconnects, terminal torque and precharge procedure. The earlier 150 A ANL battery fuses and 2/0 cable are inventory or design history. They are not a completed protection approval.</p>
+    <p>Battery torque values conflict across saved records. Obtain the instruction for the actual battery revision before tightening. Do not use an old page's number.</p>
+  </details>
+</section>
+
+<section id="cabinets" class="chapter" data-title="Cabinets and fans" aria-labelledby="cabinets-title"><div class="chapter-heading"><span class="number">06</span><div><p class="eyebrow">Two white cabinets</p><h2 id="cabinets-title">Inverter, chargers and cooling</h2></div></div>
+  <p><strong>Layout:</strong> the upper cabinet holds the inverter. The lower cabinet is for the MPPT, IOTA and associated controls. The battery box is beside them. Preserve equipment airflow and service space.</p>
+  <div class="callout hold"><strong>Clearance correction.</strong> Forced ventilation does not approve reduced manufacturer clearances. Check the actual TP60 and inverter manuals before final mounting or drilling. The earlier TS60 clearance drawing does not apply to the ordered TP60.</div>
+
+  <h3>Upper cabinet: 24 V inverter</h3>
+  <p>The photographed inverter is a 24 V, 3000 W YueQing Reliable Electric / WZRELB unit. Its exact model suffix, mounting instructions, output protection and neutral-to-earth arrangement still need confirmation.</p>
+  <ul>
+    <li>Supply it from its own protected battery branch. Keep the controller LOAD terminals unused.</li>
+    <li>The owned 80 A BULVACK breaker cannot support full 3000 W output. At 24 V, 3000 W already requires 125 A before inverter losses. Recheck the complete circuit before changing its protection.</li>
+    <li>Keep its AC output on the separate office circuit. The ATS is excluded. Do not connect this output to the tiny-house panel or grid outlets.</li>
+    <li>Confirm the required AC breaker, cable, GFCI and neutral bond from the exact output design. Two meter readings do not establish a safe bonding arrangement.</li>
+    <li>Use an approved factory remote interface if available. Opening the inverter or modifying its rocker switch is outside this plan.</li>
+  </ul>
+
+  <h3>Lower cabinet: solar controller</h3>
+  <p><strong>Ordered:</strong> TP-SC24-60N-MPPT, with a 100 V PV limit, 60 A charging and a 1560 W array limit at 24 V. The existing TP-SC24-30N-MPPT has a 780 W limit at 24 V and cannot take all six panels. <a href="https://tsi.tyconsystems.com/doc/SpecSheets/TP-SC24-30N%2660N-MPPT_Solar_Chrg_Ctrl_Spec_Sheet.pdf">Tycon TP30/TP60 data sheet</a></p>
+  <p>After the electrical design is released, the startup order is battery supply first, settings next, PV last. Shutdown is PV first, battery last. During a normal cold-charge stop, the controller stays connected to its battery supply and the PV path opens.</p>
+  <p>Set the approved lithium profile before enabling PV. Disable equalization. Record charge voltage, duration, float behavior and temperature compensation after LiTime/Tycon confirmation. The old 6 AWG / 70 A branch approval remains under review.</p>
+
+  <h3>Lower cabinet: IOTA grid charger</h3>
+  <p>The recorded charger is an IOTA DLS-27-15 Series M. Its 15 A rating is DC output. Its manufacturer sheet lists up to 7.3 A AC input at 108 V and 30 A single-cycle inrush. Check the delivered unit against that sheet. <a href="https://www.iotaengineering.com/-/media/abl/iota/files/technical-library/right-column/spec2.pdf?forceBehavior=open">IOTA Series M ratings</a></p>
+  <ul>
+    <li>Use grid power through the approved charge-permission contactor. Its DC output has a separate protected connection to the battery bus.</li>
+    <li>Confirm the IQ-LIFEPO module, its exact 24 V profile and the charger ambient limits. The old statement that 27.2 V stops at a fixed 85% state of charge is withdrawn.</li>
+    <li>Verify the Baomain contactor model, coil voltage, charger inrush duty and enclosure wiring before reuse.</li>
+    <li>Keep protective earth continuous. Final line and neutral switching follows the verified supply arrangement.</li>
+    <li>Do not power this charger from the inverter connected to the same battery bank.</li>
+  </ul>
+  <details>
+    <summary>Shared exterior outlet circuit</summary>
+    <p>The three exterior outlets share one tiny-house branch. The first, nearest the panel, is a GFCI and supplies the network stack. The middle will supply the IOTA. The far outlet also branches to the Rinnai water heater.</p>
+    <p>Confirm the branch breaker rating and the simultaneous load of all three uses. Include the heater's actual electrical auxiliaries. The 50 A house inlet does not establish this branch's available capacity.</p>
+    <p>Confirm whether the middle and far outlets are on the first GFCI's protected LOAD connection. Plan this test because it can interrupt the network and heater. A GFCI test does not prove equipment-ground continuity.</p>
+    <p>A shared trip can remove the charger, network and heater together. Local battery-temperature protection must continue to function without the network.</p>
+  </details>
+
+  <h3>One cooling circuit per cabinet</h3>
+  <p>The replacement Wathai 24 V fans are mounted on the plates. Thermostats are on order. Check the received thermostat models and fan current before wiring.</p>
+  <p class="path">Regulated 24 V supply → fan branch fuse → cooling thermostat → fan positive. Fan negative → regulated return.</p>
+  <ul>
+    <li>Use one thermostat in each cabinet. It must close as the cabinet becomes warm.</li>
+    <li>Verify the thermostat's DC switching rating. A 250 V AC marking alone does not establish it.</li>
+    <li>Verify the fan's permitted voltage range. Its 24 V label alone does not permit a direct connection to a bank charging above 28 V.</li>
+    <li>Keep the recorded top exhaust and side intake paths clear. Confirm actual fan direction and cabinet temperatures with doors closed.</li>
+    <li>Keep cabinet cooling independent of battery heating.</li>
+  </ul>
+  <p>If the new controls cannot fit with all required clearances and wiring barriers, add a separate control enclosure. Its final size remains open.</p>
+</section>
+
+<section id="thermal" class="chapter" data-title="Winter protection" aria-labelledby="thermal-title"><div class="chapter-heading"><span class="number">07</span><div><p class="eyebrow">Winter operation</p><h2 id="thermal-title">Heat during an outage, block unsafe charging</h2></div></div>
+  <div class="callout hold"><strong>Design for review.</strong> This section defines the required behavior. The heater kits, contactors, sensors, interfaces and final settings are not released for installation. Do not wire from this functional description.</div>
+  <p>The heaters will use a separate battery-powered branch. Both chargers must stop if any battery is outside its allowed charging temperature. Heating may continue while charging is blocked, provided battery discharge temperature and remaining energy permit it.</p>
+
+  <h3>Four required functions</h3>
+  <ol>
+    <li><strong>Measure every pack.</strong> Use an independent charge-temperature sensor on each of the four batteries. Cabinet air cannot establish cell temperature.</li>
+    <li><strong>Stop both charging sources.</strong> A hardwired permit controls the solar PV switching and IOTA AC switching. A TPDIN command must not override a hard temperature trip.</li>
+    <li><strong>Regulate each warmer.</strong> Each pack needs local temperature control and independent overtemperature protection. A warm pack must not stop heat needed by another pack.</li>
+    <li><strong>Preserve discharge limits.</strong> Low battery voltage, extreme temperature or a heater fault can stop heat. Extreme-temperature shutdown must also address the inverter and other loads.</li>
+  </ol>
+  <p class="path">Battery bus → protected heater branch → service switch → low-voltage disconnect → regulated 24 V converter → heater safety switch → four separately protected warmer branches.</p>
+
+  <details open>
+    <summary>Charging protection and restart</summary>
+    <p>The proposed hardwired circuit uses four independent window monitors. Loss of a sensor, monitor power or control power must remove permission to charge. A manual reset follows each hard trip.</p>
+    <div class="table-wrap"><table>
+      <caption>Proposed settings for validation, not commissioned values</caption>
+      <thead><tr><th scope="col">Function</th><th scope="col">Review value</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Hard charge-temperature window</th><td>5 to 45°C (41 to 113°F), subject to sensor error and thermal lag</td></tr>
+        <tr><th scope="row">Manual ARM check</th><td>All four packs at 10 to 40°C (50 to 104°F), after validated cold-soak recovery</td></tr>
+        <tr><th scope="row">Signal stability</th><td>60 seconds healthy before manual ARM; a held button must not restart the system after a trip</td></tr>
+        <tr><th scope="row">Heater low-voltage cutoff</th><td>Final stop and restart voltages remain open. Validate them with battery behavior, converter demand and the energy reserve.</td></tr>
+        <tr><th scope="row">Extreme-cold heater stop</th><td>Preliminary −15°C (5°F) stop / above −10°C (14°F) restart; requires all-pack discharge supervision</td></tr>
+      </tbody>
+    </table></div>
+    <p><strong>A 60-second delay is not a thaw time.</strong> A warm battery case can contain cold cells. Use a battery-maker procedure or a validated conservative soak method before allowing charge after deep cold exposure.</p>
+    <p>Proposed PV contactors open the two PV conductors while the MPPT battery supply remains connected. IOTA charge inhibition opens its AC supply. These control contacts do not replace service disconnects.</p>
+    <p>The exact PV switching assembly needs verified DC load-breaking duty, polarity, controller input inrush, precharge and coil interfaces. A requested OFF state is not proof that charging current has stopped.</p>
+  </details>
+
+  <details>
+    <summary>TPDIN role and limits</summary>
+    <p>The owned TPDIN model, V1/V2 hardware and firmware still need confirmation. Its documented temperature input and relay control can support normal operation. The independent hardwired temperature chain supplies the protective override. <a href="https://tsi.tyconsystems.com/doc/UserManuals/8000084_TPDIN-Monitor-WEB3_quick_install_guide.pdf">TPDIN WEB3 guide</a></p>
+    <ul>
+      <li>Use a separate battery-temperature probe for the TPDIN. Do not share a passive RTD between two instruments.</li>
+      <li>Use a fused battery-voltage sense connection. Do not connect its 80 V maximum voltage input directly to the PV array.</li>
+      <li>Use suitable external sensing for high current. Keep inverter and charger current out of small inline current ports.</li>
+      <li>Use hardware contacts in series for required permission conditions. Software rule priority alone does not prove the required logic.</li>
+      <li>Keep normal grid-charge requests downstream of the hardwired permit. Use interfaces rated for the actual contactor coil duty.</li>
+      <li>Confirm the correct Tycon communications cable and the actual hardware revision before assigning ports, relay numbers or firmware.</li>
+    </ul>
+    <p>Relay control, network monitoring and solar data are distinct functions. A LOAD-off command or temperature-compensation setting does not establish low-temperature charge cutoff.</p>
+  </details>
+
+  <details>
+    <summary>Candidate parts and quantities</summary>
+    <p>These are sourcing candidates. Keep the exact part choice open until the listed tests and interface checks are complete.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th scope="col">Qty.</th><th scope="col">Function and candidate</th><th scope="col">Open check</th></tr></thead>
+      <tbody>
+        <tr><td>4</td><td>Siemens 3RS2600-1BW30 temperature monitors</td><td>Window function, contact states, accuracy and hysteresis</td></tr>
+        <tr><td>4</td><td>Matched three-wire Pt100 surface probes</td><td>Cold-point placement, secure insulated attachment and fault detection</td></tr>
+        <tr><td>1 set</td><td>Delay, monitored manual reset, OFF and ARM controls</td><td>Held-button restart prevention and power-loss behavior</td></tr>
+        <tr><td>2</td><td>Sensata GX11TAB PV contactor candidates</td><td>Actual PV switching duty, precharge, polarity and coil drivers</td></tr>
+        <tr><td>1</td><td>Existing Baomain contactor for IOTA</td><td>Delivered model, coil, AC charger inrush and installation suitability</td></tr>
+        <tr><td>1</td><td>MEAN WELL DDR-120B-24 control supply</td><td>120 W / 5 A load budget, startup and temperature derating</td></tr>
+        <tr><td>1</td><td>MEAN WELL DDR-240B-24 heater converter</td><td>24 V / 10 A output, 16.8 to 33.6 V input; full installed-load review</td></tr>
+        <tr><td>1</td><td>Smart BatteryProtect 65 on the heater-converter input</td><td>Converter inrush and normal voltage-protection mode compatibility</td></tr>
+        <tr><td>4 kits</td><td>24 V LiFePO4 case-specific warmers, initial budget up to 50 W per pack</td><td>Exact case fit, local thermostat, independent limit and approved attachment</td></tr>
+        <tr><td>1 system</td><td>Heater safety switch and all-pack discharge supervision</td><td>High and low temperature limits, sequencing and cold/depleted recovery</td></tr>
+      </tbody>
+    </table></div>
+    <p>Sources: <a href="https://support.industry.siemens.com/cs/attachments/109772132/manual_temp_monitoring_relay_en-US.pdf">Siemens monitor manual</a> · <a href="https://www.sensata.com/sites/default/files/a/sensata-gigavac-gx11-series-open-contactors-datasheet.pdf">GX11 data sheet</a> · <a href="https://www.meanwell.com/Upload/PDF/DDR-120/DDR-120-SPEC.PDF">DDR-120</a> · <a href="https://www.meanwell.com/Upload/PDF/DDR-240/DDR-240-SPEC.pdf">DDR-240</a> · <a href="https://www.victronenergy.com/media/pg/Smart_BatteryProtect_12V_24V/en/operation-and-programming.html">BatteryProtect manual</a> · <a href="https://www.ultraheat.com/batterywarmers">UltraHeat warmer sourcing</a></p>
+    <p>UltraHeat is a sourcing option, with no confirmed LiTime-approved kit in this plan. Do not substitute a generic heating pad. Do not sandwich an unapproved heater against foam, plywood or plastic. No blanket flyback-diode instruction applies to all selected coils.</p>
+  </details>
+
+  <details>
+    <summary>Outage behavior and energy budget</summary>
+    <div class="table-wrap"><table>
+      <thead><tr><th scope="col">Condition</th><th scope="col">Required response</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Grid outage, warm bank</th><td>Solar can charge if permitted. Battery heat remains available. IOTA is off.</td></tr>
+        <tr><th scope="row">Any pack too cold or too hot to charge</th><td>Stop solar and IOTA charging. Heat follows its separate safe limits.</td></tr>
+        <tr><th scope="row">Charge sensor fault or hard trip</th><td>Stop both chargers and require manual ARM after the fault is cleared.</td></tr>
+        <tr><th scope="row">Network lost</th><td>Local hard protection remains effective.</td></tr>
+        <tr><th scope="row">TPDIN or control power lost</th><td>Charging stops. The proposed heater-enable path also opens.</td></tr>
+        <tr><th scope="row">Heater low-voltage stop</th><td>Heat stops. Charging remains subject to temperature permission.</td></tr>
+        <tr><th scope="row">Cold, depleted bank</th><td>Use the approved external warming or isolated-battery recovery procedure. Keep cold charging blocked.</td></tr>
+        <tr><th scope="row">Welded switching contact</th><td>Control indication cannot prove isolation. Use the approved manual disconnect and repair procedure.</td></tr>
+      </tbody>
+    </table></div>
+    <p>The initial heater allowance is 200 W total. Heat-loss measurements must establish whether this is enough. Insulation, wind, leakage, warm-up time and the coldest pack all affect the result.</p>
+    <p>Illustrative runtime: with 8.192 kWh available, 90% converter efficiency and 25 W controls, 200 W heat at 50% duty uses about 136 W and lasts about 60 hours. Continuous heat uses about 247 W and lasts about 33 hours. Other loads, cold and battery age reduce those values. These are planning calculations.</p>
+  </details>
+
+  <h3>Tests required before unattended use</h3>
+  <ol>
+    <li>Bench-test the controls with high-energy circuits isolated. Simulate temperature with suitable test equipment. Do not test the system by charging a frozen battery.</li>
+    <li>Test each pack's cold, hot, open-sensor and shorted-sensor conditions. Both chargers must stop in every case.</li>
+    <li>Test control power loss, TPDIN loss, network loss, reboot, a stuck charge request and a held ARM button.</li>
+    <li>Test each warmer, independent high limit, low-voltage stop and extreme-temperature shutdown.</li>
+    <li>After power-circuit inspection, verify actual charging current stops for solar and IOTA, separately and together.</li>
+    <li>Run a supervised cold-weather soak test with the final box and sensors. Record all four temperatures, heater duty, ambient conditions and energy use.</li>
+    <li>Test one failed warmer and one displaced sensor. Confirm a warm pack cannot permit charging of a cold pack.</li>
+    <li>Record the final settings, connection drawings and recovery procedure. Retest protective functions after wiring, sensor or firmware changes.</li>
+  </ol>
+</section>
+
+<section id="bonding" class="chapter" data-title="Grounding and shared AC" aria-labelledby="bonding-title"><div class="chapter-heading"><span class="number">08</span><div><p class="eyebrow">Electrical safety</p><h2 id="bonding-title">Grounding, bonding and the shared AC branch</h2></div></div>
+  <p><strong>Status: layout proposal. Field verification and final wire sizes are still required.</strong> No array-frame or solar-cabinet bonds have been installed. The earlier independent-ground-rod and automatic DC-negative-bond instructions are withdrawn.</p>
+
+  <h3>The reported grid supply</h3>
+  <ol class="flow-list">
+    <li>Shop panel supplies a 50 A receptacle.</li>
+    <li>The supply follows an underground route of about 20 to 25 ft to the tiny-house 50 A inlet.</li>
+    <li>The tiny-house panel supplies one shared exterior-outlet branch.</li>
+    <li>The middle exterior outlet will supply the IOTA. Its route to the charger is about 15 ft.</li>
+  </ol>
+  <p>A ground rod is reported at the supply end of the 50 A connection. The installed equipment-grounding conductor, panel arrangement and actual service neutral-bond point still need verification. Do not assume that the shop panel is the service equipment. A rod alone does not verify the return path for fault current. <a href="https://obis.osha.gov/dte/library/electrical/electrical.html">Grounding principles: OSHA</a>.</p>
+
+  <div class="table-wrap"><table>
+    <caption>All three exterior outlets share one branch circuit</caption>
+    <thead><tr><th>Outlet</th><th>Recorded load</th><th>Check before charger use</th></tr></thead>
+    <tbody>
+      <tr><td>First, nearest the panel</td><td>GFCI receptacle and network stack</td><td>Record the branch breaker rating and network input load.</td></tr>
+      <tr><td>Middle</td><td>Planned IOTA charger supply</td><td>Verify grounding, GFCI coverage and approved outdoor cord/entry arrangement.</td></tr>
+      <tr><td>Far end</td><td>Also supplies the Rinnai tankless water heater</td><td>Record the heater model and all simultaneous AC loads specified by its manual.</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>The branch rating is still unknown.</strong> The 50 A inlet rating does not establish its capacity. IOTA's DLS-27-15 Series M sheet gives 7.3 A maximum AC input at 108 V and 30 A maximum single-cycle inrush. The 15 A model rating describes DC output. Match the actual charger label to this sheet. Add charger, network and heater demand, including any documented pump or freeze-protection loads, before approving the shared branch. A dedicated charger branch remains an option. <a href="https://www.iotaengineering.com/-/media/abl/iota/files/technical-library/right-column/spec2.pdf?forceBehavior=open">IOTA ratings, page 2</a>.</p>
+  <p>The first GFCI protects later outlets only if they are fed through its protected LOAD connection. Schedule a functional test or have the installer verify coverage. This can interrupt the network and heater. Keep GFCI protection in service. A successful GFCI test does not prove equipment-ground continuity. <a href="https://leviton.com/support/resources/product-support/decora-smart-support/smart-gfci/gfci-line-load-reversal">Leviton LINE and LOAD explanation</a>.</p>
+  <p>If the shared breaker trips, all three loads can lose AC power. A GFCI trip can have the same result if those loads use its LOAD side. Local battery heating and charge-temperature protection must keep their safe function when AC and network service fail.</p>
+
+  <h3>Build one continuous equipment-bonding network</h3>
+  <p><strong>PE means protective earth.</strong> The proposed local equipment-ground bar is called <strong>EB1</strong>. Connect it permanently to an approved point in the tiny-house PE/bonding system. The electrician must define that point and conductor size after checking the supply, panel and trailer/chassis arrangement.</p>
+  <ul>
+    <li>Bond both steel cabinets, their doors and conductive backplates.</li>
+    <li>Bond the metal combiner enclosure and applicable metal raceways.</li>
+    <li>Connect equipment chassis grounding terminals as each manual requires.</li>
+    <li>Bond the panel frames and rails through the exact approved mounting hardware.</li>
+    <li>Connect SPD earth terminals to the local bar with short, direct conductors.</li>
+  </ul>
+  <p>Permanent array and cabinet bonding must remain connected when the IOTA cord is unplugged. Its removable cord cannot be the only permanent equipment-bonding path. The AC feed's equipment-grounding conductor also connects as required.</p>
+  <p>No need has been established for another rod at the cabinets or a separate 20 to 25 ft wire directly to the remote rod. If an additional electrode is required, integrate it into the approved grounding system. Soil cannot replace the equipment-grounding conductor. Do not reuse the old blanket 6 AWG instruction as a final wire schedule.</p>
+  <p>Unplugging the complete 50 A supply can remove the upstream grounding connection. Local equipment bonds must remain connected together. Independent inverter operation requires a verified fault-current path and a permitted neutral arrangement. Keep the inverter's separate office circuit isolated from grid power wiring.</p>
+
+  <div class="table-wrap"><table>
+    <caption>Keep these three decisions separate</caption>
+    <thead><tr><th>Connection</th><th>Current instruction</th></tr></thead>
+    <tbody>
+      <tr><td>Equipment metal to PE</td><td>Provide continuous protective bonding. Never switch or fuse PE.</td></tr>
+      <tr><td>PV or battery negative to PE</td><td>Await the exact equipment grounding instructions and ground-fault design. Do not add a jumper because a data sheet says negative ground.</td></tr>
+      <tr><td>AC neutral to PE</td><td>Keep incoming grid neutral separate from local PE. An inverter-output bond requires its exact manual. Never join inverter neutral to grid neutral to create a ground path.</td></tr>
+    </tbody>
+  </table></div>
+  <p>Use approved bars, studs and compatible bonding hardware. Provide flexible door bonds where required. Hinges and painted mounting screws are not assumed bonding paths. Preserve corrosion protection and enclosure weather sealing. Verify the Pegasus/S-5 combination and its approved bonding parts. Mechanical contact or an arbitrary WEEB clip is insufficient evidence. Review metal roof bonding. The plastic battery-box shell needs no bond; conductive hardware that could become energized needs review. <a href="https://www.nvent.com/en-us/data-solutions/products/bonding-and-grounding-kit">Example bonding-hardware guidance</a>.</p>
+  <p>Two meter readings cannot settle the inverter bonding design. Continuity checks can find a solid connection but cannot establish all relay states, semiconductor paths or manufacturer permission. A floating DC system is not automatically safe.</p>
+
+  <h3>Evidence needed before energizing</h3>
+  <ol>
+    <li>Identify the shop and tiny-house panels, service bond and installed supply conductors.</li>
+    <li>Record the exterior branch breaker rating, GFCI coverage, outlet grounding and connected load ratings.</li>
+    <li>Approve the permanent local PE connection, EB1 hardware and each bond conductor.</li>
+    <li>Obtain the inverter grounding diagram and exact array-mounting bonding schedule.</li>
+    <li>Record continuity results, permitted neutral/DC bonds, terminal torque and the final drawing.</li>
+  </ol>
+</section>
+
+<section id="surge" class="chapter" data-title="Surge protection" aria-labelledby="surge-title"><div class="chapter-heading"><span class="number">09</span><div><p class="eyebrow">Transient protection</p><h2 id="surge-title">Coordinated surge protection and EMP resilience</h2></div></div>
+  <p><strong>Status: placement proposal. SPD models are review candidates, not approved purchases.</strong> Surge protective devices, or SPDs, must match the circuit voltage, grounding arrangement, fault current and equipment withstand. No reviewed equipment has a verified complete-system EMP rating.</p>
+  <p>Confirmed route estimates are 15 ft from roof panels to the lower cabinet, 15 ft from the middle grid outlet to the IOTA, and 12 ft from house networking to the solar boxes. No PV descent cables have been run.</p>
+
+  <h3>Proposed locations</h3>
+  <ol>
+    <li><strong>PV:</strong> three two-panel strings, then three separate 15 A string breakers, then the combined PV pair, verified manual disconnect, temperature-controlled PV interruption and TP60 PV input. Place SPD-PV1 in parallel near the controller, on the controller side of PV switching. Give it a short PE connection to EB1.</li>
+    <li><strong>Grid charger:</strong> existing outlet, approved supply cord and cabinet entry, AC connection with SPD-AC1 in parallel, charge-permission contacts and IOTA AC input.</li>
+    <li><strong>Battery bus:</strong> protected branches serve the controller, IOTA, inverter and auxiliaries. Any SPD-DC1 needs a separate protected parallel branch.</li>
+  </ol>
+  <p>These locations are functional, not terminal instructions. Follow the selected device's circuit diagram. Do not pass charging or inverter current through small SPD terminals. Do not bridge a disconnect or charge-inhibit contact with an SPD.</p>
+
+  <div class="table-wrap"><table>
+    <caption>Protection schedule and selection holds</caption>
+    <thead><tr><th>ID and position</th><th>Candidate or direction</th><th>Required decision</th></tr></thead>
+    <tbody>
+      <tr><td>SPD-PV1, TP60 PV input</td><td>MidNite MNSPD-115, review only</td><td>Confirm cold array voltage, protection modes, Tycon impulse withstand, maker-approved coordination and backup protection.</td></tr>
+      <tr><td>SPD-AC0, source panels</td><td>Review existing shop and tiny-house protection. Eaton CHSPT2ULTRA is a possible 120/240 V candidate.</td><td>Identify panels, actual supply, listed breaker arrangement and any existing inline 50 A protector.</td></tr>
+      <tr><td>SPD-AC1, IOTA entry</td><td>DITEK DTK-120HW, conditional</td><td>Verify 120 V L/N/PE, shared branch rating, installation assembly and required conductor lengths.</td></tr>
+      <tr><td>SPD-OUT1, inverter output</td><td>Reserve space. No model selected.</td><td>Confirm inverter topology, neutral treatment, output protection and load route.</td></tr>
+      <tr><td>SPD-DC1, battery circuit</td><td>Low-voltage DC device in its own protected branch. No model selected.</td><td>Confirm DC range, protection modes, battery fault current, short-circuit rating and backup fuse.</td></tr>
+      <tr><td>DATA1, house-to-solar network</td><td>All-dielectric fiber is preferred for metallic-path isolation.</td><td>Select compatible locally powered endpoints. Protect their power circuits.</td></tr>
+      <tr><td>DATA2, copper alternative</td><td>Two Tycon TP-ESP-1000-POE units, one at each protected end</td><td>Confirm interface, PoE, shielding, local PE and outdoor enclosures.</td></tr>
+      <tr><td>CTRL1, signal circuits</td><td>Review RS485, temperature probes, pump and sensor wiring by signal type.</td><td>Preserve pinout, sensor accuracy and fault detection. Review long outdoor runs.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>The 100 V controller needs a coordinated PV selection</h3>
+  <p>The ordered TP-SC24-60N-MPPT has a 100 V PV operating limit. Its data sheet mentions internal TVS lightning protection but gives no numerical common-mode or differential-mode impulse withstand. Obtain that information from Tycon. A surge device cannot correct an array whose cold open-circuit voltage exceeds 100 V. <a href="https://tsi.tyconsystems.com/doc/SpecSheets/TP-SC24-30N%2660N-MPPT_Solar_Chrg_Ctrl_Spec_Sheet.pdf">Tycon TP30/TP60 data sheet</a>.</p>
+  <p>The MNSPD-115 brochure lists <strong>180 V MCOV</strong> and <strong>600 V line-to-ground VPR</strong>. MCOV is its maximum continuous operating voltage; VPR is a rated surge-test result. Its manual separately gives about 295 V at 100 A for an 8/20 microsecond waveform. Those are different tests. This device does not promise a 100 V clamp. Tycon and MidNite must confirm the application and residual-voltage compatibility. <a href="https://www.midnitesolar.com/pdfs/spd_display_brochure.pdf">MidNite ratings</a>; <a href="https://www.midnitesolar.com/pdfs/SPD_Installation_Manual.pdf">installation manual</a>.</p>
+  <p>Keep active and PE leads short and direct. Include lead voltage in the protection assessment. Avoid coiled excess. Use an adjacent enclosure if the cabinet cannot maintain required clearances and wiring separation. Multiple SPD stages need manufacturer-supported coordination.</p>
+  <p>The 15 ft roof route alone does not require a second roof-end stage under this proposal. DEHN's IEC guidance uses 10 m, about 33 ft, as a review threshold; this is not a statement of local code. Reassess if the route changes or external lightning protection is present. Three separate roof strings would need three independent protection channels. Keep the strings separate until their breakers. <a href="https://www.dehn-international.com/en/master-lightning-and-surge-protection-rooftop-pv-systems">DEHN rooftop PV guidance</a>.</p>
+
+  <h3>AC details that affect the layout</h3>
+  <p>The DITEK candidate is a hardwired parallel SPD. It needs a proper junction or control assembly, not a splice into a loose extension cord. Its illustrated junction/control application requires <strong>short SPD leads and at least 3 ft of conductor from the connection point to the protected equipment</strong>. The upstream 15 ft outlet run does not meet that downstream spacing. Its instructions specify a 20 A breaker for the stated short-circuit rating; resolve the actual shared branch before selection. <a href="https://www.diteksurgeprotection.com/wp-content/uploads/DTK-120HW-191509-R10.pdf">DITEK installation requirements</a>.</p>
+  <p>The DTK-120HW data sheet lists NEMA 4X and 700 V L-N/L-G VPR. Those values do not establish IOTA surge compatibility. No ordinary indoor power strip is selected for outdoor service. An IOTA-only SPD does not protect every load on the shared branch. <a href="https://www.diteksurgeprotection.com/wp-content/uploads/DTK-HW-Series-DS.pdf">DITEK ratings</a>.</p>
+  <p>The Eaton source-panel candidate requires a matching 120/240 V system and the specified listed breaker installation. It is not automatically suitable for inverter output. Source-panel and local stages need a coordinated design. Panel work belongs with the electrician. <a href="https://www.eaton.com/us/en-us/skuPage.CHSPT2ULTRA.html">Eaton product data</a>; <a href="https://www.eaton.com/content/dam/eaton/products/backup-power-ups-surge-it-power-distribution/complete-home-surge-protection/recommended-installation-practices-for-chspt1-and-chspt2-products-pct348102.pdf">installation practices</a>.</p>
+
+  <h3>Data, control and shielding</h3>
+  <p>All-dielectric fiber removes the metallic Ethernet connection. Its endpoint power supplies still need protection. If copper remains, the TP-ESP-1000-POE candidate supports gigabit and PoE up to 57 V. Do not substitute the lower-voltage POE24 model because the battery bank is 24 V. Provide the required local bonds and outdoor weather protection. <a href="https://tsi.tyconsystems.com/doc/SpecSheets/TP-ESP-1000-POE_Surge_Protector_Spec_Sheet.pdf">Tycon Ethernet SPD data sheet</a>.</p>
+  <p>The TPDIN link uses a specific RS485 cable and an RJ12 connection at the monitor. An RJ45 Ethernet SPD is not a substitute. Exact TPDIN hardware and firmware still need confirmation. Do not add arbitrary suppressors to charge-safety probes. Their accuracy and open/short fault detection must remain valid. Local temperature protection must operate without networking. <a href="https://tsi.tyconsystems.com/doc/UserManuals/8000084_TPDIN-Monitor-WEB3_quick_install_guide.pdf">TPDIN WEB3 manual</a>.</p>
+  <p>Use proper bonding and coordinated SPDs to reduce cable-borne transients. Keep a tested, disconnected reserve of critical electronics for recovery. A steel cabinet, SPD label, disconnected panel or loss of phone reception does not establish EMP immunity. No guaranteed direct-lightning or EMP protection is claimed. <a href="https://www.cisa.gov/sites/default/files/publications/19_0307_CISA_EMP-Protection-Resilience-Guidelines.pdf">CISA EMP guidance</a>.</p>
+
+  <details>
+    <summary>Manufacturer questions ready to send</summary>
+    <p><strong>Tycon:</strong> For TP-SC24-60N-MPPT, provide PV, battery and RS485 surge-test levels; internal connections among PV-, BAT-, LOAD- and chassis; approved grounding and SPD arrangements. The array is 2S3P, 75.2 V STC Voc and 26.55 A Isc. Cold Voc remains to be finalized below 100 V. Is MNSPD-115 suitable under stated conditions?</p>
+    <p><strong>MidNite:</strong> Confirm the PV SPD, connection modes, residual-voltage data and backup protection for this controller. Roof-to-controller route is about 15 ft.</p>
+    <p><strong>Inverter maker and IOTA:</strong> Provide exact grounding diagrams, permitted bonds, surge withstand and recommended external protection for the installed revisions. Grid feeds IOTA. Inverter output supplies a separate office circuit.</p>
+    <p>These questions are drafts. No external messages have been sent.</p>
+  </details>
+
+  <h3>Surge-protection work sequence</h3>
+  <ol>
+    <li>Mark EB1, PV SPD and AC entry positions. Preserve cooling clearances and mains/PV/battery/sensor separation.</li>
+    <li>Finish the bonding and shared-branch checks above.</li>
+    <li>Obtain equipment and SPD maker confirmation. Freeze exact parts, protection, wire sizes and lead lengths.</li>
+    <li>Install with all sources isolated. Inspect polarity, enclosure bonds, connections and weather seals.</li>
+    <li>Record the approved terminal torque and SPD indicators before commissioning. Do not insulation-test through electronics or SPDs unless their instructions permit it.</li>
+    <li>Add exact replacement parts to the spares register.</li>
+  </ol>
+</section>
+
+<section id="spares" class="chapter" data-title="Protected spares" aria-labelledby="spares-title"><div class="chapter-heading"><span class="number">10</span><div><p class="eyebrow">Recovery inventory</p><h2 id="spares-title">Protected spares register</h2></div></div>
+  <p><strong>No item is yet confirmed as tested and stored in verified shielding.</strong> This is a proposed reserve. Ownership, an order, reservation as a spare and protected storage are separate states. Exact serial numbers and storage locations belong in the private local record.</p>
+
+  <h3>Electronics</h3>
+  <div class="table-wrap"><table>
+    <caption>Proposed spare quantities and actual status</caption>
+    <thead><tr><th>ID / priority</th><th>Reserve</th><th>Status and recovery limits</th></tr></thead>
+    <tbody>
+      <tr><td>E01 / first</td><td>1 existing TP-SC24-30N-MPPT</td><td>Owned and photo verified. Reservation and shielding unconfirmed. Reduced-array recovery only: 100 V PV, 780 W maximum at 24 V. One two-panel series string is 500 W. Cold Voc, settings and temperature protection still apply. Never connect the full 1500 W array.</td></tr>
+      <tr><td>E02 / first</td><td>1 spare 24 V inverter for essential loads</td><td>None identified. Size for essential continuous and starting loads; 3000 W is not required if recovery loads are smaller. Keep its own protection and grounding instructions.</td></tr>
+      <tr><td>E03 / first</td><td>1 matching control DC/DC supply</td><td>None identified. DDR-120B-24 is a candidate only. Freeze input range, startup demand, isolation, pinout and fusing first.</td></tr>
+      <tr><td>E04 / first</td><td>1 of each critical temperature-monitor/interface type and 2 matching probes</td><td>Thermal hardware not frozen. Store exact sensor types and settings. This starter reserve does not duplicate the full control system.</td></tr>
+      <tr><td>E05 / next</td><td>1 compatible TPDIN and its data cable</td><td>Operating unit owned; revision and firmware pending. No spare confirmed. Save configuration. Independent temperature protection remains required.</td></tr>
+      <tr><td>E06 / next</td><td>1 matching heater DC/DC supply</td><td>None identified. DDR-240B-24 remains a candidate until heater design is final.</td></tr>
+      <tr><td>E07 / next</td><td>1 of each critical coil-driver/interface type</td><td>Types not selected. Match suppression and contactor release requirements.</td></tr>
+      <tr><td>E08 / next</td><td>1 matching 24 V fan and 1 thermostat</td><td>Operating fans owned and thermostat order recorded. Spare quantities unconfirmed. Verify fan current, regulated supply and thermostat DC switching rating.</td></tr>
+      <tr><td>E09 / optional</td><td>1 network endpoint/converter of each final type</td><td>Fiber/copper choice and models remain open. Charging and temperature protection must work locally without network service.</td></tr>
+      <tr><td>E10 / optional</td><td>1 approved 24 V LiFePO4 charger</td><td>Operating IOTA recorded; no spare identified. Store charge profile and temperature-interlock instructions.</td></tr>
+      <tr><td>E11 / optional</td><td>1 full-array MPPT</td><td>TP60 is ordered for operation. No full-array spare identified. E01 supports reduced recovery only.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Protection and repair stock</h3>
+  <div class="table-wrap"><table>
+    <caption>Proposed stock, purchases and final types remain unconfirmed</caption>
+    <thead><tr><th>ID</th><th>Quantity and item</th><th>Selection rule</th></tr></thead>
+    <tbody>
+      <tr><td>P01</td><td>1 replacement per installed SPD type</td><td>Final models pending. Some need a whole replacement device. Save indicator instructions.</td></tr>
+      <tr><td>P02</td><td>1 MNEPV15-150-1PNP string breaker</td><td>This reserve is additional to the three operating breakers. Purchase unconfirmed.</td></tr>
+      <tr><td>P03</td><td>2 fuses of each final rating and type</td><td>Freeze circuit, holder and fault-interruption ratings first. Old 150 A ANL, 70 A and 30 A assumptions remain unapproved.</td></tr>
+      <tr><td>P04</td><td>1 of each critical charge-interruption contactor/relay</td><td>Match final PV or AC duty. Repeat functional tests after replacement.</td></tr>
+      <tr><td>P05</td><td>1 multimeter, insulated leads and spare meter fuses</td><td>A meter appears in photos. No protected spare confirmed. Match voltage and measurement-category ratings.</td></tr>
+      <tr><td>P06</td><td>Small labeled connector and termination kit</td><td>Exact matching PV connectors, cable lugs, ferrules and sealing parts. Physical fit alone does not establish connector compatibility.</td></tr>
+      <tr><td>P07</td><td>1 printed packet and 1 offline digital copy</td><td>Current drawings, settings, firmware, manuals and terminal schedule. Replace obsolete diagrams before storage.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Do not double-count working equipment</h3>
+  <ul>
+    <li>An extra 250 W panel is recorded as tested in older inventory. Confirm its condition and storage. Its shielding is unverified.</li>
+    <li>The other two LiTime batteries are allocated to the separate shed/freezer system.</li>
+    <li>The ordered TP60, installed inverter, operating fans and TPDIN serve this installation.</li>
+    <li>The retired ATS is excluded from the recovery design.</li>
+  </ul>
+
+  <h3>Prepare each electronic spare</h3>
+  <ol>
+    <li>Record exact model, quantity and serial number. Test normal operation before storage.</li>
+    <li>Save its settings, connection instructions, test date and result.</li>
+    <li>Switch it off. Remove every power, data, probe and antenna cable at the device.</li>
+    <li>Apply appropriate electrostatic protection. Insulate exposed terminals. Use a tested shielding container or pouch and its specified closure. Add nonconductive inner separation where needed.</li>
+    <li>Store dry, within the stated storage-temperature range. Control condensation. Keep reserves separate from operating equipment when practical.</li>
+    <li>Record container identity, private storage location and closure check date.</li>
+    <li>Recheck after use, moisture, damage or configuration changes, and at the intervals specified by the equipment and container makers.</li>
+  </ol>
+  <p>A plastic case, unverified metal box or phone-signal test does not establish broadband EMP protection. CISA recommends disconnected electronic spares and Faraday storage. The priorities and quantities here are project proposals. <a href="https://www.cisa.gov/sites/default/files/publications/19_0307_CISA_EMP-Protection-Resilience-Guidelines.pdf">CISA EMP guidance</a>.</p>
+  <p><strong>Required private log fields:</strong> register ID, model/serial, quantity reserved, function-test date/result, saved settings/manual, shield/container ID, storage location, closure/date checked and current status. E01 currently reads: owned; all protected-storage checks pending.</p>
+  <p>Inspect the affected system before connecting a replacement. Keep battery BMS, fuses, ground-fault functions and cold-charge interlocks in service. A working spare controller or inverter does not establish that the battery BMS survived.</p>
+</section>
+
+<section id="parts" class="chapter" data-title="Parts shopping ordering requirements">
+  <div class="chapter-heading"><span class="number">11</span><div><p class="eyebrow">Procurement</p><h2>Parts to arrange</h2></div></div>
+  <p>Ownership is listed in <a href="#equipment">Equipment</a>. This table separates the current combiner selection from parts that still need design checks. Prices and delivery dates are not fixed.</p>
+  <div class="table-wrap"><table><thead><tr><th>Quantity</th><th>Item</th><th>Status / next action</th></tr></thead><tbody>
+    <tr><td>1</td><td><a href="https://www.amazon.com/dp/B004XFYV8U">MidNite MNPV3</a></td><td>Selected combiner proposal. Confirm the listing is the genuine enclosure with its bars and deadfront. Purchase not reported.</td></tr>
+    <tr><td>3 individual</td><td><a href="https://www.amazon.com/dp/B0D57SDQVH">MNEPV15-150-1PNP</a></td><td>Selected 15 A / 150 V DC / 13 mm non-polarized string breakers. Check exact suffix. Buy three operating units; a spare is extra.</td></tr>
+    <tr><td>Measured</td><td>PV conductors, matching connectors, raceway, supports and glands</td><td>Measure first. Confirm grouping, fill, ampacity and cable outside diameter before ordering.</td></tr>
+    <tr><td>As designed</td><td>PE bar, bonding lugs, door straps, grounding conductors</td><td>Verify connection to the existing building PE system. No independent new ground-rod package is approved.</td></tr>
+    <tr><td>As designed</td><td>Battery/inverter/charger fuses, holders and disconnects</td><td>Close fault-current and conductor coordination. Owned ANL holders and the 80 A breaker are not automatically suitable.</td></tr>
+    <tr><td>2 operating</td><td>Cabinet thermostats</td><td>Order reported. Check exact delivered model, cooling action and DC contact rating. Do not duplicate the order yet.</td></tr>
+    <tr><td>As designed</td><td>Regulated fan supply and fan branch fuses</td><td>Need fan startup/running current and battery voltage range.</td></tr>
+    <tr><td>4 operating zones</td><td>Approved battery warmers, probes and local controls</td><td>Thermal fit, surface temperature and final heater model pending. See <a href="#thermal">winter design</a>.</td></tr>
+    <tr><td>As designed</td><td>Hard charge-inhibit relays, contactors, supplies and interfaces</td><td>Review candidates below. Obtain exact wiring and duty confirmation before purchase.</td></tr>
+    <tr><td>As designed</td><td>AC/PV/data/battery surge protection</td><td>Coordination review required. Candidate part numbers are not purchase approval.</td></tr>
+  </tbody></table></div>
+  <p>Keep active-system purchases separate from the <a href="#spares">protected spare inventory</a>. The ordered TP60 is the operating controller.</p>
+</section>
+
+<section id="commission" class="chapter" data-title="Commissioning release holds shutdown safety work sequence">
+  <div class="chapter-heading"><span class="number">12</span><div><p class="eyebrow">Before power-up</p><h2>Release checks and test order</h2></div></div>
+  <div class="notice hold"><strong>All checks below remain open unless a verified record closes them.</strong><p>A tick in your field notes records work. It does not approve a design. The system needs a final circuit drawing, protection schedule, terminal schedule and settings sheet that match the delivered equipment.</p></div>
+  <div class="table-wrap"><table><thead><tr><th>Gate</th><th>Evidence needed</th></tr></thead><tbody>
+    <tr><td>PV limits</td><td>All six labels, two-panel cold Voc calculation, PV current allowances, approved connector pairs, string protection and delivered disconnect instructions.</td></tr>
+    <tr><td>Battery branches</td><td>Exact pack variants, connection-preparation instructions, supported base, matched branch resistance, cable/terminal ratings, each battery's positive protection, accessible disconnects and guards.</td></tr>
+    <tr><td>DC fault protection</td><td>Prospective fault-duty basis and coordinated fuse/holder/breaker ratings. Final inverter branch supports the intended load. BMS action is not a substitute for branch protection.</td></tr>
+    <tr><td>Grounding and AC output</td><td>Verified supply EGC, permanent PE path, array/cabinet bonds, inverter manual-based neutral arrangement, required ground-fault protection and separate protected office outlet.</td></tr>
+    <tr><td>Existing AC branch</td><td>Breaker rating, conductor/device suitability, GFCI coverage, outlet condition and combined IOTA/network/Rinnai load assessment.</td></tr>
+    <tr><td>Both charge profiles</td><td>TP60 lithium parameters and IOTA module/profile. Equalization off. Voltage checked by meter. Charge current and temperature limits documented.</td></tr>
+    <tr><td>Winter protection</td><td>Four battery temperature channels, actual switching stages, loss-of-power/probe-fault behavior, manual reset, hot and cold inhibit, warmup validation and outage recovery.</td></tr>
+    <tr><td>Mounting and weather</td><td>Exact equipment clearances, unrestricted fan paths, sealed entries, drainage, strain relief, structural mounting, guarded terminals and access for isolation.</td></tr>
+    <tr><td>Surge coordination</td><td>Chosen SPDs and manufacturer-compatible circuit modes, protective levels, leads, bonding and backup protection. Without this evidence, no EMP or coordinated surge-protection claim may be made.</td></tr>
+  </tbody></table></div>
+  <h3>Test sequence after the design is released</h3>
+  <ol>
+    <li><b>Inspect while isolated.</b> Check part numbers, cable routes, protection, polarity and the recorded terminal torque for each exact component. Keep PV and grid charging isolated. Battery posts remain live even when external cables are removed.</li>
+    <li><b>Test controls separately.</b> Use the final protected control test setup. Prove startup, shutdown, sensor faults and charger-stop commands before full charging is possible.</li>
+    <li><b>Prepare the four batteries.</b> Follow the matching LiTime procedure for initial charge, voltage matching and parallel connection. Do not connect a mismatched or previously tripped pack into a live bank.</li>
+    <li><b>Power the MPPT from BAT with PV isolated.</b> Confirm system voltage and the full charge profile. Follow the final startup/precharge instructions for each load; no generic resistor or two-second precharge rule is approved.</li>
+    <li><b>Inspect and commission PV.</b> Before initial PV energization, a qualified installer verifies string voltage, polarity, isolation and protection against the released design. Keep within the recorded cold Voc and input limits. Enable initial charging only under the approved test procedure.</li>
+    <li><b>Test each charging source in turn.</b> After those PV checks, confirm actual charge current stops on a temperature trip. Prove both-source operation, hard override, loss of control power, failed probe, TPDIN reboot and network loss.</li>
+    <li><b>Test the inverter branch and office outlet.</b> Verify its protection and GFCI operation with the final neutral/PE arrangement. Increase load only within the approved branch rating.</li>
+    <li><b>Record a loaded baseline.</b> Check battery current sharing, voltage drop and joint/case temperatures at a stated load and ambient temperature. A hot joint needs investigation after isolation. Do not tighten live connections.</li>
+    <li><b>Test winter and grid-loss behavior.</b> Confirm heat can run from the battery bank and that charging stays inhibited until all batteries meet the restart conditions. Use safe test inputs; do not deliberately freeze-charge a battery.</li>
+    <li><b>Save the final record.</b> Attach settings, circuit drawings, torque references, measurements and test results. Recheck after repair or a part change. Follow the component maintenance instructions.</li>
+  </ol>
+  <details><summary>Normal isolation and emergency limits</summary>
+    <p>For a planned controller shutdown, isolate PV first, stop the IOTA grid source, turn loads off, then use the approved battery disconnect sequence. Reconnection needs the battery-connected controller configured before PV is restored. The final labels must show every source and disconnect.</p>
+    <p>For smoke, unusual heating, swelling, hissing or a fire: move people away and call emergency services. Use an external disconnect only if it is safe to reach. Do not open or move a failing battery. PV upstream of its disconnect can remain live. Tell responders that both grid AC and a LiFePO4 battery/PV system are present.</p>
+    <p>The plastic storage box is not a tested battery fire enclosure. A loose lid, cement board lining or a handheld extinguisher does not establish containment of a battery event.</p>
+  </details>
+</section>
+
+<section id="field-log" class="chapter" data-title="Field notes checklist measurements export backup">
+  <div class="chapter-heading"><span class="number">13</span><div><p class="eyebrow">Your local record</p><h2>Field notes</h2></div></div>
+  <p>Notes and checks save in this browser on this device. They do not upload or sync. Export a backup before clearing browser data or changing phones. Old checklist ticks were not carried over because the instructions changed.</p>
+  <div class="notice" id="storage-status" role="status">Preparing local notes.</div>
+  <fieldset><legend>Preparation progress</legend><div class="checklist">
+    <label><input type="checkbox" data-save="labels"> Equipment labels and manual revisions recorded</label>
+    <label><input type="checkbox" data-save="route"> Three PV string routes and cable lengths measured</label>
+    <label><input type="checkbox" data-save="base"> Battery base and full-footprint support measured</label>
+    <label><input type="checkbox" data-save="branch"> Outdoor branch rating and all loads recorded</label>
+    <label><input type="checkbox" data-save="ground-review"> Grounding and protection review arranged</label>
+    <label><input type="checkbox" data-save="parts-count"> Delivered parts checked against equipment list</label>
+    <label><input type="checkbox" data-save="spare-inventory"> Spare ownership and storage inventory recorded</label>
+  </div></fieldset>
+  <div class="form-grid">
+    <label>TPDIN model, hardware, firmware<input data-save="tpdin" maxlength="200" placeholder="Model / V1 or V2 / firmware"></label>
+    <label>Outdoor branch breaker rating<input data-save="branch-amps" maxlength="100" placeholder="Record label and verification date"></label>
+    <label>IOTA model and lithium module<input data-save="iota" maxlength="200" placeholder="Exact labels and profile reference"></label>
+    <label>Inverter model and manual<input data-save="inverter" maxlength="200" placeholder="Exact model / grounding instructions"></label>
+    <label>PV route, one way<input data-save="pv-route" maxlength="200" placeholder="A / B / C lengths, cable and conduit markings"></label>
+    <label>Cold Voc calculation reference<input data-save="cold-voc" maxlength="300" placeholder="Minimum temperature / coefficient / method / result"></label>
   </div>
+  <label class="note-label">Measurements, open items and review record<textarea data-save="notes" rows="7" maxlength="20000" placeholder="Date · component · measurement or decision · evidence · next action"></textarea></label>
+  <label class="note-label">Protected-spare storage log<textarea data-save="spare-notes" rows="5" maxlength="20000" placeholder="Item ID / serial · reserved quantity · function test/date · saved settings · container/location · closure/date · status"></textarea></label>
+  <div class="button-row"><button type="button" id="exportNotes">Export notes</button><button type="button" id="importNotesButton" class="secondary">Import notes</button><input type="file" id="importNotes" accept="application/json,.json" hidden><button type="button" id="printGuide" class="secondary">Print / save PDF</button></div>
+  <p class="caption" id="notes-message" role="status">An export includes this guide revision, your notes and preparation checks. Printed pages also show your notes.</p>
+  <noscript><p class="notice hold">JavaScript is off. The full guide is readable, but notes cannot save and the offline cache cannot install. Use print or save a copy.</p></noscript>
+</section>
 
-  <div class="callout flag">
-    <h3><span class="tagbig">RIGHT NOW</span> Water before the pond drops</h3>
-    <p>The pond has a clock on it. <b>The solar system does not.</b> Measure the tank bulkhead and the pond lift today, order the pump port fitting kit, run the pump off <b>one battery</b>, and lay the fill line <b>on the ground</b>. <a href="punch-list.html" style="color:var(--flag);font-weight:700">Open the punch list →</a> &nbsp;<a href="build-manual.html" style="color:var(--flag);font-weight:700">Step by step →</a></p>
-  </div>
+<section id="other" class="chapter" data-title="Water and other projects" aria-labelledby="other-title"><div class="chapter-heading"><span class="number">14</span><div><p class="eyebrow">Rest of the project</p><h2 id="other-title">Water, shed and other project work</h2></div></div>
+  <p>The record below preserves the rest of the project. Water dimensions and part names come from the existing field guide and master brief. They have not had the same electrical review as the solar plan. Use them for inventory, measurements and layout. Confirm the actual parts before cutting or assembling.</p>
 
-  <div class="callout">
-    <h3><span class="tagbig" style="background:var(--ink-soft)">LATER</span> Before you wire the bank</h3>
-    <p><b>Measure first:</b> the bus stud size (likely 3/8″/M10, not M8) sets your ring-lug size. Also confirm your Iota model.</p>
-    <p><b>Buy:</b> 2 charger-lead fuses (70A + ~30A) + 6ga/10ga lugs, the 2/0 jumper, and a non-combustible barrier for under the bus. <a href="deck-layout.html" style="color:var(--flag);font-weight:700">Cut lengths →</a></p>
-  </div>
+  <details open>
+    <summary>Water system: where each line goes</summary>
+    <p>The 1,600-gallon tank receives pond water in warm months and roof rain in cold months. A submersible pump sends tank water out through the top to the distribution manifold. The two bottom bulkheads are for drain and utility outlets. The mini barrel has its own pump for greenhouse irrigation.</p>
+    <div class="table-wrap"><table>
+      <caption>Separate water paths</caption>
+      <thead><tr><th>Path</th><th>Arrangement in the record</th><th>Check before installation</th></tr></thead>
+      <tbody>
+        <tr><td>Pond fill</td><td>Pond foot valve and strainer → suction line → priming port → inlet strainer → SEAFLO pump → spin-down → sediment cartridge → two carbon cartridges → check valve → tank top.</td><td>Final filter location, suction lift, pump duty, thread types and actual flow.</td></tr>
+        <tr><td>Roof rain</td><td>Both gutter sides → common line → first-flush unit → separate buried rain line → screened tank-top inlet.</td><td>Survey the fall, first-flush sizing, overflow capacity and freeze protection.</td></tr>
+        <tr><td>Tank distribution</td><td>Tank submersible → line out the top → check valve → drip filter → shutoff and gauge → zone manifold.</td><td>Actual operating flow and pressure, pump dry-run protection and winter drain route.</td></tr>
+        <tr><td>Mini barrel</td><td>One manifold zone fills the barrel through a float valve. A separate submersible feeds the greenhouse.</td><td>The float valve stops filling. A separate control must request a fill.</td></tr>
+      </tbody>
+    </table></div>
+    <p>Keep the pond-fill, rain and barrel lines separate. They may follow a common planned route, but they must not join through a tee. Electrical burial methods, separation and depth still need a site-specific design. Low voltage alone does not approve a shared trench.</p>
+    <p>This filter arrangement has no verified drinking-water treatment claim. The old claim that a second carbon cartridge guarantees glyphosate removal has been removed. Any treatment claim needs the actual media specification, contact time and water test results.</p>
+  </details>
 
-  <div class="callout flag">
-    <h3><span class="tagbig">BLOCKERS</span> Before you energize</h3>
-    <p><b>Five fire blockers are open:</b> pull the front-wall pink foam (it faces the terminals), verify the 80A breaker's DC interrupting rating, cement board the power board face, shield the house wall, set the Tycon to Lithium 28.8V with a meter check. <a href="fire-safety.html" style="color:var(--flag);font-weight:700">Fire safety →</a></p>
-  </div>
+  <details>
+    <summary>Tank, pipe sizes and measurements</summary>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Item</th><th>Recorded value or state</th></tr></thead>
+      <tbody>
+        <tr><td>Tank</td><td>1,600 gallons; approximately 7 ft tall and 7 ft diameter. Water alone weighs about 13,400 lb when full.</td></tr>
+        <tr><td>Pad</td><td>8 × 8 ft frame of treated 2×8, with fabric and compacted rock. The tank is reported standing on the completed pad. Inspect support and drainage before filling.</td></tr>
+        <tr><td>Bottom bulkheads</td><td>Two, about 90 degrees apart. Size remains unresolved: recorded as 3 in or 2.5 in. Measure thread size and gender before ordering adapters.</td></tr>
+        <tr><td>Tank top</td><td>Separate fill entries, screened vent, distribution outlet and overflow provision. An existing 3 in side port was proposed for overflow.</td></tr>
+        <tr><td>Pond route</td><td>Approximately 100 ft total, including about 85 ft of uphill pressure pipe. Measure the final route and elevation change.</td></tr>
+        <tr><td>Other routes</td><td>Rain line about 30 ft; mini barrel about 25 ft; chicken run about 15 ft. These are planning lengths.</td></tr>
+        <tr><td>Pipe targets</td><td>1 in suction and main pressure lines; 2 to 3 in rain conveyance pending hydraulic check; 1 in manifold; 3/4 in barrel branch; final plant tubing sized for its emitters.</td></tr>
+      </tbody>
+    </table></div>
+    <p>Keep service pipes outside the tank's load-bearing footprint. The proposed bottom-outlet route crosses above the pad edge, then enters the ground beyond the pad. Keep the tank opaque and direct overflow away from its foundation.</p>
+    <p>The roof catchment in the record is about 380 sq ft. One inch of rain on that area is about 237 gallons before first-flush, splash and other losses. This is a volume estimate, not a guaranteed collection rate.</p>
+  </details>
 
-  <h2 class="hd">Guides</h2>
-  <div class="card-grid">
-    <a class="navcard flagc" href="punch-list.html">
-      <span class="ic">✅</span>
-      <span class="tx"><b>Punch List</b><span>What to do right now · three deadlines, one is close</span></span>
-      <span class="chev">›</span>
-    </a>
-    <a class="navcard flagc" href="build-manual.html">
-      <span class="ic">🔧</span>
-      <span class="tx"><b>Build Manual</b><span>Every step, checkable · 6 books · live schedule</span></span>
-      <span class="chev">›</span>
-    </a>
-    <a class="navcard" href="shopping.html">
-      <span class="ic">🛒</span>
-      <span class="tx"><b>Shopping List</b><span>By store · Grange vs hardware vs Amazon</span></span>
-      <span class="chev">›</span>
-    </a>
-    <a class="navcard water" href="plot-plan.html">
-      <span class="ic">🗺️</span>
-      <span class="tx"><b>Site Plot Plan</b><span>Water &amp; electrical runs · shared trench · line schedule</span></span>
-      <span class="chev">›</span>
-    </a>
-    <a class="navcard water" href="pump-skid.html">
-      <span class="ic">💧</span>
-      <span class="tx"><b>Pond Pump Skid</b><span>To scale · assembly order · winterizing · hutch size flag</span></span>
-      <span class="chev">›</span>
-    </a>
-    <a class="navcard flagc" href="fire-safety.html">
-      <span class="ic">🔥</span>
-      <span class="tx"><b>Deck Box Fire Safety</b><span>Foam verdict · 5 pre-energize blockers · sensors on the copper</span></span>
-      <span class="chev">›</span>
-    </a>
-    <a class="navcard water" href="split-station.html">
-      <span class="ic">🔀</span>
-      <span class="tx"><b>Split Station (option)</b><span>Pump at the pond, filters at the tank · from Dad's idea</span></span>
-      <span class="chev">›</span>
-    </a>
-    <a class="navcard flagc" href="battery-wiring.html">
-      <span class="ic">⚡</span>
-      <span class="tx"><b>Battery-to-Bus Wiring</b><span>4P sheet · stud map · run schedule · connect sequence</span></span>
-      <span class="chev">›</span>
-    </a>
-    <a class="navcard flagc" href="deck-layout.html">
-      <span class="ic">📐</span>
-      <span class="tx"><b>Deck Box Layout (to scale)</b><span>Dimensioned drawing · stud map · cable cut lengths</span></span>
-      <span class="chev">›</span>
-    </a>
-    <a class="navcard flagc" href="wall-cabinet.html">
-      <span class="ic">🗄️</span>
-      <span class="tx"><b>Box Mounting (to scale)</b><span>2 VEVOR boxes stacked on the deck rail · ledger + clearances</span></span>
-      <span class="chev">›</span>
-    </a>
-    <a class="navcard flagc" href="panel-layout.html">
-      <span class="ic">🧩</span>
-      <span class="tx"><b>Panel Layout</b><span>Inside both boxes · device placement · airflow</span></span>
-      <span class="chev">›</span>
-    </a>
-    <a class="navcard" href="ask.html">
-      <span class="ic">💬</span>
-      <span class="tx"><b>Ask in the Field</b><span>Get answers on your phone, with photos</span></span>
-      <span class="chev">›</span>
-    </a>
-    <a class="navcard flagc" href="panel-wiring.html">
-      <span class="ic">🔧</span>
-      <span class="tx"><b>Panel Wiring</b><span>Point to point · grounding · commissioning order</span></span>
-      <span class="chev">›</span>
-    </a>
-    <a class="navcard flagc" href="bench-test.html">
-      <span class="ic">🔌</span>
-      <span class="tx"><b>Bench Test</b><span>DO THIS FIRST · one battery · fan direction + Tycon setup</span></span>
-      <span class="chev">›</span>
-    </a>
-    <a class="navcard flagc" href="gland-plan.html">
-      <span class="ic">⭕</span>
-      <span class="tx"><b>Gland Plan</b><span>Side views · cable entries · gland sizes to buy</span></span>
-      <span class="chev">›</span>
-    </a>
-    <a class="navcard" href="mount-detail.html">
-      <span class="ic">🔩</span>
-      <span class="tx"><b>Mount Detail</b><span>Ledger, uprights, rim joist · fastener schedule</span></span>
-      <span class="chev">›</span>
-    </a>
-    <a class="navcard" href="shed-freezer.html">
-      <span class="ic">🧊</span>
-      <span class="tx"><b>Shed Freezer System</b><span>Dedicated 2P · ~800W panels · plastic-shed workarounds</span></span>
-      <span class="chev">›</span>
-    </a>
-    <a class="navcard" href="chicken-waterer.html">
-      <span class="ic">🐔</span>
-      <span class="tx"><b>Heated Chicken Waterer</b><span>24V DIY spec · BOM · wiring · control · energy</span></span>
-      <span class="chev">›</span>
-    </a>
-    <a class="navcard" href="litime-email.html">
-      <span class="ic">✉️</span>
-      <span class="tx"><b>LiTime: 6P Answer</b><span>Their written verdict · why we went 4P</span></span>
-      <span class="chev">›</span>
-    </a>
-  </div>
+  <details>
+    <summary>Pond pump and filter inventory</summary>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Part</th><th>Record</th><th>Open check</th></tr></thead>
+      <tbody>
+        <tr><td>SEAFLO SFDP2-030-055-42</td><td>Owned 24 V pond pump. Recorded ratings: 3.0 GPM, 55 PSI and 6 ft dry self-prime. Intermittent duty. Body about 8.0 × 4.9 × 4.4 in.</td><td>Exact duty limit, input voltage range, pump curve and matching port fittings. Recorded port thread descriptions conflict.</td></tr>
+        <tr><td>51S01 inlet strainer</td><td>Owned, 50 mesh. Label says vacuum side only and hand-tighten only.</td><td>Measure assembled length and bowl removal space. Keep it out of a pressure-test or air-blow path.</td></tr>
+        <tr><td>iSpring WSP-100</td><td>Owned 100-micron spin-down. Recorded bare height about 9 in.</td><td>Measure with actual adapters and leave access for screen removal and flushing.</td></tr>
+        <tr><td>MewMore FHW10, three housings</td><td>Recorded 3/4 in ports. About 12 to 12.5 in overall height. Sediment, carbon, carbon.</td><td>Dry-fit heads, nipples and sumps. The old 7 in centers and 3 in service band are layout targets.</td></tr>
+        <tr><td>Eastman 20425LF, two check valves</td><td>Owned 1 in swing checks, female connections at both ends.</td><td>Verify the body arrow and permitted mounting orientation. Provide accessible unions for service and winter removal.</td></tr>
+        <tr><td>BACOENG ZQB6X8-DC24, two pumps</td><td>Owned submersibles, one for the tank and one for the barrel. Recorded 24 V, 120 W, 1 in outlet.</td><td>Published 24 GPM and 23 ft head are separate pump-curve limits. Measure delivery at the actual operating point. Verify battery-voltage compatibility.</td></tr>
+        <tr><td>ERSIQI LS31-BH1-300 float switch</td><td>Tank-full signal for the pond pump. Record gives 1 A maximum switching current.</td><td>Use a suitable low-current control interface. The switch cannot directly switch the pump.</td></tr>
+      </tbody>
+    </table></div>
+    <p>Support pipe and filters independently of pump ports. Include the flexible connections specified by the pump maker. Use the exact pump's matching fitting kit or verified thread/seal type. Do not force a tapered fitting into an unidentified straight-thread port.</p>
+    <p>At a constant 3 GPM, an empty 1,600-gallon tank would need about 8.9 hours to fill. Actual flow can be lower. That arithmetic does not authorize an uninterrupted run of an intermittent-duty pump.</p>
+  </details>
 
-  <div class="callout">
-    <h3>📲 Keep it in your pocket</h3>
-    <p>In your phone browser: <b>Share → Add to Home Screen</b>. It installs like an app and the pages stay readable with no signal.</p>
-  </div>
+  <details>
+    <summary>Pond station layout and the open split-station decision</summary>
+    <p>The existing layout target is a single-sided removable 3/4 in plywood backboard in a 36 in wide × 24 in deep × 36 in high internal space. Front access is needed to remove the sumps. Dry-fit every part before cutting the final enclosure. The pump inlet should remain as low as practical, above flooding exposure, with a short suction route.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Option</th><th>Equipment at pond</th><th>Equipment at tank</th></tr></thead>
+      <tbody>
+        <tr><td>Single station</td><td>Pump, inlet strainer, spin-down and three cartridge housings.</td><td>Fill inlet and separate distribution manifold.</td></tr>
+        <tr><td>Split station, undecided</td><td>Pump, inlet strainer, spin-down and check valve. Old small-box allowance: about 30 × 20 × 26 in, to be remeasured.</td><td>Three cartridge housings on a service board near the manifold. Fill and distribution remain separate circuits.</td></tr>
+      </tbody>
+    </table></div>
+    <p>The split option improves cartridge access. It adds another place to service and winterize. Selection depends on the measured lowest pond level, pump-inlet elevation, pond-to-tank elevation and space at the tank. The record contains conflicting suction-lift estimates of about 6 ft and 4 to 5 ft. Measure this before selecting either layout.</p>
+  </details>
 
-  <div class="foot">
-    Project Hedge · field reference · Rev 2026-08-17 · schematic, not to scale.<br>
-    Verify measurements on site. Not a substitute for a licensed electrician on the AC side.
-  </div>
-</div>
+  <details>
+    <summary>Distribution manifold and local control</summary>
+    <p>The intended manifold has three active zones and one capped spare. Run one zone at a time.</p>
+    <ol>
+      <li>Zucchini irrigation.</li>
+      <li>Trees and the chicken-waterer fill.</li>
+      <li>Mini-barrel fill for the separate greenhouse pump.</li>
+      <li>Capped spare, with a future butternut area under consideration.</li>
+    </ol>
+    <p>Planned flow order: tank pump → check valve → drip filter → full-port shutoff → pressure gauge → manifold → zone valves. Keep pipe weight on a service board. Put electrical equipment above plumbing with suitable cable entries. Keep valves and unions accessible.</p>
+    <p>Low-pressure emitters remain the target. The pump's maximum head is about 10 PSI at zero flow; available pressure will be lower while water flows. Measure zone pressure and flow before buying all the emitters. The owned 3/4 in garden-hose-thread filter was allocated to the barrel/greenhouse line. The main manifold still needs a correctly sized filter.</p>
+    <p>Proposed valves are motorized, normally closed on loss of power, with local automatic return. Verify the exact model, voltage range, travel time and return-energy requirements. A nominal 24 V valve is not automatically suitable for a bank charging at 28.8 V.</p>
+    <p>The private irrigation configuration remains the source for GPIO assignments. Its recorded September update hides direct pump control, uses an on-device start delay, limits runs to one hour and enforces a 60-second minimum intended for the proposed valve's return capacitor. These are software records. The actual pump and valves still need bench tests for startup, stop, network loss and power loss. The IOTA contactor is reserved for the charger.</p>
+  </details>
 
-<script>
-  (function(){
-    var t = localStorage.getItem('hedge-theme');
-    if(t) document.documentElement.setAttribute('data-theme', t);
-    var btn = document.getElementById('themeToggle');
-    if(btn) btn.addEventListener('click', function(){
-      var cur = document.documentElement.getAttribute('data-theme');
-      var dark = cur ? cur === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
-      var next = dark ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('hedge-theme', next);
-    });
-    if('serviceWorker' in navigator){
-      window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
-    }
-  })();
-</script>
-</body>
-</html>
+  <details>
+    <summary>Freeze preparation and trench work</summary>
+    <p>The intended winter arrangement uses roof rain to refill the tank while the pond skid is drained and stored indoors. Chicken water remains an active winter load. Insulation alone does not prevent eventual freezing.</p>
+    <ul>
+      <li>Survey pipe grades and low points. Establish local burial requirements before trenching. Old fixed 12, 18 and 24 in depths are not a site approval.</li>
+      <li>Mark underground services and stage separate pipes before digging. Reserve a capped data/sensor conduit on a suitable route if practical.</li>
+      <li>Provide accessible low-point drains and a pressure-side air/vent port. Do not use the suction priming port for compressed air.</li>
+      <li>Before winter disassembly, isolate pump power and release water pressure. Remove and empty filter bowls. A blow-out cannot be assumed to empty them.</li>
+      <li>Store freeze-sensitive pumps, cartridges, bowls, gauges, foot valve and removable checks as their manuals require.</li>
+      <li>Any compressed-air procedure needs a regulator and a limit allowed by every connected component. The old phrase “low-pressure air” was not a complete procedure.</li>
+      <li>The proposed winter distribution drain-back path must be verified on site. Removing a check valve alone does not prove that all pipe and valve cavities drain.</li>
+      <li>Any heat trace needs the correct listing, thermostat, electrical protection and pipe/insulation compatibility. Add its demand to the power budget.</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>Shed freezer and chicken waterer: separate designs on hold</summary>
+    <p><strong>Shed freezer:</strong> Two additional LiTime 24 V / 100 Ah batteries are allocated to a separate 2P bank, about 5.12 kWh nominal. A roughly 800 W array and a smaller low-idle inverter are proposals. Final selection requires measured freezer energy, compressor-start demand, cold-charge protection, hot-weather limits and site solar estimates. An insulated cooler does not provide a low-temperature charging cutoff.</p>
+    <p><strong>Chicken waterer:</strong> The record lists an owned DERNORD 24 V / 600 W element, a 1 in stainless bulkhead and horizontal nipples. The planned reservoir is about 5 to 7 gallons with a short drinking bar. The electrical heater design is not released. A fixed-resistance 600 W element rated at 24 V would be about 864 W at 28.8 V, so the old 25 A wiring schedule cannot be used unchanged. Select voltage regulation or a compatible heater, independent low-water and high-temperature protection, suitable DC switching and verified vessel seals before installation.</p>
+    <p>These loads are separate from the four main battery warmers. Their energy has not been included in the winter battery-heater runtime example.</p>
+  </details>
+
+  <details>
+    <summary>Cabinet support, old drawings and private monitoring</summary>
+    <p>The two steel solar cabinets are already stacked on the deck structure. The old mounting sheets include assumed offsets and conflicting bolt quantities. They are retired as build instructions. Record the actual fasteners, wood condition, load path and clearances before changing the support. The abandoned custom aluminum cabinet drawing is also retired.</p>
+    <p>Home Assistant, network monitoring and the future sensor system have separate private records. Public pages exclude addresses, coordinates, credentials, hostnames, camera details and precise spare-storage locations. Local protective controls must keep the solar system safe when the network or the shared outlet circuit loses power.</p>
+    <p>The old HTML pages, checklists and diagrams are replaced by this guide. Historical PDFs remain in the private project archive. Do not use their electrical schedules to wire the current system.</p>
+  </details>
+</section>
+
+<section id="record" class="chapter" data-title="Revision sources offline access changes">
+  <div class="chapter-heading"><span class="number">15</span><div><p class="eyebrow">Document control</p><h2>Sources, changes and offline access</h2></div></div>
+  <p><b>Revision 2026.09.27-r1.</b> Rebuilt from the current equipment photos, order reports, electrical audit, PV combiner plan, winter design, surge/bonding plan and protected-spares register. This revision replaces the older field wiring instructions.</p>
+  <h3>Keep a field copy</h3><ol>
+    <li>Open this page while you have a connection. Wait for the top status to say <b>Saved for offline use</b>.</li>
+    <li>On iPhone, use Share → Add to Home Screen. Open the saved guide once while online.</li>
+    <li>Test it before leaving: turn on airplane mode, reopen the guide, then restore your connection.</li>
+    <li>Use Print / save PDF for a second copy. Expandable details are included in print.</li>
+    <li>Export field notes separately. Browser storage belongs to this device and browser.</li>
+  </ol>
+  <p>The guide, diagrams, parts list and spares list are included in the offline copy. External manufacturer manuals and shopping pages need a connection unless you save them separately. An old offline phone cannot receive corrections until it reconnects. Check the revision at the top before work.</p>
+  <h3>Evidence order</h3><ul>
+    <li>Use the delivered component's exact manufacturer instructions and label for installation.</li>
+    <li>Use this page for the current system arrangement and unresolved work.</li>
+    <li>Use linked primary sources to check ratings and conditions. A source for a different model or revision does not close a check.</li>
+    <li>Older PDFs, screenshots and cached pages can contain retired instructions. Their dimensioned layouts and electrical ratings are not released by this page.</li>
+  </ul>
+  <p>Primary sources are linked beside the relevant claims. The working technical records are maintained with the project. The public guide omits credentials, network addresses, exact property location and private contacts. Field notes stay local.</p>
+  <details><summary>Unresolved manufacturer information</summary><ul>
+    <li>LiTime: actual battery revision, terminal torque, parallel preparation, charger profile, cold-soak restart method and approved external heating.</li>
+    <li>Tycon: exact TP60 installation instructions, battery compatibility/recovery, charge-disable behavior, fault protection and surge withstand.</li>
+    <li>Inverter manufacturer: exact model, orientation/clearances, precharge, remote interface, AC protection and neutral/earth topology.</li>
+    <li>IOTA: delivered charger revision, IQ-LIFEPO compatibility and 24 V profile, AC switching/inrush and surge protection.</li>
+    <li>DIHOOL: delivered assembly's DC switching diagram and ratings, including attached leads and connectors.</li>
+    <li>Thermal-control and SPD makers: final interfaces, failure behavior, installation modes and coordinated protection.</li>
+  </ul></details>
+  <p class="caption">This is a planning and field-reference page. It does not monitor live equipment or issue control commands. Local checkboxes do not change an equipment state or authorize power-up.</p>
+</section>
+<footer class="footer">Project Hedge · 2026.09.27-r1 · Public field reference<br>Check the current revision and the delivered equipment instructions before work.</footer></main></div></body></html>

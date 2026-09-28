@@ -1,0 +1,79 @@
+<section id="parts" class="chapter" data-title="Parts shopping ordering requirements">
+  <div class="chapter-heading"><span class="number">11</span><div><p class="eyebrow">Procurement</p><h2>Parts to arrange</h2></div></div>
+  <p>Ownership is listed in <a href="#equipment">Equipment</a>. This table separates the current combiner selection from parts that still need design checks. Prices and delivery dates are not fixed.</p>
+  <div class="table-wrap"><table><thead><tr><th>Quantity</th><th>Item</th><th>Status / next action</th></tr></thead><tbody>
+    <tr><td>1</td><td><a href="https://www.amazon.com/dp/B004XFYV8U">MidNite MNPV3</a></td><td>Selected combiner proposal. Confirm the listing is the genuine enclosure with its bars and deadfront. Purchase not reported.</td></tr>
+    <tr><td>3 individual</td><td><a href="https://www.amazon.com/dp/B0D57SDQVH">MNEPV15-150-1PNP</a></td><td>Selected 15 A / 150 V DC / 13 mm non-polarized string breakers. Check exact suffix. Buy three operating units; a spare is extra.</td></tr>
+    <tr><td>Measured</td><td>PV conductors, matching connectors, raceway, supports and glands</td><td>Measure first. Confirm grouping, fill, ampacity and cable outside diameter before ordering.</td></tr>
+    <tr><td>As designed</td><td>PE bar, bonding lugs, door straps, grounding conductors</td><td>Verify connection to the existing building PE system. No independent new ground-rod package is approved.</td></tr>
+    <tr><td>As designed</td><td>Battery/inverter/charger fuses, holders and disconnects</td><td>Close fault-current and conductor coordination. Owned ANL holders and the 80 A breaker are not automatically suitable.</td></tr>
+    <tr><td>2 operating</td><td>Cabinet thermostats</td><td>Order reported. Check exact delivered model, cooling action and DC contact rating. Do not duplicate the order yet.</td></tr>
+    <tr><td>As designed</td><td>Regulated fan supply and fan branch fuses</td><td>Need fan startup/running current and battery voltage range.</td></tr>
+    <tr><td>4 operating zones</td><td>Approved battery warmers, probes and local controls</td><td>Thermal fit, surface temperature and final heater model pending. See <a href="#thermal">winter design</a>.</td></tr>
+    <tr><td>As designed</td><td>Hard charge-inhibit relays, contactors, supplies and interfaces</td><td>Review candidates below. Obtain exact wiring and duty confirmation before purchase.</td></tr>
+    <tr><td>As designed</td><td>AC/PV/data/battery surge protection</td><td>Coordination review required. Candidate part numbers are not purchase approval.</td></tr>
+  </tbody></table></div>
+  <p>Keep active-system purchases separate from the <a href="#spares">protected spare inventory</a>. The ordered TP60 is the operating controller.</p>
+</section>
+
+<section id="commission" class="chapter" data-title="Commissioning release holds shutdown safety work sequence">
+  <div class="chapter-heading"><span class="number">12</span><div><p class="eyebrow">Before power-up</p><h2>Release checks and test order</h2></div></div>
+  <div class="notice hold"><strong>All checks below remain open unless a verified record closes them.</strong><p>A tick in your field notes records work. It does not approve a design. The system needs a final circuit drawing, protection schedule, terminal schedule and settings sheet that match the delivered equipment.</p></div>
+  <div class="table-wrap"><table><thead><tr><th>Gate</th><th>Evidence needed</th></tr></thead><tbody>
+    <tr><td>PV limits</td><td>All six labels, two-panel cold Voc calculation, PV current allowances, approved connector pairs, string protection and delivered disconnect instructions.</td></tr>
+    <tr><td>Battery branches</td><td>Exact pack variants, connection-preparation instructions, supported base, matched branch resistance, cable/terminal ratings, each battery's positive protection, accessible disconnects and guards.</td></tr>
+    <tr><td>DC fault protection</td><td>Prospective fault-duty basis and coordinated fuse/holder/breaker ratings. Final inverter branch supports the intended load. BMS action is not a substitute for branch protection.</td></tr>
+    <tr><td>Grounding and AC output</td><td>Verified supply EGC, permanent PE path, array/cabinet bonds, inverter manual-based neutral arrangement, required ground-fault protection and separate protected office outlet.</td></tr>
+    <tr><td>Existing AC branch</td><td>Breaker rating, conductor/device suitability, GFCI coverage, outlet condition and combined IOTA/network/Rinnai load assessment.</td></tr>
+    <tr><td>Both charge profiles</td><td>TP60 lithium parameters and IOTA module/profile. Equalization off. Voltage checked by meter. Charge current and temperature limits documented.</td></tr>
+    <tr><td>Winter protection</td><td>Four battery temperature channels, actual switching stages, loss-of-power/probe-fault behavior, manual reset, hot and cold inhibit, warmup validation and outage recovery.</td></tr>
+    <tr><td>Mounting and weather</td><td>Exact equipment clearances, unrestricted fan paths, sealed entries, drainage, strain relief, structural mounting, guarded terminals and access for isolation.</td></tr>
+    <tr><td>Surge coordination</td><td>Chosen SPDs and manufacturer-compatible circuit modes, protective levels, leads, bonding and backup protection. Without this evidence, no EMP or coordinated surge-protection claim may be made.</td></tr>
+  </tbody></table></div>
+  <h3>Test sequence after the design is released</h3>
+  <ol>
+    <li><b>Inspect while isolated.</b> Check part numbers, cable routes, protection, polarity and the recorded terminal torque for each exact component. Keep PV and grid charging isolated. Battery posts remain live even when external cables are removed.</li>
+    <li><b>Test controls separately.</b> Use the final protected control test setup. Prove startup, shutdown, sensor faults and charger-stop commands before full charging is possible.</li>
+    <li><b>Prepare the four batteries.</b> Follow the matching LiTime procedure for initial charge, voltage matching and parallel connection. Do not connect a mismatched or previously tripped pack into a live bank.</li>
+    <li><b>Power the MPPT from BAT with PV isolated.</b> Confirm system voltage and the full charge profile. Follow the final startup/precharge instructions for each load; no generic resistor or two-second precharge rule is approved.</li>
+    <li><b>Inspect and commission PV.</b> Before initial PV energization, a qualified installer verifies string voltage, polarity, isolation and protection against the released design. Keep within the recorded cold Voc and input limits. Enable initial charging only under the approved test procedure.</li>
+    <li><b>Test each charging source in turn.</b> After those PV checks, confirm actual charge current stops on a temperature trip. Prove both-source operation, hard override, loss of control power, failed probe, TPDIN reboot and network loss.</li>
+    <li><b>Test the inverter branch and office outlet.</b> Verify its protection and GFCI operation with the final neutral/PE arrangement. Increase load only within the approved branch rating.</li>
+    <li><b>Record a loaded baseline.</b> Check battery current sharing, voltage drop and joint/case temperatures at a stated load and ambient temperature. A hot joint needs investigation after isolation. Do not tighten live connections.</li>
+    <li><b>Test winter and grid-loss behavior.</b> Confirm heat can run from the battery bank and that charging stays inhibited until all batteries meet the restart conditions. Use safe test inputs; do not deliberately freeze-charge a battery.</li>
+    <li><b>Save the final record.</b> Attach settings, circuit drawings, torque references, measurements and test results. Recheck after repair or a part change. Follow the component maintenance instructions.</li>
+  </ol>
+  <details><summary>Normal isolation and emergency limits</summary>
+    <p>For a planned controller shutdown, isolate PV first, stop the IOTA grid source, turn loads off, then use the approved battery disconnect sequence. Reconnection needs the battery-connected controller configured before PV is restored. The final labels must show every source and disconnect.</p>
+    <p>For smoke, unusual heating, swelling, hissing or a fire: move people away and call emergency services. Use an external disconnect only if it is safe to reach. Do not open or move a failing battery. PV upstream of its disconnect can remain live. Tell responders that both grid AC and a LiFePO4 battery/PV system are present.</p>
+    <p>The plastic storage box is not a tested battery fire enclosure. A loose lid, cement board lining or a handheld extinguisher does not establish containment of a battery event.</p>
+  </details>
+</section>
+
+<section id="field-log" class="chapter" data-title="Field notes checklist measurements export backup">
+  <div class="chapter-heading"><span class="number">13</span><div><p class="eyebrow">Your local record</p><h2>Field notes</h2></div></div>
+  <p>Notes and checks save in this browser on this device. They do not upload or sync. Export a backup before clearing browser data or changing phones. Old checklist ticks were not carried over because the instructions changed.</p>
+  <div class="notice" id="storage-status" role="status">Preparing local notes.</div>
+  <fieldset><legend>Preparation progress</legend><div class="checklist">
+    <label><input type="checkbox" data-save="labels"> Equipment labels and manual revisions recorded</label>
+    <label><input type="checkbox" data-save="route"> Three PV string routes and cable lengths measured</label>
+    <label><input type="checkbox" data-save="base"> Battery base and full-footprint support measured</label>
+    <label><input type="checkbox" data-save="branch"> Outdoor branch rating and all loads recorded</label>
+    <label><input type="checkbox" data-save="ground-review"> Grounding and protection review arranged</label>
+    <label><input type="checkbox" data-save="parts-count"> Delivered parts checked against equipment list</label>
+    <label><input type="checkbox" data-save="spare-inventory"> Spare ownership and storage inventory recorded</label>
+  </div></fieldset>
+  <div class="form-grid">
+    <label>TPDIN model, hardware, firmware<input data-save="tpdin" maxlength="200" placeholder="Model / V1 or V2 / firmware"></label>
+    <label>Outdoor branch breaker rating<input data-save="branch-amps" maxlength="100" placeholder="Record label and verification date"></label>
+    <label>IOTA model and lithium module<input data-save="iota" maxlength="200" placeholder="Exact labels and profile reference"></label>
+    <label>Inverter model and manual<input data-save="inverter" maxlength="200" placeholder="Exact model / grounding instructions"></label>
+    <label>PV route, one way<input data-save="pv-route" maxlength="200" placeholder="A / B / C lengths, cable and conduit markings"></label>
+    <label>Cold Voc calculation reference<input data-save="cold-voc" maxlength="300" placeholder="Minimum temperature / coefficient / method / result"></label>
+  </div>
+  <label class="note-label">Measurements, open items and review record<textarea data-save="notes" rows="7" maxlength="20000" placeholder="Date · component · measurement or decision · evidence · next action"></textarea></label>
+  <label class="note-label">Protected-spare storage log<textarea data-save="spare-notes" rows="5" maxlength="20000" placeholder="Item ID / serial · reserved quantity · function test/date · saved settings · container/location · closure/date · status"></textarea></label>
+  <div class="button-row"><button type="button" id="exportNotes">Export notes</button><button type="button" id="importNotesButton" class="secondary">Import notes</button><input type="file" id="importNotes" accept="application/json,.json" hidden><button type="button" id="printGuide" class="secondary">Print / save PDF</button></div>
+  <p class="caption" id="notes-message" role="status">An export includes this guide revision, your notes and preparation checks. Printed pages also show your notes.</p>
+  <noscript><p class="notice hold">JavaScript is off. The full guide is readable, but notes cannot save and the offline cache cannot install. Use print or save a copy.</p></noscript>
+</section>

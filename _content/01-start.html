@@ -1,0 +1,58 @@
+<section id="start" class="chapter" data-title="Start here and next work">
+  <div class="chapter-heading"><span class="number">01</span><div><p class="eyebrow">Current plan</p><h2>Start here</h2></div></div>
+  <p class="lead">Build the 24 V solar system for a separate office outlet. Keep battery heat available during a grid outage. Use local temperature protection for both charging sources.</p>
+  <div class="notice hold"><strong>Power-up is on hold.</strong><p>The purchased equipment can form the proposed system, but its protection, grounding, cold-charge controls and several part ratings still need to be closed. This page is the current design record. It is not a released terminal-by-terminal wiring drawing.</p></div>
+  <div class="facts"><div><b>6 × 250 W</b><span>Two panels per string, three strings</span></div><div><b>4 × 100 Ah</b><span>24 V batteries in parallel</span></div><div><b>TP60 ordered</b><span>100 V PV limit, 60 A charge limit</span></div><div><b>Local winter control</b><span>Battery heat during a grid outage</span></div></div>
+  <h3>Work you can do now</h3>
+  <ol class="work-list">
+    <li><strong>Finish the empty-box layout.</strong> Keep the batteries and all sources disconnected. Reserve the full equipment clearances. Mark proposed locations before drilling.</li>
+    <li><strong>Measure the PV route.</strong> Record all three string routes from their free roof leads to the combiner. The current estimate is 15 ft one way. Include roof travel, bends and service allowance.</li>
+    <li><strong>Check the delivered parts.</strong> Record the TP60, TPDIN, IOTA, inverter, DIHOOL, fan and thermostat labels. Record busbar stud sizes, cable markings and fuse-holder ratings.</li>
+    <li><strong>Resolve the battery base.</strong> Support each complete battery footprint on a stable, moisture-resistant base. Keep terminals covered during fitting. The shelf with front and rear overhang has not been approved.</li>
+    <li><strong>Prepare the protection review.</strong> Use the <a href="#commission">release checklist</a> with the electrician. Close the permanent equipment-ground path, source/bond arrangement, branch load budget and DC fault-protection design.</li>
+  </ol>
+  <div class="notice done"><strong>Recorded progress</strong><p>All four batteries were reported disconnected. The front purple foam and foil-faced end piece were removed. Both new cabinet fans are mounted on their plates. Thermostats and the TP60 were ordered. No roof descent cables have been run. These are user reports, not fresh measurements of the installation.</p></div>
+  <details><summary>What changed from the old guide</summary><ul>
+    <li>The original controller in the photos is a 30 A TP30. The 60 A TP60 is a separate order. The 150 V TS60 was considered but was not selected.</li>
+    <li>PV strings combine in a protected combiner beside the lower cabinet. The old roof Y-branch and half-inch conduit instructions are withdrawn.</li>
+    <li>An isolated ground rod does not provide the required equipment fault path. The solar metalwork needs a permanent bond to the approved building protective-earth system.</li>
+    <li>The standard LiTime batteries do not have confirmed automatic cold-charge protection. Both chargers need the temperature interlock.</li>
+    <li>Fans do not waive equipment clearances. Old fixed fuse, torque, cable-cut and precharge instructions are withdrawn where their basis was not confirmed.</li>
+    <li>The 80 A inverter branch does not support the inverter's full 3000 W rating. A separate branch design is required.</li>
+    <li>The old fire-response, battery bench-test and meter-based neutral-bond instructions have been removed from field use.</li>
+  </ul></details>
+</section>
+
+<section id="map" class="chapter" data-title="System map and power flow">
+  <div class="chapter-heading"><span class="number">02</span><div><p class="eyebrow">Functional drawing</p><h2>How the system connects</h2></div></div>
+  <p>This shows power flow and component roles. It does not assign terminals, wire sizes, fuse ratings or neutral bonds. Arrows represent power cables. Surge protectors connect in parallel.</p>
+  <div class="flow-diagram" role="img" aria-label="Three two-panel strings feed individual string breakers and a combiner, then a manual PV disconnect and a temperature-controlled PV interruption stage, then the TP60, then the protected battery bus. Grid power feeds a charge-permission contactor and the IOTA into that bus. The bus feeds the inverter, heaters and controls on separate protected branches.">
+    <div class="flow-lanes"><div class="flow-lane solar"><h3>Roof → lower cabinet</h3><div class="flow-box">String A: panel 1 + panel 2<br>String B: panel 3 + panel 4<br>String C: panel 5 + panel 6<small>Two in series per string</small></div><div class="flow-arrow">↓ three separate pairs</div><div class="flow-box">MNPV3 combiner<br><b>3 × individual 15 A string breakers</b><small>Separate PV negative and PE bars</small></div><div class="flow-arrow">↓ one combined pair</div><div class="flow-box">Manual PV disconnect<small>Owned DIHOOL assembly: verification open</small></div><div class="flow-arrow">↓</div><div class="flow-box pending">PV charge-inhibit stage<small>Final switching design pending</small></div><div class="flow-arrow">↓</div><div class="flow-box">Tycon TP-SC24-60N-MPPT<small>PV terminals in / BAT terminals out</small></div></div>
+    <div class="flow-lane grid"><h3>Existing grid → IOTA</h3><div class="flow-box">Shop-fed 50 A connection<br>→ tiny-house panel<small>20 to 25 ft supply route</small></div><div class="flow-arrow">↓ shared outdoor branch</div><div class="flow-box">First: GFCI + network<br>Middle: IOTA outlet<br>Far: outlet + Rinnai<small>Branch rating and GFCI coverage pending</small></div><div class="flow-arrow">↓ plug-in supply</div><div class="flow-box pending">AC charge-permission contactor<small>Temperature permission overrides charge request</small></div><div class="flow-arrow">↓</div><div class="flow-box">IOTA DLS-27-15<br>+ verified lithium charge profile<small>15 A DC output</small></div></div></div>
+    <div class="flow-arrow wide">↓ separate protected charger circuits ↓</div><div class="flow-box bank"><b>24 V battery distribution</b><br>Four LiTime 24 V 100 Ah batteries in parallel<br>Each positive branch protected near its battery<small>Common positive and negative buses. Final disconnect and fuse arrangement pending.</small></div>
+    <div class="flow-arrow wide">↓ separate protected load circuits ↓</div><div class="flow-loads"><div class="flow-box">24 V inverter<br>→ protected AC branch<br>→ office-only outlet<small>Never backfeed the house</small></div><div class="flow-box pending">Heater LVD + regulated supply<br>→ four local heater controls<br>→ approved battery warmers</div><div class="flow-box pending">Control supply + hard temperature chain<br>TPDIN monitoring<br>Separate cabinet fan circuits</div></div>
+    <div class="earth-strip">PE bonding: array frames and approved rail bonds · metal cabinets and doors · equipment chassis · combiner · SPDs → local PE bar → approved building PE connection</div>
+  </div>
+  <p class="caption">The battery-negative bus, PV-negative bar and PE bar have different functions. This diagram does not authorize a connection between them. The inverter's AC neutral arrangement is still open.</p>
+</section>
+
+<section id="equipment" class="chapter" data-title="Equipment and purchase status">
+  <div class="chapter-heading"><span class="number">03</span><div><p class="eyebrow">Inventory</p><h2>What we have and what is planned</h2></div></div>
+  <div class="table-wrap"><table><thead><tr><th>Item</th><th>Status</th><th>Current use / constraint</th></tr></thead><tbody>
+    <tr><td>6 × SS250P-60, 250 W panels</td><td><span class="badge confirmed">Photo / record</span></td><td>1500 W main array. 2S3P. Check every panel label agrees.</td></tr>
+    <tr><td>Tycon TP-SC24-60N-MPPT</td><td><span class="badge ordered">Ordered</span></td><td>$80 order reported. 100 V PV, 60 A charge, 1560 W maximum array at 24 V. Arrival and test not reported.</td></tr>
+    <tr><td>Tycon TP-SC24-30N-MPPT</td><td><span class="badge confirmed">Owned</span></td><td>Original photographed unit. 100 V PV, 30 A charge, 780 W array at 24 V. Proposed reduced-array spare.</td></tr>
+    <tr><td>4 × LiTime 24 V 100 Ah</td><td><span class="badge confirmed">Owned</span></td><td>Main 4P bank. 25.6 V, 400 Ah, 10.24 kWh nominal. Standard model; low-temperature cutoff unconfirmed.</td></tr>
+    <tr><td>WZRELB / Reliable Electric inverter</td><td><span class="badge confirmed">Owned / mounted</span></td><td>24 V, 3000 W label. Exact model/manual and output grounding are still required.</td></tr>
+    <tr><td>IOTA DLS-27-15</td><td><span class="badge confirmed">Recorded owned</span></td><td>Grid charger. Lithium module/version/profile need confirmation. Plug into the tiny-house middle exterior outlet.</td></tr>
+    <tr><td>TPDIN monitor</td><td><span class="badge confirmed">Owned</span></td><td>Exact model, V1/V2 hardware and firmware pending. Retain for monitoring and normal control.</td></tr>
+    <tr><td>DIHOOL enclosed PV breaker</td><td><span class="badge confirmed">Purchase reported</span></td><td>Listing DZ47Z-60, 60 A / 1000 V DC. Delivered assembly and load-switching instructions unverified.</td></tr>
+    <tr><td>MNPV3 + 3 × MNEPV15-150-1PNP</td><td><span class="badge proposed">Proposed</span></td><td>One combiner and three individual 15 A string breakers. Purchase not confirmed.</td></tr>
+    <tr><td>2 × Wathai 24 V fans</td><td><span class="badge confirmed">Owned / on plates</span></td><td>One per white cabinet. Running/start current and allowed voltage range pending.</td></tr>
+    <tr><td>New fan thermostats</td><td><span class="badge ordered">Ordered</span></td><td>Exact part and DC switching rating need confirmation on arrival.</td></tr>
+    <tr><td>Busbars, ANL holders, 2/0 cables, BULVACK 80 A breaker</td><td><span class="badge confirmed">Owned / recorded</span></td><td>Final duty, dimensions, ratings and installation suitability remain open.</td></tr>
+    <tr><td>Baomain contactor</td><td><span class="badge confirmed">Owned / recorded</span></td><td>Reserved for IOTA grid control. Verify exact coil, contacts and inrush duty.</td></tr>
+    <tr><td>Heat, hard temperature interlock, SPDs, bonding parts</td><td><span class="badge proposed">Design pending</span></td><td>Candidates are listed below. They are not an approved purchase package.</td></tr>
+  </tbody></table></div>
+  <p class="source">Controller ratings: <a href="https://tsi.tyconsystems.com/doc/SpecSheets/TP-SC24-30N%2660N-MPPT_Solar_Chrg_Ctrl_Spec_Sheet.pdf">Tycon TP30 / TP60 data sheet</a>. Equipment photos and the user's order reports establish the other inventory states. The TS-SC24-60N-MPPT, ATS and two shed batteries are outside this main-system equipment list.</p>
+</section>

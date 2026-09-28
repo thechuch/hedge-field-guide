@@ -1,62 +1,45 @@
-/* Project Hedge Field Guide · offline shell cache */
-const CACHE = 'hedge-field-v32';
+/* Atomic offline release: replace retired pages and avoid mixed content versions. */
+const REVISION = '2026.09.27-r1';
+const CACHE = 'hedge-field-v36-' + REVISION;
 const ASSETS = [
-  './',
-  'index.html',
-  'plot-plan.html',
-  'battery-wiring.html',
-  'deck-layout.html',
-  'shed-freezer.html',
-  'shopping.html',
-  'wall-cabinet.html',
-  'mount-detail.html',
-  'panel-layout.html',
-  'gland-plan.html',
-  'bench-test.html',
-  'ask.html',
-  'panel-wiring.html',
-  'pump-skid.html',
-  'split-station.html',
-  'punch-list.html',
-  'build-manual.html',
-  'fire-safety.html',
-
-  'chicken-waterer.html',
-  'litime-email.html',
-  'assets/site.css',
-  'icon.svg',
-  'manifest.webmanifest'
+  './', 'index.html', 'assets/guide.css?v=2026.09.27-r1', 'assets/guide.js?v=2026.09.27-r1', 'icon.svg', 'manifest.webmanifest',
+  'build-manual.html', 'battery-wiring.html', 'deck-layout.html', 'bench-test.html',
+  'fire-safety.html', 'gland-plan.html', 'panel-layout.html', 'panel-wiring.html',
+  'wall-cabinet.html', 'cabinet-fab.html', 'mount-detail.html', 'plot-plan.html',
+  'pump-skid.html', 'split-station.html', 'chicken-waterer.html', 'shed-freezer.html',
+  'shopping.html', 'punch-list.html', 'litime-email.html', 'ask.html'
 ];
-
-self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting()));
+self.addEventListener('install', event => {
+  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS.map(path => new Request(path, {cache:'reload'})))).then(() => self.skipWaiting()));
 });
-
-self.addEventListener('activate', (e) => {
-  e.waitUntil(
-    caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
-      .then(() => self.clients.claim())
-  );
+self.addEventListener('activate', event => {
+  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith('hedge-field-') && key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim()));
 });
-
-self.addEventListener('fetch', (e) => {
-  const req = e.request;
-  if (req.method !== 'GET') return;
-  // Network-first for navigations (get fresh pages when online), fall back to cache offline.
-  if (req.mode === 'navigate') {
-    e.respondWith(
-      fetch(req).then((res) => {
-        const copy = res.clone();
-        caches.open(CACHE).then((c) => c.put(req, copy));
-        return res;
-      }).catch(() => caches.match(req).then((r) => r || caches.match('index.html')))
-    );
+self.addEventListener('message', event => {
+  if (event.data?.type !== 'CHECK_CACHE') return;
+  event.waitUntil(caches.open(CACHE).then(async cache => {
+    const results=await Promise.all(ASSETS.map(path=>cache.match(new URL(path,self.registration.scope).href)));
+    event.source?.postMessage({type:'CACHE_STATUS',revision:REVISION,ready:results.every(Boolean)});
+  }));
+});
+self.addEventListener('fetch', event => {
+  const request=event.request;
+  const url=new URL(request.url);
+  if(request.method!=='GET' || url.origin!==self.location.origin || !url.href.startsWith(self.registration.scope))return;
+  if(request.mode==='navigate'){
+    event.respondWith(caches.open(CACHE).then(async cache=>{
+      // Serve a complete installed release. A new worker replaces the full cache,
+      // then the page offers Reload. Never mix network HTML into an older release.
+      const saved=await cache.match(request,{ignoreSearch:true});
+      if(saved)return saved;
+      try{return await fetch(request);}
+      catch(_){return await cache.match(new URL('index.html',self.registration.scope).href);}
+    }));
     return;
   }
-  // Cache-first for static assets.
-  e.respondWith(caches.match(req).then((r) => r || fetch(req).then((res) => {
-    const copy = res.clone();
-    caches.open(CACHE).then((c) => c.put(req, copy));
-    return res;
-  }).catch(() => r)));
+  event.respondWith(caches.open(CACHE).then(async cache=>{
+    const saved=await cache.match(request);
+    if(saved)return saved;
+    return fetch(request);
+  }));
 });
