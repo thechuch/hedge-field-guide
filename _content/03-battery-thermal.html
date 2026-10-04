@@ -54,6 +54,16 @@
   <p><strong>Layout:</strong> the upper cabinet holds the inverter. The lower cabinet is for the MPPT, IOTA and associated controls. The battery box is beside them. Preserve equipment airflow and service space.</p>
   <div class="callout hold"><strong>Clearance correction.</strong> Forced ventilation does not approve reduced manufacturer clearances. Check the actual TP60 and inverter manuals before final mounting or drilling. The earlier TS60 clearance drawing does not apply to the ordered TP60.</div>
 
+  <h3>Lower cabinet photo, 4 October 2026</h3>
+  <p>The Tycon controller is on the left. The IOTA is at the upper right. The lower DIN rail holds the MEAN WELL DDR converter on the left, the TPDIN in the middle and the MC-9b contactor on the right. A cooling thermostat is mounted beside the top fan. This photo records the current positions. It does not establish measured clearances, the controller's exact label or the TPDIN hardware and firmware versions.</p>
+  <ul>
+    <li>Keep an unobstructed 4 inch minimum space around the IOTA fan. Check its vents and the mounting materials against the IOTA instructions. <a href="https://www.iotaengineering.com/-/media/abl/iota/files/technical-library/right-column/dls_troubleshoot.pdf?forceBehavior=open&amp;hash=CB5043BFE60FC7C29BCD837AF09321B7&amp;la=en">IOTA airflow requirement</a></li>
+    <li>Arrange the contactor's AC wiring on the right with guarded terminals and a separate covered wire route from the TPDIN network, sensor and control circuits. Extend the rail or use a suitable separate AC enclosure if that layout does not fit.</li>
+    <li>Reserve space for separate wiring ducts. Keep TPDIN ports, removable terminals, contactor terminals and the DDR adjustment accessible. Keep conductors clear of charger vents and fan blades.</li>
+    <li>Keep the permanent cabinet and equipment protective-earth path in the layout. The removable IOTA plug cannot be its only connection. See <a href="#bonding">bonding</a>.</li>
+  </ul>
+  <p><strong>What the AC guard means:</strong> the white cabinet can remain the outer enclosure. LS lists <b>AP/T-9</b> transparent terminal covers for MC-9b through MC-22b, two covers per set for the upper and lower main terminals. Use matching covers and covered wiring duct so AC connections remain guarded during work at the TPDIN. A second box is an option when the wiring cannot be separated and guarded within this cabinet. Cover and barrier placement must preserve access and cooling. <a href="https://www.ls-electric.com/upload/customer/download/4d8b99a1-c93d-4cd3-807b-1382f0c39384/Metasol_MS_E_180903.pdf#page=87">LS terminal covers, page 87</a></p>
+
   <h3>Upper cabinet: 24 V inverter</h3>
   <p>The photographed inverter is a 24 V, 3000 W YueQing Reliable Electric / WZRELB unit. Its exact model suffix, mounting instructions, output protection and neutral-to-earth arrangement still need confirmation.</p>
   <ul>
@@ -73,11 +83,13 @@
   <p>The recorded charger is an IOTA DLS-27-15 Series M. Its 15 A rating is DC output. Its manufacturer sheet lists up to 7.3 A AC input at 108 V and 30 A single-cycle inrush. Check the delivered unit against that sheet. <a href="https://www.iotaengineering.com/-/media/abl/iota/files/technical-library/right-column/spec2.pdf?forceBehavior=open">IOTA Series M ratings</a></p>
   <ul>
     <li>Use grid power through the approved charge-permission contactor. Its DC output has a separate protected connection to the battery bus.</li>
-    <li>Confirm the IQ-LIFEPO module, its exact 24 V profile and the charger ambient limits. The old statement that 27.2 V stops at a fixed 85% state of charge is withdrawn.</li>
-    <li>Verify the Baomain contactor model, coil voltage, charger inrush duty and enclosure wiring before reuse.</li>
+    <li>The 4 October photo confirms an IQ-LIFEPO 2-stage module. Verify its exact 24 V charging profile and the charger ambient limits before charging. The old statement that 27.2 V stops at a fixed 85% state of charge is withdrawn.</li>
+    <li>The owned Baomain-labelled contactor is an LS Metasol MC-9b with a 24 V DC coil. Its assigned function, KAC, switches the IOTA AC supply. Charger switching duty, fault-protection coordination and the coil interface remain open.</li>
     <li>Keep protective earth continuous. Final line and neutral switching follows the verified supply arrangement.</li>
     <li>Do not power this charger from the inverter connected to the same battery bank.</li>
   </ul>
+  <p><strong>KAC coil supply:</strong> use regulated 24 V. The delivered terminals are A1 positive and A2 negative. The LS standard DC-coil range is 85 to 110% of rated voltage, or 20.4 to 26.4 V for this coil. The battery's 28.8 V charging voltage exceeds that range. The DDR-30G-24 has no approved contactor-coil allocation. Select the coil driver and suppression with the full control supply and release-time review. <a href="https://www.ls-electric.com/upload/customer/download/4d8b99a1-c93d-4cd3-807b-1382f0c39384/Metasol_MS_E_180903.pdf">LS Metasol catalogue, control coils</a></p>
+  <p><strong>AC route correction:</strong> IOTA prohibits extension cords and cutting the power cord. The recorded 15 ft route is a distance estimate. Plan a suitable permanent receptacle within reach of the supplied cord and preserve its plug. The KAC-fed receptacle design remains open. <a href="https://www.donrowe.com/v/vspfiles/pdf/dls_24v_owners_guide.pdf">IOTA 27 V owner's manual</a></p>
   <details>
     <summary>Shared exterior outlet circuit</summary>
     <p>The three exterior outlets share one tiny-house branch. The first, nearest the panel, is a GFCI and supplies the network stack. The middle will supply the IOTA. The far outlet also branches to the Rinnai water heater.</p>
@@ -87,7 +99,9 @@
   </details>
 
   <h3>One cooling circuit per cabinet</h3>
-  <p>The replacement Wathai 24 V fans are mounted on the plates. Thermostats are on order. Check the received thermostat models and fan current before wiring.</p>
+  <p>The replacement Wathai 24 V fans are mounted on the plates. The lower-box photo shows a mounted cooling thermostat. Its exact model and DC switching rating remain unverified. Check both fan currents and the controls for both cabinets before wiring.</p>
+  <p><strong>Owned fan-supply candidate, PS-F:</strong> MEAN WELL DDR-30G-24. It accepts 9 to 36 V DC and supplies regulated 24 V. Its full output at 12 to 36 V input is 1.25 A, 30 W total. Check the combined fan startup and running loads, branch protection and temperature derating. <a href="https://www.meanwell.com/Upload/PDF/DDR-30/DDR-30-spec.pdf">DDR-30 specifications</a></p>
+  <p>Mount the DDR upright, with input terminals below and output terminals above. Keep 40 mm clear above, 20 mm below and 5 mm on each side. Keep it dry. Its isolated output return must remain separate from the input return. The installation manual prohibits connecting its primary and secondary sides together. <a href="https://www.meanwell.com/Upload/PDF/DDR%20DIN%20rail%20power%20supply.pdf">DDR installation manual</a></p>
   <p class="path">Regulated 24 V supply → fan branch fuse → cooling thermostat → fan positive. Fan negative → regulated return.</p>
   <ul>
     <li>Use one thermostat in each cabinet. It must close as the cabinet becomes warm.</li>
@@ -157,7 +171,7 @@
         <tr><td>4</td><td>Matched three-wire Pt100 surface probes</td><td>Cold-point placement, secure insulated attachment and fault detection</td></tr>
         <tr><td>1 set</td><td>Delay, monitored manual reset, OFF and ARM controls</td><td>Held-button restart prevention and power-loss behavior</td></tr>
         <tr><td>2</td><td>Sensata GX11TAB PV contactor candidates</td><td>Actual PV switching duty, precharge, polarity and coil drivers</td></tr>
-        <tr><td>1</td><td>Existing Baomain contactor for IOTA</td><td>Delivered model, coil, AC charger inrush and installation suitability</td></tr>
+        <tr><td>1 owned</td><td>KAC: Baomain-labelled LS Metasol MC-9b, 24 V DC coil, for IOTA AC input</td><td>Model and coil confirmed. Regulated coil supply, charger switching duty, protective coordination and AC wiring separation remain open.</td></tr>
         <tr><td>1</td><td>MEAN WELL DDR-120B-24 control supply</td><td>120 W / 5 A load budget, startup and temperature derating</td></tr>
         <tr><td>1</td><td>MEAN WELL DDR-240B-24 heater converter</td><td>24 V / 10 A output, 16.8 to 33.6 V input; full installed-load review</td></tr>
         <tr><td>1</td><td>Smart BatteryProtect 65 on the heater-converter input</td><td>Converter inrush and normal voltage-protection mode compatibility</td></tr>

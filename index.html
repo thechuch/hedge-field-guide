@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#183c30"><meta name="description" content="Current Project Hedge field plan: solar, batteries, winter protection, bonding, surge protection and protected spares. Offline guide with private local field notes.">
-<title>Hedge Field Guide | Current system plan</title><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg"><link rel="apple-touch-icon" href="icon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="stylesheet" href="assets/guide.css?v=2026.09.27-r1"><script src="assets/guide.js?v=2026.09.27-r1" defer></script></head>
-<body><a class="skip-link" href="#start">Skip to the plan</a><header class="topbar"><a class="brand" href="./">HEDGE <span>FIELD GUIDE</span></a><span class="status" id="offlineStatus" role="status">Revision 2026.09.27-r1 · checking offline storage</span><button id="themeToggle" type="button" aria-label="Switch light or dark theme">Light / dark</button></header>
+<title>Hedge Field Guide | Current system plan</title><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg"><link rel="apple-touch-icon" href="icon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><link rel="stylesheet" href="assets/guide.css?v=2026.10.04-r1"><script src="assets/guide.js?v=2026.10.04-r1" defer></script></head>
+<body><a class="skip-link" href="#start">Skip to the plan</a><header class="topbar"><a class="brand" href="./">HEDGE <span>FIELD GUIDE</span></a><span class="status" id="offlineStatus" role="status">Revision 2026.10.04-r1 · checking offline storage</span><button id="themeToggle" type="button" aria-label="Switch light or dark theme">Light / dark</button></header>
 <div class="layout"><nav class="toc" aria-label="Guide sections"><p>In this guide</p><a href="#start"><span class="idx">01</span>Start and next work</a>
 <a href="#map"><span class="idx">02</span>System map</a>
 <a href="#equipment"><span class="idx">03</span>Equipment status</a>
@@ -17,8 +17,8 @@
 <a href="#commission"><span class="idx">12</span>Release and test order</a>
 <a href="#field-log"><span class="idx">13</span>Field notes</a>
 <a href="#other"><span class="idx">14</span>Water and other projects</a>
-<a href="#record"><span class="idx">15</span>Sources and offline use</a><p class="revision-note">Reviewed 27 September 2026<br>Revision 2026.09.27-r1<br><br>Design holds are shown at the point of use. Read them before work.</p></nav><main class="content" id="main">
-<div id="updateNotice" class="notice" hidden><strong>A newer guide is saved.</strong><p>Reload to use the current instructions. Your saved field notes stay on this device.</p><button type="button" id="reloadGuide">Reload guide</button></div><div class="hero"><p class="eyebrow">Project Hedge · current field record</p><h1>The complete<br>system plan.</h1><p class="intro">Solar power, battery heating, protection and recovery. One guide for the equipment you have and the work still needed.</p><div class="hero-meta"><span>24 V · 1500 W solar · 4P bank</span><span>Offline field reference</span><span>Rev 2026.09.27-r1</span></div></div>
+<a href="#record"><span class="idx">15</span>Sources and offline use</a><p class="revision-note">Updated 4 October 2026<br>Revision 2026.10.04-r1<br><br>Design holds are shown at the point of use. Read them before work.</p></nav><main class="content" id="main">
+<div id="updateNotice" class="notice" hidden><strong>A newer guide is saved.</strong><p>Reload to use the current instructions. Your saved field notes stay on this device.</p><button type="button" id="reloadGuide">Reload guide</button></div><div class="hero"><p class="eyebrow">Project Hedge · current field record</p><h1>The complete<br>system plan.</h1><p class="intro">Solar power, battery heating, protection and recovery. One guide for the equipment you have and the work still needed.</p><div class="hero-meta"><span>24 V · 1500 W solar · 4P bank</span><span>Offline field reference</span><span>Rev 2026.10.04-r1</span></div></div>
 <div class="toolbar"><div class="mobile-nav"><label for="sectionSelect" class="visually-hidden">Jump to a section</label><select id="sectionSelect" aria-label="Jump to a section"><option value="start">01 · Start and next work</option>
 <option value="map">02 · System map</option>
 <option value="equipment">03 · Equipment status</option>
@@ -47,7 +47,7 @@
     <li><strong>Resolve the battery base.</strong> Support each complete battery footprint on a stable, moisture-resistant base. Keep terminals covered during fitting. The shelf with front and rear overhang has not been approved.</li>
     <li><strong>Prepare the protection review.</strong> Use the <a href="#commission">release checklist</a> with the electrician. Close the permanent equipment-ground path, source/bond arrangement, branch load budget and DC fault-protection design.</li>
   </ol>
-  <div class="notice done"><strong>Recorded progress</strong><p>All four batteries were reported disconnected. The front purple foam and foil-faced end piece were removed. Both new cabinet fans are mounted on their plates. Thermostats and the TP60 were ordered. No roof descent cables have been run. These are user reports, not fresh measurements of the installation.</p></div>
+  <div class="notice done"><strong>Recorded progress, updated 4 October 2026</strong><p>The MNPV3 and its positive bus/output lug are received. String breakers are still pending. The DDR-30G-24, TPDIN and MC-9b are mounted left to right on the lower DIN rail. The lower cabinet also contains the Tycon controller, IOTA and a photographed IQ-LIFEPO module. The controller's front view does not confirm its model. Both cabinet fans and a lower-cabinet thermostat are mounted; fan demand and thermostat DC ratings remain open. A TOBSUN 5 V converter is owned with a provisional irrigation role.</p><p>Last reported: all four batteries disconnected; front purple foam and foil-faced end piece removed; TP60 ordered; no roof descent cables run. These reports and photos do not establish measured clearances or a completed wiring installation.</p></div>
   <details><summary>What changed from the old guide</summary><ul>
     <li>The original controller in the photos is a 30 A TP30. The 60 A TP60 is a separate order. The 150 V TS60 was considered but was not selected.</li>
     <li>PV strings combine in a protected combiner beside the lower cabinet. The old roof Y-branch and half-inch conduit instructions are withdrawn.</li>
@@ -80,14 +80,17 @@
     <tr><td>Tycon TP-SC24-30N-MPPT</td><td><span class="badge confirmed">Owned</span></td><td>Original photographed unit. 100 V PV, 30 A charge, 780 W array at 24 V. Proposed reduced-array spare.</td></tr>
     <tr><td>4 × LiTime 24 V 100 Ah</td><td><span class="badge confirmed">Owned</span></td><td>Main 4P bank. 25.6 V, 400 Ah, 10.24 kWh nominal. Standard model; low-temperature cutoff unconfirmed.</td></tr>
     <tr><td>WZRELB / Reliable Electric inverter</td><td><span class="badge confirmed">Owned / mounted</span></td><td>24 V, 3000 W label. Exact model/manual and output grounding are still required.</td></tr>
-    <tr><td>IOTA DLS-27-15</td><td><span class="badge confirmed">Recorded owned</span></td><td>Grid charger. Lithium module/version/profile need confirmation. Plug into the tiny-house middle exterior outlet.</td></tr>
+    <tr><td>IOTA DLS-27-15 Series M + IQ-LIFEPO</td><td><span class="badge confirmed">Owned / mounted</span></td><td>Grid charger. Photo confirms the IQ-LIFEPO 2-stage module. Verify its actual 24 V profile. Arrange a suitable fixed receptacle within the factory cord's reach.</td></tr>
     <tr><td>TPDIN monitor</td><td><span class="badge confirmed">Owned</span></td><td>Exact model, V1/V2 hardware and firmware pending. Retain for monitoring and normal control.</td></tr>
-    <tr><td>DIHOOL enclosed PV breaker</td><td><span class="badge confirmed">Purchase reported</span></td><td>Listing DZ47Z-60, 60 A / 1000 V DC. Delivered assembly and load-switching instructions unverified.</td></tr>
-    <tr><td>MNPV3 + 3 × MNEPV15-150-1PNP</td><td><span class="badge proposed">Proposed</span></td><td>One combiner and three individual 15 A string breakers. Purchase not confirmed.</td></tr>
+    <tr><td>DIHOOL enclosed PV breaker</td><td><span class="badge confirmed">Owned / labels checked</span></td><td>HT3-DZ47ZH-MC4 assembly; internal DZ47Z-60, 60 A / 1000 V DC. Delivered manual: top PV input, bottom equipment output, solid contacts on 60 A version. Actual lead size and connector compatibility remain open.</td></tr>
+    <tr><td>MidNite MNPV3</td><td><span class="badge confirmed">Received</span></td><td>Three-position enclosure, insulated PV-negative bar, PE bar and positive combining bus/output lug present.</td></tr>
+    <tr><td>3 × MNEPV15-150-1PNP</td><td><span class="badge proposed">Still needed</span></td><td>Planned individual 15 A string breakers. User reports no breakers yet. Exact order is unconfirmed. Standard MNPV3 holds only two cartridge-fuse holders.</td></tr>
+    <tr><td>Mean Well DDR-30G-24</td><td><span class="badge confirmed">Owned / mounted</span></td><td>9 to 36 V input; 24 V, 1.25 A, 30 W output. Candidate supply for both cabinet fans. Check shared running/start demand and branch protection.</td></tr>
+    <tr><td>TOBSUN EA15-5V</td><td><span class="badge confirmed">Owned</span></td><td>Nominal 12/24 V input; 5 V, 3 A maximum, 15 W. Likely irrigation ESP32 supply. Full input range and isolation are unverified; keep separate from the isolated battery-safety node supply.</td></tr>
     <tr><td>2 × Wathai 24 V fans</td><td><span class="badge confirmed">Owned / on plates</span></td><td>One per white cabinet. Running/start current and allowed voltage range pending.</td></tr>
-    <tr><td>New fan thermostats</td><td><span class="badge ordered">Ordered</span></td><td>Exact part and DC switching rating need confirmation on arrival.</td></tr>
+    <tr><td>Fan thermostats</td><td><span class="badge confirmed">Lower unit mounted</span></td><td>A cooling thermostat is visible by the lower cabinet fan. Exact part, DC switching rating and other unit's receipt remain unconfirmed.</td></tr>
     <tr><td>Busbars, ANL holders, 2/0 cables, BULVACK 80 A breaker</td><td><span class="badge confirmed">Owned / recorded</span></td><td>Final duty, dimensions, ratings and installation suitability remain open.</td></tr>
-    <tr><td>Baomain contactor</td><td><span class="badge confirmed">Owned / recorded</span></td><td>Reserved for IOTA grid control. Verify exact coil, contacts and inrush duty.</td></tr>
+    <tr><td>Baomain-packaged LS Metasol MC-9b</td><td><span class="badge confirmed">Owned / mounted</span></td><td>IOTA AC control only. DC24V coil, A1 positive / A2 negative; main AC labels confirmed. Use regulated 24 V. Charger switching duty, control interface and fuse-conditioned fault rating remain open.</td></tr>
     <tr><td>Heat, hard temperature interlock, SPDs, bonding parts</td><td><span class="badge proposed">Design pending</span></td><td>Candidates are listed below. They are not an approved purchase package.</td></tr>
   </tbody></table></div>
   <p class="source">Controller ratings: <a href="https://tsi.tyconsystems.com/doc/SpecSheets/TP-SC24-30N%2660N-MPPT_Solar_Chrg_Ctrl_Spec_Sheet.pdf">Tycon TP30 / TP60 data sheet</a>. Equipment photos and the user's order reports establish the other inventory states. The TS-SC24-60N-MPPT, ATS and two shed batteries are outside this main-system equipment list.</p>
@@ -115,7 +118,7 @@
     <li>The combined pair goes through the verified manual disconnect and final temperature-controlled PV interruption stage to the controller's <b>PV</b> terminals.</li>
     <li>The controller's <b>BAT</b> terminals connect to the battery bus through their own coordinated protection. The <b>LOAD terminals stay unused</b> in this plan.</li>
   </ol>
-  <p>The MNPV3 includes its positive combining bus, negative bar and ground bar. Its standard empty enclosure needs three breakers. Its terminals provide the transition from the individual string conductors to the combined feeder. A three-to-one wire adapter is not required. <a href="https://midnitesolar.com/pdfs/10-010-1_REV_J_MNPV3%266_-_2%264_1000_Manual.pdf">MidNite combiner manual</a>.</p>
+  <p>The received MNPV3 has its positive combining bus/output lug, insulated negative bar and ground bar. The loose positive bus is marked 3-073-2C. Fit it with the matching breakers according to the manual; keep the live positive bus insulated from the metal backplate. The enclosure needs three individual string breakers for this array. Its standard cartridge-fuse arrangement holds only two fuse holders. Its terminals provide the transition from the individual string conductors to the combined feeder. <a href="https://midnitesolar.com/pdfs/10-010-1_REV_J_MNPV3%266_-_2%264_1000_Manual.pdf">MidNite combiner manual</a>.</p>
   <div class="notice"><strong>Keep individual string protection.</strong><p>A single 60 A breaker after combining does not replace the three 15 A string breakers. The other parallel strings can feed a fault in one string.</p></div>
   <h3>Cable and entry schedule</h3>
   <div class="table-wrap"><table><thead><tr><th>Run</th><th>Working proposal</th><th>Required check before purchase / cut</th></tr></thead><tbody>
@@ -125,11 +128,14 @@
     <tr><td>TP60 BAT → battery distribution</td><td>Old record: 6 AWG / 70 A</td><td>Recheck controller instructions, cable ampacity, terminal rating, installation conditions and fault interruption. Old values are not released.</td></tr>
   </tbody></table></div>
   <p>Measure cable outside diameter for glands. Use one cable per sealing port. Confirm entry position after the new controller and protection layout is drawn. The old two-PV-gland and half-inch-conduit plans do not describe the new three-string descent.</p>
-  <details><summary>Owned DIHOOL disconnect: what must be verified</summary>
-    <p>The purchased listing describes a 60 A, 1000 V DC, two-pole breaker in an IP65 box with short solar-connector leads. The seller image shows DZ47Z-60. Online instructions conflict on polarity and top/bottom feed.</p>
-    <ul><li>Match the delivered label, circuit diagram and instructions.</li><li>Confirm DC load-breaking duty, allowed feed direction and pole arrangement.</li><li>Record attached wire gauge, insulation and temperature ratings.</li><li>Identify the exact connectors and their current ratings.</li><li>Check the complete assembly against the combined array duty and applicable installation requirements.</li></ul>
-    <p>No terminal assignment is released. The 1000 V label is an operating rating; it does not establish surge suppression. <a href="https://www.amazon.com/dp/B0CFCZRDF1">Purchased listing</a> · <a href="https://www.nsbjd.com/collections/low-voltage-electric/products/dz47z-2p">Manufacturer page with conflicting instructions</a>.</p>
+  <details><summary>Owned DIHOOL disconnect: confirmed labels and remaining checks</summary>
+    <p>Delivered photos identify the HT3-DZ47ZH-MC4 assembly, marked Non-polarity, and its internal DZ47Z-60 breaker: 60 A, 1000 V DC, two poles, Icu 6 kA and Uimp 4 kV. The matching delivered manual confirms <b>top solar input and bottom equipment output</b>. The marked conductor paths are negative on the left and positive on the right. Verify actual polarity; connector shape alone does not establish it.</p>
+    <p>The manual specifies solid connector contacts for the 60 A version and an accepted cable range of 4 to 8 mm². The user reports that the Amazon listing specifies <b>10 AWG factory leads</b>. Record this as listing evidence for planning. The actual cable photos show meter counters, company text and part of a red <code>62930 IEC...</code> marking, with the size section hidden. Fitted cable size, insulation/temperature ratings and installation ampacity still need verification. The 60 A breaker rating does not establish the complete lead/connector rating.</p>
+    <ul><li>Record the full factory cable specification line, including conductor size and insulation ratings.</li><li>Check the fitted contacts and compatible mating connectors against combined PV current and installation derating.</li><li>Complete the assembly's applicable installation acceptance and load-breaking checks before use.</li></ul>
+    <p>The declared ratings give nominal margin for this array. This manual disconnect stays between the combiner and the charge-inhibit stage. The controller's 60 A battery rating is a separate circuit rating. The 1000 V and 4 kV markings do not establish surge suppression; retain the separate SPD plan. <a href="https://www.nsbjd.com/products/dz47zh-ht3-mc4">Manufacturer assembly page</a>. Use the delivered manual where web specifications differ.</p>
   </details>
+  <h3>External mounting</h3>
+  <p>Mount the MNPV3 and DIHOOL upright on structural backing beside the lower white cabinet. Put the DIHOOL nearest the cabinet PV entry. Preserve lid access, connector access, cable bends and suitable sealed entries. Keep each positive/negative pair together. Reserve space for the charge-inhibit stage and the controller-entry SPD. Permanent equipment bonding stays effective with the PV disconnect open.</p>
   <details><summary>Controller setup and limits</summary>
     <ul><li>Keep PV isolated. Connect the controller to the correctly protected battery circuit first so it can detect the system voltage.</li><li>Confirm 24 V system detection. Configure the final LiFePO4 profile while PV remains isolated.</li><li>Use the LiTime charge-voltage basis of 28.8 V ±0.4 V. Final target, duration, float and restart values need a recorded profile. Disable equalization and lead-acid temperature compensation.</li><li>Check measured battery voltage with a suitable meter. The display alone is not sufficient.</li><li>Connect PV only after the complete release checklist passes. For normal shutdown, isolate PV before removing the controller's battery connection.</li><li>Do not put the inverter on LOAD terminals. LOAD-off does not establish that battery charging has stopped.</li><li>The 1500 W array is close to the TP60's 1560 W limit at 24 V. There is no approved panel expansion on this controller.</li></ul>
     <p>These steps give the required order after release. They do not authorize an unfinished circuit to be powered. <a href="https://tsi.tyconsystems.com/doc/SpecSheets/TP-SC24-30N%2660N-MPPT_Solar_Chrg_Ctrl_Spec_Sheet.pdf">TP controller ratings and interface</a>.</p>
@@ -189,6 +195,16 @@
   <p><strong>Layout:</strong> the upper cabinet holds the inverter. The lower cabinet is for the MPPT, IOTA and associated controls. The battery box is beside them. Preserve equipment airflow and service space.</p>
   <div class="callout hold"><strong>Clearance correction.</strong> Forced ventilation does not approve reduced manufacturer clearances. Check the actual TP60 and inverter manuals before final mounting or drilling. The earlier TS60 clearance drawing does not apply to the ordered TP60.</div>
 
+  <h3>Lower cabinet photo, 4 October 2026</h3>
+  <p>The Tycon controller is on the left. The IOTA is at the upper right. The lower DIN rail holds the MEAN WELL DDR converter on the left, the TPDIN in the middle and the MC-9b contactor on the right. A cooling thermostat is mounted beside the top fan. This photo records the current positions. It does not establish measured clearances, the controller's exact label or the TPDIN hardware and firmware versions.</p>
+  <ul>
+    <li>Keep an unobstructed 4 inch minimum space around the IOTA fan. Check its vents and the mounting materials against the IOTA instructions. <a href="https://www.iotaengineering.com/-/media/abl/iota/files/technical-library/right-column/dls_troubleshoot.pdf?forceBehavior=open&amp;hash=CB5043BFE60FC7C29BCD837AF09321B7&amp;la=en">IOTA airflow requirement</a></li>
+    <li>Arrange the contactor's AC wiring on the right with guarded terminals and a separate covered wire route from the TPDIN network, sensor and control circuits. Extend the rail or use a suitable separate AC enclosure if that layout does not fit.</li>
+    <li>Reserve space for separate wiring ducts. Keep TPDIN ports, removable terminals, contactor terminals and the DDR adjustment accessible. Keep conductors clear of charger vents and fan blades.</li>
+    <li>Keep the permanent cabinet and equipment protective-earth path in the layout. The removable IOTA plug cannot be its only connection. See <a href="#bonding">bonding</a>.</li>
+  </ul>
+  <p><strong>What the AC guard means:</strong> the white cabinet can remain the outer enclosure. LS lists <b>AP/T-9</b> transparent terminal covers for MC-9b through MC-22b, two covers per set for the upper and lower main terminals. Use matching covers and covered wiring duct so AC connections remain guarded during work at the TPDIN. A second box is an option when the wiring cannot be separated and guarded within this cabinet. Cover and barrier placement must preserve access and cooling. <a href="https://www.ls-electric.com/upload/customer/download/4d8b99a1-c93d-4cd3-807b-1382f0c39384/Metasol_MS_E_180903.pdf#page=87">LS terminal covers, page 87</a></p>
+
   <h3>Upper cabinet: 24 V inverter</h3>
   <p>The photographed inverter is a 24 V, 3000 W YueQing Reliable Electric / WZRELB unit. Its exact model suffix, mounting instructions, output protection and neutral-to-earth arrangement still need confirmation.</p>
   <ul>
@@ -208,11 +224,13 @@
   <p>The recorded charger is an IOTA DLS-27-15 Series M. Its 15 A rating is DC output. Its manufacturer sheet lists up to 7.3 A AC input at 108 V and 30 A single-cycle inrush. Check the delivered unit against that sheet. <a href="https://www.iotaengineering.com/-/media/abl/iota/files/technical-library/right-column/spec2.pdf?forceBehavior=open">IOTA Series M ratings</a></p>
   <ul>
     <li>Use grid power through the approved charge-permission contactor. Its DC output has a separate protected connection to the battery bus.</li>
-    <li>Confirm the IQ-LIFEPO module, its exact 24 V profile and the charger ambient limits. The old statement that 27.2 V stops at a fixed 85% state of charge is withdrawn.</li>
-    <li>Verify the Baomain contactor model, coil voltage, charger inrush duty and enclosure wiring before reuse.</li>
+    <li>The 4 October photo confirms an IQ-LIFEPO 2-stage module. Verify its exact 24 V charging profile and the charger ambient limits before charging. The old statement that 27.2 V stops at a fixed 85% state of charge is withdrawn.</li>
+    <li>The owned Baomain-labelled contactor is an LS Metasol MC-9b with a 24 V DC coil. Its assigned function, KAC, switches the IOTA AC supply. Charger switching duty, fault-protection coordination and the coil interface remain open.</li>
     <li>Keep protective earth continuous. Final line and neutral switching follows the verified supply arrangement.</li>
     <li>Do not power this charger from the inverter connected to the same battery bank.</li>
   </ul>
+  <p><strong>KAC coil supply:</strong> use regulated 24 V. The delivered terminals are A1 positive and A2 negative. The LS standard DC-coil range is 85 to 110% of rated voltage, or 20.4 to 26.4 V for this coil. The battery's 28.8 V charging voltage exceeds that range. The DDR-30G-24 has no approved contactor-coil allocation. Select the coil driver and suppression with the full control supply and release-time review. <a href="https://www.ls-electric.com/upload/customer/download/4d8b99a1-c93d-4cd3-807b-1382f0c39384/Metasol_MS_E_180903.pdf">LS Metasol catalogue, control coils</a></p>
+  <p><strong>AC route correction:</strong> IOTA prohibits extension cords and cutting the power cord. The recorded 15 ft route is a distance estimate. Plan a suitable permanent receptacle within reach of the supplied cord and preserve its plug. The KAC-fed receptacle design remains open. <a href="https://www.donrowe.com/v/vspfiles/pdf/dls_24v_owners_guide.pdf">IOTA 27 V owner's manual</a></p>
   <details>
     <summary>Shared exterior outlet circuit</summary>
     <p>The three exterior outlets share one tiny-house branch. The first, nearest the panel, is a GFCI and supplies the network stack. The middle will supply the IOTA. The far outlet also branches to the Rinnai water heater.</p>
@@ -222,7 +240,9 @@
   </details>
 
   <h3>One cooling circuit per cabinet</h3>
-  <p>The replacement Wathai 24 V fans are mounted on the plates. Thermostats are on order. Check the received thermostat models and fan current before wiring.</p>
+  <p>The replacement Wathai 24 V fans are mounted on the plates. The lower-box photo shows a mounted cooling thermostat. Its exact model and DC switching rating remain unverified. Check both fan currents and the controls for both cabinets before wiring.</p>
+  <p><strong>Owned fan-supply candidate, PS-F:</strong> MEAN WELL DDR-30G-24. It accepts 9 to 36 V DC and supplies regulated 24 V. Its full output at 12 to 36 V input is 1.25 A, 30 W total. Check the combined fan startup and running loads, branch protection and temperature derating. <a href="https://www.meanwell.com/Upload/PDF/DDR-30/DDR-30-spec.pdf">DDR-30 specifications</a></p>
+  <p>Mount the DDR upright, with input terminals below and output terminals above. Keep 40 mm clear above, 20 mm below and 5 mm on each side. Keep it dry. Its isolated output return must remain separate from the input return. The installation manual prohibits connecting its primary and secondary sides together. <a href="https://www.meanwell.com/Upload/PDF/DDR%20DIN%20rail%20power%20supply.pdf">DDR installation manual</a></p>
   <p class="path">Regulated 24 V supply → fan branch fuse → cooling thermostat → fan positive. Fan negative → regulated return.</p>
   <ul>
     <li>Use one thermostat in each cabinet. It must close as the cabinet becomes warm.</li>
@@ -290,7 +310,7 @@
         <tr><td>4</td><td>Matched three-wire Pt100 surface probes</td><td>Cold-point placement, secure insulated attachment and fault detection</td></tr>
         <tr><td>1 set</td><td>Delay, monitored manual reset, OFF and ARM controls</td><td>Held-button restart prevention and power-loss behavior</td></tr>
         <tr><td>2</td><td>Sensata GX11TAB PV contactor candidates</td><td>Actual PV switching duty, precharge, polarity and coil drivers</td></tr>
-        <tr><td>1</td><td>Existing Baomain contactor for IOTA</td><td>Delivered model, coil, AC charger inrush and installation suitability</td></tr>
+        <tr><td>1 owned</td><td>KAC: Baomain-labelled LS Metasol MC-9b, 24 V DC coil, for IOTA AC input</td><td>Model and coil confirmed. Regulated coil supply, charger switching duty, protective coordination and AC wiring separation remain open.</td></tr>
         <tr><td>1</td><td>MEAN WELL DDR-120B-24 control supply</td><td>120 W / 5 A load budget, startup and temperature derating</td></tr>
         <tr><td>1</td><td>MEAN WELL DDR-240B-24 heater converter</td><td>24 V / 10 A output, 16.8 to 33.6 V input; full installed-load review</td></tr>
         <tr><td>1</td><td>Smart BatteryProtect 65 on the heater-converter input</td><td>Converter inrush and normal voltage-protection mode compatibility</td></tr>
@@ -520,13 +540,14 @@
   <div class="chapter-heading"><span class="number">11</span><div><p class="eyebrow">Procurement</p><h2>Parts to arrange</h2></div></div>
   <p>Ownership is listed in <a href="#equipment">Equipment</a>. This table separates the current combiner selection from parts that still need design checks. Prices and delivery dates are not fixed.</p>
   <div class="table-wrap"><table><thead><tr><th>Quantity</th><th>Item</th><th>Status / next action</th></tr></thead><tbody>
-    <tr><td>1</td><td><a href="https://www.amazon.com/dp/B004XFYV8U">MidNite MNPV3</a></td><td>Selected combiner proposal. Confirm the listing is the genuine enclosure with its bars and deadfront. Purchase not reported.</td></tr>
+    <tr><td>1 received</td><td>MidNite MNPV3</td><td>Enclosure, bars, deadfront and positive output lug received. Fit the three matching string breakers. Do not order a duplicate enclosure.</td></tr>
     <tr><td>3 individual</td><td><a href="https://www.amazon.com/dp/B0D57SDQVH">MNEPV15-150-1PNP</a></td><td>Selected 15 A / 150 V DC / 13 mm non-polarized string breakers. Check exact suffix. Buy three operating units; a spare is extra.</td></tr>
     <tr><td>Measured</td><td>PV conductors, matching connectors, raceway, supports and glands</td><td>Measure first. Confirm grouping, fill, ampacity and cable outside diameter before ordering.</td></tr>
     <tr><td>As designed</td><td>PE bar, bonding lugs, door straps, grounding conductors</td><td>Verify connection to the existing building PE system. No independent new ground-rod package is approved.</td></tr>
     <tr><td>As designed</td><td>Battery/inverter/charger fuses, holders and disconnects</td><td>Close fault-current and conductor coordination. Owned ANL holders and the 80 A breaker are not automatically suitable.</td></tr>
-    <tr><td>2 operating</td><td>Cabinet thermostats</td><td>Order reported. Check exact delivered model, cooling action and DC contact rating. Do not duplicate the order yet.</td></tr>
-    <tr><td>As designed</td><td>Regulated fan supply and fan branch fuses</td><td>Need fan startup/running current and battery voltage range.</td></tr>
+    <tr><td>2 operating</td><td>Cabinet thermostats</td><td>Lower unit mounted. Check both exact models, cooling action and DC contact ratings. Other unit's receipt remains unconfirmed.</td></tr>
+    <tr><td>1 received</td><td>DDR-30G-24 fan supply</td><td>Candidate PS-F supply, 24 V / 1.25 A total. Check both fan startup/running currents and select input/branch protection.</td></tr>
+    <tr><td>1 set candidate</td><td>LS AP/T-9 terminal covers + covered AC wire duct</td><td>Manufacturer lists two covers per set for MC-9b main terminals. Check delivered fit and keep AC wiring separate from TPDIN network/sensors. Add a barrier or separate suitable enclosure where needed.</td></tr>
     <tr><td>4 operating zones</td><td>Approved battery warmers, probes and local controls</td><td>Thermal fit, surface temperature and final heater model pending. See <a href="#thermal">winter design</a>.</td></tr>
     <tr><td>As designed</td><td>Hard charge-inhibit relays, contactors, supplies and interfaces</td><td>Review candidates below. Obtain exact wiring and duty confirmation before purchase.</td></tr>
     <tr><td>As designed</td><td>AC/PV/data/battery surge protection</td><td>Coordination review required. Candidate part numbers are not purchase approval.</td></tr>
@@ -542,7 +563,7 @@
     <tr><td>Battery branches</td><td>Exact pack variants, connection-preparation instructions, supported base, matched branch resistance, cable/terminal ratings, each battery's positive protection, accessible disconnects and guards.</td></tr>
     <tr><td>DC fault protection</td><td>Prospective fault-duty basis and coordinated fuse/holder/breaker ratings. Final inverter branch supports the intended load. BMS action is not a substitute for branch protection.</td></tr>
     <tr><td>Grounding and AC output</td><td>Verified supply EGC, permanent PE path, array/cabinet bonds, inverter manual-based neutral arrangement, required ground-fault protection and separate protected office outlet.</td></tr>
-    <tr><td>Existing AC branch</td><td>Breaker rating, conductor/device suitability, GFCI coverage, outlet condition and combined IOTA/network/Rinnai load assessment.</td></tr>
+    <tr><td>Existing AC branch</td><td>Breaker rating, conductor/device suitability, GFCI coverage, outlet condition and combined IOTA/network/Rinnai load assessment. Provide a suitable fixed receptacle within the IOTA factory cord's reach; the recorded 15 ft route does not approve an extension cord.</td></tr>
     <tr><td>Both charge profiles</td><td>TP60 lithium parameters and IOTA module/profile. Equalization off. Voltage checked by meter. Charge current and temperature limits documented.</td></tr>
     <tr><td>Winter protection</td><td>Four battery temperature channels, actual switching stages, loss-of-power/probe-fault behavior, manual reset, hot and cold inhibit, warmup validation and outage recovery.</td></tr>
     <tr><td>Mounting and weather</td><td>Exact equipment clearances, unrestricted fan paths, sealed entries, drainage, strain relief, structural mounting, guarded terminals and access for isolation.</td></tr>
@@ -712,7 +733,7 @@
 
 <section id="record" class="chapter" data-title="Revision sources offline access changes">
   <div class="chapter-heading"><span class="number">15</span><div><p class="eyebrow">Document control</p><h2>Sources, changes and offline access</h2></div></div>
-  <p><b>Revision 2026.09.27-r1.</b> Rebuilt from the current equipment photos, order reports, electrical audit, PV combiner plan, winter design, surge/bonding plan and protected-spares register. This revision replaces the older field wiring instructions.</p>
+  <p><b>Revision 2026.10.04-r1.</b> Updated from the received MNPV3, DIHOOL, DDR-30G-24, MC-9b and TOBSUN photos and the lower-cabinet layout. The IQ-LIFEPO module is now photo-confirmed. Added equipment clearance and AC separation checks. Retained the electrical audit, winter design, surge/bonding plan and protected-spares register. The update does not release unfinished circuits for power-up.</p>
   <h3>Keep a field copy</h3><ol>
     <li>Open this page while you have a connection. Wait for the top status to say <b>Saved for offline use</b>.</li>
     <li>On iPhone, use Share → Add to Home Screen. Open the saved guide once while online.</li>
@@ -732,10 +753,12 @@
     <li>LiTime: actual battery revision, terminal torque, parallel preparation, charger profile, cold-soak restart method and approved external heating.</li>
     <li>Tycon: exact TP60 installation instructions, battery compatibility/recovery, charge-disable behavior, fault protection and surge withstand.</li>
     <li>Inverter manufacturer: exact model, orientation/clearances, precharge, remote interface, AC protection and neutral/earth topology.</li>
-    <li>IOTA: delivered charger revision, IQ-LIFEPO compatibility and 24 V profile, AC switching/inrush and surge protection.</li>
-    <li>DIHOOL: delivered assembly's DC switching diagram and ratings, including attached leads and connectors.</li>
+    <li>IOTA: delivered IQ-LIFEPO 24 V profile, AC switching/inrush and surge protection. Module identity is confirmed.</li>
+    <li>DIHOOL: actual factory lead size, fitted/mating connector compatibility and complete installation acceptance. Delivered identity and top-input/bottom-output direction are confirmed.</li>
+    <li>MC-9b and DDR-30G-24: final coil interface and fan load/startup budgets, protective coordination and installed temperatures.</li>
+    <li>TOBSUN EA15-5V: full input range, isolation and final irrigation assignment.</li>
     <li>Thermal-control and SPD makers: final interfaces, failure behavior, installation modes and coordinated protection.</li>
   </ul></details>
   <p class="caption">This is a planning and field-reference page. It does not monitor live equipment or issue control commands. Local checkboxes do not change an equipment state or authorize power-up.</p>
 </section>
-<footer class="footer">Project Hedge · 2026.09.27-r1 · Public field reference<br>Check the current revision and the delivered equipment instructions before work.</footer></main></div></body></html>
+<footer class="footer">Project Hedge · 2026.10.04-r1 · Public field reference<br>Check the current revision and the delivered equipment instructions before work.</footer></main></div></body></html>

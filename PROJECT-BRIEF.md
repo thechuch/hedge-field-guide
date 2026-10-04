@@ -1,6 +1,6 @@
 # Project Hedge field brief
 
-Current public revision: 2026.09.27-r1. This brief replaces the August brief. Use index.html and its section sources in _content as the current field record.
+Current public revision: 2026.10.04-r1. This brief replaces the August brief. Use index.html and its section sources in _content as the current field record.
 
 ## Scope and state
 
@@ -13,8 +13,14 @@ Current public revision: 2026.09.27-r1. This brief replaces the August brief. Us
 - Inverter is a photographed 24 V / 3000 W Reliable Electric unit. Exact model, manual and neutral arrangement pending.
 - IOTA DLS-27-15 grid charger is planned on the middle exterior tiny-house outlet. First GFCI outlet also supplies networking; far outlet also supplies the Rinnai heater. These outlets share one branch. Breaker rating and GFCI coverage are unverified.
 - Two steel cabinets are already stacked on the deck structure. Battery box sits beside them on the reported level aggregate pad. Front foam and foil end piece removed; internal battery support unresolved.
-- Fans mounted on plates; thermostats ordered. Exact fan current/range and thermostat DC ratings pending.
-- No PV descent cables installed. Proposed MNPV3 plus three MNEPV15-150-1PNP breakers beside lower cabinet; purchase unconfirmed.
+- Fans mounted on plates; lower thermostat mounted. Exact fan current/range and thermostat DC ratings pending. DDR-30G-24 received and mounted, candidate dedicated fan supply.
+- No PV descent cables installed at last report. MNPV3 and all bars/output lug received. Three MNEPV15-150-1PNP breakers planned; no breakers yet, exact order unconfirmed.
+- Delivered DIHOOL HT3-DZ47ZH-MC4, internal DZ47Z-60 60 A / 1000 V DC, is owned. Delivered manual confirms top input and bottom output. Actual lead size and compatible mating connectors remain open.
+- Lower box photo: Tycon left, IOTA upper right, DDR/TPDIN/MC-9b left to right on lower rail. IQ-LIFEPO 2-stage module confirmed. Controller model and TPDIN version cannot be read in this view.
+- Baomain-packaged LS Metasol MC-9b DC24V coil, A1 positive/A2 negative, assigned to IOTA AC control. Use regulated 24 V. Charger duty, fuse-conditioned fault rating and interface checks remain open.
+- TOBSUN EA15-5V owned, provisional irrigation ESP32 supply. Nominal 12/24 V input, 5 V / 3 A maximum output, 15 W. Full input range and isolation unverified; not assigned to the isolated safety node.
+- Measure IOTA fan clearance, minimum 4 inches; DDR 40 mm above, 20 mm below, 5 mm each side. Provide guarded AC wiring area separate from TPDIN network/sensors. No clearance approval from the photo.
+- IOTA owner manual prohibits extension cords and cutting its cord. Plan a suitable permanent receptacle within factory-cord reach; the recorded 15 ft AC route is a distance estimate.
 
 ## Unresolved safety work
 

@@ -2,7 +2,7 @@
 
 Live: https://thechuch.github.io/hedge-field-guide/
 
-Static, phone-ready PWA. Current revision: **2026.09.27-r1**. The single guide includes the solar/battery design, winter controls, bonding, shared AC branch, surge coordination, parts status, protected spares, release checks and other project references.
+Static, phone-ready PWA. Current revision: **2026.10.04-r1**. The single guide includes the solar/battery design, winter controls, bonding, shared AC branch, surge coordination, parts status, protected spares, release checks and other project references.
 
 ## Maintain
 
