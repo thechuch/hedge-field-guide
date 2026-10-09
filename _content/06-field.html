@@ -1,20 +1,28 @@
 <section id="parts" class="chapter" data-title="Parts shopping ordering requirements">
   <div class="chapter-heading"><span class="number">11</span><div><p class="eyebrow">Procurement</p><h2>Parts to arrange</h2></div></div>
-  <p>Ownership is listed in <a href="#equipment">Equipment</a>. This table separates the current combiner selection from parts that still need design checks. Prices and delivery dates are not fixed.</p>
+  <p>Ownership is listed in <a href="#equipment">Equipment</a>. This table lists parts by build phase from the <a href="#thermal">winter plan</a>. Prices and delivery dates are not fixed.</p>
   <div class="table-wrap"><table><thead><tr><th>Quantity</th><th>Item</th><th>Status / next action</th></tr></thead><tbody>
-    <tr><td>1 received</td><td>MidNite MNPV3</td><td>Enclosure, bars, deadfront and positive output lug received. Fit the three matching string breakers. Do not order a duplicate enclosure.</td></tr>
-    <tr><td>3 individual</td><td><a href="https://www.amazon.com/dp/B0D57SDQVH">MNEPV15-150-1PNP</a></td><td>Selected 15 A / 150 V DC / 13 mm non-polarized string breakers. Check exact suffix. Buy three operating units; a spare is extra.</td></tr>
-    <tr><td>Measured</td><td>PV conductors, matching connectors, raceway, supports and glands</td><td>Measure first. Confirm grouping, fill, ampacity and cable outside diameter before ordering.</td></tr>
-    <tr><td>As designed</td><td>PE bar, bonding lugs, door straps, grounding conductors</td><td>Verify connection to the existing building PE system. No independent new ground-rod package is approved.</td></tr>
-    <tr><td>As designed</td><td>Battery/inverter/charger fuses, holders and disconnects</td><td>Close fault-current and conductor coordination. Owned ANL holders and the 80 A breaker are not automatically suitable.</td></tr>
-    <tr><td>2 operating</td><td>Cabinet thermostats</td><td>Lower unit mounted. Check both exact models, cooling action and DC contact ratings. Other unit's receipt remains unconfirmed.</td></tr>
-    <tr><td>1 received</td><td>DDR-30G-24 fan supply</td><td>Candidate PS-F supply, 24 V / 1.25 A total. Check both fan startup/running currents and select input/branch protection.</td></tr>
-    <tr><td>1 set candidate</td><td>LS AP/T-9 terminal covers + covered AC wire duct</td><td>Manufacturer lists two covers per set for MC-9b main terminals. Check delivered fit and keep AC wiring separate from TPDIN network/sensors. Add a barrier or separate suitable enclosure where needed.</td></tr>
-    <tr><td>4 operating zones</td><td>Approved battery warmers, probes and local controls</td><td>Thermal fit, surface temperature and final heater model pending. See <a href="#thermal">winter design</a>.</td></tr>
-    <tr><td>As designed</td><td>Hard charge-inhibit relays, contactors, supplies and interfaces</td><td>Review candidates below. Obtain exact wiring and duty confirmation before purchase.</td></tr>
+    <tr><td colspan="3"><b>Phase 1: safe solar charging. Buy in this order as you build.</b></td></tr>
+    <tr><td>1</td><td>29.2 V LiFePO4 charger, about 10 A</td><td>Needed first: top-balance each battery before paralleling. Also the recovery tool.</td></tr>
+    <tr><td>1 + 1</td><td>Blue Sea 5007100 Class T block + 5112 110 A fuse, 2/0 lugs with 1/4 in holes</td><td>Inverter leg. Fire blocker.</td></tr>
+    <tr><td>Local</td><td>1/4 in cement board; 1/2 in cement board or 26 ga galvanized on furring</td><td>Power board face and the shield between the box and the house wall.</td></tr>
+    <tr><td>1</td><td>TE Kilovac EV200HAANA (or EV200AAANA) + 2 stud boots</td><td>Cold-cutoff contactor. Authorized distributor such as Newark, about $105 to $120.</td></tr>
+    <tr><td>2 ordered</td><td>80 A ANL fuses</td><td>TP60 battery branch.</td></tr>
+    <tr><td>Measured</td><td>4 AWG red/black + lugs; 8 AWG PV wire + EV200 ring lugs</td><td>Measure both routes first. Confirm bus stud size before buying lugs.</td></tr>
+    <tr><td>Measured</td><td>PV descent: MC4 parts, 1.5 in conduit fittings, green 10 AWG (about 30 ft), labels</td><td>Use matching connector brand where possible.</td></tr>
+    <tr><td>1</td><td>Small covered blade fuse block with 1, 2, 3 and 5 A fuses</td><td>TPDIN, sense, fan supply and contactor coil branches, fed through the owned 30 A ANL.</td></tr>
+    <tr><td>As designed</td><td>Cabinet PE bar, bonding lugs, door straps, conductor to the tiny-house panel ground</td><td>Needs the panel location and distance. No new ground rod.</td></tr>
+    <tr><td colspan="3"><b>Phase 2: heat. After the LiTime and UltraHeat answers and some logged temperatures.</b></td></tr>
+    <tr><td>4 kits</td><td>UltraHeat 24 V side warmers</td><td>Call first; questions are in the <a href="#thermal">winter plan</a>.</td></tr>
+    <tr><td>4</td><td>Per-battery high limits and thermal fuses</td><td>Unless UltraHeat confirms a built-in limit in writing.</td></tr>
+    <tr><td>As measured</td><td>ROCKWOOL Comfortboard 80, 1.5 to 2 in</td><td>Box lining and the winter intake plug.</td></tr>
+    <tr><td>1 if needed</td><td>Layer 2 temperature switch</td><td>Only if LiTime does not confirm built-in cold protection.</td></tr>
+    <tr><td colspan="3"><b>Phase 3 and other</b></td></tr>
+    <tr><td>1 ordered</td><td>LS AP/T-9 terminal cover set</td><td>10 to 12 weeks. Keep the MC-9b AC side de-energized until fitted.</td></tr>
+    <tr><td>As designed</td><td>Fixed IOTA receptacle, regulated 24 V MC-9b coil supply</td><td>Phase 3 sheet when the cover ships.</td></tr>
     <tr><td>As designed</td><td>AC/PV/data/battery surge protection</td><td>Coordination review required. Candidate part numbers are not purchase approval.</td></tr>
   </tbody></table></div>
-  <p>Keep active-system purchases separate from the <a href="#spares">protected spare inventory</a>. The ordered TP60 is the operating controller.</p>
+  <p>Keep active-system purchases separate from the <a href="#spares">protected spare inventory</a>. The TP60 is the operating controller.</p>
 </section>
 
 <section id="commission" class="chapter" data-title="Commissioning release holds shutdown safety work sequence">
@@ -27,18 +35,18 @@
     <tr><td>Grounding and AC output</td><td>Verified supply EGC, permanent PE path, array/cabinet bonds, inverter manual-based neutral arrangement, required ground-fault protection and separate protected office outlet.</td></tr>
     <tr><td>Existing AC branch</td><td>Breaker rating, conductor/device suitability, GFCI coverage, outlet condition and combined IOTA/network/Rinnai load assessment. Provide a suitable fixed receptacle within the IOTA factory cord's reach; the recorded 15 ft route does not approve an extension cord.</td></tr>
     <tr><td>Both charge profiles</td><td>TP60 lithium parameters and IOTA module/profile. Equalization off. Voltage checked by meter. Charge current and temperature limits documented.</td></tr>
-    <tr><td>Winter protection</td><td>Four battery temperature channels, actual switching stages, loss-of-power/probe-fault behavior, manual reset, hot and cold inhibit, warmup validation and outage recovery.</td></tr>
+    <tr><td>Winter protection (revision B)</td><td>Layer 1 TPDIN rule bench-tested (ice water, unplugged probe, power loss). Layer 2 confirmed (LiTime written answer, or the hardware switch bench-tested). EV200 opens on every fault. See the <a href="#thermal">winter plan</a>.</td></tr>
     <tr><td>Mounting and weather</td><td>Exact equipment clearances, unrestricted fan paths, sealed entries, drainage, strain relief, structural mounting, guarded terminals and access for isolation.</td></tr>
     <tr><td>Surge coordination</td><td>Chosen SPDs and manufacturer-compatible circuit modes, protective levels, leads, bonding and backup protection. Without this evidence, no EMP or coordinated surge-protection claim may be made.</td></tr>
   </tbody></table></div>
   <h3>Test sequence after the design is released</h3>
   <ol>
     <li><b>Inspect while isolated.</b> Check part numbers, cable routes, protection, polarity and the recorded terminal torque for each exact component. Keep PV and grid charging isolated. Battery posts remain live even when external cables are removed.</li>
-    <li><b>Test controls separately.</b> Use the final protected control test setup. Prove startup, shutdown, sensor faults and charger-stop commands before full charging is possible.</li>
-    <li><b>Prepare the four batteries.</b> Follow the matching LiTime procedure for initial charge, voltage matching and parallel connection. Do not connect a mismatched or previously tripped pack into a live bank.</li>
+    <li><b>Test controls separately.</b> Bench-test the TPDIN rule, layer 2 and the EV200 as listed in the <a href="#thermal">winter plan</a> before full charging is possible.</li>
+    <li><b>Prepare the four batteries.</b> Charge each one alone with the 29.2 V charger, check voltages agree, parallel them and rest 12 to 24 hours. Do not connect a mismatched or previously tripped pack into a live bank.</li>
     <li><b>Power the MPPT from BAT with PV isolated.</b> Confirm system voltage and the full charge profile. Follow the final startup/precharge instructions for each load; no generic resistor or two-second precharge rule is approved.</li>
     <li><b>Inspect and commission PV.</b> Before initial PV energization, a qualified installer verifies string voltage, polarity, isolation and protection against the released design. Keep within the recorded cold Voc and input limits. Enable initial charging only under the approved test procedure.</li>
-    <li><b>Test each charging source in turn.</b> After those PV checks, confirm actual charge current stops on a temperature trip. Prove both-source operation, hard override, loss of control power, failed probe, TPDIN reboot and network loss.</li>
+    <li><b>Test the cold cutoff on the real circuit.</b> With the DIHOOL open, confirm the EV200 follows the TPDIN rule (ice water on T1). Close the DIHOOL with the contactor commanded open: the TP60 must show no PV. Then allow it and confirm charging starts. Watch the first full charge: terminal voltage must not exceed 28.8 V. Prove loss of control power, failed probe, TPDIN reboot and network loss.</li>
     <li><b>Test the inverter branch and office outlet.</b> Verify its protection and GFCI operation with the final neutral/PE arrangement. Increase load only within the approved branch rating.</li>
     <li><b>Record a loaded baseline.</b> Check battery current sharing, voltage drop and joint/case temperatures at a stated load and ambient temperature. A hot joint needs investigation after isolation. Do not tighten live connections.</li>
     <li><b>Test winter and grid-loss behavior.</b> Confirm heat can run from the battery bank and that charging stays inhibited until all batteries meet the restart conditions. Use safe test inputs; do not deliberately freeze-charge a battery.</li>

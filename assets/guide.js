@@ -1,6 +1,6 @@
 'use strict';
 (() => {
-  const REVISION = '2026.10.04-r1';
+  const REVISION = '2026.10.09-r1';
   const KEY = 'hedge-field-record-2026-09';
   const fields = [...document.querySelectorAll('[data-save]')];
   const storageStatus = document.getElementById('storage-status');

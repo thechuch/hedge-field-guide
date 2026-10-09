@@ -1,7 +1,7 @@
 <section id="battery" class="guide-section" aria-labelledby="battery-title">
   <p class="eyebrow">Battery box</p>
   <h2 id="battery-title">Support and connect four batteries</h2>
-  <p><strong>Current state:</strong> the four batteries were reported disconnected. The front foam and foil-faced end piece were removed. The level box sits on a level rock and decomposed-granite pad. The internal support and electrical protection still need approval.</p>
+  <p><strong>Current state, 9 October 2026:</strong> the four batteries sit disconnected in the box. All foam and insulation has been removed, leaving the double-wall plastic box. No heater and no mineral wool yet. Nothing is connected that can charge them, so cold weather cannot harm them in storage. The level box sits on a level rock and decomposed-granite pad. The internal support and electrical protection still need approval.</p>
 
   <div class="callout hold"><strong>Hold before connection.</strong> Confirm the support, battery branch protection, bus ratings, terminal torque and charging protection. An isolated battery still has live terminals. Keep its terminal covers in place during mechanical work.</div>
 
@@ -13,7 +13,7 @@
       <tr><th scope="row">Battery</th><td>Four matching LiTime 24 V, 100 Ah LiFePO4 packs</td></tr>
       <tr><th scope="row">Connection</th><td>Four in parallel, called 4P. This is the recorded manufacturer limit.</td></tr>
       <tr><th scope="row">Bank</th><td>25.6 V nominal, 400 Ah, 10.24 kWh nominal</td></tr>
-      <tr><th scope="row">Charge target</th><td>Standard-model manual: 28.8 V ±0.4 V, CC/CV. Final charger profiles remain open.</td></tr>
+      <tr><th scope="row">Charge target</th><td>Standard-model manual: 28.8 V ±0.4 V, CC/CV. TP60 set to <b>28.4 V</b> (accepted 9 October 2026; see <a href="#thermal">winter plan</a>). IOTA profile still open.</td></tr>
       <tr><th scope="row">Charge current</th><td>20 A recommended per pack. Planned 60 A solar plus 15 A IOTA gives 75 A total, or 18.75 A per pack with equal sharing.</td></tr>
       <tr><th scope="row">Temperature limits</th><td>Standard model: charge at 0 to 50°C (32 to 122°F); discharge at −20 to 60°C (−4 to 140°F).</td></tr>
     </tbody>
@@ -32,6 +32,27 @@
   </ol>
   <p>Raising the batteries above the floor does not establish winter insulation performance. Keep the support decision separate from the heat-loss calculation.</p>
 
+  <h3>Top-balance before paralleling</h3>
+  <p>LiTime: fully charge each battery separately, then let them sit together in parallel 12 to 24 hours before use. A 0.5 V difference drives circulating current; over 1 V can damage the BMS. <a href="https://www.litime.com/blogs/knowledge/how-to-connect-battery-in-parallel">LiTime parallel guidance</a></p>
+  <ol>
+    <li>Somewhere above 50°F, charge each battery alone to full with a <b>29.2 V LiFePO4 charger</b> of about 10 A. The same charger is the recovery tool if the bank ever shuts itself off.</li>
+    <li>Rest each battery an hour and record its voltage. They should agree within a few hundredths of a volt.</li>
+    <li>Parallel them on the bus: negatives first, then each positive through its fuse, positive last. Leave them 12 to 24 hours with no load and no charging.</li>
+  </ol>
+
+  <h3>Fire blockers before energizing</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th scope="col">Blocker</th><th scope="col">Status / plan</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">BULVACK 80 A DC interrupt rating</th><td>Treat as unrated. Add a Class T 110 A fuse on the inverter leg (Blue Sea 5007100 block, 5112 fuse). Keep the BULVACK as the on/off switch</td></tr>
+      <tr><th scope="row">Front-wall foam out</th><td>Done. All foam removed</td></tr>
+      <tr><th scope="row">Cement board the whole power board face</th><td>To do. 1/4 in cement board</td></tr>
+      <tr><th scope="row">Controller on lithium profile, checked by meter</th><td>TP60 Lit mode, 28.4 V. See <a href="#thermal">winter plan</a></td></tr>
+      <tr><th scope="row">No sensor probe on bus copper without an isolated supply</th><td>Not triggered this winter. The only probes sit on battery cases, and the Ecowitt sensors run on their own batteries</td></tr>
+      <tr><th scope="row">Shield between box and house wall</th><td>Strongly recommended. Non-combustible board on furring with standoff</td></tr>
+    </tbody>
+  </table></div>
+
   <details>
     <summary>Battery buses, fuses and cable layout</summary>
     <p>Each battery positive needs its own coordinated source protection and isolation arrangement. Each battery negative goes to the negative collection bus. Cover all live studs and bus sections.</p>
@@ -43,7 +64,21 @@
       <li>If a shunt is fitted, all battery negatives go to its BATTERY side. All load and charger returns go to its SYSTEM side. Avoid a return path that bypasses it.</li>
       <li>Confirm bus stud size before buying lugs. Match every lug to the stud, conductor and approved crimp tool.</li>
     </ul>
-    <p><strong>Unresolved:</strong> fuse types and interrupt ratings, holders, bus ratings, cable sizes and lengths, disconnects, terminal torque and precharge procedure. The earlier 150 A ANL battery fuses and 2/0 cable are inventory or design history. They are not a completed protection approval.</p>
+    <div class="table-wrap"><table>
+      <caption>Revision B branch plan, for review</caption>
+      <thead><tr><th scope="col">Branch</th><th scope="col">Wire</th><th scope="col">Protection at the bus</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Each battery (×4)</th><td>2/0, equal length</td><td>150 A ANL (owned)</td></tr>
+        <tr><th scope="row">Inverter</th><td>2/0</td><td>Class T 110 A, then the BULVACK 80 A as a switch</td></tr>
+        <tr><th scope="row">TP60 battery</th><td>4 AWG</td><td>80 A ANL (Tycon spec sheet: 63 to 100 A)</td></tr>
+        <tr><th scope="row">Small-circuit fuse block feeder</th><td>10 AWG</td><td>30 A ANL (owned)</td></tr>
+        <tr><th scope="row">TPDIN power / V1 sense</th><td>18 AWG</td><td>2 A / 1 A from the fuse block</td></tr>
+        <tr><th scope="row">EV200 coil chain</th><td>18 AWG</td><td>5 A from the fuse block</td></tr>
+        <tr><th scope="row">DDR-30G-24 fan supply</th><td>16 AWG</td><td>3 A, confirm against its data sheet</td></tr>
+        <tr><th scope="row">Phase 2 heaters</th><td>14 AWG from TP60 LOAD</td><td>10 A at the LOAD output</td></tr>
+      </tbody>
+    </table></div>
+    <p><strong>Still open:</strong> bus stud size, cable lengths, terminal torque for the actual battery revision, inverter precharge procedure and the battery main disconnect position. The owned 150 A ANL fuses and 2/0 cable are used in revision B; their holders' DC ratings still need checking.</p>
     <p>Battery torque values conflict across saved records. Obtain the instruction for the actual battery revision before tightening. Do not use an old page's number.</p>
   </details>
 </section>
@@ -67,17 +102,17 @@
   <h3>Upper cabinet: 24 V inverter</h3>
   <p>The photographed inverter is a 24 V, 3000 W YueQing Reliable Electric / WZRELB unit. Its exact model suffix, mounting instructions, output protection and neutral-to-earth arrangement still need confirmation.</p>
   <ul>
-    <li>Supply it from its own protected battery branch. Keep the controller LOAD terminals unused.</li>
-    <li>The owned 80 A BULVACK breaker cannot support full 3000 W output. At 24 V, 3000 W already requires 125 A before inverter losses. Recheck the complete circuit before changing its protection.</li>
+    <li>Supply it from its own protected battery branch: Class T 110 A at the bus, then the BULVACK 80 A as its on/off switch. Never connect it to the controller LOAD terminals.</li>
+    <li>The owned 80 A BULVACK breaker cannot support full 3000 W output. At 24 V, 3000 W already requires 125 A before inverter losses. Office use stays under about 1900 W on this branch. Recheck the complete circuit before raising it.</li>
     <li>Keep its AC output on the separate office circuit. The ATS is excluded. Do not connect this output to the tiny-house panel or grid outlets.</li>
     <li>Confirm the required AC breaker, cable, GFCI and neutral bond from the exact output design. Two meter readings do not establish a safe bonding arrangement.</li>
     <li>Use an approved factory remote interface if available. Opening the inverter or modifying its rocker switch is outside this plan.</li>
   </ul>
 
   <h3>Lower cabinet: solar controller</h3>
-  <p><strong>Ordered:</strong> TP-SC24-60N-MPPT, with a 100 V PV limit, 60 A charging and a 1560 W array limit at 24 V. The existing TP-SC24-30N-MPPT has a 780 W limit at 24 V and cannot take all six panels. <a href="https://tsi.tyconsystems.com/doc/SpecSheets/TP-SC24-30N%2660N-MPPT_Solar_Chrg_Ctrl_Spec_Sheet.pdf">Tycon TP30/TP60 data sheet</a></p>
-  <p>After the electrical design is released, the startup order is battery supply first, settings next, PV last. Shutdown is PV first, battery last. During a normal cold-charge stop, the controller stays connected to its battery supply and the PV path opens.</p>
-  <p>Set the approved lithium profile before enabling PV. Disable equalization. Record charge voltage, duration, float behavior and temperature compensation after LiTime/Tycon confirmation. The old 6 AWG / 70 A branch approval remains under review.</p>
+  <p><strong>Received (eBay, no paper manual):</strong> TP-SC24-60N-MPPT, with a 100 V PV limit, 60 A charging and a 1560 W array limit at 24 V. The existing TP-SC24-30N-MPPT has a 780 W limit at 24 V and cannot take all six panels. <a href="https://tsi.tyconsystems.com/doc/SpecSheets/TP-SC24-30N%2660N-MPPT_Solar_Chrg_Ctrl_Spec_Sheet.pdf">Tycon TP30/TP60 data sheet</a> · <a href="https://tsi.tyconsystems.com/doc/UserManuals/TP-SC24-30N%2660N-MPPT_User_Manual.pdf">TP user manual</a></p>
+  <p>Startup order is battery supply first, settings next, PV last. Shutdown is PV first, battery last. During a normal cold-charge stop, the controller stays connected to its battery supply and the EV200 opens the PV path.</p>
+  <p>Set lithium mode on the front panel: battery type <b>Lit</b>, charge voltage S05 <b>28.4 V</b>, and S06 to S10 as listed in the <a href="#thermal">winter plan</a>. The TP manual documents no low-temperature charge cutoff and no way to disable temperature compensation. The SolarMate app needs a Cloud-Box or BT add-on module and is not required. Battery branch: 4 AWG with an 80 A ANL at the bus. The TP case has a GND connector; bond it to the cabinet PE bar.</p>
 
   <h3>Lower cabinet: IOTA grid charger</h3>
   <p>The recorded charger is an IOTA DLS-27-15 Series M. Its 15 A rating is DC output. Its manufacturer sheet lists up to 7.3 A AC input at 108 V and 30 A single-cycle inrush. Check the delivered unit against that sheet. <a href="https://www.iotaengineering.com/-/media/abl/iota/files/technical-library/right-column/spec2.pdf?forceBehavior=open">IOTA Series M ratings</a></p>
@@ -99,13 +134,15 @@
   </details>
 
   <h3>One cooling circuit per cabinet</h3>
-  <p>The replacement Wathai 24 V fans are mounted on the plates. The lower-box photo shows a mounted cooling thermostat. Its exact model and DC switching rating remain unverified. Check both fan currents and the controls for both cabinets before wiring.</p>
+  <p>The replacement Wathai 24 V fans are mounted on the plates. The new thermostats are reported as <b>STEGO KTS 111</b> (verify the label): normally open, closing as the cabinet warms, which is correct for a fan. Rated 30 W at 24 to 72 V DC, about 1.25 A at 24 V, which covers a small fan. They clip to 35 mm DIN rail and use push-in terminals. <a href="https://www.stego-group.com/products/kts-111">STEGO KTS 111</a></p>
+  <p><strong>Wiring the thin fan leads:</strong> stranded wire needs a crimped ferrule (8 or 12 mm sleeve) in a push-in terminal. Do not push the thin fan wire in directly. Make a short 18 AWG stranded jumper with an 8 mm ferrule crimped by a ratcheting square ferrule tool, push that into the thermostat, and join the other end to the fan lead in a WAGO 221 lever connector. Release a push-in wire by pressing its release slot with a small flat screwdriver.</p>
   <p><strong>Owned fan-supply candidate, PS-F:</strong> MEAN WELL DDR-30G-24. It accepts 9 to 36 V DC and supplies regulated 24 V. Its full output at 12 to 36 V input is 1.25 A, 30 W total. Check the combined fan startup and running loads, branch protection and temperature derating. <a href="https://www.meanwell.com/Upload/PDF/DDR-30/DDR-30-spec.pdf">DDR-30 specifications</a></p>
   <p>Mount the DDR upright, with input terminals below and output terminals above. Keep 40 mm clear above, 20 mm below and 5 mm on each side. Keep it dry. Its isolated output return must remain separate from the input return. The installation manual prohibits connecting its primary and secondary sides together. <a href="https://www.meanwell.com/Upload/PDF/DDR%20DIN%20rail%20power%20supply.pdf">DDR installation manual</a></p>
   <p class="path">Regulated 24 V supply → fan branch fuse → cooling thermostat → fan positive. Fan negative → regulated return.</p>
   <ul>
     <li>Use one thermostat in each cabinet. It must close as the cabinet becomes warm.</li>
-    <li>Verify the thermostat's DC switching rating. A 250 V AC marking alone does not establish it.</li>
+    <li>Check each fan's label current against the thermostat's 30 W DC rating (about 1.25 A at 24 V).</li>
+    <li>Move the DDR-30G-24 to a second short DIN rail. It needs 40 mm open above and 20 mm below, and should sit apart from the MC-9b's 120 V terminals. The present rail is full.</li>
     <li>Verify the fan's permitted voltage range. Its 24 V label alone does not permit a direct connection to a bank charging above 28 V.</li>
     <li>Keep the recorded top exhaust and side intake paths clear. Confirm actual fan direction and cabinet temperatures with doors closed.</li>
     <li>Keep cabinet cooling independent of battery heating.</li>
@@ -114,103 +151,118 @@
 </section>
 
 <section id="thermal" class="guide-section" aria-labelledby="thermal-title">
-  <p class="eyebrow">Winter operation</p>
-  <h2 id="thermal-title">Heat during an outage, block unsafe charging</h2>
-  <div class="callout hold"><strong>Design for review.</strong> This section defines the required behavior. The heater kits, contactors, sensors, interfaces and final settings are not released for installation. Do not wire from this functional description.</div>
-  <p>The heaters will use a separate battery-powered branch. Both chargers must stop if any battery is outside its allowed charging temperature. Heating may continue while charging is blocked, provided battery discharge temperature and remaining energy permit it.</p>
+  <p class="eyebrow">Winter build plan, revision B</p>
+  <h2 id="thermal-title">Cold cutoff first, then heat</h2>
+  <p class="lead">Solar must run this winter. Revision B keeps the goals of the earlier winter design and cuts the hardware to parts that can be bought and built in weeks. Build it in three phases.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th scope="col">Phase</th><th scope="col">Goal</th><th scope="col">Gate</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">1. Safe solar charging</th><td>Bank built, PV connected through the cold cutoff, inverter powering the office</td><td>Fire blockers done, cold cutoff bench-tested, bonding done</td></tr>
+      <tr><th scope="row">2. Battery heat</th><td>Mineral wool lining, side warmers, heater controls</td><td>LiTime and UltraHeat answers. Decide with logged battery temperatures by late November</td></tr>
+      <tr><th scope="row">3. Grid charging</th><td>IOTA charges through the MC-9b when solar falls short</td><td>MC-9b terminal cover, fixed receptacle, regulated coil supply</td></tr>
+    </tbody>
+  </table></div>
+  <p>Without heat, Phase 1 still works. On cold days the batteries do not charge, and the bank carries the small office load until they warm up. The office grid outlets remain the fallback.</p>
+  <div class="callout hold"><strong>The cold cutoff must work before PV is ever connected.</strong> The batteries have no confirmed built-in cold protection, and the TP60 manual documents no low-temperature charge cutoff. A sunny morning after a frost is exactly when the controller would charge cold cells.</div>
 
-  <h3>Four required functions</h3>
-  <ol>
-    <li><strong>Measure every pack.</strong> Use an independent charge-temperature sensor on each of the four batteries. Cabinet air cannot establish cell temperature.</li>
-    <li><strong>Stop both charging sources.</strong> A hardwired permit controls the solar PV switching and IOTA AC switching. A TPDIN command must not override a hard temperature trip.</li>
-    <li><strong>Regulate each warmer.</strong> Each pack needs local temperature control and independent overtemperature protection. A warm pack must not stop heat needed by another pack.</li>
-    <li><strong>Preserve discharge limits.</strong> Low battery voltage, extreme temperature or a heater fault can stop heat. Extreme-temperature shutdown must also address the inverter and other loads.</li>
-  </ol>
-  <p class="path">Battery bus → protected heater branch → service switch → low-voltage disconnect → regulated 24 V converter → heater safety switch → four separately protected warmer branches.</p>
+  <h3>How the cold cutoff works</h3>
+  <p>A sealed DC contactor sits in the PV positive wire between the DIHOOL disconnect and the TP60. Its coil runs from the battery through two permission contacts in series. If either contact opens, or anything loses power, the contactor opens and the controller sees no solar.</p>
+  <p class="path">Battery + → 5 A fuse → TPDIN CH3 (Layer 1) → Layer 2 contact → EV200 coil + · EV200 coil − → battery −</p>
+  <p class="path">DIHOOL bottom + → EV200 "+" stud → EV200 other stud → TP60 PV+ · DIHOOL bottom − → TP60 PV− (not switched)</p>
+  <p>Opening PV is the shutdown order the controller expects. The TP60 and its LOAD output keep running from the battery while charging is blocked.</p>
+  <div class="table-wrap"><table>
+    <caption>Contactor: TE Kilovac EV200HAANA (EV200AAANA without the aux contact)</caption>
+    <thead><tr><th scope="col">Item</th><th scope="col">Value</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Rating</th><td>12 to 900 V DC, 500 A, sealed, −40 to 85°C</td></tr>
+      <tr><th scope="row">Coil</th><td>9 to 36 V DC, so it runs directly from the bank. About 1.7 W holding; up to 3.8 A for 130 ms when closing</td></tr>
+      <tr><th scope="row">Suppression</th><td>Built-in economizer. Add nothing across the coil</td></tr>
+      <tr><th scope="row">Polarity</th><td>Main contacts are polarized. Put the <b>"+" stud on the array side</b></td></tr>
+      <tr><th scope="row">Aux contact (HAANA)</th><td>Wire it to a spare TPDIN voltage input to see whether the contactor actually opened</td></tr>
+      <tr><th scope="row">Buy from</th><td>An authorized distributor such as Newark (about $105 to $120). Avoid marketplace sellers</td></tr>
+    </tbody>
+  </table></div>
+  <p>No precharge is needed: the array is a current-limited source. The TPDIN relays are rated 10 A at 30 V DC, which covers the coil inrush and the bank's 29.2 V maximum. <a href="https://www.flamecorp.com/PDF/TE-Connectivity/Kilovac/EV200A,%20EV200H,%20EV200G.pdf">TE EV200 data sheet</a></p>
 
-  <details open>
-    <summary>Charging protection and restart</summary>
-    <p>The proposed hardwired circuit uses four independent window monitors. Loss of a sensor, monitor power or control power must remove permission to charge. A manual reset follows each hard trip.</p>
-    <div class="table-wrap"><table>
-      <caption>Proposed settings for validation, not commissioned values</caption>
-      <thead><tr><th scope="col">Function</th><th scope="col">Review value</th></tr></thead>
-      <tbody>
-        <tr><th scope="row">Hard charge-temperature window</th><td>5 to 45°C (41 to 113°F), subject to sensor error and thermal lag</td></tr>
-        <tr><th scope="row">Manual ARM check</th><td>All four packs at 10 to 40°C (50 to 104°F), after validated cold-soak recovery</td></tr>
-        <tr><th scope="row">Signal stability</th><td>60 seconds healthy before manual ARM; a held button must not restart the system after a trip</td></tr>
-        <tr><th scope="row">Heater low-voltage cutoff</th><td>Final stop and restart voltages remain open. Validate them with battery behavior, converter demand and the energy reserve.</td></tr>
-        <tr><th scope="row">Extreme-cold heater stop</th><td>Preliminary −15°C (5°F) stop / above −10°C (14°F) restart; requires all-pack discharge supervision</td></tr>
-      </tbody>
-    </table></div>
-    <p><strong>A 60-second delay is not a thaw time.</strong> A warm battery case can contain cold cells. Use a battery-maker procedure or a validated conservative soak method before allowing charge after deep cold exposure.</p>
-    <p>Proposed PV contactors open the two PV conductors while the MPPT battery supply remains connected. IOTA charge inhibition opens its AC supply. These control contacts do not replace service disconnects.</p>
-    <p>The exact PV switching assembly needs verified DC load-breaking duty, polarity, controller input inrush, precharge and coil interfaces. A requested OFF state is not proof that charging current has stopped.</p>
-  </details>
+  <h3>Two independent layers</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th scope="col">Layer</th><th scope="col">Stop charging</th><th scope="col">Allow charging</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">1. TPDIN probe T1, rule on CH3</th><td>Below 41°F (5°C)</td><td>Above 46°F (8°C), held 60 minutes</td></tr>
+      <tr><th scope="row">2a. Battery BMS, if LiTime confirms by serial</th><td>Below 32°F (0°C)</td><td>Above 41°F (5°C)</td></tr>
+      <tr><th scope="row">2b. Separate temperature switch, if not</th><td>Below 37°F (3°C)</td><td>Above 43°F (6°C)</td></tr>
+      <tr><th scope="row">LiTime published limit</th><td>32°F (0°C)</td><td></td></tr>
+    </tbody>
+  </table></div>
+  <ul>
+    <li><strong>T1 placement:</strong> the end face of the battery expected to run coldest, away from heater pads and terminals, with an insulated attachment and strain relief.</li>
+    <li><strong>Layer 2 must be independent of the TPDIN:</strong> its own sensor, logic and contact. Option 2a uses the battery's internal BMS if LiTime confirms in writing that these serial numbers stop charging in the cold. Never test it by charging a cold battery. Option 2b needs a contact that is open when unpowered and open on a probe fault.</li>
+    <li><strong>TPDIN firmware:</strong> update before use (V2 to 2.4.3, V1 to 1.4.3) and set an admin password. Earlier releases accepted logins with no password set, and one release closed a relay that a schedule told to open.</li>
+    <li><strong>Charge rate stays low:</strong> 60 A of solar across four packs is about 15 A each.</li>
+  </ul>
+  <div class="table-wrap"><table>
+    <caption>Failure behavior</caption>
+    <thead><tr><th scope="col">Failure</th><th scope="col">Result</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">TPDIN loses power or reboots</th><td>CH3 opens. Contactor opens. No solar charging. Prove on the bench</td></tr>
+      <tr><th scope="row">T1 unplugged or cut</th><td>Reads below −40°C, so the cold rule opens CH3. Prove on the bench</td></tr>
+      <tr><th scope="row">Coil fuse or coil fails</th><td>Contactor opens</td></tr>
+      <tr><th scope="row">Contacts weld closed</th><td>The aux contact, or full PV voltage at the TP60 while commanded open, shows it. Open the DIHOOL and replace the contactor</td></tr>
+      <tr><th scope="row">All four BMS disconnect</th><td>No coil power, PV locked out, TP60 off. Recover each battery on the bench with the 29.2 V LiFePO4 charger</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>TP60 settings (front panel, no app needed)</h3>
+  <p>Select battery type <b>Lit</b>, then set S05 to S10. The factory default is SEL, a lead-acid profile. Connect the battery first so the controller detects 24 V; connect PV last. <a href="https://tsi.tyconsystems.com/doc/UserManuals/TP-SC24-30N%2660N-MPPT_User_Manual.pdf">TP user manual</a></p>
+  <div class="table-wrap"><table>
+    <thead><tr><th scope="col">Setting</th><th scope="col">Value</th><th scope="col">Note</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">S05 charge voltage</th><td><b>28.4 V</b></td><td>Accepted 9 October 2026. Temperature compensation in Lit mode is undocumented; 28.4 V stays under the 29.2 V cell limit even if it applies</td></tr>
+      <tr><th scope="row">S06 nominal voltage</th><td>25.6 V</td><td>Eight LiFePO4 cells</td></tr>
+      <tr><th scope="row">S07 under-voltage protection</th><td>24.0 V</td><td>Also stops the Phase 2 heaters on the LOAD output</td></tr>
+      <tr><th scope="row">S08 under-voltage recovery</th><td>25.6 V</td><td></td></tr>
+      <tr><th scope="row">S09 over-voltage protection</th><td>29.2 V</td><td>LiTime maximum, 3.65 V per cell</td></tr>
+      <tr><th scope="row">S10 over-voltage recovery</th><td>27.6 V</td><td></td></tr>
+    </tbody>
+  </table></div>
+  <p>S06 to S10 are proposed values. Read every value back after saving. <strong>Commissioning check:</strong> on the first cool day that charging runs, measure the battery terminals at the end of charge with a meter. They must not exceed 28.8 V.</p>
+
+  <h3>Phase 2: battery heat</h3>
+  <ul>
+    <li><strong>Insulation:</strong> unfaced mineral wool such as ROCKWOOL Comfortboard 80 (R-4.2 per inch, noncombustible). It is allowed on every face, including lid and front, because it does not burn. Keep fibers away from terminals. In winter plug the low intake with mineral wool. Keep the high exhaust open at all times for hydrogen relief. Unplug the box fans for winter.</li>
+    <li><strong>Warmers:</strong> UltraHeat custom 24 V LiFePO4 warmers, one panel on each long side of each battery, about 10 to 15 W per side. Sides only, never underneath.</li>
+    <li><strong>LiTime caution:</strong> LiTime's self-heating page discourages external heating because a strong heater warms the case well before the cells. Its manual allows pre-heating. Low wattage, side mounting, T1 away from the pads and the 60 minute allow delay keep case and cells close.</li>
+  </ul>
+  <p class="path">TP60 LOAD output (S07 low-voltage cutoff) → 10 A fuse → TPDIN CH4 → per-battery fuse → per-battery high limit → warmer pair</p>
+  <ul>
+    <li>CH4 rule on T1: heat on below 46°F, off above 55°F.</li>
+    <li>The LOAD output's low-voltage cutoff stops heat before it flattens the bank. Heater returns go to the TP60 LOAD negative terminal.</li>
+    <li>Each battery gets an independent over-temperature limit in series (normally closed bimetal on a pad plus a one-shot thermal fuse), unless UltraHeat confirms an equivalent built-in limit in writing.</li>
+    <li>UltraHeat's 12 V product thermostat holds about 35 to 45°F, below the 46°F allow point. Ask for a version without it or with higher setpoints.</li>
+  </ul>
+  <p><strong>Temperature logging:</strong> Ecowitt GW3000 gateway and WN34-family probes on two battery cases, the box air and outside, read locally by Home Assistant. Alerts: battery case below 35°F and above 100°F. These are for watching only. No wireless or Home Assistant signal is part of the charge cutoff.</p>
 
   <details>
-    <summary>TPDIN role and limits</summary>
-    <p>The owned TPDIN model, V1/V2 hardware and firmware still need confirmation. Its documented temperature input and relay control can support normal operation. The independent hardwired temperature chain supplies the protective override. <a href="https://tsi.tyconsystems.com/doc/UserManuals/8000084_TPDIN-Monitor-WEB3_quick_install_guide.pdf">TPDIN WEB3 guide</a></p>
+    <summary>Questions for LiTime and UltraHeat</summary>
+    <p><strong>LiTime</strong> (send photos of all four serial labels): Does this BMS stop charging at low temperature, and at what stop and resume temperatures? Are external side heating pads acceptable for warranty? What maximum case temperature is allowed? Is adhesive mounting on the case acceptable?</p>
+    <p><strong>UltraHeat</strong> (24 V warmers for a 20.95 × 8.15 × 8.5 in case, sides only): watts per side at 24 V; maximum surface temperature at about 29 V continuous in still air; built-in thermal fuse; thermostat setpoints and whether it can be omitted or set to on 45°F / off 55°F; thermostat DC rating at 29 V; adhesive suitability on LiTime's case; price and lead time.</p>
+    <p>Sources: <a href="https://www.litime.com/products/litime-24v-100ah-lifepo4-lithium-battery">LiTime US specification</a> · <a href="https://ca.litime.com/products/24v-100ah-lithium-battery">LiTime version with low-temperature cutoff</a> · <a href="https://litime.com/collections/self-heating-batteries">LiTime self-heating FAQ</a> · <a href="https://www.ultraheat.com/batterywarmers">UltraHeat warmers</a> · <a href="https://www.rockwool.com/siteassets/o2-rockwool/documentation/technical-data-sheets/residential/comfortboard-80-non-structural-sheathing-continuous-insulation-techdata.pdf">Comfortboard 80</a></p>
+  </details>
+
+  <h3>Bench tests you can do indoors now</h3>
+  <ol>
+    <li><strong>TPDIN:</strong> power it from one battery through its 2 A fuse. Record the label and firmware, update the firmware, set an admin password. Program CH3. Probe in ice water must open CH3; warming must close it after the delay; unplugging the probe must open it; removing TPDIN power must open it.</li>
+    <li><strong>TP60:</strong> power it from one battery through a small inline fuse with no PV connected. Set Lit and S05 to S10, save, power-cycle and read every value back.</li>
+    <li><strong>EV200:</strong> feed its coil through CH3. Confirm it closes, check continuity across the main studs, then remove TPDIN power and confirm it opens.</li>
+  </ol>
+
+  <details>
+    <summary>What revision B gives up compared with revision A</summary>
+    <p>Revision A used four Siemens window monitors with four probes, two Gigavac PV contactors, a manual ARM latch, separate control and heater supplies, a BatteryProtect and a separate control enclosure. Those parts are withdrawn for this winter.</p>
     <ul>
-      <li>Use a separate battery-temperature probe for the TPDIN. Do not share a passive RTD between two instruments.</li>
-      <li>Use a fused battery-voltage sense connection. Do not connect its 80 V maximum voltage input directly to the PV array.</li>
-      <li>Use suitable external sensing for high current. Keep inverter and charger current out of small inline current ports.</li>
-      <li>Use hardware contacts in series for required permission conditions. Software rule priority alone does not prove the required logic.</li>
-      <li>Keep normal grid-charge requests downstream of the hardwired permit. Use interfaces rated for the actual contactor coil duty.</li>
-      <li>Confirm the correct Tycon communications cable and the actual hardware revision before assigning ports, relay numbers or firmware.</li>
+      <li>Revision A watched every pack. Revision B watches one pack per layer, so T1 goes on the coldest pack, and the Ecowitt loggers check that assumption.</li>
+      <li>Revision A required a manual ARM after a hard trip. Revision B resumes automatically after an hour above the allow temperature, as commercial self-heating LiFePO4 batteries do.</li>
     </ul>
-    <p>Relay control, network monitoring and solar data are distinct functions. A LOAD-off command or temperature-compensation setting does not establish low-temperature charge cutoff.</p>
+    <p>The revision A architecture and failure analysis remain the engineering reference for a future upgrade.</p>
   </details>
-
-  <details>
-    <summary>Candidate parts and quantities</summary>
-    <p>These are sourcing candidates. Keep the exact part choice open until the listed tests and interface checks are complete.</p>
-    <div class="table-wrap"><table>
-      <thead><tr><th scope="col">Qty.</th><th scope="col">Function and candidate</th><th scope="col">Open check</th></tr></thead>
-      <tbody>
-        <tr><td>4</td><td>Siemens 3RS2600-1BW30 temperature monitors</td><td>Window function, contact states, accuracy and hysteresis</td></tr>
-        <tr><td>4</td><td>Matched three-wire Pt100 surface probes</td><td>Cold-point placement, secure insulated attachment and fault detection</td></tr>
-        <tr><td>1 set</td><td>Delay, monitored manual reset, OFF and ARM controls</td><td>Held-button restart prevention and power-loss behavior</td></tr>
-        <tr><td>2</td><td>Sensata GX11TAB PV contactor candidates</td><td>Actual PV switching duty, precharge, polarity and coil drivers</td></tr>
-        <tr><td>1 owned</td><td>KAC: Baomain-labelled LS Metasol MC-9b, 24 V DC coil, for IOTA AC input</td><td>Model and coil confirmed. Regulated coil supply, charger switching duty, protective coordination and AC wiring separation remain open.</td></tr>
-        <tr><td>1</td><td>MEAN WELL DDR-120B-24 control supply</td><td>120 W / 5 A load budget, startup and temperature derating</td></tr>
-        <tr><td>1</td><td>MEAN WELL DDR-240B-24 heater converter</td><td>24 V / 10 A output, 16.8 to 33.6 V input; full installed-load review</td></tr>
-        <tr><td>1</td><td>Smart BatteryProtect 65 on the heater-converter input</td><td>Converter inrush and normal voltage-protection mode compatibility</td></tr>
-        <tr><td>4 kits</td><td>24 V LiFePO4 case-specific warmers, initial budget up to 50 W per pack</td><td>Exact case fit, local thermostat, independent limit and approved attachment</td></tr>
-        <tr><td>1 system</td><td>Heater safety switch and all-pack discharge supervision</td><td>High and low temperature limits, sequencing and cold/depleted recovery</td></tr>
-      </tbody>
-    </table></div>
-    <p>Sources: <a href="https://support.industry.siemens.com/cs/attachments/109772132/manual_temp_monitoring_relay_en-US.pdf">Siemens monitor manual</a> · <a href="https://www.sensata.com/sites/default/files/a/sensata-gigavac-gx11-series-open-contactors-datasheet.pdf">GX11 data sheet</a> · <a href="https://www.meanwell.com/Upload/PDF/DDR-120/DDR-120-SPEC.PDF">DDR-120</a> · <a href="https://www.meanwell.com/Upload/PDF/DDR-240/DDR-240-SPEC.pdf">DDR-240</a> · <a href="https://www.victronenergy.com/media/pg/Smart_BatteryProtect_12V_24V/en/operation-and-programming.html">BatteryProtect manual</a> · <a href="https://www.ultraheat.com/batterywarmers">UltraHeat warmer sourcing</a></p>
-    <p>UltraHeat is a sourcing option, with no confirmed LiTime-approved kit in this plan. Do not substitute a generic heating pad. Do not sandwich an unapproved heater against foam, plywood or plastic. No blanket flyback-diode instruction applies to all selected coils.</p>
-  </details>
-
-  <details>
-    <summary>Outage behavior and energy budget</summary>
-    <div class="table-wrap"><table>
-      <thead><tr><th scope="col">Condition</th><th scope="col">Required response</th></tr></thead>
-      <tbody>
-        <tr><th scope="row">Grid outage, warm bank</th><td>Solar can charge if permitted. Battery heat remains available. IOTA is off.</td></tr>
-        <tr><th scope="row">Any pack too cold or too hot to charge</th><td>Stop solar and IOTA charging. Heat follows its separate safe limits.</td></tr>
-        <tr><th scope="row">Charge sensor fault or hard trip</th><td>Stop both chargers and require manual ARM after the fault is cleared.</td></tr>
-        <tr><th scope="row">Network lost</th><td>Local hard protection remains effective.</td></tr>
-        <tr><th scope="row">TPDIN or control power lost</th><td>Charging stops. The proposed heater-enable path also opens.</td></tr>
-        <tr><th scope="row">Heater low-voltage stop</th><td>Heat stops. Charging remains subject to temperature permission.</td></tr>
-        <tr><th scope="row">Cold, depleted bank</th><td>Use the approved external warming or isolated-battery recovery procedure. Keep cold charging blocked.</td></tr>
-        <tr><th scope="row">Welded switching contact</th><td>Control indication cannot prove isolation. Use the approved manual disconnect and repair procedure.</td></tr>
-      </tbody>
-    </table></div>
-    <p>The initial heater allowance is 200 W total. Heat-loss measurements must establish whether this is enough. Insulation, wind, leakage, warm-up time and the coldest pack all affect the result.</p>
-    <p>Illustrative runtime: with 8.192 kWh available, 90% converter efficiency and 25 W controls, 200 W heat at 50% duty uses about 136 W and lasts about 60 hours. Continuous heat uses about 247 W and lasts about 33 hours. Other loads, cold and battery age reduce those values. These are planning calculations.</p>
-  </details>
-
-  <h3>Tests required before unattended use</h3>
-  <ol>
-    <li>Bench-test the controls with high-energy circuits isolated. Simulate temperature with suitable test equipment. Do not test the system by charging a frozen battery.</li>
-    <li>Test each pack's cold, hot, open-sensor and shorted-sensor conditions. Both chargers must stop in every case.</li>
-    <li>Test control power loss, TPDIN loss, network loss, reboot, a stuck charge request and a held ARM button.</li>
-    <li>Test each warmer, independent high limit, low-voltage stop and extreme-temperature shutdown.</li>
-    <li>After power-circuit inspection, verify actual charging current stops for solar and IOTA, separately and together.</li>
-    <li>Run a supervised cold-weather soak test with the final box and sensors. Record all four temperatures, heater duty, ambient conditions and energy use.</li>
-    <li>Test one failed warmer and one displaced sensor. Confirm a warm pack cannot permit charging of a cold pack.</li>
-    <li>Record the final settings, connection drawings and recovery procedure. Retest protective functions after wiring, sensor or firmware changes.</li>
-  </ol>
 </section>

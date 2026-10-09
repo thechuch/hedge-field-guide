@@ -1,5 +1,11 @@
 # Field guide revisions
 
+## 2026.10.09-r1
+
+Added the winter build plan, revision B. A TE EV200 contactor in PV positive is gated by the TPDIN cold rule and an independent second layer (the battery BMS if LiTime confirms it by serial, otherwise a separate temperature switch). Battery heat moves to Phase 2 on the TP60 load output with its low-voltage cutoff; IOTA grid charging is Phase 3. The four-monitor revision A control hardware is withdrawn for this winter and kept as the engineering reference.
+
+TP60 recorded as received and set to Lit mode at 28.4 V, because its temperature compensation in lithium mode is undocumented. Recorded installed string breakers and DIHOOL jumpers, the STEGO KTS 111 thermostats and ferrule wiring, the ordered MC-9b cover, the Class T inverter fuse, top-balancing with a 29.2 V charger, and a phased parts list. This revision does not release power-up.
+
 ## 2026.10.04-r1
 
 Recorded received MNPV3 and positive bus/output lug, delivered DIHOOL labels and top-input/bottom-output instruction, DDR-30G-24 fan-supply candidate, LS Metasol MC-9b contactor, TOBSUN 5 V converter and IQ-LIFEPO module. Breakers, lead gauge, fan demand, coil interface and charging profiles remain open where specified.

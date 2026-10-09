@@ -1,8 +1,8 @@
 /* Atomic offline release: replace retired pages and avoid mixed content versions. */
-const REVISION = '2026.10.04-r1';
-const CACHE = 'hedge-field-v37-' + REVISION;
+const REVISION = '2026.10.09-r1';
+const CACHE = 'hedge-field-v38-' + REVISION;
 const ASSETS = [
-  './', 'index.html', 'assets/guide.css?v=2026.10.04-r1', 'assets/guide.js?v=2026.10.04-r1', 'icon.svg', 'manifest.webmanifest',
+  './', 'index.html', 'assets/guide.css?v=2026.10.09-r1', 'assets/guide.js?v=2026.10.09-r1', 'icon.svg', 'manifest.webmanifest',
   'build-manual.html', 'battery-wiring.html', 'deck-layout.html', 'bench-test.html',
   'fire-safety.html', 'gland-plan.html', 'panel-layout.html', 'panel-wiring.html',
   'wall-cabinet.html', 'cabinet-fab.html', 'mount-detail.html', 'plot-plan.html',
