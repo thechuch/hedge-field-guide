@@ -1,0 +1,259 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="17in" height="11in" viewBox="0 0 1224 792" role="img" aria-labelledby="title desc"><title id="title">Battery power board: 1:4 connection layout</title><desc id="desc">48 by 16 inch proposed board, shown at 1:4. Bus bars are6.5 by1.34 inches, ANLholders4.8 by1.45, ClassT7 by2. Bodies are to listed scale; connection dots and cable paths are approximate.</desc>
+<rect x="0" y="0" width="1224" height="792" fill="#ffffff" stroke="none" stroke-width="1"/>
+<text x="42" y="29" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700" fill="#28644b" text-anchor="start">PROJECT HEDGE / BATTERY BOX / 02</text>
+<text x="42" y="60" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="700" fill="#142f38" text-anchor="start">Power board: scaled bodies and connection lines</text>
+<text x="42" y="82" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="400" fill="#52656a" text-anchor="start">1:4 body outlines on the proposed 48 x 16 in board. Top view; front at bottom. All positions are proposed.</text>
+<rect x="42" y="96" width="1140" height="37" fill="#fff3df" stroke="none" stroke-width="1"/>
+<text x="55" y="112" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700" fill="#8d4c0e" text-anchor="start">Body sizes: supplied product drawings. Terminal dots: illustrative centers. Cable lines: connection routes, with bends and lengths unverified.</text>
+<text x="55" y="127" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#8d4c0e" text-anchor="start">BULVACK has a reserved area because its body size is unknown. Covers, lugs, cable diameters and tool access need a dry fit.</text>
+<polyline points="174,215 174,503" fill="none" stroke="#e8eded" stroke-width="0.6" stroke-linejoin="round"/>
+<polyline points="246,215 246,503" fill="none" stroke="#e8eded" stroke-width="0.6" stroke-linejoin="round"/>
+<polyline points="318,215 318,503" fill="none" stroke="#e8eded" stroke-width="0.6" stroke-linejoin="round"/>
+<polyline points="390,215 390,503" fill="none" stroke="#e8eded" stroke-width="0.6" stroke-linejoin="round"/>
+<polyline points="462,215 462,503" fill="none" stroke="#e8eded" stroke-width="0.6" stroke-linejoin="round"/>
+<polyline points="534,215 534,503" fill="none" stroke="#e8eded" stroke-width="0.6" stroke-linejoin="round"/>
+<polyline points="606,215 606,503" fill="none" stroke="#e8eded" stroke-width="0.6" stroke-linejoin="round"/>
+<polyline points="678,215 678,503" fill="none" stroke="#e8eded" stroke-width="0.6" stroke-linejoin="round"/>
+<polyline points="750,215 750,503" fill="none" stroke="#e8eded" stroke-width="0.6" stroke-linejoin="round"/>
+<polyline points="822,215 822,503" fill="none" stroke="#e8eded" stroke-width="0.6" stroke-linejoin="round"/>
+<polyline points="894,215 894,503" fill="none" stroke="#e8eded" stroke-width="0.6" stroke-linejoin="round"/>
+<polyline points="966,215 966,503" fill="none" stroke="#e8eded" stroke-width="0.6" stroke-linejoin="round"/>
+<polyline points="1038,215 1038,503" fill="none" stroke="#e8eded" stroke-width="0.6" stroke-linejoin="round"/>
+<polyline points="174,215 1038,215" fill="none" stroke="#e8eded" stroke-width="0.6" stroke-linejoin="round"/>
+<polyline points="174,287 1038,287" fill="none" stroke="#e8eded" stroke-width="0.6" stroke-linejoin="round"/>
+<polyline points="174,359 1038,359" fill="none" stroke="#e8eded" stroke-width="0.6" stroke-linejoin="round"/>
+<polyline points="174,431 1038,431" fill="none" stroke="#e8eded" stroke-width="0.6" stroke-linejoin="round"/>
+<polyline points="174,503 1038,503" fill="none" stroke="#e8eded" stroke-width="0.6" stroke-linejoin="round"/>
+<rect x="174" y="215" width="864" height="288" fill="none" stroke="#28644b" stroke-width="1.6"/>
+<polyline points="174,189 1038,189" fill="none" stroke="#52656a" stroke-width="0.7" stroke-linejoin="round"/>
+<polyline points="171,192 177,186" fill="none" stroke="#52656a" stroke-width="0.9" stroke-linejoin="round"/>
+<polyline points="1035,192 1041,186" fill="none" stroke="#52656a" stroke-width="0.9" stroke-linejoin="round"/>
+<text x="606.0" y="183" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700" fill="#52656a" text-anchor="middle">48.00 proposed board</text>
+<polyline points="153,215 153,503" fill="none" stroke="#52656a" stroke-width="0.7" stroke-linejoin="round"/>
+<polyline points="150,218 156,212" fill="none" stroke="#52656a" stroke-width="0.9" stroke-linejoin="round"/>
+<polyline points="150,506 156,500" fill="none" stroke="#52656a" stroke-width="0.9" stroke-linejoin="round"/>
+<text x="146" y="359.0" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700" fill="#52656a" text-anchor="end">16.00</text>
+<text x="606" y="207" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#52656a" text-anchor="middle">BACK EDGE</text>
+<rect x="336" y="278.0" width="117.0" height="24.12" fill="#ffffff" stroke="#af3028" stroke-width="1.1"/>
+<text x="394.5" y="270.8" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="700" fill="#af3028" text-anchor="middle">P-A   6.50 x 1.34</text>
+<polyline points="353.1,290.06 435.90000000000003,290.06" fill="none" stroke="#af3028" stroke-width="3" stroke-linejoin="round"/>
+<rect x="570" y="278.0" width="117.0" height="24.12" fill="#ffffff" stroke="#af3028" stroke-width="1.1"/>
+<text x="628.5" y="270.8" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="700" fill="#af3028" text-anchor="middle">P-B   6.50 x 1.34</text>
+<polyline points="587.0999999999999,290.06 669.9000000000001,290.06" fill="none" stroke="#af3028" stroke-width="3" stroke-linejoin="round"/>
+<rect x="804" y="278.0" width="117.0" height="24.12" fill="#ffffff" stroke="#af3028" stroke-width="1.1"/>
+<text x="862.5" y="270.8" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="700" fill="#af3028" text-anchor="middle">P-C   6.50 x 1.34</text>
+<polyline points="821.1,290.06 903.9,290.06" fill="none" stroke="#af3028" stroke-width="3" stroke-linejoin="round"/>
+<rect x="336" y="398.6" width="117.0" height="24.12" fill="#ffffff" stroke="#185d8a" stroke-width="1.1"/>
+<text x="394.5" y="391.4" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="700" fill="#185d8a" text-anchor="middle">N-A   6.50 x 1.34</text>
+<polyline points="353.1,410.65999999999997 435.90000000000003,410.65999999999997" fill="none" stroke="#185d8a" stroke-width="3" stroke-linejoin="round"/>
+<rect x="570" y="398.6" width="117.0" height="24.12" fill="#ffffff" stroke="#185d8a" stroke-width="1.1"/>
+<text x="628.5" y="391.4" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="700" fill="#185d8a" text-anchor="middle">N-B   6.50 x 1.34</text>
+<polyline points="587.0999999999999,410.65999999999997 669.9000000000001,410.65999999999997" fill="none" stroke="#185d8a" stroke-width="3" stroke-linejoin="round"/>
+<rect x="804" y="398.6" width="117.0" height="24.12" fill="#ffffff" stroke="#185d8a" stroke-width="1.1"/>
+<text x="862.5" y="391.4" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="700" fill="#185d8a" text-anchor="middle">N-C   6.50 x 1.34</text>
+<polyline points="821.1,410.65999999999997 903.9,410.65999999999997" fill="none" stroke="#185d8a" stroke-width="3" stroke-linejoin="round"/>
+<polyline points="435.90000000000003,290.06 435.90000000000003,261.26 587.0999999999999,261.26 587.0999999999999,290.06" fill="none" stroke="#ffffff" stroke-width="4.4" stroke-linejoin="round"/>
+<polyline points="435.90000000000003,290.06 435.90000000000003,261.26 587.0999999999999,261.26 587.0999999999999,290.06" fill="none" stroke="#af3028" stroke-width="2" stroke-linejoin="round"/>
+<text x="511.5" y="256.76" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="700" fill="#af3028" text-anchor="middle">J-PAB</text>
+<polyline points="669.9000000000001,290.06 669.9000000000001,261.26 821.1,261.26 821.1,290.06" fill="none" stroke="#ffffff" stroke-width="4.4" stroke-linejoin="round"/>
+<polyline points="669.9000000000001,290.06 669.9000000000001,261.26 821.1,261.26 821.1,290.06" fill="none" stroke="#af3028" stroke-width="2" stroke-linejoin="round"/>
+<text x="745.5" y="256.76" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="700" fill="#af3028" text-anchor="middle">J-PBC</text>
+<polyline points="435.90000000000003,410.65999999999997 435.90000000000003,381.86 587.0999999999999,381.86 587.0999999999999,410.65999999999997" fill="none" stroke="#ffffff" stroke-width="4.4" stroke-linejoin="round"/>
+<polyline points="435.90000000000003,410.65999999999997 435.90000000000003,381.86 587.0999999999999,381.86 587.0999999999999,410.65999999999997" fill="none" stroke="#185d8a" stroke-width="2" stroke-linejoin="round"/>
+<text x="511.5" y="377.36" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="700" fill="#185d8a" text-anchor="middle">J-NAB</text>
+<polyline points="669.9000000000001,410.65999999999997 669.9000000000001,381.86 821.1,381.86 821.1,410.65999999999997" fill="none" stroke="#ffffff" stroke-width="4.4" stroke-linejoin="round"/>
+<polyline points="669.9000000000001,410.65999999999997 669.9000000000001,381.86 821.1,381.86 821.1,410.65999999999997" fill="none" stroke="#185d8a" stroke-width="2" stroke-linejoin="round"/>
+<text x="745.5" y="377.36" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="700" fill="#185d8a" text-anchor="middle">J-NBC</text>
+<rect x="354" y="467.0" width="86.39999999999999" height="26.099999999999998" fill="#ffffff" stroke="#af3028" stroke-width="1.1"/>
+<text x="397.20000000000005" y="461.6" font-family="Arial, Helvetica, sans-serif" font-size="8.2" font-weight="700" fill="#af3028" text-anchor="middle">FB1 / 150 A*</text>
+<rect x="534" y="467.0" width="86.39999999999999" height="26.099999999999998" fill="#ffffff" stroke="#af3028" stroke-width="1.1"/>
+<text x="577.2" y="461.6" font-family="Arial, Helvetica, sans-serif" font-size="8.2" font-weight="700" fill="#af3028" text-anchor="middle">FB2 / 150 A*</text>
+<rect x="714" y="467.0" width="86.39999999999999" height="26.099999999999998" fill="#ffffff" stroke="#af3028" stroke-width="1.1"/>
+<text x="757.1999999999999" y="461.6" font-family="Arial, Helvetica, sans-serif" font-size="8.2" font-weight="700" fill="#af3028" text-anchor="middle">FB3 / 150 A*</text>
+<rect x="894" y="467.0" width="86.39999999999999" height="26.099999999999998" fill="#ffffff" stroke="#af3028" stroke-width="1.1"/>
+<text x="937.1999999999999" y="461.6" font-family="Arial, Helvetica, sans-serif" font-size="8.2" font-weight="700" fill="#af3028" text-anchor="middle">FB4 / 150 A*</text>
+<polyline points="423.29999999999995,480.05 471.0,480.05 471.0,348.20000000000005 380.64,348.20000000000005 380.64,290.06" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="423.29999999999995,480.05 471.0,480.05 471.0,348.20000000000005 380.64,348.20000000000005 380.64,290.06" fill="none" stroke="#af3028" stroke-width="1.5" stroke-linejoin="round"/>
+<polyline points="371.1,480.05 371.1,539.0" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="371.1,480.05 371.1,539.0" fill="none" stroke="#af3028" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="371.1" y="551.5999999999999" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#af3028" text-anchor="middle">B1 +</text>
+<polyline points="371.1,480.05 390.0,480.05 393.6,476.0 400.79999999999995,484.09999999999997 404.4,480.05 423.29999999999995,480.05" fill="none" stroke="#ffffff" stroke-width="3.4" stroke-linejoin="round"/>
+<polyline points="371.1,480.05 390.0,480.05 393.6,476.0 400.79999999999995,484.09999999999997 404.4,480.05 423.29999999999995,480.05" fill="none" stroke="#af3028" stroke-width="1" stroke-linejoin="round"/>
+<circle cx="371.1" cy="480.05" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<circle cx="423.29999999999995" cy="480.05" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<polyline points="603.3,480.05 708.6,480.05 708.6,330.2 408.36,330.2 408.36,290.06" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="603.3,480.05 708.6,480.05 708.6,330.2 408.36,330.2 408.36,290.06" fill="none" stroke="#af3028" stroke-width="1.5" stroke-linejoin="round"/>
+<polyline points="551.0999999999999,480.05 551.0999999999999,539.0" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="551.0999999999999,480.05 551.0999999999999,539.0" fill="none" stroke="#af3028" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="551.0999999999999" y="551.5999999999999" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#af3028" text-anchor="middle">B2 +</text>
+<polyline points="551.0999999999999,480.05 570.0,480.05 573.5999999999999,476.0 580.8,484.09999999999997 584.4000000000001,480.05 603.3,480.05" fill="none" stroke="#ffffff" stroke-width="3.4" stroke-linejoin="round"/>
+<polyline points="551.0999999999999,480.05 570.0,480.05 573.5999999999999,476.0 580.8,484.09999999999997 584.4000000000001,480.05 603.3,480.05" fill="none" stroke="#af3028" stroke-width="1" stroke-linejoin="round"/>
+<circle cx="551.0999999999999" cy="480.05" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<circle cx="603.3" cy="480.05" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<polyline points="783.3000000000001,480.05 777.0,480.05 777.0,348.20000000000005 848.64,348.20000000000005 848.64,290.06" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="783.3000000000001,480.05 777.0,480.05 777.0,348.20000000000005 848.64,348.20000000000005 848.64,290.06" fill="none" stroke="#af3028" stroke-width="1.5" stroke-linejoin="round"/>
+<polyline points="731.1,480.05 731.1,539.0" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="731.1,480.05 731.1,539.0" fill="none" stroke="#af3028" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="731.1" y="551.5999999999999" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#af3028" text-anchor="middle">B3 +</text>
+<polyline points="731.1,480.05 750.0,480.05 753.6,476.0 760.8000000000001,484.09999999999997 764.4,480.05 783.3000000000001,480.05" fill="none" stroke="#ffffff" stroke-width="3.4" stroke-linejoin="round"/>
+<polyline points="731.1,480.05 750.0,480.05 753.6,476.0 760.8000000000001,484.09999999999997 764.4,480.05 783.3000000000001,480.05" fill="none" stroke="#af3028" stroke-width="1" stroke-linejoin="round"/>
+<circle cx="731.1" cy="480.05" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<circle cx="783.3000000000001" cy="480.05" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<polyline points="963.3000000000001,480.05 1002.0,480.05 1002.0,330.2 876.3599999999999,330.2 876.3599999999999,290.06" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="963.3000000000001,480.05 1002.0,480.05 1002.0,330.2 876.3599999999999,330.2 876.3599999999999,290.06" fill="none" stroke="#af3028" stroke-width="1.5" stroke-linejoin="round"/>
+<polyline points="911.1,480.05 911.1,539.0" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="911.1,480.05 911.1,539.0" fill="none" stroke="#af3028" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="911.1" y="551.5999999999999" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#af3028" text-anchor="middle">B4 +</text>
+<polyline points="911.1,480.05 930.0,480.05 933.6,476.0 940.8000000000001,484.09999999999997 944.4,480.05 963.3000000000001,480.05" fill="none" stroke="#ffffff" stroke-width="3.4" stroke-linejoin="round"/>
+<polyline points="911.1,480.05 930.0,480.05 933.6,476.0 940.8000000000001,484.09999999999997 944.4,480.05 963.3000000000001,480.05" fill="none" stroke="#af3028" stroke-width="1" stroke-linejoin="round"/>
+<circle cx="911.1" cy="480.05" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<circle cx="963.3000000000001" cy="480.05" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<polyline points="380.64,410.65999999999997 380.64,434.6 453.0,434.6 453.0,539.0" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="380.64,410.65999999999997 380.64,434.6 453.0,434.6 453.0,539.0" fill="none" stroke="#185d8a" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="453.0" y="551.5999999999999" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#185d8a" text-anchor="middle">B1 -</text>
+<polyline points="408.36,410.65999999999997 408.36,443.6 633.0,443.6 633.0,539.0" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="408.36,410.65999999999997 408.36,443.6 633.0,443.6 633.0,539.0" fill="none" stroke="#185d8a" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="633.0" y="551.5999999999999" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#185d8a" text-anchor="middle">B2 -</text>
+<polyline points="848.64,410.65999999999997 848.64,434.6 813.0,434.6 813.0,539.0" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="848.64,410.65999999999997 848.64,434.6 813.0,434.6 813.0,539.0" fill="none" stroke="#185d8a" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="813.0" y="551.5999999999999" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#185d8a" text-anchor="middle">B3 -</text>
+<polyline points="876.3599999999999,410.65999999999997 876.3599999999999,443.6 993.0,443.6 993.0,539.0" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="876.3599999999999,410.65999999999997 876.3599999999999,443.6 993.0,443.6 993.0,539.0" fill="none" stroke="#185d8a" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="993.0" y="551.5999999999999" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#185d8a" text-anchor="middle">B4 -</text>
+<rect x="192" y="233.0" width="126" height="36" fill="#ffffff" stroke="#af3028" stroke-width="1.1"/>
+<text x="255.0" y="242.0" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#af3028" text-anchor="middle">FINV / CLASS T</text>
+<text x="255.0" y="265.4" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="400" fill="#af3028" text-anchor="middle">110 A / 7.00 x 2.00</text>
+<polyline points="353.1,290.06 330.6,290.06 330.6,251 303.6,251" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="353.1,290.06 330.6,290.06 330.6,251 303.6,251" fill="none" stroke="#af3028" stroke-width="1.5" stroke-linejoin="round"/>
+<polyline points="206.4,251 242.39999999999998,251 249.60000000000002,247.4 260.4,254.6 267.6,251 303.6,251" fill="none" stroke="#ffffff" stroke-width="3.4" stroke-linejoin="round"/>
+<polyline points="206.4,251 242.39999999999998,251 249.60000000000002,247.4 260.4,254.6 267.6,251 303.6,251" fill="none" stroke="#af3028" stroke-width="1" stroke-linejoin="round"/>
+<circle cx="206.4" cy="251" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<circle cx="303.6" cy="251" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<polyline points="206.4,251 184.8,251 184.8,332.0 195.6,332.0" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="206.4,251 184.8,251 184.8,332.0 195.6,332.0" fill="none" stroke="#af3028" stroke-width="1.5" stroke-linejoin="round"/>
+<rect x="195.6" y="305.0" width="90" height="54" fill="none" stroke="#8d4c0e" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="240.60000000000002" y="321.2" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="700" fill="#8d4c0e" text-anchor="middle">QINV / BULVACK</text>
+<text x="240.60000000000002" y="335.6" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="700" fill="#8d4c0e" text-anchor="middle">RESERVED AREA</text>
+<text x="240.60000000000002" y="350.0" font-family="Arial, Helvetica, sans-serif" font-size="8" font-weight="400" fill="#8d4c0e" text-anchor="middle">Body size pending</text>
+<polyline points="195.6,344.6 141.6,344.6" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="195.6,344.6 141.6,344.6" fill="none" stroke="#af3028" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="134.4" y="348.20000000000005" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#af3028" text-anchor="end">INV +</text>
+<polyline points="903.9,410.65999999999997 1020,410.65999999999997 1020,499.40000000000003 141.6,499.40000000000003" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="903.9,410.65999999999997 1020,410.65999999999997 1020,499.40000000000003 141.6,499.40000000000003" fill="none" stroke="#185d8a" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="134.4" y="503" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#185d8a" text-anchor="end">INV -</text>
+<rect x="534" y="222.2" width="86.39999999999999" height="26.099999999999998" fill="#ffffff" stroke="#af3028" stroke-width="1.1"/>
+<text x="577.2" y="215.0" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="700" fill="#af3028" text-anchor="middle">FIOTA / 30 A*</text>
+<polyline points="614.64,290.06 614.64,254.6 603.3,254.6 603.3,235.25" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="614.64,290.06 614.64,254.6 603.3,254.6 603.3,235.25" fill="none" stroke="#af3028" stroke-width="1.5" stroke-linejoin="round"/>
+<polyline points="551.0999999999999,235.25 551.0999999999999,180.8" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="551.0999999999999,235.25 551.0999999999999,180.8" fill="none" stroke="#af3028" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="551.0999999999999" y="175.4" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#af3028" text-anchor="middle">IOTA +</text>
+<polyline points="551.0999999999999,235.25 570.0,235.25 573.5999999999999,231.2 580.8,239.3 584.4000000000001,235.25 603.3,235.25" fill="none" stroke="#ffffff" stroke-width="3.4" stroke-linejoin="round"/>
+<polyline points="551.0999999999999,235.25 570.0,235.25 573.5999999999999,231.2 580.8,239.3 584.4000000000001,235.25 603.3,235.25" fill="none" stroke="#af3028" stroke-width="1" stroke-linejoin="round"/>
+<circle cx="551.0999999999999" cy="235.25" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<circle cx="603.3" cy="235.25" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<rect x="660" y="222.2" width="86.39999999999999" height="26.099999999999998" fill="#ffffff" stroke="#af3028" stroke-width="1.1"/>
+<text x="703.1999999999999" y="215.0" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="700" fill="#af3028" text-anchor="middle">FAUX / 30 A*</text>
+<polyline points="642.36,290.06 642.36,254.6 729.3000000000001,254.6 729.3000000000001,235.25" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="642.36,290.06 642.36,254.6 729.3000000000001,254.6 729.3000000000001,235.25" fill="none" stroke="#af3028" stroke-width="1.5" stroke-linejoin="round"/>
+<polyline points="677.0999999999999,235.25 677.0999999999999,180.8" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="677.0999999999999,235.25 677.0999999999999,180.8" fill="none" stroke="#af3028" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="677.0999999999999" y="175.4" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#af3028" text-anchor="middle">AUX +</text>
+<polyline points="677.0999999999999,235.25 696.0,235.25 699.6,231.2 706.8000000000001,239.3 710.4,235.25 729.3000000000001,235.25" fill="none" stroke="#ffffff" stroke-width="3.4" stroke-linejoin="round"/>
+<polyline points="677.0999999999999,235.25 696.0,235.25 699.6,231.2 706.8000000000001,239.3 710.4,235.25 729.3000000000001,235.25" fill="none" stroke="#af3028" stroke-width="1" stroke-linejoin="round"/>
+<circle cx="677.0999999999999" cy="235.25" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<circle cx="729.3000000000001" cy="235.25" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<rect x="903.0" y="222.2" width="86.39999999999999" height="26.099999999999998" fill="#ffffff" stroke="#af3028" stroke-width="1.1"/>
+<text x="946.1999999999999" y="215.0" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="700" fill="#af3028" text-anchor="middle">FTP / 80 A*</text>
+<polyline points="903.9,290.06 903.9,254.6 972.3000000000001,254.6 972.3000000000001,235.25" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="903.9,290.06 903.9,254.6 972.3000000000001,254.6 972.3000000000001,235.25" fill="none" stroke="#af3028" stroke-width="1.5" stroke-linejoin="round"/>
+<polyline points="920.1,235.25 920.1,180.8" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="920.1,235.25 920.1,180.8" fill="none" stroke="#af3028" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="920.1" y="175.4" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#af3028" text-anchor="middle">TP BAT +</text>
+<polyline points="920.1,235.25 939.0,235.25 942.6,231.2 949.8000000000001,239.3 953.4,235.25 972.3000000000001,235.25" fill="none" stroke="#ffffff" stroke-width="3.4" stroke-linejoin="round"/>
+<polyline points="920.1,235.25 939.0,235.25 942.6,231.2 949.8000000000001,239.3 953.4,235.25 972.3000000000001,235.25" fill="none" stroke="#af3028" stroke-width="1" stroke-linejoin="round"/>
+<circle cx="920.1" cy="235.25" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<circle cx="972.3000000000001" cy="235.25" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<polyline points="353.1,410.65999999999997 300,410.65999999999997 300,395.0" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="353.1,410.65999999999997 300,410.65999999999997 300,395.0" fill="none" stroke="#185d8a" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="297.3" y="390.5" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="700" fill="#185d8a" text-anchor="end">TP BAT -</text>
+<polyline points="614.64,410.65999999999997 614.64,410.65999999999997 614.64,373.4" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="614.64,410.65999999999997 614.64,410.65999999999997 614.64,373.4" fill="none" stroke="#185d8a" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="611.94" y="368.9" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="700" fill="#185d8a" text-anchor="middle">IOTA -</text>
+<polyline points="642.36,410.65999999999997 642.36,410.65999999999997 642.36,359.0" fill="none" stroke="#ffffff" stroke-width="3.9" stroke-linejoin="round"/>
+<polyline points="642.36,410.65999999999997 642.36,410.65999999999997 642.36,359.0" fill="none" stroke="#185d8a" stroke-width="1.5" stroke-linejoin="round"/>
+<text x="639.6600000000001" y="354.5" font-family="Arial, Helvetica, sans-serif" font-size="8.5" font-weight="700" fill="#185d8a" text-anchor="middle">AUX -</text>
+<circle cx="353.1" cy="290.06" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<text x="353.1" y="298.7" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#af3028" text-anchor="middle">P-A1</text>
+<circle cx="380.64" cy="290.06" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<text x="380.64" y="298.7" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#af3028" text-anchor="middle">P-A2</text>
+<circle cx="408.36" cy="290.06" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<text x="408.36" y="298.7" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#af3028" text-anchor="middle">P-A3</text>
+<circle cx="435.90000000000003" cy="290.06" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<text x="435.90000000000003" y="298.7" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#af3028" text-anchor="middle">P-A4</text>
+<circle cx="587.0999999999999" cy="290.06" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<text x="587.0999999999999" y="298.7" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#af3028" text-anchor="middle">P-B1</text>
+<circle cx="614.64" cy="290.06" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<text x="614.64" y="298.7" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#af3028" text-anchor="middle">P-B2</text>
+<circle cx="642.36" cy="290.06" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<text x="642.36" y="298.7" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#af3028" text-anchor="middle">P-B3</text>
+<circle cx="669.9000000000001" cy="290.06" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<text x="669.9000000000001" y="298.7" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#af3028" text-anchor="middle">P-B4</text>
+<circle cx="821.1" cy="290.06" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<text x="821.1" y="298.7" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#af3028" text-anchor="middle">P-C1</text>
+<circle cx="848.64" cy="290.06" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<text x="848.64" y="298.7" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#af3028" text-anchor="middle">P-C2</text>
+<circle cx="876.3599999999999" cy="290.06" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<text x="876.3599999999999" y="298.7" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#af3028" text-anchor="middle">P-C3</text>
+<circle cx="903.9" cy="290.06" r="2.9" fill="#ffffff" stroke="#af3028" stroke-width="1.3"/>
+<text x="903.9" y="298.7" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#af3028" text-anchor="middle">P-C4</text>
+<circle cx="353.1" cy="410.65999999999997" r="2.9" fill="#ffffff" stroke="#185d8a" stroke-width="1.3"/>
+<text x="353.1" y="419.29999999999995" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#185d8a" text-anchor="middle">N-A1</text>
+<circle cx="380.64" cy="410.65999999999997" r="2.9" fill="#ffffff" stroke="#185d8a" stroke-width="1.3"/>
+<text x="380.64" y="419.29999999999995" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#185d8a" text-anchor="middle">N-A2</text>
+<circle cx="408.36" cy="410.65999999999997" r="2.9" fill="#ffffff" stroke="#185d8a" stroke-width="1.3"/>
+<text x="408.36" y="419.29999999999995" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#185d8a" text-anchor="middle">N-A3</text>
+<circle cx="435.90000000000003" cy="410.65999999999997" r="2.9" fill="#ffffff" stroke="#185d8a" stroke-width="1.3"/>
+<text x="435.90000000000003" y="419.29999999999995" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#185d8a" text-anchor="middle">N-A4</text>
+<circle cx="587.0999999999999" cy="410.65999999999997" r="2.9" fill="#ffffff" stroke="#185d8a" stroke-width="1.3"/>
+<text x="587.0999999999999" y="419.29999999999995" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#185d8a" text-anchor="middle">N-B1</text>
+<circle cx="614.64" cy="410.65999999999997" r="2.9" fill="#ffffff" stroke="#185d8a" stroke-width="1.3"/>
+<text x="614.64" y="419.29999999999995" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#185d8a" text-anchor="middle">N-B2</text>
+<circle cx="642.36" cy="410.65999999999997" r="2.9" fill="#ffffff" stroke="#185d8a" stroke-width="1.3"/>
+<text x="642.36" y="419.29999999999995" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#185d8a" text-anchor="middle">N-B3</text>
+<circle cx="669.9000000000001" cy="410.65999999999997" r="2.9" fill="#ffffff" stroke="#185d8a" stroke-width="1.3"/>
+<text x="669.9000000000001" y="419.29999999999995" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#185d8a" text-anchor="middle">N-B4</text>
+<circle cx="821.1" cy="410.65999999999997" r="2.9" fill="#ffffff" stroke="#185d8a" stroke-width="1.3"/>
+<text x="821.1" y="419.29999999999995" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#185d8a" text-anchor="middle">N-C1</text>
+<circle cx="848.64" cy="410.65999999999997" r="2.9" fill="#ffffff" stroke="#185d8a" stroke-width="1.3"/>
+<text x="848.64" y="419.29999999999995" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#185d8a" text-anchor="middle">N-C2</text>
+<circle cx="876.3599999999999" cy="410.65999999999997" r="2.9" fill="#ffffff" stroke="#185d8a" stroke-width="1.3"/>
+<text x="876.3599999999999" y="419.29999999999995" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#185d8a" text-anchor="middle">N-C3</text>
+<circle cx="903.9" cy="410.65999999999997" r="2.9" fill="#ffffff" stroke="#185d8a" stroke-width="1.3"/>
+<text x="903.9" y="419.29999999999995" font-family="Arial, Helvetica, sans-serif" font-size="7.5" font-weight="700" fill="#185d8a" text-anchor="middle">N-C4</text>
+<text x="606" y="520" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700" fill="#142f38" text-anchor="middle">FRONT EDGE / BATTERY LEADS DESCEND TO PACKS BELOW</text>
+<text x="42" y="607" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700" fill="#28644b" text-anchor="start">PRINT CHECK</text>
+<polyline points="42,626 186,626" fill="none" stroke="#142f38" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="42,621 42,631" fill="none" stroke="#142f38" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="42" y="645" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#142f38" text-anchor="middle">0</text>
+<polyline points="114,621 114,631" fill="none" stroke="#142f38" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="114" y="645" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#142f38" text-anchor="middle">4</text>
+<polyline points="186,621 186,631" fill="none" stroke="#142f38" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="186" y="645" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#142f38" text-anchor="middle">8</text>
+<text x="209" y="626" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#142f38" text-anchor="start">8 real inches = 2 printed inches</text>
+<text x="42" y="674" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700" fill="#28644b" text-anchor="start">SCALED BODIES</text>
+<text x="42" y="691" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#142f38" text-anchor="start">6 bus bars: 6.50 x 1.34 in. Listed cover height 2.09 in.</text>
+<text x="42" y="708" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#142f38" text-anchor="start">7 ANL holders: 4.80 x 1.45 in. Listed height 1.47 in.</text>
+<text x="42" y="725" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#142f38" text-anchor="start">Class T holder: 7.00 x 2.00 in. Published height 2.30 in.</text>
+<text x="640" y="607" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700" fill="#8d4c0e" text-anchor="start">CONNECTION LIMITS</text>
+<text x="640" y="624" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#142f38" text-anchor="start">White gaps at crossings represent separate insulated wires.</text>
+<text x="640" y="641" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#142f38" text-anchor="start">Only labelled studs and fuse terminals are connection points.</text>
+<text x="640" y="658" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#142f38" text-anchor="start">The 3.15 in ANL value is overall fuse length, not stud spacing.</text>
+<text x="640" y="675" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#142f38" text-anchor="start">Battery fuse source stubs need actual short routes to each pack.</text>
+<text x="640" y="692" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#142f38" text-anchor="start">Equal battery cable construction and current sharing need review.</text>
+<text x="640" y="709" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#8d4c0e" text-anchor="start">* Fuse values remain proposals; the supplied ANL image shows a 60 A kit.</text>
+<text x="640" y="726" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="400" fill="#8d4c0e" text-anchor="start">Product dimensions do not establish electrical approval or bend clearance.</text>
+<polyline points="42,753 1182,753" fill="none" stroke="#52656a" stroke-width="0.6" stroke-linejoin="round"/>
+<text x="42" y="771" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="400" fill="#52656a" text-anchor="start">12 OCT 2026 | REV A | PRELIMINARY | SHEET 2 OF 3</text>
+<text x="1182" y="771" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="700" fill="#142f38" text-anchor="end">1:4 BODY OUTLINES / TERMINAL CENTERS APPROXIMATE</text>
+</svg>

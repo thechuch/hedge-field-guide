@@ -1,6 +1,10 @@
 # Project Hedge field brief
 
-Current public revision: 2026.10.12-r1. This brief replaces the August brief. Use index.html and its section sources in _content as the current field record.
+Current public revision: 2026.10.12-r2. This brief replaces the August brief. Use index.html and its section sources in _content as the current field record.
+
+## Battery scale drawing, 12 October 2026
+
+The three-sheet drawing set is at #layout-scale-plan and downloads/battery-box-scale-plan.pdf. Supplied listing images show Joinfworld four-stud bars 6.5 x 1.34 inches, 2.09 inches with cover, M8; iRhapsody ANL holders 4.8 x 1.45 x 1.47 inches, M8. The 3.15-inch fuse dimension is overall length, not stud spacing. The image shows a 60 A kit; this does not confirm the installed fuse ratings. Stud centers, mounting holes and BULVACK size remain unmeasured. Schematics keep the existing separate battery, inverter, Tycon, IOTA and AUX connections.
 
 ## Detailed layout release, 12 October 2026
 

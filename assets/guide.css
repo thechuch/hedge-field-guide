@@ -10,4 +10,8 @@
 @media print{#updateNotice{display:none!important}}
 
 #layouts h3[id]{scroll-margin-top:84px}
+#layouts .layout-drawing{margin:24px 0;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+#layouts .layout-drawing>a{display:block;background:#fff;line-height:0}
+#layouts .layout-drawing img{display:block;width:100%;height:auto;background:#fff}
+#layouts .layout-drawing figcaption{padding:12px 14px;font-size:13px;line-height:1.55;color:var(--muted);background:var(--bg)}
 @media(max-width:760px){#layouts h3[id]{scroll-margin-top:128px}}

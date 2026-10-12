@@ -1,5 +1,9 @@
 # Field guide revisions
 
+## 2026.10.12-r2
+
+Added a three-sheet battery-box drawing set, with 1:4 box and hardware outlines plus a connection schematic. The supplied product images establish Joinfworld and ANL-holder body sizes; terminal centers, BULVACK body and cable bends remain open. Added SVG previews, PDF download and offline caching.
+
 ## 2026.10.12-r1
 
 Published detailed electrical layouts and a 15-page public PDF, both available offline. The proposed three-bar-per-polarity map assigns each battery, charger, inverter and control feeder its own stud. Added fuse allocations, EV200 main/coil/feedback paths, equipment locations, routes and measurement requirements. The public PDF uses a cabinet schematic.
