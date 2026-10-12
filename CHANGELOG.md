@@ -1,5 +1,9 @@
 # Field guide revisions
 
+## 2026.10.12-r3
+
+Added a five-page Letter landscape PDF with 1:6 overviews, two overlapping 1:4 board details and the connection schematic. Each scale page has a one-inch print check. Added the download to offline caching and clarified print settings.
+
 ## 2026.10.12-r2
 
 Added a three-sheet battery-box drawing set, with 1:4 box and hardware outlines plus a connection schematic. The supplied product images establish Joinfworld and ANL-holder body sizes; terminal centers, BULVACK body and cable bends remain open. Added SVG previews, PDF download and offline caching.

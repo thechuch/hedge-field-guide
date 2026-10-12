@@ -1,13 +1,13 @@
 /* Atomic offline release: replace retired pages and avoid mixed content versions. */
-const REVISION = '2026.10.12-r2';
-const CACHE = 'hedge-field-v40-' + REVISION;
+const REVISION = '2026.10.12-r3';
+const CACHE = 'hedge-field-v41-' + REVISION;
 const ASSETS = [
-  './', 'index.html', 'assets/guide.css?v=2026.10.12-r2', 'assets/guide.js?v=2026.10.12-r2', 'icon.svg', 'manifest.webmanifest',
+  './', 'index.html', 'assets/guide.css?v=2026.10.12-r3', 'assets/guide.js?v=2026.10.12-r3', 'icon.svg', 'manifest.webmanifest',
   'build-manual.html', 'battery-wiring.html', 'deck-layout.html', 'bench-test.html',
   'fire-safety.html', 'gland-plan.html', 'panel-layout.html', 'panel-wiring.html',
   'wall-cabinet.html', 'cabinet-fab.html', 'mount-detail.html', 'plot-plan.html',
   'pump-skid.html', 'split-station.html', 'chicken-waterer.html', 'shed-freezer.html',
-  'downloads/electrical-layout-map.pdf', 'downloads/battery-box-scale-plan.pdf', 'drawings/battery-box-scale-plan.svg', 'drawings/battery-box-board-connections.svg', 'drawings/battery-box-connections.svg', 'shopping.html', 'punch-list.html', 'litime-email.html', 'ask.html'
+  'downloads/electrical-layout-map.pdf', 'downloads/battery-box-scale-plan.pdf', 'downloads/battery-box-scale-plan-letter.pdf', 'drawings/battery-box-scale-plan.svg', 'drawings/battery-box-board-connections.svg', 'drawings/battery-box-connections.svg', 'shopping.html', 'punch-list.html', 'litime-email.html', 'ask.html'
 ];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS.map(path => new Request(path, {cache:'reload'})))).then(() => self.skipWaiting()));
