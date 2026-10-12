@@ -8,3 +8,6 @@
 #updateNotice{position:fixed;z-index:30;bottom:12px;right:16px;max-width:420px;box-shadow:0 8px 28px #0004;border:2px solid var(--green);margin:0}
 @media(max-width:760px){#updateNotice{left:12px;right:12px;max-width:none}}
 @media print{#updateNotice{display:none!important}}
+
+#layouts h3[id]{scroll-margin-top:84px}
+@media(max-width:760px){#layouts h3[id]{scroll-margin-top:128px}}

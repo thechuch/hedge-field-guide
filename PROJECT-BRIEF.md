@@ -1,6 +1,12 @@
 # Project Hedge field brief
 
-Current public revision: 2026.10.04-r1. This brief replaces the August brief. Use index.html and its section sources in _content as the current field record.
+Current public revision: 2026.10.12-r1. This brief replaces the August brief. Use index.html and its section sources in _content as the current field record.
+
+## Detailed layout release, 12 October 2026
+
+The public guide now includes #layouts and downloads/electrical-layout-map.pdf. User confirms an empty battery power board, the spare third positive/negative bar pair and owned BULVACK. The proposed three-bar-per-polarity layout has eight separate branch studs and four jumpers total. EV200HAANA, Blue Sea 5007100/5112, GW3000 and two WN34BL sensors are ordered; a third thermometer is for the coop. The public PDF uses a schematic instead of the private cabinet photo.
+
+Layout review: Tycon cooling space conflicts with the existing cabinet; auxiliary feedback needs an interface; warm-case delay is unvalidated; Tycon and DDR fuse selections remain open; Class T alone does not validate BULVACK; an inter-bar switch cannot isolate the whole bank. Detailed chapter statements take precedence over older summaries below.
 
 ## Scope and state
 

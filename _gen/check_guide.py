@@ -20,7 +20,8 @@ class Page(HTMLParser):
 page=Page();page.feed((ROOT/'index.html').read_text());assert not page.errors,page.errors
 assert not page.stack,page.stack
 assert len(page.ids)==len(set(page.ids)), 'Duplicate IDs'
-assert len(page.sections)==15,'Expected the 15 current sections'
+assert len(page.sections)==16,'Expected the 16 current sections'
+assert [int(n) for n in re.findall(r'<span class="number">(\d+)</span>', (ROOT/'index.html').read_text())]==list(range(1,17)),'Chapter numbers out of sequence'
 assert all('chapter' in s.get('class','') for s in page.sections),'Section missing navigation/search style'
 for ref in page.refs:
     parts=urlsplit(ref)
@@ -43,4 +44,6 @@ assets=re.search(r'const ASSETS = \[(.*?)\];',sw,re.S).group(1)
 for item in re.findall(r"'([^']+)'",assets):
     assert (ROOT/urlsplit(item).path).exists(),f'Missing precache item: {item}'
 assert 'hedge-build-manual-v1' not in (ROOT/'assets/guide.js').read_text(), 'Old checklist state reused'
-print(f'PASS: 15 sections, {len(page.ids)} unique IDs, internal links, 20 retired routes, precache files and public text checks')
+assert 'layouts' in page.ids, 'Layouts section missing'
+assert 'downloads/electrical-layout-map.pdf' in page.refs, 'Layout PDF link missing'
+print(f'PASS: 16 sections, {len(page.ids)} unique IDs, internal links, 20 retired routes, precache files and public text checks')

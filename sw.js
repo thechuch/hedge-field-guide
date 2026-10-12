@@ -1,13 +1,13 @@
 /* Atomic offline release: replace retired pages and avoid mixed content versions. */
-const REVISION = '2026.10.09-r1';
-const CACHE = 'hedge-field-v38-' + REVISION;
+const REVISION = '2026.10.12-r1';
+const CACHE = 'hedge-field-v39-' + REVISION;
 const ASSETS = [
-  './', 'index.html', 'assets/guide.css?v=2026.10.09-r1', 'assets/guide.js?v=2026.10.09-r1', 'icon.svg', 'manifest.webmanifest',
+  './', 'index.html', 'assets/guide.css?v=2026.10.12-r1', 'assets/guide.js?v=2026.10.12-r1', 'icon.svg', 'manifest.webmanifest',
   'build-manual.html', 'battery-wiring.html', 'deck-layout.html', 'bench-test.html',
   'fire-safety.html', 'gland-plan.html', 'panel-layout.html', 'panel-wiring.html',
   'wall-cabinet.html', 'cabinet-fab.html', 'mount-detail.html', 'plot-plan.html',
   'pump-skid.html', 'split-station.html', 'chicken-waterer.html', 'shed-freezer.html',
-  'shopping.html', 'punch-list.html', 'litime-email.html', 'ask.html'
+  'downloads/electrical-layout-map.pdf', 'shopping.html', 'punch-list.html', 'litime-email.html', 'ask.html'
 ];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS.map(path => new Request(path, {cache:'reload'})))).then(() => self.skipWaiting()));

@@ -1,5 +1,11 @@
 # Field guide revisions
 
+## 2026.10.12-r1
+
+Published detailed electrical layouts and a 15-page public PDF, both available offline. The proposed three-bar-per-polarity map assigns each battery, charger, inverter and control feeder its own stud. Added fuse allocations, EV200 main/coil/feedback paths, equipment locations, routes and measurement requirements. The public PDF uses a cabinet schematic.
+
+Recorded confirmed orders and the spare bus-bar pair. Corrected the related thermal, auxiliary-feedback, fuse, breaker and clearance claims to match the layout review. All remaining checks stay visible. Field-note storage keys are unchanged.
+
 ## 2026.10.09-r1
 
 Added the winter build plan, revision B. A TE EV200 contactor in PV positive is gated by the TPDIN cold rule and an independent second layer (the battery BMS if LiTime confirms it by serial, otherwise a separate temperature switch). Battery heat moves to Phase 2 on the TP60 load output with its low-voltage cutoff; IOTA grid charging is Phase 3. The four-monitor revision A control hardware is withdrawn for this winter and kept as the engineering reference.
